@@ -1,0 +1,41 @@
+---
+id: 712
+title: Cython vs. C++, improved
+date: 2008-11-09T00:00:00+00:00
+author: Carlo Hamalainen
+layout: post
+guid: http://carlo-hamalainen.net/2008/11/09/cython-vs-c-improved/
+permalink: /2008/11/09/cython-vs-c-improved/
+restapi_import_id:
+  - 596a05ef0330b
+original_post_id:
+  - "16"
+categories:
+  - Uncategorized
+format: image
+---
+In a [recent post](http://carlo-hamalainen.net/blog/2008/03/04/cython-vs-c/) I compared my Cython and C++ implementations of a depth first search algorithm. The Cython code was quite slow, and Robert Bradshaw commented:
+
+> This graph looked pretty depressing, so I made some optimizations to your code (basically the ones suggested above, and a couple of other glaring things that stood out). The algorithm is still completely the same, and I didn’t do any code re-factoring other than \_\_getitem\_\_/\_\_setitem\_\_, just mostly typing things here and there. It’s now faster than c++ on my machine for the whole range graphed above (and much faster for small inputs).
+> 
+> Code and diff up at <http://sage.math.washington.edu/home/robertwb/cython/scratch/cython-latin/>
+
+I applied Robert&#8217;s patch and re-ran the tests on my laptop:
+
+![](/blog/myfiles/cython-vs-cpp-new.png) 
+
+The Cython implementation with Robert&#8217;s patch is now significantly faster than the C++ implementation on most of the range that I checked.
+
+**Archived Comments**
+
+Date: 2008-11-09 16:01:37 UTC
+
+Author: Alok
+
+The Green (C++) curve looks better performing from 12-14, what are we missing?
+
+Date: 2008-11-10 13:49:28 UTC
+
+Author: Robert Bradshaw
+
+It&#8217;s impossible to see on the graph, but C++ doesn&#8217;t take over from Cython until size 13 and 14. I&#8217;m very curious as to why, it almost looks like an algorithmic difference. Don&#8217;t have time right now, but I&#8217;ll do some investigating soon (there were still a lot of inefficiencies in the Cython code).

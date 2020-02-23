@@ -1,0 +1,122 @@
+---
+id: 720
+title: Cython vs C++
+date: 2008-03-04T00:00:00+00:00
+author: Carlo Hamalainen
+layout: post
+guid: http://carlo-hamalainen.net/2008/03/04/cython-vs-c/
+permalink: /2008/03/04/cython-vs-c/
+restapi_import_id:
+  - 596a05ef0330b
+original_post_id:
+  - "16"
+categories:
+  - Uncategorized
+format: image
+---
+Edit (2008-11-09): Robert Bradshaw posted a patch to my code and the Cython implementation is now a lot faster. Click [here](http://carlo-hamalainen.net/blog/2008/11/09/cython-vs-c-improved/) to read more.
+
+In a comment on a [recent post](http://carlo-hamalainen.net/blog/2007/12/18/speeding-up-code-using-cython/), Robert Samal asked how Cython compares to C++. The graph below shows a comparison of a greedy critical set solver written in Cython and C++ (both use a brute force, naive, non-randomised implementation of a depth first search): 
+
+![](/blog/myfiles/cython-vs-cpp.png) 
+
+So things look good until n = 10. In defence of Cython, I must point out that my implementation was a first attempt and I am by no means an expert on writing good Cython code. Also, the Cython code is probably fast enough &#8211; in my experience, solving problems (computationally) for latin squares of order 10 is futile, so the code is more convenient for testing out small ideas.
+
+edit: the code is [here](http://carlo-hamalainen.net/sage/latin-1.2/)
+
+edit: Robert&#8217;s code is here <http://sage.math.washington.edu/home/robertwb/cython/scratch/cython-latin/>
+
+**Archived Comments**
+
+Date: 2008-03-04 05:40:32 UTC
+
+Author: Mike Hansen
+
+You should post the Cython and C++ code because it looks like there maybe some obvious fixes to the Cython to make it behave better.
+
+Date: 2008-03-04 21:01:39 UTC
+
+Author: Robert Samal
+
+Does somebody else have some experience in how cython compares  
+with C/C++? Every once in a while I need to do some computation (something NP-complete or worse in general, so it  
+usually ends up as an ugly backtracking). I&#8217;d be happy to do everything from within Sage (and using python/cython), but I&#8217;m not sure, if it is fast enough (or if it getting fast enough, I suppose that cython is improving gradually).
+
+Date: 2008-07-07 11:59:22 UTC
+
+Author: Alexandre Delattre
+
+Hi,
+
+After looking quickly into the code, I&#8217;m pretty sure some overhead is caused by the \_\_getitem\_\_ and \_\_setitem\_\_ methods, you use to override the [] operator.
+
+When calling L\[i, j\] (or L[i, j] = x), those special methods are resolved at runtime and hence involve additional python mechanism. While they make the code readable, you lose the interest of &#8220;cdef&#8221; methods which are called much faster.
+
+IMO, a good compromise would be to put the code in \_\_getitem\_\_ into a regular &#8216;cdef getitem()&#8217; method, then make \_\_getitem\_\_ as a wrapper of the regular method:
+
+def \_\_getitem\_\_(self, rc):  
+i, j = rc  
+return self.getitem(i, j)
+
+cdef int getitem(int i, int j):  
+&#8230; # Put your code here
+
+and replace the L[i, j] by L.getitem(i, j) in your cython code.
+
+Also put &#8220;void&#8221; return type on cdef method that returns nothing could help a bit.
+
+I&#8217;ll try to make these changes and run the benchmark again.
+
+Date: 2008-11-08 15:12:21 UTC
+
+Author: Robert Bradshaw
+
+This graph looked pretty depressing, so I made some optimizations to your code (basically the ones suggested above, and a couple of other glaring things that stood out). The algorithm is still completely the same, and I didn&#8217;t do any code re-factoring other than \_\_getitem\_\_/\_\_setitem\_\_, just mostly typing things here and there. It&#8217;s now faster than c++ on my machine for the whole range graphed above (and much faster for small inputs).
+
+Code and diff up at <a href="http://sage.math.washington.edu/home/robertwb/cython-latin/" rel="nofollow">http://sage.math.washington.edu/home/robertwb/cython-latin/</a>
+
+Date: 2008-11-11 17:24:47 UTC
+
+Author: Ben Racine
+
+Any chance that we might see a plot of the improved data&#8230; wouldn&#8217;t want people to come here and only see the &#8216;depressing&#8217; data.
+
+Date: 2008-11-11 17:27:12 UTC
+
+Author: Ben Racine
+
+Nevermind, I now see the new results up one level.
+
+Date: 2011-09-14 02:19:56 UTC
+
+Author: Alex Quinn
+
+The link to the improved data is dead:  
+<a href="http://carlo-hamalainen.net/blog/?p=35" rel="nofollow">http://carlo-hamalainen.net/blog/?p=35</a>
+
+Same for the link to the motivation (&#8220;recent post&#8221;):  
+<a href="http://carlo-hamalainen.net/blog/?p=12" rel="nofollow">http://carlo-hamalainen.net/blog/?p=12</a>
+
+Are these viewable elsewhere?
+
+Thanks a lot for doing this and posting it! Very helpful in any case.
+
+Date: 2011-09-14 02:22:59 UTC
+
+Author: Alex Quinn
+
+Found it! Here&#8217;s the post with the improved data:  
+<a href="http://carlo-hamalainen.net/blog/2008/11/09/cython-vs-c-improved/" rel="nofollow">http://carlo-hamalainen.net/blog/2008/11/09/cython-vs-c-improved/</a>
+
+Date: 2011-09-14 03:47:40 UTC
+
+Author: Alex Quinn
+
+Code link is still broken:  
+<a href="http://sage.math.washington.edu/home/robertwb/cython-latin/" rel="nofollow">http://sage.math.washington.edu/home/robertwb/cython-latin/</a>
+
+Date: 2015-10-10 08:12:16.866201 UTC
+
+Author: Mohammad M. Shahbazi
+
+nice challenge. I&#8217;ve been using cython for a couple of years. it really sucks
