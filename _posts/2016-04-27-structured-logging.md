@@ -28,13 +28,13 @@ For concreteness, consider a program that I developed for [processes imaging dat
 
 The five use cases correspond to these kinds of questions: 
 
-  1. Which users are encountering errors? (Some users quietly give up and don&#8217;t tell you about errors!) Does a new imaging instrument provide data that is not supported? Produce a report listing users by number of errors, or by instrument, or by &#8230; 
-  2. User X walks up to you and asks why they can&#8217;t see their dataset titled &#8220;something something something&#8221;. Find where their dataset is in the pipeline, and give a concrete estimate for when they will be able to see their data. 
+  1. Which users are encountering errors? (Some users quietly give up and don't tell you about errors!) Does a new imaging instrument provide data that is not supported? Produce a report listing users by number of errors, or by instrument, or by ... 
+  2. User X walks up to you and asks why they can't see their dataset titled "something something something". Find where their dataset is in the pipeline, and give a concrete estimate for when they will be able to see their data. 
   3. How long does each dataset take to process? Where are the bottlenecks? 
   4. How many datasets does department X process per week? What about department Y? Or user Z? 
   5. When did user X get access to dataset Y? 
 
-Answering these questions is possible with logs containing plain strings, but it becomes difficult to run more complicated queries since regexes don&#8217;t scale very well. 
+Answering these questions is possible with logs containing plain strings, but it becomes difficult to run more complicated queries since regexes don't scale very well. 
 
 The idea with structured logging is to log JSON blobs or key/value pairs instead of plain strings, so a structured log might look like this: 
 
@@ -59,13 +59,13 @@ The idea with structured logging is to log JSON blobs or key/value pairs instead
 
 Now the five questions can be framed in terms of queries over the structured data: 
 
-  1. Find all entries with &#8220;action=error&#8221; and report on the field &#8220;user=&#8230;&#8221;. 
-  2. Find the most recent log entries with user=uqbobsmith; filter by patient_name field; filter errors; or view &#8220;time&#8221; field to see how long each subset is taking to process. 
-  3. Plot the time-series of &#8220;time=&#8230;&#8221; values. 
-  4. Filter on &#8220;user=&#8230;&#8221; and &#8220;action=finished&#8221;; join with a table linking user IDs to departments; group by department names. 
-  5. Filter on &#8220;acl_action=add&#8221; and &#8220;user=uqbobsmith&#8221;; sort by timestamp. 
+  1. Find all entries with "action=error" and report on the field "user=...". 
+  2. Find the most recent log entries with user=uqbobsmith; filter by patient_name field; filter errors; or view "time" field to see how long each subset is taking to process. 
+  3. Plot the time-series of "time=..." values. 
+  4. Filter on "user=..." and "action=finished"; join with a table linking user IDs to departments; group by department names. 
+  5. Filter on "acl_action=add" and "user=uqbobsmith"; sort by timestamp. 
 
-As a proof of concept I knocked up [django-struct-log](https://github.com/carlohamalainen/django-struct-log). Since [Postgresql has support for key-value pairs](http://www.postgresql.org/docs/current/static/hstore.html) (including queries and indexes!) it is the logical choice for the storage of log items. The [django-hstore](http://djangonauts.github.io/django-hstore/) package extends Django&#8217;s ORM model to handle Postgresql key/value pairs. And [django-rest-framework](http://www.django-rest-framework.org) provides a REST API for programs to post log entries. 
+As a proof of concept I knocked up [django-struct-log](https://github.com/carlohamalainen/django-struct-log). Since [Postgresql has support for key-value pairs](http://www.postgresql.org/docs/current/static/hstore.html) (including queries and indexes!) it is the logical choice for the storage of log items. The [django-hstore](http://djangonauts.github.io/django-hstore/) package extends Django's ORM model to handle Postgresql key/value pairs. And [django-rest-framework](http://www.django-rest-framework.org) provides a REST API for programs to post log entries. 
 
 The Django model for log items is in [models.py](https://github.com/carlohamalainen/django-struct-log/blob/master/structlog/models.py): 
 
@@ -90,7 +90,7 @@ The Django model for log items is in [models.py](https://github.com/carlohamalai
     attributes = HStoreField()
 </pre>
 
-We don&#8217;t have to define any views, just a serializer and view-set for the model. This is in [urls.py](https://github.com/carlohamalainen/django-struct-log/blob/master/djangostructlog/urls.py): 
+We don't have to define any views, just a serializer and view-set for the model. This is in [urls.py](https://github.com/carlohamalainen/django-struct-log/blob/master/djangostructlog/urls.py): 
 
 <pre>class LogItemSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -108,7 +108,7 @@ router = routers.DefaultRouter()
 router.register(r'logitems', LogItemViewSet)
 </pre>
 
-Surprisingly, that&#8217;s pretty much it. 
+Surprisingly, that's pretty much it. 
 
 Using [TokenAuthentication](http://www.django-rest-framework.org/api-guide/authentication) makes authorization easy (no username/passwords stored in plain text) and with the REST API we can post a log item using curl: 
 
@@ -131,9 +131,9 @@ The response should be something like:
  "updated_at":"2016-04-10T14:47:31.393259Z"}
 </pre>
 
-This means that almost anything can send data to the log server &#8211; shell scripts, Python scripts, Haskell programs, anything. 
+This means that almost anything can send data to the log server -- shell scripts, Python scripts, Haskell programs, anything. 
 
-Pulling out data for plotting is easy using Django&#8217;s ORM model. For example to get all the log items for &#8220;server1&#8221; with a &#8220;time_s&#8221; attribute: 
+Pulling out data for plotting is easy using Django's ORM model. For example to get all the log items for "server1" with a "time_s" attribute: 
 
 <pre>data = LogItem.objects.filter(name='server1', attributes__has_key='time_s').all()
 x = [z.created_at for z in data]
@@ -263,7 +263,7 @@ Sample plot:
 
 <img src="https://i2.wp.com/s3.amazonaws.com/carlo-hamalainen.net/oldblog/stuff/server1.png?w=1100&#038;ssl=1" data-recalc-dims="1" /> 
 
-For exploring the log items you can poke around in the Django admin interface, or use the django-rest-framework&#8217;s endpoint: 
+For exploring the log items you can poke around in the Django admin interface, or use the django-rest-framework's endpoint: 
 
 <img src="https://i1.wp.com/s3.amazonaws.com/carlo-hamalainen.net/oldblog/stuff/log_item_rest_view.png?w=1100&#038;ssl=1" data-recalc-dims="1" /> 
 
@@ -276,6 +276,6 @@ For exploring the log items you can poke around in the Django admin interface, o
 
   * [django-struct-log](https://github.com/carlohamalainen/django-struct-log) proof of concept. 
   * [django-hstore API](http://djangonauts.github.io/django-hstore/#_python_api)
-  * [katip](https://hackage.haskell.org/package/katip) &#8211; structured logging in Haskell. Also has a backend for [Elasticsearch](https://github.com/Soostone/katip/blob/master/katip-elasticsearch/README.md). 
-  * [http://gregoryszorc.com/blog/2012/12/06/thoughts-on-logging&#8212;part-1&#8212;structured-logging/](http://gregoryszorc.com/blog/2012/12/06/thoughts-on-logging---part-1---structured-logging/)
+  * [katip](https://hackage.haskell.org/package/katip) -- structured logging in Haskell. Also has a backend for [Elasticsearch](https://github.com/Soostone/katip/blob/master/katip-elasticsearch/README.md). 
+  * [http://gregoryszorc.com/blog/2012/12/06/thoughts-on-logging-part-1-structured-logging/](http://gregoryszorc.com/blog/2012/12/06/thoughts-on-logging---part-1---structured-logging/)
   * <http://matthewdaly.co.uk/blog/2015/08/01/exploring-the-hstorefield-in-django-1-dot-8/>

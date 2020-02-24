@@ -38,4 +38,4 @@ Artist info: [Super A](http://www.super-a.nl/)
 
 
 
-It&#8217;s pretty cool when this sort of thing appears out of nowhere 🙂
+It's pretty cool when this sort of thing appears out of nowhere 🙂

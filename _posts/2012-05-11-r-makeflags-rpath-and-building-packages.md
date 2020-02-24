@@ -14,7 +14,7 @@ categories:
   - Uncategorized
 format: image
 ---
-On our HPC at work we need to build various libraries and packages from source, and install them to custom locations. Putting everything in /usr/local is not an option because of dependencies on particular versions of various libraries (and many of these packages are not available through the distro&#8217;s package manager). While building RODBC for a colleague I encountered a problem with library paths: 
+On our HPC at work we need to build various libraries and packages from source, and install them to custom locations. Putting everything in /usr/local is not an option because of dependencies on particular versions of various libraries (and many of these packages are not available through the distro's package manager). While building RODBC for a colleague I encountered a problem with library paths: 
 
 <pre>library(RODBC)
 Error in dyn.load(file, DLLpath = DLLpath, ...) :
@@ -24,11 +24,11 @@ Error in dyn.load(file, DLLpath = DLLpath, ...) :
 Error: package/namespace load failed for ‘RODBC’
 </pre>
 
-The author of the package claimed that the solution is in the documentation, but I disagree. For the benefit of anyone who comes across this problem, here&#8217;s a log of how I debugged the problem.
+The author of the package claimed that the solution is in the documentation, but I disagree. For the benefit of anyone who comes across this problem, here's a log of how I debugged the problem.
 
-First try to build with no options at all. Fails because it can&#8217;t find sql.h, as expected:
+First try to build with no options at all. Fails because it can't find sql.h, as expected:
 
-<pre>carlo@r500:/opt/src/RODBC&gt; R CMD INSTALL -l /opt/RODBC/RODBC_1.3-5 RODBC_1.3-5.tar.gz
+<pre>carlo@r500:/opt/src/RODBC> R CMD INSTALL -l /opt/RODBC/RODBC_1.3-5 RODBC_1.3-5.tar.gz
 * installing *source* package ‘RODBC’ ...
 ** package ‘RODBC’ successfully unpacked and MD5 sums checked
 checking for gcc... gcc -std=gnu99
@@ -69,7 +69,7 @@ Now set location for ODBC library, using environment variables, as per the docum
 <pre>export ODBC_INCLUDE=$ODBC_ROOT/include
 export ODBC_LIBS=$ODBC_ROOT/lib
 
-carlo@r500:/opt/src/RODBC&gt; R CMD INSTALL -l /opt/RODBC/RODBC_1.3-5 RODBC_1.3-5.tar.gz
+carlo@r500:/opt/src/RODBC> R CMD INSTALL -l /opt/RODBC/RODBC_1.3-5 RODBC_1.3-5.tar.gz
 * installing *source* package ‘RODBC’ ...
 ** package ‘RODBC’ successfully unpacked and MD5 sums checked
 checking for gcc... gcc -std=gnu99
@@ -110,7 +110,7 @@ ERROR: configuration failed for package ‘RODBC’
 * restoring previous ‘/opt/RODBC/RODBC_1.3-5/RODBC’
 </pre>
 
-This error is an error itself; the problem is actually with linking against libodbc. The usual Unix way is to set LDFLAGS, so let&#8217;s try that:
+This error is an error itself; the problem is actually with linking against libodbc. The usual Unix way is to set LDFLAGS, so let's try that:
 
 <pre>export LDFLAGS="-L/opt/odbc/odbc-2.3.0/lib -Wl,-rpath /opt/odbc/odbc-2.3.0/lib"
 R CMD INSTALL -l /opt/RODBC/RODBC_1.3-5 RODBC_1.3-5.tar.gz
@@ -125,12 +125,12 @@ ERROR: configuration failed for package ‘RODBC’
 * restoring previous ‘/opt/RODBC/RODBC_1.3-5/RODBC’
 </pre>
 
-Perhaps not. After reading more, I found that &#8220;R CMD INSTALL&#8221; can make use of the MAKEFLAGS environment variable, in which [whitespaces have to be escaped](https://stat.ethz.ch/pipermail/r-help/2002-June/022393.html) (how odd). So let&#8217;s turn off LDFLAGS and try with that:
+Perhaps not. After reading more, I found that "R CMD INSTALL" can make use of the MAKEFLAGS environment variable, in which [whitespaces have to be escaped](https://stat.ethz.ch/pipermail/r-help/2002-June/022393.html) (how odd). So let's turn off LDFLAGS and try with that:
 
 <pre>unset LDFLAGS
 MAKEFLAGS='LDFLAGS=-L/opt/odbc/odbc-2.3.0/lib -Wl,-rpath /opt/odbc/odbc-2.3.0/lib' R CMD INSTALL -l /opt/RODBC/RODBC_1.3-5 RODBC_1.3-5.tar.gz
 
-carlo@r500:/opt/src/RODBC&gt; MAKEFLAGS='LDFLAGS=-L/opt/odbc/odbc-2.3.0/lib -Wl,-rpath /opt/odbc/odbc-2.3.0/lib' R CMD INSTALL -l /opt/RODBC/RODBC_1.3-5 RODBC_1.3-5.tar.gz
+carlo@r500:/opt/src/RODBC> MAKEFLAGS='LDFLAGS=-L/opt/odbc/odbc-2.3.0/lib -Wl,-rpath /opt/odbc/odbc-2.3.0/lib' R CMD INSTALL -l /opt/RODBC/RODBC_1.3-5 RODBC_1.3-5.tar.gz
 * installing *source* package ‘RODBC’ ...
 ** package ‘RODBC’ successfully unpacked and MD5 sums checked
 checking for gcc... gcc -std=gnu99
@@ -215,7 +215,7 @@ ERROR: configuration failed for package ‘RODBC’
 * restoring previous ‘/opt/RODBC/RODBC_1.3-5/RODBC’
 </pre>
 
-Nope, LD\_LIBRARY\_PATH is ignored when it&#8217;s inside MAKEFLAGS. Let&#8217;s be psychic and set it as a shell environment variable instead:
+Nope, LD\_LIBRARY\_PATH is ignored when it's inside MAKEFLAGS. Let's be psychic and set it as a shell environment variable instead:
 
 <pre>export LD_LIBRARY_PATH=/opt/gcc/4.4.2/lib64:/opt/gcc/4.4.2/lib:/opt/odbc/odbc-2.3.0/lib
 MAKEFLAGS='LDFLAGS=-L/opt/odbc/odbc-2.3.0/lib -Wl,-rpath /opt/odbc/odbc-2.3.0/lib' R CMD INSTALL -l /opt/RODBC/RODBC_1.3-5 RODBC_1.3-5.tar.gz
@@ -273,7 +273,7 @@ installing to /opt/RODBC/RODBC_1.3-5/RODBC/libs
 * DONE (RODBC)
 </pre>
 
-Success. Note the &#8220;-Wl,-rpath&#8221; option which lets RODBC.so know where libodbc.so is, so that the end user running R doesn&#8217;t need to set any environment variables before loading RODBC. 
+Success. Note the "-Wl,-rpath" option which lets RODBC.so know where libodbc.so is, so that the end user running R doesn't need to set any environment variables before loading RODBC. 
 
 In summary:
 

@@ -35,7 +35,7 @@ Installation notes: <https://github.com/carlohamalainen/dotfiles/blob/master/x1-
 
 ################################################################################
 
-echo 'source $HOME/work/bin/bash-aliases-x1' &gt;&gt; $HOME/.bashrc
+echo 'source $HOME/work/bin/bash-aliases-x1' >> $HOME/.bashrc
 
 # edit /etc/apt/sources.list as follows:
 
@@ -102,7 +102,7 @@ cd ghc-7.6.3
 make clean
 ./configure --prefix=$HOME/opt/ghc-7.6.3_build
 make && make install
-echo 'export PATH=$HOME/opt/ghc-7.6.3_build/bin:$PATH' &gt;&gt; $HOME/.bashrc
+echo 'export PATH=$HOME/opt/ghc-7.6.3_build/bin:$PATH' >> $HOME/.bashrc
 # Get a new shell or set the $PATH manually.
 cd ..
 
@@ -117,13 +117,13 @@ cd haskell-platform-2013.2.0.0
 make clean
 ./configure --prefix=$HOME/opt/haskell-platform-2013.2.0.0_build/
 make && make install
-echo 'export PATH=$HOME/opt/haskell-platform-2013.2.0.0_build/bin:$PATH' &gt;&gt; $HOME/.bashrc
+echo 'export PATH=$HOME/opt/haskell-platform-2013.2.0.0_build/bin:$PATH' >> $HOME/.bashrc
 # get a new shell or set the $PATH manually
 
 # Cabal:
 cabal update
 cabal install cabal-install
-echo 'export PATH=$HOME/.cabal/bin:$PATH' &gt;&gt; ~/.bashrc
+echo 'export PATH=$HOME/.cabal/bin:$PATH' >> ~/.bashrc
 # get a new shell...
 
 # XMonad

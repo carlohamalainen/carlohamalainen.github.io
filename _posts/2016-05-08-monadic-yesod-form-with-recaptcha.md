@@ -14,9 +14,9 @@ categories:
   - Uncategorized
 format: image
 ---
-Applicative forms in [Yesod](http://www.yesodweb.com/book/forms) are nifty but they don&#8217;t let you customise layout, CSS, and so on. I had this form for comments on [my blog](https://github.com/carlohamalainen/cli-yesod-blog): 
+Applicative forms in [Yesod](http://www.yesodweb.com/book/forms) are nifty but they don't let you customise layout, CSS, and so on. I had this form for comments on [my blog](https://github.com/carlohamalainen/cli-yesod-blog): 
 
-<pre>commentFormOLD :: EntryId -&gt; Form Comment
+<pre>commentFormOLD :: EntryId -> Form Comment
 commentFormOLD entryId = renderDivs $ Comment
      pure entryId
      lift (liftIO getCurrentTime)
@@ -24,7 +24,7 @@ commentFormOLD entryId = renderDivs $ Comment
      aopt emailField (fieldSettingsLabel MsgCommentEmail) Nothing
      aopt urlField (fieldSettingsLabel MsgCommentUrl) Nothing
      areq htmlField (fieldSettingsLabel MsgCommentText) Nothing
-     pure False &lt;* recaptchaAForm
+     pure False <* recaptchaAForm
 </pre>
 
 I wanted to tweak the layout so I had to convert it to a monadic form. The only quirk was that the second part of the return value of recaptchaMForm is of type [FieldView site], not FieldView site. It looks like the first element of the list does the job for rendering the [Yesod-ReCAPTCHA](http://hackage.haskell.org/package/yesod-recaptcha-1.4/docs/Yesod-ReCAPTCHA.html) widget. So we set 
@@ -45,7 +45,7 @@ and then write
   
   
   <p>
-    Here&#8217;s the full function. Note the fvId bits where we can specify the width and height. Also, to the form as a parameter to generateFormPost, we must have a parameter of type Html. So we put the EntryId at the front so that we can use <a href="https://en.wikipedia.org/wiki/Currying">Currying</a>. 
+    Here's the full function. Note the fvId bits where we can specify the width and height. Also, to the form as a parameter to generateFormPost, we must have a parameter of type Html. So we put the EntryId at the front so that we can use <a href="https://en.wikipedia.org/wiki/Currying">Currying</a>. 
   </p>
   
   

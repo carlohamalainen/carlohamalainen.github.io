@@ -16,7 +16,7 @@ format: image
 ---
 [Update 2012-12-13: my 3.6.9 kernel config is [here](https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/stuff/config-3.6.9-debian-on-dell-latitude-E6530).]
 
-Ubuntu is getting a bit [weird](http://help.ubuntu-it.org/12.04/desktop/power-hibernate.html) these days so I decided to go back to Debian on my work laptop, a Dell Latitude E6530 with the NVIDIA NVS 5200M graphics card. Full output of &#8220;lspci -v&#8221; is at the end of this post. 
+Ubuntu is getting a bit [weird](http://help.ubuntu-it.org/12.04/desktop/power-hibernate.html) these days so I decided to go back to Debian on my work laptop, a Dell Latitude E6530 with the NVIDIA NVS 5200M graphics card. Full output of "lspci -v" is at the end of this post. 
 
 Notes: 
 
@@ -27,9 +27,9 @@ Notes:
 
 The installation process: 
 
-1. Install the base Debian Squeeze system but don&#8217;t install the graphical desktop environment. 
+1. Install the base Debian Squeeze system but don't install the graphical desktop environment. 
 
-2. Replace &#8220;squeeze&#8221; with &#8220;testing&#8221; in /etc/apt/sources.list, then do the usual apt-get update and apt-get dist-upgrade.
+2. Replace "squeeze" with "testing" in /etc/apt/sources.list, then do the usual apt-get update and apt-get dist-upgrade.
 
 3. Install a 3.2.x kernel from source:
 
@@ -203,9 +203,9 @@ Date: 2012-11-15 02:24:54 UTC
 
 Author: JB
 
-Hi, thanks for this useful webpage! A simple question though: why haven&#8217;t you used more recent a kernel? Seems you wrote this page only two days ago, why not having chosen 3.6.6?
+Hi, thanks for this useful webpage! A simple question though: why haven't you used more recent a kernel? Seems you wrote this page only two days ago, why not having chosen 3.6.6?
 
-(I&#8217;m asking because I now have issues with this 3.6.6 kernel on the very same Latitude E6530&#8230; Might try with your 3.2.33, but now before I can understand why ;-))
+(I'm asking because I now have issues with this 3.6.6 kernel on the very same Latitude E6530... Might try with your 3.2.33, but now before I can understand why ;-))
 
 Date: 2012-11-15 07:44:56 UTC
 
@@ -213,13 +213,13 @@ Author: KarolSzk
 
 Hello,
 
-I&#8217;m interested wheter suspend/resume for a few days works ok or not with nvidia/wheezy and your Dell E6530. I have a E6510 with ubuntu/nouveau (previously nvidia closed driver) and suspend/resume doesn&#8217;t work properly..
+I'm interested wheter suspend/resume for a few days works ok or not with nvidia/wheezy and your Dell E6530. I have a E6510 with ubuntu/nouveau (previously nvidia closed driver) and suspend/resume doesn't work properly..
 
 Date: 2012-11-15 08:55:09 UTC
 
 Author: carlo
 
-JB: I did try 3.6.6 but the webcam wasn&#8217;t detected. I need it for daily meetings and haven&#8217;t had a chance to work out what&#8217;s wrong, so for the moment I&#8217;m using 3.2.33.
+JB: I did try 3.6.6 but the webcam wasn't detected. I need it for daily meetings and haven't had a chance to work out what's wrong, so for the moment I'm using 3.2.33.
 
 KarolSzk: I will try this out over the next week and report back.
 
@@ -227,15 +227,15 @@ Date: 2012-11-15 21:21:37 UTC
 
 Author: JB
 
-Thanks for the quick answer! With the 3.6.6 kernel built with the original options it comes out with (so lots of included drivers that are of no use for my system, but it&#8217;s ok for lazy people, at least I don&#8217;t miss any that is actually useful), it wouldn&#8217;t boot out of grub. With precisely the same settings as my working 2.6.32-5-686, same uuid for the hard disk, etc, 3.6.6 complains that no device is bound to boot from&#8230; Weired, isn&#8217;t it? I&#8217;ll probably go for a 3.2.33 with some care in the choice of the modules to use as builtin, when I have some spare time&#8230;
+Thanks for the quick answer! With the 3.6.6 kernel built with the original options it comes out with (so lots of included drivers that are of no use for my system, but it's ok for lazy people, at least I don't miss any that is actually useful), it wouldn't boot out of grub. With precisely the same settings as my working 2.6.32-5-686, same uuid for the hard disk, etc, 3.6.6 complains that no device is bound to boot from... Weired, isn't it? I'll probably go for a 3.2.33 with some care in the choice of the modules to use as builtin, when I have some spare time...
 
 Date: 2012-11-16 20:03:46 UTC
 
 Author: JB
 
-Sorry, silly me! I had missed the make modules-install step before the make install. Now 3.6.6 runs fine, soundcard works nicely, for the moment I&#8217;ve not tried the camera.
+Sorry, silly me! I had missed the make modules-install step before the make install. Now 3.6.6 runs fine, soundcard works nicely, for the moment I've not tried the camera.
 
-With the NVidia proprietary driver version 304.64, it&#8217;s a nice display also! 🙂
+With the NVidia proprietary driver version 304.64, it's a nice display also! 🙂
 
 Date: 2012-11-20 18:23:16 UTC
 
@@ -254,5 +254,5 @@ Date: 2012-11-28 00:40:25 UTC
 Author: JB
 
 Ok, from this link (<a href="https://bugs.launchpad.net/ubuntu/+source/linux/+bug/773710" rel="nofollow">https://bugs.launchpad.net/ubuntu/+source/linux/+bug/773710</a>) is learned that I had to add the line:  
-Option &#8220;RegistryDwords&#8221; &#8220;EnableBrightnessControl=1&#8221;  
+Option "RegistryDwords" "EnableBrightnessControl=1"  
 to my /etc/X11/xorg.conf, in the section corresponding to Screen0 for this NVidia card. It works now! 🙂

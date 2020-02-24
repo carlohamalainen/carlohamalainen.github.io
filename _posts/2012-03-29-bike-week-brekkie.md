@@ -16,7 +16,7 @@ format: image
 ---
 I went to the [Bicycle Queensland / Scody Ride to Work](http://bikeweek.bq.org.au/whats-on/events/scody-ride-to-work-day/) event in King George Square earlier this month.
 
-It was drizzling but I didn&#8217;t mind&#8230; 
+It was drizzling but I didn't mind... 
 
 <img border="0" src="https://i1.wp.com/s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/medium/2012-03-14%2B%2B07-06-40.jpg?w=1100&#038;ssl=1" alt="[photo]" data-recalc-dims="1" /> 
 

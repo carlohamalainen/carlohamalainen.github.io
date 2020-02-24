@@ -14,7 +14,7 @@ categories:
   - Uncategorized
 format: image
 ---
-My pizza dough recipe is based on a recipe that I found on foodtv.ca called &#8220;Backyard Pizza Dough&#8221;. I can&#8217;t find a link to the original page. The original recipe called for 1 tbsp of salt which I believe to be far too much, I only use 1 tsp. 
+My pizza dough recipe is based on a recipe that I found on foodtv.ca called "Backyard Pizza Dough". I can't find a link to the original page. The original recipe called for 1 tbsp of salt which I believe to be far too much, I only use 1 tsp. 
 
 The ingredients:
 
@@ -29,7 +29,7 @@ The ingredients:
 
 In a large bowl mix together the water, yeast, sugar, and milk. Leave it for 5-10 minutes until the yeast starts to make things foamy.
 
-Slowly mix in the flour using a wooden spoon. Don&#8217;t try to get the whole 2.5 cups in! Keep going until you have a fairly wet dough, then transfer to a lightly dusted surface and knead for a few minutes. The dough will be rather tricky to work with.
+Slowly mix in the flour using a wooden spoon. Don't try to get the whole 2.5 cups in! Keep going until you have a fairly wet dough, then transfer to a lightly dusted surface and knead for a few minutes. The dough will be rather tricky to work with.
 
 Cover with gladwrap and let rise until double in size. Punch down, cover, and leave to rise again.
 

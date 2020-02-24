@@ -1,21 +1,15 @@
 ---
-id: 1296
 title: An expression evaluator in CSV
 date: 2019-02-09T12:44:45+00:00
 author: Carlo Hamalainen
 layout: post
-guid: https://carlo-hamalainen.net/?p=1296
 permalink: /2019/02/09/an-expression-evaluator-in-csv/
-inline_featured_image:
-  - "0"
-categories:
-  - Uncategorized
 ---
 Many business problems boil down to reading data from somewhere, transforming it, and writing it somewhere else.
 
 We could implement the transformations in code, but non-technical users might like to see and edit the rules without having to deploy a new build.
 
-Here&#8217;s an example rule:
+Here's an example rule:
 
   1. Read the value at `<a href="http://example.com/foo/bar/x" rel="nofollow">http://example.com/foo/bar/x</a>`, refer to it as `val`.
   2. Return `10*(1.0/val)`.
@@ -30,14 +24,13 @@ The question is how to flatten this out into a format suitable for a CSV file, t
 
 One approach would be to implement an expression [DSL](https://en.wikipedia.org/wiki/Domain-specific_language), but this gets a bit painful when the input space is cells in a spreadsheet or CSV file. There are also questions about encoding the order of evaluation.
 
-[Reverse Polish notation](https://en.wikipedia.org/wiki/Reverse_Polish_notation) is a simple way to encode arbitrary mathematical formulas in a flat sequence. Here&#8217;s how to write the first example:
+[Reverse Polish notation](https://en.wikipedia.org/wiki/Reverse_Polish_notation) is a simple way to encode arbitrary mathematical formulas in a flat sequence. Here's how to write the first example:
 
-<pre class="brush: plain; title: ; notranslate" title="">CONSTANT 1
-GET_DATA /foo/bar/x
-DIV
-CONSTANT 10
-MUL
-</pre>
+    CONSTANT 1
+    GET_DATA /foo/bar/x
+    DIV
+    CONSTANT 10
+    MUL
 
 This sequence of operations will do the following:
 
@@ -473,7 +466,8 @@ Evaluating a sequence of operations is straightforward. Start with an empty stac
 
 Here is the entire evaluator:
 
-<pre class="brush: python; title: ; notranslate" title="">def eval_rule(rule):
+{% highlight python %}
+def eval_rule(rule):
     s = []
 
     expr = []
@@ -534,7 +528,7 @@ Here is the entire evaluator:
         raise ValueError('Expected one item on the expression stack, but found: ' + str(expr))
 
     return s[0], expr[0]
-</pre>
+{% endhighlight %}
 
 Just for fun, we will also evaluate the example from the Wikipedia page on Reverse Polish notation:
 
@@ -955,26 +949,19 @@ Just for fun, we will also evaluate the example from the Wikipedia page on Rever
   </tr>
 </table>
 
-Here&#8217;s the output:
+Here's the output:
 
-<pre class="brush: plain; title: ; notranslate" title="">$ python3 rpn.py
-RULE001
-((1.0/(GET_DATA: /foo/bar/x))*10.0)
-0.23809523809523808
+    $ python3 rpn.py
+    RULE001
+    ((1.0/(GET_DATA: /foo/bar/x))*10.0)
+    0.23809523809523808
 
-RULE002
-(((1.0/(GET_DATA: /foo/bar/x))+(1.0/(GET_DATA: /foo/bar/y)))/2.0)
-0.02857142857142857
+    RULE002
+    (((1.0/(GET_DATA: /foo/bar/x))+(1.0/(GET_DATA: /foo/bar/y)))/2.0)
+    0.02857142857142857
 
-RULE003
-(((15.0/(7.0-(1.0+1.0)))*3.0)-(2.0+(1.0+1.0)))
-5.0
-</pre>
-
-&nbsp;
+    RULE003
+    (((15.0/(7.0-(1.0+1.0)))*3.0)-(2.0+(1.0+1.0)))
+    5.0
 
 Reverse Polish Notation gives us a compact way to represent a sequence of operators with no ambiguity about the order of evaluation.
-
-&nbsp;
-
-&nbsp;

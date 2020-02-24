@@ -57,66 +57,66 @@ end
 
 Personally, this gives me nightmares from undergrad numerical methods classes. So here’s how to do it in Haskell. Full source (including cabal config) for this post is [here](https://github.com/carlohamalainen/playground/tree/master/haskell/bigdata).
 
-<pre>&gt; module Notes where
+<pre>> module Notes where
 </pre>
 
 To create the W matrix we use buildMatrix: 
 
-<pre>&gt; buildW :: Double -&gt; Matrix Double -&gt; Matrix Double
-&gt; buildW sigma a = buildMatrix n n $ (i,j) -&gt; f sigma a i j
-&gt;   where
-&gt;     n = rows a
-&gt;
-&gt;     f sigma a i j = if j /= i
-&gt;                         then expp sigma a i j
-&gt;                         else 0.0
-&gt;
-&gt;     dist :: Matrix Double -&gt; Int -&gt; Int -&gt; Double
-&gt;     dist m i j = norm2 $ fromList [ m!i!0 - m!j!0, m!i!1 - m!j!1 ]
-&gt;
-&gt;     expp :: Double -&gt; Matrix Double -&gt; Int -&gt; Int -&gt; Double
-&gt;     expp sigma m i j = exp $ (-(dist m i j)**2)/(2*sigma**2)
+<pre>> buildW :: Double -> Matrix Double -> Matrix Double
+> buildW sigma a = buildMatrix n n $ (i,j) -> f sigma a i j
+>   where
+>     n = rows a
+>
+>     f sigma a i j = if j /= i
+>                         then expp sigma a i j
+>                         else 0.0
+>
+>     dist :: Matrix Double -> Int -> Int -> Double
+>     dist m i j = norm2 $ fromList [ m!i!0 - m!j!0, m!i!1 - m!j!1 ]
+>
+>     expp :: Double -> Matrix Double -> Int -> Int -> Double
+>     expp sigma m i j = exp $ (-(dist m i j)**2)/(2*sigma**2)
 </pre>
 
 The D matrix is a diagonal matrix with each element being the sum of a row of W, which is nicely expressible by composing a few functions: 
 
-<pre>&gt; buildD :: Matrix Double -&gt; Matrix Double
-&gt; buildD w = diag
-&gt;          . fromList
-&gt;          . map (foldVector (+) 0)
-&gt;          . toRows
-&gt;          $ w
-&gt;   where
-&gt;     n = rows w
+<pre>> buildD :: Matrix Double -> Matrix Double
+> buildD w = diag
+>          . fromList
+>          . map (foldVector (+) 0)
+>          . toRows
+>          $ w
+>   where
+>     n = rows w
 </pre>
 
 The L matrix is real and symmetric so we use [eigSH](https://hackage.haskell.org/package/hmatrix-0.16.1.5/docs/Numeric-LinearAlgebra-HMatrix.html#v:eigSH) which provides the eigenvalues in descending order.
 
-<pre>&gt; lapEigs :: Double -&gt; Matrix Double -&gt; (Vector Double, Matrix Double)
-&gt; lapEigs sigma m = eigSH l
-&gt;   where
-&gt;     w = buildW sigma m
-&gt;     d = buildD w
-&gt;     l = d - w
+<pre>> lapEigs :: Double -> Matrix Double -> (Vector Double, Matrix Double)
+> lapEigs sigma m = eigSH l
+>   where
+>     w = buildW sigma m
+>     d = buildD w
+>     l = d - w
 </pre>
 
 To finish up, the Fiedler eigenvector corresponds to the second smallest eigenvalue: 
 
-<pre>&gt; fiedler :: Double -&gt; Matrix Double -&gt; (Double, Vector Double)
-&gt; fiedler sigma m = (val ! (n-2), vector $ concat $ toLists $ vec ¿ [n-2])
-&gt;   where
-&gt;     (val, vec) = lapEigs sigma m
-&gt;     n = rows m
+<pre>> fiedler :: Double -> Matrix Double -> (Double, Vector Double)
+> fiedler sigma m = (val ! (n-2), vector $ concat $ toLists $ vec ¿ [n-2])
+>   where
+>     (val, vec) = lapEigs sigma m
+>     n = rows m
 </pre>
 
 To plot the eigenvalues and eigenvector we use the [Chart](https://hackage.haskell.org/package/Chart-1.8/docs/Graphics-Rendering-Chart-Easy.html) library which uses the [cairo](https://en.wikipedia.org/wiki/Cairo_(graphics)) backend.
 
-<pre>&gt; doPlot "eigenvalues.png" "Eigenvalues" "eigenvalue" $ zip [0..] (reverse $ toList val)
-&gt;
-&gt; doPlot "fiedler.png"
-&gt;        "Second eigenvalue of unnormalised Laplacian"
-&gt;        "fiedler eigenvector"
-&gt;        (zip [0..] $ toList algConnecEigVec)
+<pre>> doPlot "eigenvalues.png" "Eigenvalues" "eigenvalue" $ zip [0..] (reverse $ toList val)
+>
+> doPlot "fiedler.png"
+>        "Second eigenvalue of unnormalised Laplacian"
+>        "fiedler eigenvector"
+>        (zip [0..] $ toList algConnecEigVec)
 </pre>
 
 <img src="https://i0.wp.com/raw.githubusercontent.com/carlohamalainen/playground/master/haskell/bigdata/eigenvalues.png?w=600&#038;ssl=1"  data-recalc-dims="1" /> 

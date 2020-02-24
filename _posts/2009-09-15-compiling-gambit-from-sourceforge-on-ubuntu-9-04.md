@@ -28,7 +28,7 @@ $ wget http://mirrors.kernel.org/ubuntu/pool/main/libt/libtool/libtool_1.5.26-1u
 $ sudo dpkg -i libtool_1.5.26-1ubuntu1_i386.deb
 </pre>
 
-It is helpful to &#8220;pin&#8221; this package so that it won&#8217;t be automatically updated when running apt-get dist-upgrade. Edit /etc/apt/preferences (if the file doesn&#8217;t exist then just create it) and write this:
+It is helpful to "pin" this package so that it won't be automatically updated when running apt-get dist-upgrade. Edit /etc/apt/preferences (if the file doesn't exist then just create it) and write this:
 
 <pre>Package: libtool
 Pin: version 1.5.26-1ubuntu1
@@ -48,7 +48,7 @@ $ autoheader
 $ automake
 </pre>
 
-The autoheader command is probably not necessary but I&#8217;m mentioning it because it&#8217;s part of the usual process to make a GNU configure script.
+The autoheader command is probably not necessary but I'm mentioning it because it's part of the usual process to make a GNU configure script.
 
 Now make and install as usual:
 

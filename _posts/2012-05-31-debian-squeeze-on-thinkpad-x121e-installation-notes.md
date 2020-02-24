@@ -21,14 +21,14 @@ Here are some notes on installing [Debian Squeeze](http://wiki.debian.org/Debian
 The ethernet card is not detected by the Debian installer, so at the first opportunity flip to a console, load the atl1c driver, and echo this magic string:
 
 <pre>modprobe atl1c
-echo "1969 1083" &gt; /sys/bus/pci/drivers/atl1c/new_id
+echo "1969 1083" > /sys/bus/pci/drivers/atl1c/new_id
 </pre>
 
 (credit: <http://wiki.debian.org/InstallingDebianOn/Thinkpad/X121e-30515YG>) 
 
 ## Wrong resolution in xorg 
 
-The installation process runs ok but on rebooting the screen resolution in xorg was 1024&#215;768 instead of 1366&#215;768 so everything looked weird and squashed. Upgrading to a 3.2 kernel fixes the problem. Add this line to /etc/apt/sources.list:
+The installation process runs ok but on rebooting the screen resolution in xorg was 1024x768 instead of 1366x768 so everything looked weird and squashed. Upgrading to a 3.2 kernel fixes the problem. Add this line to /etc/apt/sources.list:
 
 <pre>deb http://backports.debian.org/debian-backports squeeze-backports main
 </pre>
@@ -93,9 +93,9 @@ After a reboot the built-in ethernet and wifi both worked.
 
 The version of VirtualBox in Squeeze is not new enough to compile against a 3.2 kernel, so just grab the 4.x release from [www.virtualbox.org](https://www.virtualbox.org/). 
 
-## Where&#8217;s the Insert key!? 
+## Where's the Insert key!? 
 
-I think it&#8217;s strange that there is no Insert key on the X121e. According to [this post](http://www.msfn.org/board/topic/153124-thinkpad-x121e-annoyances/) there are some key combos to get the missing keys:
+I think it's strange that there is no Insert key on the X121e. According to [this post](http://www.msfn.org/board/topic/153124-thinkpad-x121e-annoyances/) there are some key combos to get the missing keys:
 
 <pre>Fn + I = Insert
 Fn + P = Pause
@@ -105,7 +105,7 @@ Fn + S = Scroll Lock
 
 ## System info 
 
-Output of &#8220;lspci -v&#8221;: 
+Output of "lspci -v": 
 
 <pre>00:00.0 Host bridge: Intel Corporation Sandy Bridge DRAM Controller (rev 09)
 	Subsystem: Lenovo Device 21ed
@@ -383,7 +383,7 @@ Date: 2012-07-24 11:50:28 UTC
 
 Author: steve rinsler
 
-your command for installing a 3.2 kernel specifies 2.6.39?? Isn&#8217;t that a mistake/typo?
+your command for installing a 3.2 kernel specifies 2.6.39?? Isn't that a mistake/typo?
 
 Date: 2012-08-03 09:06:57 UTC
 
@@ -391,4 +391,4 @@ Author: carlo
 
 Steve,
 
-Thanks, I&#8217;ve updated the instructions to refer to the 3.2 kernel.
+Thanks, I've updated the instructions to refer to the 3.2 kernel.

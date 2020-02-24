@@ -14,11 +14,11 @@ categories:
   - Uncategorized
 format: image
 ---
-Just a quick note on how to call ggplot2 from Clojure. Install the [rincanter](https://github.com/jolby/rincanter) package. A tip: if you don&#8217;t know what R_HOME is for your system, try this at the R prompt:
+Just a quick note on how to call ggplot2 from Clojure. Install the [rincanter](https://github.com/jolby/rincanter) package. A tip: if you don't know what R_HOME is for your system, try this at the R prompt:
 
-<pre>&gt; R.home(component="home")
+<pre>> R.home(component="home")
 [1] "/usr/lib64/R"
-&gt;
+>
 </pre>
 
 So I did export R_HOME=/usr/lib64/R and then rincanter was happy.

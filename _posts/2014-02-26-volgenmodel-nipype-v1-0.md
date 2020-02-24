@@ -28,7 +28,7 @@ for (i, f) in enumerate(files):
 final_result = fn2(intermediate_result)
 </pre>
 
-The problem with this approach is that it doesn&#8217;t scale well nor is it easy to reason about. The equivalent in Nipype is: 
+The problem with this approach is that it doesn't scale well nor is it easy to reason about. The equivalent in Nipype is: 
 
 <pre>import nipype.pipeline.engine as pe
 import nipype.interfaces.io as nio
@@ -61,7 +61,7 @@ workflow.connect(intermediate, 'output_file', final, 'input_file')
 workflow.connect(final, 'output_file', datasink, 'final')
 </pre>
 
-This code is much closer to the actual problem that we are trying to solve, and as a bonus we don&#8217;t have to take care of arrays of input and output files, which is pure agony and prone to errors. 
+This code is much closer to the actual problem that we are trying to solve, and as a bonus we don't have to take care of arrays of input and output files, which is pure agony and prone to errors. 
 
 Nipype lets us run the workflow using a single core like this: 
 
@@ -75,6 +75,6 @@ or we can fire it up using 4 cores using:
 
 Nipype also has [plugins](http://nipy.org/nipype/users/plugins.html) for SGE, PBS, HTCondor, LSF, SLURM, and others. 
 
-Here is volgenmodel-nipype&#8217;s workflow graph (generating this graph is a one-liner with the workflow object). Click the image for the full size version. 
+Here is volgenmodel-nipype's workflow graph (generating this graph is a one-liner with the workflow object). Click the image for the full size version. 
 
 [<img src="https://i0.wp.com/github.com/carlohamalainen/volgenmodel-nipype/raw/master/volgenmodel_graph.png?w=480&#038;ssl=1"  data-recalc-dims="1" />](https://i0.wp.com/github.com/carlohamalainen/volgenmodel-nipype/raw/master/volgenmodel_graph.png?ssl=1)

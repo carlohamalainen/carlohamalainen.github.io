@@ -14,7 +14,7 @@ categories:
   - Uncategorized
 format: image
 ---
-As of January 2013 I was not able to find Debian packages for wxWidgets 2.9, which is required by 0.90.0.1, so we&#8217;ll install directly from source. First grab some dependencies: 
+As of January 2013 I was not able to find Debian packages for wxWidgets 2.9, which is required by 0.90.0.1, so we'll install directly from source. First grab some dependencies: 
 
 <pre>sudo apt-get install build-essential libgl1-mesa-dev libglu1-mesa-dev freeglut3-dev
 </pre>
@@ -67,7 +67,7 @@ Then repackage:
 rm -fr wxc-0.90.0.4
 </pre>
 
-Beware that the patch to wxc is under cabal&#8217;s control, so it could be lost if wxc is upgraded, etc. Finally, try to install again using: 
+Beware that the patch to wxc is under cabal's control, so it could be lost if wxc is upgraded, etc. Finally, try to install again using: 
 
 <pre>cabal install wx
 </pre>
@@ -82,8 +82,8 @@ main = start hello
 
 hello :: IO ()
 hello = do
-    f    &lt;- frame    [text := "Hello!"]
-    quit &lt;- button f [text := "Quit", on command := close f]
+    f    <- frame    [text := "Hello!"]
+    quit <- button f [text := "Quit", on command := close f]
     set f [layout := widget quit]
 </pre>
 
@@ -114,13 +114,13 @@ Date: 2013-03-27 02:30:14 UTC
 
 Author: Hermit
 
-Thanks, however, I&#8217;m still unable to build wxcore. It&#8217;s spurting a lot of compiler errors: <a href="http://dpaste.com/1035609" rel="nofollow">http://dpaste.com/1035609</a>
+Thanks, however, I'm still unable to build wxcore. It's spurting a lot of compiler errors: <a href="http://dpaste.com/1035609" rel="nofollow">http://dpaste.com/1035609</a>
 
-When running wx-config &#8211;libs, -lwx\_gtk2u\_html-2.9 is there so&#8230;
+When running wx-config --libs, -lwx\_gtk2u\_html-2.9 is there so...
 
-I&#8217;ve been banging my head against a wall with this. I&#8217;m not very into C/C++ stack (that&#8217;s why I use haskell!!). I couldn&#8217;t build it for OSX either&#8230;
+I've been banging my head against a wall with this. I'm not very into C/C++ stack (that's why I use haskell!!). I couldn't build it for OSX either...
 
-I ended up switching toolkits, moved to HTk, but it&#8217;s orphan so I wonder if it&#8217;s worth it for the long run.
+I ended up switching toolkits, moved to HTk, but it's orphan so I wonder if it's worth it for the long run.
 
 Date: 2014-10-25 01:05:27.99669 UTC
 

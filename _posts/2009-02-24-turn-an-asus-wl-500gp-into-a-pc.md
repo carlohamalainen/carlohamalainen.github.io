@@ -16,7 +16,7 @@ format: image
 ---
 Update (2009-04-23): after a reboot my WL-500gP no longer booted Debian. Nothing appeared in the logs, so it really had me stumped. I ended up installing DD-WRT and all is well.
 
-Here are my notes for installing Debian on an Asus WL-500gP (Premium v1). I basically followed [this guide](http://wpkg.org/Running_Debian_on_ASUS_WL-500G_deluxe). I&#8217;m using the WL-500gP as a PC, not a router, so I have no information here about how to configure the VLAN stuff using robocfg.
+Here are my notes for installing Debian on an Asus WL-500gP (Premium v1). I basically followed [this guide](http://wpkg.org/Running_Debian_on_ASUS_WL-500G_deluxe). I'm using the WL-500gP as a PC, not a router, so I have no information here about how to configure the VLAN stuff using robocfg.
 
 **Flash the kernel image**
 
@@ -24,7 +24,7 @@ Install tftp on your PC, download the kernel openwrt-brcm47xx-2.6-jffs2-128k.trx
 
 Set your PC to static IP 192.168.1.3 with gateway 192.168.1.1
 
-Turn off the router. Hold down the &#8220;restore&#8221; button on the back, and turn on the power. Hold the button until the power LED on the front of the router flashes slowly.
+Turn off the router. Hold down the "restore" button on the back, and turn on the power. Hold the button until the power LED on the front of the router flashes slowly.
 
 The router is now in diag mode. Upload the image:
 
@@ -40,7 +40,7 @@ tftp> put openwrt-brcm-2.6-jffs2-128k.trx
 
 **Prepare your USB disk on your PC**
 
-I assume that your USB disk is /dev/sda but it&#8217;s likely to be something else, so adjust accordingly. Partition your USB disk so that /dev/sda1 is ext3, /dev/sda2 is swap. It is **essential** to make sure that the USB drive is not checked by e2fsck:
+I assume that your USB disk is /dev/sda but it's likely to be something else, so adjust accordingly. Partition your USB disk so that /dev/sda1 is ext3, /dev/sda2 is swap. It is **essential** to make sure that the USB drive is not checked by e2fsck:
 
 $ tune2fs -c0 -i0 /dev/sda1
 
@@ -95,7 +95,7 @@ asusbox
 
 Unmount the USB drive, plug it into the Asus.
 
-For ethernet, I found that the LAN1 port worked (I thought that the WAN port would but it didn&#8217;t). Connect the Asus to your main router via the LAN1 port as if it was a normal PC.
+For ethernet, I found that the LAN1 port worked (I thought that the WAN port would but it didn't). Connect the Asus to your main router via the LAN1 port as if it was a normal PC.
 
 Power it up. It should respond to ping,and ssh. The default root password is toor, and it should be changed as soon as possible.
 
@@ -144,7 +144,7 @@ lothlorien:~# lspci
 00:03.2 USB Controller: VIA Technologies, Inc. USB 2.0 (rev 65)
 </pre>
 
-It can handle rtorrent but uses a few Mb of swap and so it&#8217;s not too quick to respond sometimes in an ssh terminal.
+It can handle rtorrent but uses a few Mb of swap and so it's not too quick to respond sometimes in an ssh terminal.
 
 **Archived Comments**
 
@@ -152,7 +152,7 @@ Date: 2009-02-25 19:11:49 UTC
 
 Author: Nadiah
 
-Damn that&#8217;s sexy 😉
+Damn that's sexy 😉
 
 Date: 2012-05-23 09:51:26 UTC
 

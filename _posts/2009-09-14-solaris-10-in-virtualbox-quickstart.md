@@ -16,7 +16,7 @@ format: image
 ---
 How to install Solaris 10 in VirtualBox with an Ubuntu 9.04 host.
 
-First, [download the installer DVD](http://www.sun.com/software/solaris/). Make a VirtualBox instance of type Solaris, mount the ISO file, and do the install. It&#8217;s all fairly straightforward (say yes to all the defaults).
+First, [download the installer DVD](http://www.sun.com/software/solaris/). Make a VirtualBox instance of type Solaris, mount the ISO file, and do the install. It's all fairly straightforward (say yes to all the defaults).
 
 You will probably want to be able to ssh to your Solaris installation. To do this, assuming that your VirtualBox instance is called Solaris10, run these commands in a terminal (taken from [here](http://kdl.nobugware.com/post/2009/02/17/virtualbox-nat-ssh-guest/)):
 

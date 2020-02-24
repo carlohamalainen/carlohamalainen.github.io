@@ -14,6 +14,6 @@ categories:
   - Uncategorized
 format: image
 ---
-I can&#8217;t believe that Little Sunbeam by Lucy Su is out of print. My son absolutely loves it.
+I can't believe that Little Sunbeam by Lucy Su is out of print. My son absolutely loves it.
 
 <img src="https://i2.wp.com/s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/x-2010-06/little_sunbeam.jpg?w=1100&#038;ssl=1" data-recalc-dims="1" /> .

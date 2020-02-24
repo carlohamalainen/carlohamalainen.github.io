@@ -14,13 +14,13 @@ categories:
   - Uncategorized
 format: image
 ---
-In the past I have used SSHDroid to ssh into my phone. But recently the app seems to have split into a free and paid-for version, and you [can&#8217;t use ssh keys with the free version](http://forum.xda-developers.com/showthread.php?t=921801) (as far as I can tell). So I went looking for a simple way to run an ssh daemon. 
+In the past I have used SSHDroid to ssh into my phone. But recently the app seems to have split into a free and paid-for version, and you [can't use ssh keys with the free version](http://forum.xda-developers.com/showthread.php?t=921801) (as far as I can tell). So I went looking for a simple way to run an ssh daemon. 
 
-[Lil&#8217; Debian](https://github.com/guardianproject/lildebi) lets you run Debian in a chroot environment on Android. It automatically mounts the Android file system for you, and also runs sshd automatically. Installing it was completely straightforward (I did it via [F-Droid](https://f-droid.org/)). My [notes](https://github.com/carlohamalainen/dotfiles/blob/master/cyanogenmod.md) on installing CyanogenMod and F-Droid are below, but you could also install Lil&#8217; Debian via the normal Play Store.
+[Lil' Debian](https://github.com/guardianproject/lildebi) lets you run Debian in a chroot environment on Android. It automatically mounts the Android file system for you, and also runs sshd automatically. Installing it was completely straightforward (I did it via [F-Droid](https://f-droid.org/)). My [notes](https://github.com/carlohamalainen/dotfiles/blob/master/cyanogenmod.md) on installing CyanogenMod and F-Droid are below, but you could also install Lil' Debian via the normal Play Store.
 
 <http://gist-it.appspot.com/github/carlohamalainen/dotfiles/blob/master/cyanogenmod.md> 
 
-Here&#8217;s what I see when logged in to my phone: 
+Here's what I see when logged in to my phone: 
 
 <pre>root@localhost:~# uptime
  16:53:39 up  4:40,  1 user,  load average: 5.94, 11.37, 6.61

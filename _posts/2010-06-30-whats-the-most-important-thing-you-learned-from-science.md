@@ -1,18 +1,10 @@
 ---
-id: 693
-title: '&#8220;What&#8217;s the most important thing you learned from science?&#8221;'
+title: What's the most important thing you learned from science?
 date: 2010-06-30T00:00:00+00:00
 author: Carlo Hamalainen
 layout: post
 guid: http://carlo-hamalainen.net/2010/06/30/whats-the-most-important-thing-you-learned-from-science/
 permalink: /2010/06/30/whats-the-most-important-thing-you-learned-from-science/
-restapi_import_id:
-  - 596a05ef0330b
-original_post_id:
-  - "16"
-categories:
-  - Uncategorized
-format: image
 ---
 A while ago I read [a post](http://scienceblogs.com/principles/2009/08/pnas_alric_veterinary_patholog.php) about semi-alternative careers for scientists. One comment stood out:
 
@@ -22,10 +14,10 @@ A while ago I read [a post](http://scienceblogs.com/principles/2009/08/pnas_alri
 > 
 > I am toxicologic veterinary pathologist and work at a contract research organization. We use animal models to evaluate the possible toxicity of drugs in development by pharmaceutical or biotech companies. The main goal is to determine if, and at what dose level, a drug is safe.
 > 
-> &#8230;
+> ...
 > 
-> 8 ) What&#8217;s the most important thing you learned from science?
+> 8 ) What's the most important thing you learned from science?
 > 
-> That reality is independent of our wishful thinking or what bring us comfort. Let the data take you to the most probable conclusion even if you don&#8217;t like it or appears to not be beneficial. In the end you&#8217;ll be better off. 
+> That reality is independent of our wishful thinking or what bring us comfort. Let the data take you to the most probable conclusion even if you don't like it or appears to not be beneficial. In the end you'll be better off. 
 
 The last paragraph is spot on. I wish more people thought in that way.

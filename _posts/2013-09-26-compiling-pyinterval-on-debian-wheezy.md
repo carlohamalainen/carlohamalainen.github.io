@@ -38,20 +38,20 @@ sudo make install
 sudo pip install pyinterval
 </pre>
 
-Then you should be able to run Rump&#8217;s example (see Stefano Taschini&#8217;s SciPy 2008 paper on pyinterval): 
+Then you should be able to run Rump's example (see Stefano Taschini's SciPy 2008 paper on pyinterval): 
 
 <pre>carlo@x1 ~ $ python
 Python 2.7.3 (default, Jan  2 2013, 13:56:14)
 [GCC 4.7.2] on linux2
 Type "help", "copyright", "credits" or "license" for more information.
-&gt;&gt;&gt; from interval import interval
-&gt;&gt;&gt; def f(x,y):
+>>> from interval import interval
+>>> def f(x,y):
 ...     return (
 ...         (333.75 - x**2)* y**6 + x**2 *
 ...             (11* x**2 * y**2 - 121 * y**4 - 2)
 ...         + 5.5 * y**8 + x/(2*y))
 ...
-&gt;&gt;&gt; f(interval(77617.0), interval(33096.0))
+>>> f(interval(77617.0), interval(33096.0))
 interval([-3.541774862152234e+21, 3.5417748621522344e+21])
-&gt;&gt;&gt;
+>>>
 </pre>

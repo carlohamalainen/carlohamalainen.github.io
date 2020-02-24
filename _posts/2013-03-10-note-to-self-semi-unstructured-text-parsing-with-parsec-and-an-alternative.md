@@ -14,7 +14,7 @@ categories:
   - Uncategorized
 format: image
 ---
-Managed to answer someone&#8217;s [question](http://www.haskell.org/pipermail/haskell-cafe/2013-March/106776.html) on haskell-cafe about parsing semi-structured text with Parsec: 
+Managed to answer someone's [question](http://www.haskell.org/pipermail/haskell-cafe/2013-March/106776.html) on haskell-cafe about parsing semi-structured text with Parsec: 
 
 <https://gist.github.com/carlohamalainen/5087207.js>
 

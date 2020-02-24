@@ -14,7 +14,7 @@ categories:
   - Uncategorized
 format: image
 ---
-A mashup of nice options that I&#8217;ve accumulated over time. The status line is rather long but selecting it and copy &#8216;n&#8217; paste should work.
+A mashup of nice options that I've accumulated over time. The status line is rather long but selecting it and copy 'n' paste should work.
 
 <pre># Ctrl-right square bracket doesn't seem to clash with anything:
 escape ^]]

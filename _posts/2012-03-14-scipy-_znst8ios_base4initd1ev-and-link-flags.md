@@ -19,7 +19,7 @@ I recently tried to build SciPy 0.10.1 on a system with both the GNU and Intel c
 <pre>ImportError: /opt/scipy/0.10.1/lib/python2.7/site-packages/scipy/
 sparse/sparsetools/_csr.so: undefined symbol: _ZNSt8ios_base4InitD1Ev</pre>
 
-The fix is to add &#8220;-lstdc++&#8221; to the link flags. I found a post on the [SciPy mailing list](http://mail.scipy.org/pipermail/scipy-user/2010-March/024523.html) where someone had the same problem and asked &#8220;Could someone please advise me how to ensure that the &#8220;-lstdc++&#8221; is successfully passed to the linker as and when I build scipy.&#8221;
+The fix is to add "-lstdc++" to the link flags. I found a post on the [SciPy mailing list](http://mail.scipy.org/pipermail/scipy-user/2010-March/024523.html) where someone had the same problem and asked "Could someone please advise me how to ensure that the "-lstdc++" is successfully passed to the linker as and when I build scipy."
 
 The answer is to use the build_ext target to enable the link flag:
 

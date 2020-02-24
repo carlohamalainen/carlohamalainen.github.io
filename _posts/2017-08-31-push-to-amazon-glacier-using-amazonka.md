@@ -11,9 +11,9 @@ jabber_published:
 categories:
   - Uncategorized
 ---
-Here is a small Haskell package for pushing files to Amazon Glacier: <https://github.com/carlohamalainen/glacier-push>. It uses [Brendan Hay&#8217;s amazonka API](https://github.com/brendanhay/amazonka), in particular [amazonka-glacier](https://hackage.haskell.org/package/amazonka-glacier-1.4.5).
+Here is a small Haskell package for pushing files to Amazon Glacier: <https://github.com/carlohamalainen/glacier-push>. It uses [Brendan Hay's amazonka API](https://github.com/brendanhay/amazonka), in particular [amazonka-glacier](https://hackage.haskell.org/package/amazonka-glacier-1.4.5).
 
-One thing that I couldn&#8217;t find in amazonka was a way to calculate the tree hash of a file. The Glacier API needs this for each part that is uploaded as well as the whole file. Amazon explains how to calculate the tree hash in their [Glacier docs](http://docs.aws.amazon.com/amazonglacier/latest/dev/checksum-calculations.html) and provides sample code in Java and C++. Since the algorithm is recursive, it is quite short in Haskell:
+One thing that I couldn't find in amazonka was a way to calculate the tree hash of a file. The Glacier API needs this for each part that is uploaded as well as the whole file. Amazon explains how to calculate the tree hash in their [Glacier docs](http://docs.aws.amazon.com/amazonglacier/latest/dev/checksum-calculations.html) and provides sample code in Java and C++. Since the algorithm is recursive, it is quite short in Haskell:
 
 <pre><code class="language-haskell">
 oneMb :: Int64
@@ -33,7 +33,7 @@ treeHash s = treeHash' $ map sha256 $ oneMbChunks s
 
     oneMbChunks :: BS.ByteString -> [BS.ByteString]
     oneMbChunks x
-      | BS.length x &lt;= oneMb = [x]
+      | BS.length x <= oneMb = [x]
       | otherwise            = BS.take oneMb x : oneMbChunks (BS.drop oneMb x)
 
     sha256 :: BS.ByteString -> BS.ByteString
@@ -181,7 +181,7 @@ I found it handy to write this little helper function to turn each header from a
                                    in katipAddContext (sl h' x')
     
 
-Katip can write to ElasticSearch using [katip-elasticsearch](https://hackage.haskell.org/package/katip-elasticsearch). Then you&#8217;d be able to search for errors on specific header fields, etc.
+Katip can write to ElasticSearch using [katip-elasticsearch](https://hackage.haskell.org/package/katip-elasticsearch). Then you'd be able to search for errors on specific header fields, etc.
 
 ## Sample run
 

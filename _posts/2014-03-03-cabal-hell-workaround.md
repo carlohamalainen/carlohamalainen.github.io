@@ -18,13 +18,13 @@ Note: cabal now includes the freeze command, i.e. cabal freeze and there is also
 
 
 
-Lately I&#8217;ve been encountering cabal hell with a few of my Haskell projects, even ones that I felt were relatively small and straightforward. Building inside cabal sandboxes is a good idea, as it separates various projects from each other, but it does not solve the underlying problem. Michael Snoyman [sums it up](http://www.yesodweb.com/blog/2012/03/cabal-nirvana): 
+Lately I've been encountering cabal hell with a few of my Haskell projects, even ones that I felt were relatively small and straightforward. Building inside cabal sandboxes is a good idea, as it separates various projects from each other, but it does not solve the underlying problem. Michael Snoyman [sums it up](http://www.yesodweb.com/blog/2012/03/cabal-nirvana): 
 
 > Simply stated, Hackage is a zoo. Anyone can upload anything at any time. If I write some code that depends on foobar version 0.1, and someone comes along and makes a breaking change in 0.1.1, my code will (generally) break. We also have the issue of different packages using different versions of the same underlying packages (e.g., baz requires foobar 0.1, and bin requires foobar 0.2), and therefore they cannot be installed side-by-side. 
 
 Periodically [manually tightening package bounds](https://github.com/carlohamalainen/cli-yesod-blog/commit/574c80daf3814e2b6017103ca122595a9e12da32) is a pain. 
 
-Future versions of cabal will hopefully support some kind of &#8220;freeze&#8221; operation that will fix all of the package versions, but in the meantime we can use [cabal-constraints](https://github.com/benarmston/cabal-constraints) to produce a cabal.config file to fix the versions. 
+Future versions of cabal will hopefully support some kind of "freeze" operation that will fix all of the package versions, but in the meantime we can use [cabal-constraints](https://github.com/benarmston/cabal-constraints) to produce a cabal.config file to fix the versions. 
 
 To use cabal-constraints, I followed this procedure: 
 
@@ -41,7 +41,7 @@ cabal install --haddock-hyperlink-source --dependencies-only
 cabal install --haddock-hyperlink-source                     
     --constraint "Cabal == $( cabal --version | grep 'Cabal library' | cut -f3 -d' ' )"
 
-echo 'export PATH=$PATH:'`pwd`/.cabal-sandbox/bin &gt;&gt; $HOME/.bashrc
+echo 'export PATH=$PATH:'`pwd`/.cabal-sandbox/bin >> $HOME/.bashrc
 source $HOME/.bashrc
 </pre>
 
@@ -59,7 +59,7 @@ cabal install --haddock-hyperlink-source
 
 3. Run cabal-constraints: 
 
-<pre>cabal-constraints dist/dist-sandbox-*/setup-config &gt;&gt; cabal.config
+<pre>cabal-constraints dist/dist-sandbox-*/setup-config >> cabal.config
 </pre>
 
 It produces this kind of output:
@@ -86,7 +86,7 @@ It produces this kind of output:
            , unix == 2.6.0.1
 </pre>
 
-4. For paranoia&#8217;s sake, rebuild the project to make sure that the constraints are correct: 
+4. For paranoia's sake, rebuild the project to make sure that the constraints are correct: 
 
 <pre># still in my-haskell-project
 

@@ -20,11 +20,11 @@ In a [recent post](http://carlo-hamalainen.net/blog/2008/03/04/cython-vs-c/) I c
 > 
 > Code and diff up at <http://sage.math.washington.edu/home/robertwb/cython/scratch/cython-latin/>
 
-I applied Robert&#8217;s patch and re-ran the tests on my laptop:
+I applied Robert's patch and re-ran the tests on my laptop:
 
 ![](/blog/myfiles/cython-vs-cpp-new.png) 
 
-The Cython implementation with Robert&#8217;s patch is now significantly faster than the C++ implementation on most of the range that I checked.
+The Cython implementation with Robert's patch is now significantly faster than the C++ implementation on most of the range that I checked.
 
 **Archived Comments**
 
@@ -38,4 +38,4 @@ Date: 2008-11-10 13:49:28 UTC
 
 Author: Robert Bradshaw
 
-It&#8217;s impossible to see on the graph, but C++ doesn&#8217;t take over from Cython until size 13 and 14. I&#8217;m very curious as to why, it almost looks like an algorithmic difference. Don&#8217;t have time right now, but I&#8217;ll do some investigating soon (there were still a lot of inefficiencies in the Cython code).
+It's impossible to see on the graph, but C++ doesn't take over from Cython until size 13 and 14. I'm very curious as to why, it almost looks like an algorithmic difference. Don't have time right now, but I'll do some investigating soon (there were still a lot of inefficiencies in the Cython code).

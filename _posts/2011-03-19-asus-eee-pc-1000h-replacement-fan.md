@@ -14,7 +14,7 @@ categories:
   - Uncategorized
 format: image
 ---
-I use an Asus EEE PC 1000H as a home file server. After being on 24/7 for a while the fan started getting noisy, so I ordered a replacement from [91deals](http://myworld.ebay.com/91deals/) on eBay. The fan was listed as &#8220;Asus Eee PC 1000 1000HA 1000HE CPU Fan BSB04505HA&#8221;.
+I use an Asus EEE PC 1000H as a home file server. After being on 24/7 for a while the fan started getting noisy, so I ordered a replacement from [91deals](http://myworld.ebay.com/91deals/) on eBay. The fan was listed as "Asus Eee PC 1000 1000HA 1000HE CPU Fan BSB04505HA".
 
 <img src="https://i0.wp.com/s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/x-2011-03/eeepc_fan.jpg?w=640&#038;ssl=1"  data-recalc-dims="1" /> 
 
@@ -40,4 +40,4 @@ Author: carlo
 
 When I ordered my fan back in 2011 I only found one option for the 1000H on ebay.com.au, so I went with that.
 
-I guess try some forums, or take a punt with a randomly chosen fan on eBay. At least they aren&#8217;t too expensive (around 5GBP?).
+I guess try some forums, or take a punt with a randomly chosen fan on eBay. At least they aren't too expensive (around 5GBP?).

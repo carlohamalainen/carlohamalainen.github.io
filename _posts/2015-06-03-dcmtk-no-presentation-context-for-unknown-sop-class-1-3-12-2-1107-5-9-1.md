@@ -19,7 +19,7 @@ I had a DCMTK DICOM server running with the command
 <pre>storescp -p 7000 -v --fork -fe '.IMA' --sort-on-study-uid 'my_prefix'
 </pre>
 
-One of our Siemens instruments couldn&#8217;t push some files to the DCMTK server, so I tried to send the files manually using storescu: 
+One of our Siemens instruments couldn't push some files to the DCMTK server, so I tried to send the files manually using storescu: 
 
 <pre>parallel -j 30 storescu localhost 7000 -- `find siemens_data/ -type f`
 </pre>
@@ -30,7 +30,7 @@ While the Siemens instrument gave nothing of note, I found that storescu failed 
 E: Store SCU Failed: 0006:0208 DIMSE No valid Presentation Context ID
 </pre>
 
-Apparently 1.3.12.2.1107.5.9.1 is a &#8220;private&#8221; Siemens SOP class. To fix things in my situation I tried adding the -pm flag so that storescp would accept unknown SOP classes: 
+Apparently 1.3.12.2.1107.5.9.1 is a "private" Siemens SOP class. To fix things in my situation I tried adding the -pm flag so that storescp would accept unknown SOP classes: 
 
 <pre>storescp -p 7000 -v --fork -pm -fe '.IMA' --sort-on-study-uid 'my_prefix'
 </pre>
@@ -43,7 +43,7 @@ I copied /etc/dcmtk/storescu.cfg and edited out the 125th presentation context d
 PresentationContext125 = 1.3.12.2.1107.5.9.1Uncompressed
 </pre>
 
-There are already 128 presentation contexts in the file and you can&#8217;t have more than that (some limitation in DICOM?). Now  
+There are already 128 presentation contexts in the file and you can't have more than that (some limitation in DICOM?). Now  
 pushing files using storescu works, if we refer to the config file and the Default profile entry: 
 
 <pre>parallel -j 30 storescu -xf storescu.cfg Default localhost 7000 -- `find extract/ -type f`
@@ -57,7 +57,7 @@ Date: 2015-07-23 18:29:35.372382 UTC
 
 Author: J. Riesmeier
 
-You could also give the DCMTK command line tool &#8220;dcmsend&#8221; a try: <http://blog.jriesmeier.com/2011/10/sending-dicom-files-more-easily/>. 
+You could also give the DCMTK command line tool "dcmsend" a try: <http://blog.jriesmeier.com/2011/10/sending-dicom-files-more-easily/>. 
 
 Date: 2016-11-01 00:30:26.567742 UTC
 

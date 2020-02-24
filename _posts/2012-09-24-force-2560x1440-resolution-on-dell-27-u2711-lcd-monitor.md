@@ -1,6 +1,6 @@
 ---
 id: 779
-title: 'Force 2560&#215;1440 resolution on Dell 27&#8243; (U2711) LCD monitor'
+title: 'Force 2560x1440 resolution on Dell 27" (U2711) LCD monitor'
 date: 2012-09-24T00:00:00+00:00
 author: Carlo Hamalainen
 layout: post
@@ -14,7 +14,7 @@ categories:
   - Uncategorized
 format: image
 ---
-I have a Dell Latitude E6530 with VGA and HDMI output and the NVIDIA NVS 5200M graphics card. The VGA output can&#8217;t manage the full 2560&#215;1440 resolution, and the HDMI output defaults to 1920&#215;1080 due to an incorrect EDID reported by the U2711 monitor. Using various sources, including this [post on Whirlpool](http://forums.whirlpool.net.au/forum-replies.cfm?t=1479962), I managed to construct an xorg.conf that forces the full 2560&#215;1440 resolution. If you use this on a desktop then you will probably have to change the ConnectedMonitor option, otherwise you&#8217;ll get a blank screen. 
+I have a Dell Latitude E6530 with VGA and HDMI output and the NVIDIA NVS 5200M graphics card. The VGA output can't manage the full 2560x1440 resolution, and the HDMI output defaults to 1920x1080 due to an incorrect EDID reported by the U2711 monitor. Using various sources, including this [post on Whirlpool](http://forums.whirlpool.net.au/forum-replies.cfm?t=1479962), I managed to construct an xorg.conf that forces the full 2560x1440 resolution. If you use this on a desktop then you will probably have to change the ConnectedMonitor option, otherwise you'll get a blank screen. 
 
 A cleaner fix would be to edit the EDID file to have the correct resolution (basically copying the Modeline information below) but I had no luck with Phoenix EDID Designer 1.3.
 
@@ -135,15 +135,15 @@ Date: 2013-04-04 10:33:31 UTC
 
 Author: Benjamin James Kaiser
 
-Thank you so much! Got my DVI cables to finally run the native resolution and it wasn&#8217;t working! so I added several of the lines from your file and it worked!
+Thank you so much! Got my DVI cables to finally run the native resolution and it wasn't working! so I added several of the lines from your file and it worked!
 
 The specific lines as part of the monitor sections for my displays were:  
-Option &#8220;ModeDebug&#8221; &#8220;TRUE&#8221;  
-Option &#8220;UseEdid&#8221; &#8220;FALSE&#8221;  
-Option &#8220;ExactModeTimingsDVI&#8221; &#8220;True&#8221;
+Option "ModeDebug" "TRUE"  
+Option "UseEdid" "FALSE"  
+Option "ExactModeTimingsDVI" "True"
 
-Modeline &#8220;2560&#215;1440&#8221; 148.78 2560 2696 2968 3376 1440 1441 1444 1469 -hsync +vsync  
-Option &#8220;ModeValidation&#8221; &#8220;NoDFPNativeResolutionCheck&#8221;
+Modeline "2560x1440" 148.78 2560 2696 2968 3376 1440 1441 1444 1469 -hsync +vsync  
+Option "ModeValidation" "NoDFPNativeResolutionCheck"
 
 Once again thank you so much ^_^
 
@@ -151,32 +151,32 @@ Date: 2013-05-21 05:25:54 UTC
 
 Author: Ben Avery
 
-Thanks very much! I was struggling to get my new 27&#8243; Dell monitor working on Linux Mint 14. The output from cvt was wrong, or at least wouldn&#8217;t start the monitor up, but these settings are slightly different, and work first time 🙂
+Thanks very much! I was struggling to get my new 27" Dell monitor working on Linux Mint 14. The output from cvt was wrong, or at least wouldn't start the monitor up, but these settings are slightly different, and work first time 🙂
 
 I was using the following  
 ben@robot ~ $ cvt 2560 1440  
-\# 2560&#215;1440 59.96 Hz (CVT 3.69M9) hsync: 89.52 kHz; pclk: 312.25 MHz  
-Modeline &#8220;2560x1440_60.00&#8221; 312.25 2560 2752 3024 3488 1440 1443 1448 1493 -hsync +vsync
+\# 2560x1440 59.96 Hz (CVT 3.69M9) hsync: 89.52 kHz; pclk: 312.25 MHz  
+Modeline "2560x1440_60.00" 312.25 2560 2752 3024 3488 1440 1443 1448 1493 -hsync +vsync
 
 Date: 2014-03-19 13:10:09.884569 UTC
 
 Author: PGilford
 
 Found an even simpler solution: use a fully wired DVI cable ie one where middle pins are not missing!  
-That way nvidia-config (317.19) picks everything up & the FX380 is able to drive full resolution ie 2560&#215;1440 (Dell U2711) without messing with xorg.conf.
+That way nvidia-config (317.19) picks everything up & the FX380 is able to drive full resolution ie 2560x1440 (Dell U2711) without messing with xorg.conf.
 
 Date: 2014-06-28 23:51:55.344064 UTC
 
 Author: Vr Rm
 
-An added wrinkle: for those using NVIDIA GTX5XX, eg GTX 560M, and connecting to a Samsung UD590, you&#8217;ll get hit with a double whammy. You&#8217;ll need to make the mentioned change above to your xorg.conf file (inserting the Modeline &#8220;2560&#215;1440&#8221; 148.78 2560 2696 2968 3376 1440 1441 1444 1469 -hsync +vsync line) to overcome the refresh limitation of HDMI. But you&#8217;ll also need to make the following change to overcome a bug in either the monitor firmware or Nvidia driver for checksums:
+An added wrinkle: for those using NVIDIA GTX5XX, eg GTX 560M, and connecting to a Samsung UD590, you'll get hit with a double whammy. You'll need to make the mentioned change above to your xorg.conf file (inserting the Modeline "2560x1440" 148.78 2560 2696 2968 3376 1440 1441 1444 1469 -hsync +vsync line) to overcome the refresh limitation of HDMI. But you'll also need to make the following change to overcome a bug in either the monitor firmware or Nvidia driver for checksums:
 
 First look for
 
-Section &#8220;Screen&#8221;
+Section "Screen"
 
 Thin in that section add the following line to overcome the checksum bug:
 
-Option &#8220;ModeValidation&#8221; &#8220;AllowNon60hzmodesDFPModes, NoEDIDDFPMaxSizeCheck, NoVertRefreshCheck, NoHorizSyncCheck, NoDFPNativeResolutionCheck, NoMaxSizeCheck, NoMaxPClkCheck, AllowNonEdidModes, NoEdidMaxPClkCheck&#8221;
+Option "ModeValidation" "AllowNon60hzmodesDFPModes, NoEDIDDFPMaxSizeCheck, NoVertRefreshCheck, NoHorizSyncCheck, NoDFPNativeResolutionCheck, NoMaxSizeCheck, NoMaxPClkCheck, AllowNonEdidModes, NoEdidMaxPClkCheck"
 
-Of course, you&#8217;ll still limited to 2560&#215;1440 or whatever the capabilities are of your GTX 5xx card. But you won&#8217;t be stuck at 1920&#215;1080.
+Of course, you'll still limited to 2560x1440 or whatever the capabilities are of your GTX 5xx card. But you won't be stuck at 1920x1080.

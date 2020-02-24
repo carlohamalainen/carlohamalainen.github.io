@@ -1,6 +1,6 @@
 ---
 id: 753
-title: 'Note to self: &#8220;cabal install libssh2&#8221; on Debian testing'
+title: 'Note to self: "cabal install libssh2" on Debian testing'
 date: 2013-02-10T00:00:00+00:00
 author: Carlo Hamalainen
 layout: post
@@ -14,7 +14,7 @@ categories:
   - Uncategorized
 format: image
 ---
-Debian Squeeze doesn&#8217;t have a new enough libssh2 for the [LibSSH2](http://hackage.haskell.org/packages/archive/libssh2/latest/doc/html/Network-SSH-Client-LibSSH2.html) package on hackage. So I tried the libssh library and dev package from Debian testing: 
+Debian Squeeze doesn't have a new enough libssh2 for the [LibSSH2](http://hackage.haskell.org/packages/archive/libssh2/latest/doc/html/Network-SSH-Client-LibSSH2.html) package on hackage. So I tried the libssh library and dev package from Debian testing: 
 
 <pre>$ dpkg -l | grep -i libssh2
 ii  libssh2-1                                       1.4.2-1.1                          SSH2 client-side library
@@ -26,7 +26,7 @@ However libssh2 failed to install using cabal:
 <pre>$ cabal install libssh2
 Resolving dependencies...
 Configuring libssh2-0.2.0.1...
-cabal: The pkg-config package libssh2 version &gt;=1.2.8 is required but it could
+cabal: The pkg-config package libssh2 version >=1.2.8 is required but it could
 not be found.
 Failed to install libssh2-0.2.0.1
 cabal: Error: some packages failed to install:
@@ -42,7 +42,7 @@ $ cabal install libssh2 --extra-include-dirs=/usr/include --extra-lib-dirs=/lib/
 
 Finally, compiling [ssh-client.hs](https://github.com/portnov/libssh2-hs/blob/master/libssh2/ssh-client.hs) blew up in a weird way: 
 
-$ ghc &#8211;make ssh-client.hs  
+$ ghc --make ssh-client.hs  
 [1 of 1] Compiling Main ( ssh-client.hs, ssh-client.o )
 
 <pre>ssh-client.hs:22:18:
@@ -52,7 +52,7 @@ $ ghc &#8211;make ssh-client.hs
     In a stmt of a 'do' block: BSL.putStr result
     In the expression:
       do { channelExecute ch command;
-           result &lt;- readAllChannel ch;
+           result <- readAllChannel ch;
            BSL.putStr result }
 </pre>
 

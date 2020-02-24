@@ -1,6 +1,6 @@
 ---
 id: 730
-title: 'Microsoft &#8220;blocked using Blocklist1&#8221;'
+title: 'Microsoft "blocked using Blocklist1"'
 date: 2014-05-26T00:00:00+00:00
 author: Carlo Hamalainen
 layout: post
@@ -14,7 +14,7 @@ categories:
   - Uncategorized
 format: image
 ---
-I&#8217;ve been running my own mail host for a while now on an Amazon EC2 instance and haven&#8217;t had any problems, but recently some mail bounced from a user whose organisation has hosted email with Microsoft Office365. Here&#8217;s the bounce: 
+I've been running my own mail host for a while now on an Amazon EC2 instance and haven't had any problems, but recently some mail bounced from a user whose organisation has hosted email with Microsoft Office365. Here's the bounce: 
 
 <pre>-------- Original Message --------
 Subject: Undelivered Mail Returned to Sender
@@ -40,7 +40,7 @@ using Blocklist 1; To request removal from this list please forward this
 message to delist@messaging.microsoft.com (in reply to RCPT TO command)
 </pre>
 
-I thought that this was pretty weird given that my host passed all the tests on MX Toolbox&#8217;s [blacklist checker](http://mxtoolbox.com/blacklists.aspx). I fired off an email to Microsoft customer support saying &#8220;this is weird, remove my host from your blacklist&#8221; and after a few days I got this response: 
+I thought that this was pretty weird given that my host passed all the tests on MX Toolbox's [blacklist checker](http://mxtoolbox.com/blacklists.aspx). I fired off an email to Microsoft customer support saying "this is weird, remove my host from your blacklist" and after a few days I got this response: 
 
 <pre>-------- Original Message --------
 Subject:    RE: SRX1242320246ID - Fwd: Undelivered Mail Returned to Sender
@@ -73,4 +73,4 @@ support and giving us the opportunity to serve you.
 
 After that everything seemed to be ok. 
 
-While I was waiting for Microsoft to unblock me I tried Amazon&#8217;s [Simple Email Service](https://aws.amazon.com/ses) which is free if you send less than 2000 emails per day. Email sent via the SES SMTPS host were not blocked by Microsoft. So if you run your own mail host on Amazon EC2 then it&#8217;s probably a good idea to have SES enabled as a backup.
+While I was waiting for Microsoft to unblock me I tried Amazon's [Simple Email Service](https://aws.amazon.com/ses) which is free if you send less than 2000 emails per day. Email sent via the SES SMTPS host were not blocked by Microsoft. So if you run your own mail host on Amazon EC2 then it's probably a good idea to have SES enabled as a backup.

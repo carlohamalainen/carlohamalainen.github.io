@@ -20,11 +20,11 @@ At the request of Budd I have pulled these files. Instead, pop over to <http://b
 
 Inspired by [this post at sister-hell](http://sister-hell.blogspot.com/2008/09/budd-yakfat-1993_11.html), I decided to upload two Budd CDs. I ripped from my original CDs to FLAC, a lossless format, which is [well supported on Unix, Windows, OSX, etc](http://en.wikipedia.org/wiki/Free_Lossless_Audio_Codec#Decoding). Enjoy!
 
-[Budd &#8211; Naf](http://carlo-hamalainen.net/music/Budd/Naf/)
+[Budd -- Naf](http://carlo-hamalainen.net/music/Budd/Naf/)
 
-[Budd &#8211; Yakfat](http://carlo-hamalainen.net/music/Budd/Yakfat/)
+[Budd -- Yakfat](http://carlo-hamalainen.net/music/Budd/Yakfat/)
 
-(If you are the original artist and want these files taken down, let me know and I&#8217;ll do so as soon as possible.) </s>
+(If you are the original artist and want these files taken down, let me know and I'll do so as soon as possible.) </s>
 
 **Archived Comments**
 
@@ -36,7 +36,7 @@ Hi Carlo,
 
 Just letting you know I have finally put up all the previous budd releases on Bandcamp
 
-here&#8217;s the link:
+here's the link:
 
 <a href="http://buddjawa.bandcamp.com/" rel="nofollow">http://buddjawa.bandcamp.com/</a>
 

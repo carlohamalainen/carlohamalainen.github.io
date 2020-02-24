@@ -14,11 +14,11 @@ categories:
   - Uncategorized
 format: image
 ---
-A while ago I bought my son a [SweetPea3](http://www.sweetpeatoyco.com/) MP3 player. It&#8217;s great but occasionally the files get garbled and it crashes (a firmware update is meant to fix this issue &#8211; see the SweetPea3 site).
+A while ago I bought my son a [SweetPea3](http://www.sweetpeatoyco.com/) MP3 player. It's great but occasionally the files get garbled and it crashes (a firmware update is meant to fix this issue -- see the SweetPea3 site).
 
 Before I loaded any songs onto the SweetPea3 I saved an image of the disk. To recover, assuming that /dev/sdb is your SweetPea3, do this as root:
 
-<pre># bzcat sweetpea3_image_SP3-101.bz2 &gt; /dev/sdb
+<pre># bzcat sweetpea3_image_SP3-101.bz2 > /dev/sdb
 </pre>
 
 

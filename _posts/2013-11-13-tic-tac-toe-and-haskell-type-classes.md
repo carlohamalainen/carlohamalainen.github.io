@@ -52,7 +52,7 @@ A crazy user of the TicTacToe API might write code like this (intentionally or n
 
 t.move('NW') # player 1 marks the North-West square
 
-if random.random() &lt; 1e-10:
+if random.random() < 1e-10:
     print t.whoWonOrDraw() # raises an exception as the game is not finished
 </pre>
 
@@ -67,32 +67,32 @@ Solving the tic-tac-toe problem requires a bit of code for dealing with the rule
 
 First, define data types for the two states: 
 
-<pre>&gt; {-# LANGUAGE MultiParamTypeClasses, FunctionalDependencies #-}
-&gt;
-&gt; module TicTacToe where
+<pre>> {-# LANGUAGE MultiParamTypeClasses, FunctionalDependencies #-}
+>
+> module TicTacToe where
 </pre>
 
-<pre>&gt; data State0 = State0 Int deriving Show
-&gt; data State1 = State1 Int deriving Show
+<pre>> data State0 = State0 Int deriving Show
+> data State1 = State1 Int deriving Show
 </pre>
 
 Now create a class StateLike to enforce the definition of a pretty-printing function pprint: 
 
-<pre>&gt; class StateLike b where
-&gt;     pprint :: b -&gt; String
-&gt;
-&gt; instance StateLike State0 where
-&gt;     pprint (State0 n) = "Initial state; " ++ show n
-&gt;
-&gt; instance StateLike State1 where
-&gt;     pprint (State1 n) = "Final state; " ++ show n
+<pre>> class StateLike b where
+>     pprint :: b -> String
+>
+> instance StateLike State0 where
+>     pprint (State0 n) = "Initial state; " ++ show n
+>
+> instance StateLike State1 where
+>     pprint (State1 n) = "Final state; " ++ show n
 </pre>
 
 In ghci: 
 
-<pre>*TicTacToe&gt; pprint $ State0 42
+<pre>*TicTacToe> pprint $ State0 42
 "Initial state; 42"
-*TicTacToe&gt; pprint $ State1 59
+*TicTacToe> pprint $ State1 59
 "Final state; 59"
 </pre>
 
@@ -100,8 +100,8 @@ There’s nothing too fancy so far.
 
 Next we need to enforce rule 3, which says that the only transition is from state 0 to state 1. We would like to write
 
-<pre>&gt; class Transition where
-&gt;   move :: Int -&gt; State0 -&gt; State1
+<pre>> class Transition where
+>   move :: Int -> State0 -> State1
 </pre>
 
 but this does not define a _class_ and ghci complains accordingly: 
@@ -112,20 +112,20 @@ but this does not define a _class_ and ghci complains accordingly:
 
 We can make this a class by replacing State0 and State1 with variables: 
 
-<pre>&gt; class Transition a b where
-&gt;   move :: Int -&gt; a -&gt; b
+<pre>> class Transition a b where
+>   move :: Int -> a -> b
 </pre>
 
 but this still doesn’t make ghci happy. Previously we had no free variable and now we have two, so being a little bit psychic we can can add a [functional dependency](http://www.haskell.org/haskellwiki/Functional_dependencies) to indicate that b is completely determined by a:
 
-<pre>&gt; class Transition a b | a -&gt; b where
-&gt;   move :: Int -&gt; a -&gt; b
+<pre>> class Transition a b | a -> b where
+>   move :: Int -> a -> b
 </pre>
 
 This code will now compile. Finally, we provide an instance for Transition State0 State1: 
 
-<pre>&gt; instance Transition State0 State1 where
-&gt;     move i (State0 n) = State1 (n + i)
+<pre>> instance Transition State0 State1 where
+>     move i (State0 n) = State1 (n + i)
 </pre>
 
 where the new state’s integer component is just the addition of the previous state and the parameter i supplied to move. 
@@ -136,9 +136,9 @@ Now we check each of the rules:
     
     We defined the two data constructors State0 and State1: 
     
-    <pre>*TicTacToe&gt; State0 10
+    <pre>*TicTacToe> State0 10
 State0 10
-*TicTacToe&gt; State1 20
+*TicTacToe> State1 20
 State1 20
 </pre>
 
@@ -150,16 +150,16 @@ State1 20
     
     Attempting to make a move from State0 is acceptable, and returns a State1: 
     
-    <pre>*TicTacToe&gt; :t move 3 (State0 42)
+    <pre>*TicTacToe> :t move 3 (State0 42)
 move 3 (State0 42) :: State1
 
-*TicTacToe&gt; pprint $ move 3 (State0 42)
+*TicTacToe> pprint $ move 3 (State0 42)
 "Final state; 45"
 </pre>
     
     Attempting to make a transition from State1 results in a type error which can be picked up at compile-time: 
     
-    <pre>*TicTacToe&gt; move 4 (move 3 (State0 42))
+    <pre>*TicTacToe> move 4 (move 3 (State0 42))
 
 :25:1:
     No instance for (Transition State1 to0)
@@ -174,9 +174,9 @@ move 3 (State0 42) :: State1
     
     Yes, for example: 
     
-    <pre>*TicTacToe&gt; pprint $ State0 10
+    <pre>*TicTacToe> pprint $ State0 10
 "Initial state; 10"
-*TicTacToe&gt; pprint $ State1 20
+*TicTacToe> pprint $ State1 20
 "Final state; 20"
 </pre>
 
@@ -184,27 +184,27 @@ If I’m correct, this is the way that we can enforce rules 3 and 4 of the tic-t
 
 Here is the full source code for my two state example: 
 
-<pre>&gt; {-# LANGUAGE FunctionalDependencies, FlexibleInstances #-}
-&gt;
-&gt; data State0 = State0 Int deriving Show
-&gt; data State1 = State1 Int deriving Show
-&gt;
-&gt; class StateLike b where
-&gt;     pprint :: b -&gt; String
-&gt;
-&gt; instance StateLike State0 where
-&gt;     pprint (State0 n) = "Initial state; " ++ show n
-&gt;
-&gt; instance StateLike State1 where
-&gt;     pprint (State1 n) = "Final state; " ++ show n
-&gt;
-&gt; initialState = State0 34
-&gt;
-&gt; class Transition from to | from -&gt; to where
-&gt;   move :: Int -&gt; from -&gt; to
-&gt;
-&gt; instance Transition State0 State1 where
-&gt;     move i (State0 n) = State1 (n + i)
+<pre>> {-# LANGUAGE FunctionalDependencies, FlexibleInstances #-}
+>
+> data State0 = State0 Int deriving Show
+> data State1 = State1 Int deriving Show
+>
+> class StateLike b where
+>     pprint :: b -> String
+>
+> instance StateLike State0 where
+>     pprint (State0 n) = "Initial state; " ++ show n
+>
+> instance StateLike State1 where
+>     pprint (State1 n) = "Final state; " ++ show n
+>
+> initialState = State0 34
+>
+> class Transition from to | from -> to where
+>   move :: Int -> from -> to
+>
+> instance Transition State0 State1 where
+>     move i (State0 n) = State1 (n + i)
 </pre>
 
 Thinking more generally, we can encode a finite state system using type classes. Here is code for a system with states 0, 1, 2, 3, 4, and admissible transitions
@@ -215,66 +215,66 @@ Thinking more generally, we can encode a finite state system using type classes.
   * 1 → 4 
   * 4 → 1 
 
-<pre>&gt; data FState0 = FState0 Int deriving Show
-&gt; data FState1 = FState1 Int deriving Show
-&gt; data FState2 = FState2 Int deriving Show
-&gt; data FState3 = FState3 Int deriving Show
-&gt; data FState4 = FState4 Int deriving Show
-&gt;
-&gt; class FStateLike b where
-&gt;     fsPPrint :: b -&gt; String
-&gt;
-&gt; instance FStateLike FState0 where
-&gt;     fsPPrint (FState0 n) = "FState0; " ++ show n
-&gt;
-&gt; instance FStateLike FState1 where
-&gt;     fsPPrint (FState1 n) = "FState1; " ++ show n
-&gt;
-&gt; instance FStateLike FState2 where
-&gt;     fsPPrint (FState2 n) = "FState2; " ++ show n
-&gt;
-&gt; instance FStateLike FState3 where
-&gt;     fsPPrint (FState3 n) = "FState3; " ++ show n
-&gt;
-&gt; instance FStateLike FState4 where
-&gt;     fsPPrint (FState4 n) = "FState4; " ++ show n
-&gt;
-&gt; class Transition1 a b | a -&gt; b where
-&gt;     transition1 :: a -&gt; b
-&gt;
-&gt; class Transition2 a b | a -&gt; b where
-&gt;     transition2 :: a -&gt; b
-&gt;
-&gt; class Transition3 a b | a -&gt; b where
-&gt;     transition3 :: a -&gt; b
-&gt;
-&gt; class Transition4 a b | a -&gt; b where
-&gt;     transition4 :: a -&gt; b
-&gt;
-&gt; class Transition5 a b | a -&gt; b where
-&gt;     transition5 :: a -&gt; b
-&gt;
-&gt; instance Transition1 FState0 FState1 where
-&gt;     transition1 (FState0 n) = FState1 n
-&gt;
-&gt; instance Transition2 FState0 FState2 where
-&gt;     transition2 (FState0 n) = FState2 n
-&gt;
-&gt; instance Transition3 FState0 FState3 where
-&gt;     transition3 (FState0 n) = FState3 n
-&gt;
-&gt; instance Transition4 FState1 FState4 where
-&gt;     transition4 (FState1 n) = FState4 n
-&gt;
-&gt; instance Transition5 FState4 FState1 where
-&gt;     transition5 (FState4 n) = FState1 n
-&gt;
-&gt; -- OK:
-&gt; test1 :: FState1
-&gt; test1 = transition5 $ transition4 $ transition1 $ FState0 42
-&gt;
-&gt; -- Not ok, compile-time error:
-&gt; -- test2 = transition4 $ transition2 $ FState0 42
+<pre>> data FState0 = FState0 Int deriving Show
+> data FState1 = FState1 Int deriving Show
+> data FState2 = FState2 Int deriving Show
+> data FState3 = FState3 Int deriving Show
+> data FState4 = FState4 Int deriving Show
+>
+> class FStateLike b where
+>     fsPPrint :: b -> String
+>
+> instance FStateLike FState0 where
+>     fsPPrint (FState0 n) = "FState0; " ++ show n
+>
+> instance FStateLike FState1 where
+>     fsPPrint (FState1 n) = "FState1; " ++ show n
+>
+> instance FStateLike FState2 where
+>     fsPPrint (FState2 n) = "FState2; " ++ show n
+>
+> instance FStateLike FState3 where
+>     fsPPrint (FState3 n) = "FState3; " ++ show n
+>
+> instance FStateLike FState4 where
+>     fsPPrint (FState4 n) = "FState4; " ++ show n
+>
+> class Transition1 a b | a -> b where
+>     transition1 :: a -> b
+>
+> class Transition2 a b | a -> b where
+>     transition2 :: a -> b
+>
+> class Transition3 a b | a -> b where
+>     transition3 :: a -> b
+>
+> class Transition4 a b | a -> b where
+>     transition4 :: a -> b
+>
+> class Transition5 a b | a -> b where
+>     transition5 :: a -> b
+>
+> instance Transition1 FState0 FState1 where
+>     transition1 (FState0 n) = FState1 n
+>
+> instance Transition2 FState0 FState2 where
+>     transition2 (FState0 n) = FState2 n
+>
+> instance Transition3 FState0 FState3 where
+>     transition3 (FState0 n) = FState3 n
+>
+> instance Transition4 FState1 FState4 where
+>     transition4 (FState1 n) = FState4 n
+>
+> instance Transition5 FState4 FState1 where
+>     transition5 (FState4 n) = FState1 n
+>
+> -- OK:
+> test1 :: FState1
+> test1 = transition5 $ transition4 $ transition1 $ FState0 42
+>
+> -- Not ok, compile-time error:
+> -- test2 = transition4 $ transition2 $ FState0 42
 </pre>
 
 You can do a lot with Haskell’s type system. In [Issue 8 of The Monad.Reader](http://www.haskell.org/haskellwiki/User:ConradParker/InstantInsanity) Conrad Parker wrote a complete type-level program for the [Instant Insanity](http://en.wikipedia.org/wiki/Instant_Insanity) game. Wow. 
@@ -283,7 +283,7 @@ One final comment. Referring to the tic-tac-toe exercise, Tony wrote:
 
 > Recently I set a task, predicted how difficult it would be, then was astonished to find that it appears to be _significantly more difficult than I had originally predicted_. I’m still not sure what is going on here, however, I think there are some lessons to be taken.
 
-Personally, I would have found the tic-tac-toe exercise easy if was prefaced with &#8220;Haskell’s type classes can enforce the permissible transitions of a finite state system.&#8221; But most tutorials on type classes use fairly benign examples like adding an Eq instance for a new Color class. It’s a novel idea to deliberately _not_ provide an instance for a certain class to stop an end-user of an API from making certain transitions in a state diagram. It’s novel to even think of encoding a state diagram using a language’s type system, especially after spending years working with languages with relatively weak type systems. 
+Personally, I would have found the tic-tac-toe exercise easy if was prefaced with "Haskell’s type classes can enforce the permissible transitions of a finite state system." But most tutorials on type classes use fairly benign examples like adding an Eq instance for a new Color class. It’s a novel idea to deliberately _not_ provide an instance for a certain class to stop an end-user of an API from making certain transitions in a state diagram. It’s novel to even think of encoding a state diagram using a language’s type system, especially after spending years working with languages with relatively weak type systems. 
 
 * * *
 
@@ -303,6 +303,6 @@ Date: 2017-01-31 08:38:03.281378 UTC
 
 Author: Nick Hamilton
 
-I like your demonstration of encoding state with type classes, but it seems using this mechanism to solve Tony&#8217;s challenge will result in a tonne of boilerplate? Over a hundred if you find a way to encode mirrored states, otherwise&#8230; thousands. Further to that, do you have any thoughts how the &#8216;api&#8217; user would know which transition function (of the hundred+) to call?
+I like your demonstration of encoding state with type classes, but it seems using this mechanism to solve Tony's challenge will result in a tonne of boilerplate? Over a hundred if you find a way to encode mirrored states, otherwise... thousands. Further to that, do you have any thoughts how the 'api' user would know which transition function (of the hundred+) to call?
 
 I had a crack at solving the challenge, but I used the undecidable instances and flexible contexts extensions to create recursively unwrap a nested type containing each of the states.

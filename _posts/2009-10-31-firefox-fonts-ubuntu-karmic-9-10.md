@@ -32,9 +32,9 @@ Date: 2009-11-18 10:03:02 UTC
 Author: Edmund
 
 Thanks Carlo! That worked a treat.  
-I didn&#8217;t do the command  
+I didn't do the command  
 sudo rm /etc/fonts/conf.d/10-no-sub-pixel.conf  
-because that file doesn&#8217;t exist on my system.  
+because that file doesn't exist on my system.  
 But the problem was sorted using the rest of the commands.
 
 Date: 2009-12-17 14:15:11 UTC

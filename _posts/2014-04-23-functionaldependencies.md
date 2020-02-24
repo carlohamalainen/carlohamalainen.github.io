@@ -16,55 +16,55 @@ format: image
 ---
 Suppose we have two datatypes, OptBool and OptFile for storing boolean and file path options. Perhaps this might be for a program that provides an interface to legacy command line applications.
 
-<pre>&gt; {-# LANGUAGE MultiParamTypeClasses  #-}
-&gt; {-# LANGUAGE TypeSynonymInstances   #-}
-&gt; {-# LANGUAGE FlexibleInstances      #-}
-&gt; {-# LANGUAGE FunctionalDependencies #-}
-&gt;
-&gt; module Fundep where
+<pre>> {-# LANGUAGE MultiParamTypeClasses  #-}
+> {-# LANGUAGE TypeSynonymInstances   #-}
+> {-# LANGUAGE FlexibleInstances      #-}
+> {-# LANGUAGE FunctionalDependencies #-}
+>
+> module Fundep where
 </pre>
 
-<pre>&gt; data OptBool = OptBool { optBoolDesc   :: String
-&gt;                        , optBoolValue  :: Bool
-&gt;                        } deriving Show
+<pre>> data OptBool = OptBool { optBoolDesc   :: String
+>                        , optBoolValue  :: Bool
+>                        } deriving Show
 </pre>
 
-<pre>&gt; data OptFile = OptFile { optFileDesc :: String
-&gt;                        , optFileValue :: FilePath
-&gt;                        } deriving Show
+<pre>> data OptFile = OptFile { optFileDesc :: String
+>                        , optFileValue :: FilePath
+>                        } deriving Show
 </pre>
 
 We’d like to be able to set the value of an option without having to specify the record name, so instead of 
 
-<pre>&gt; opt { optBoolValue = True }
+<pre>> opt { optBoolValue = True }
 </pre>
 
 we want to write 
 
-<pre>&gt; setValue opt True
+<pre>> setValue opt True
 </pre>
 
 As a first attempt we make a type class Option:, where we have enabled MultiParamTypeClasses because the type signature for setValue has to refer to the option, of type a, and the value of type b. We also enable TypeSynonymInstances and FlexibleInstances since FilePath is a type synonym. 
 
-<pre>&gt; class Option a b where
-&gt;     setDesc   :: a -&gt; String -&gt; a
-&gt;     setValue  :: a -&gt; b -&gt; a
+<pre>> class Option a b where
+>     setDesc   :: a -> String -> a
+>     setValue  :: a -> b -> a
 </pre>
 
 Instance declarations: 
 
-<pre>&gt; instance Option OptBool Bool where
-&gt;     setDesc opt d  = opt { optBoolDesc  = d }
-&gt;     setValue opt b = opt { optBoolValue = b }
-&gt;
-&gt; instance Option OptFile FilePath where
-&gt;     setDesc opt d  = opt { optFileDesc  = d }
-&gt;     setValue opt f = opt { optFileValue = f }
+<pre>> instance Option OptBool Bool where
+>     setDesc opt d  = opt { optBoolDesc  = d }
+>     setValue opt b = opt { optBoolValue = b }
+>
+> instance Option OptFile FilePath where
+>     setDesc opt d  = opt { optFileDesc  = d }
+>     setValue opt f = opt { optFileValue = f }
 </pre>
 
 All seems well but the following code doesn’t compile: 
 
-<pre>&gt; opt1' = setDesc (OptBool "bool" True) "boolean option"
+<pre>> opt1' = setDesc (OptBool "bool" True) "boolean option"
 </pre>
 
 with the error message 
@@ -82,40 +82,40 @@ with the error message
 
 The problem is that both a and b in the class declaration are free variables, but really this is not the case. The trick is to enable the FunctionalDependencies language extension, and then specify that the type a in the class declaration for Option implies the type b. This makes sense if you think about the type of setValue. Once we know the type of the first parameter, we then know the type of the value field (assuming that the instance declaraion uses OptBoolValue or optFileValue or whatever).
 
-<pre>&gt; class Option a b | a -&gt; b where
-&gt;     setDesc   :: a -&gt; String -&gt; a
-&gt;     setValue  :: a -&gt; b -&gt; a
+<pre>> class Option a b | a -> b where
+>     setDesc   :: a -> String -> a
+>     setValue  :: a -> b -> a
 </pre>
 
 Now this is ok: 
 
-<pre>&gt; opt1' :: OptBool
-&gt; opt1' = setDesc (OptBool "bool" True) "boolean option"
+<pre>> opt1' :: OptBool
+> opt1' = setDesc (OptBool "bool" True) "boolean option"
 </pre>
 
 As a final note, writing the implication b -> a as below
 
-<pre>&gt; class Option a b | b -&gt; a where
-&gt;     setDesc   :: a -&gt; String -&gt; a
-&gt;     setValue  :: a -&gt; b -&gt; a
+<pre>> class Option a b | b -> a where
+>     setDesc   :: a -> String -> a
+>     setValue  :: a -> b -> a
 </pre>
 
 restricts us unnecessarily. If we had another type with a boolean value field, 
 
-<pre>&gt; data OptBool' = OptBool' { optBoolDesc'  :: String
-&gt;                          , optBoolValue' :: Bool
-&gt;                          } deriving Show
+<pre>> data OptBool' = OptBool' { optBoolDesc'  :: String
+>                          , optBoolValue' :: Bool
+>                          } deriving Show
 </pre>
 
-<pre>&gt; instance Option OptBool' Bool where
-&gt;     setDesc opt d  = opt { optBoolDesc'  = d }
-&gt;     setValue opt b = opt { optBoolValue' = b }
+<pre>> instance Option OptBool' Bool where
+>     setDesc opt d  = opt { optBoolDesc'  = d }
+>     setValue opt b = opt { optBoolValue' = b }
 </pre>
 
 then this code would not compile 
 
-<pre>&gt; opt1'' :: OptBool'
-&gt; opt1'' = setDesc (OptBool' "bool" True) "boolean option"
+<pre>> opt1'' :: OptBool'
+> opt1'' = setDesc (OptBool' "bool" True) "boolean option"
 </pre>
 
 due to 

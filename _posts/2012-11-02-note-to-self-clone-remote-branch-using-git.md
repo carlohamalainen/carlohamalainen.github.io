@@ -14,7 +14,7 @@ categories:
   - Uncategorized
 format: image
 ---
-By default &#8220;git branch&#8221; doesn&#8217;t show the remote branches for a cloned repo, so use &#8220;git branch -a&#8221; to see all of them and then make a local branch with a suitable name:
+By default "git branch" doesn't show the remote branches for a cloned repo, so use "git branch -a" to see all of them and then make a local branch with a suitable name:
 
 <pre>$ git clone git@github.com:CVL-dev/cvl-fabric-launcher.git
 Cloning into 'cvl-fabric-launcher'...
@@ -29,7 +29,7 @@ $ cd cvl-fabric-launcher/
 $ git branch -a
 * master
   remotes/origin/CVLFAB45_ssh_tunnel_check
-  remotes/origin/HEAD -&gt; origin/master
+  remotes/origin/HEAD -> origin/master
   remotes/origin/TurboVNC_java_test
   remotes/origin/detailed_logging
   remotes/origin/master

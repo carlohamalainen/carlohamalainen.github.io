@@ -20,70 +20,70 @@ Literate Haskell source for this post is here: <https://github.com/carlohamalain
 
 First, some imports: 
 
-<pre>&gt; {-# LANGUAGE OverloadedStrings    #-}
-&gt; {-# LANGUAGE TemplateHaskell      #-}
-&gt;
-&gt; module Classy where
-&gt;
-&gt; import Control.Lens
-&gt; import Control.Monad.Except
-&gt; import Control.Monad.Reader
-&gt; import Data.Text
+<pre>> {-# LANGUAGE OverloadedStrings    #-}
+> {-# LANGUAGE TemplateHaskell      #-}
+>
+> module Classy where
+>
+> import Control.Lens
+> import Control.Monad.Except
+> import Control.Monad.Reader
+> import Data.Text
 </pre>
 
-## Toy program &#8211; uses the network and a database 
+## Toy program -- uses the network and a database 
 
 The case study in George’s talk was a program that has to interact with a database and the network. We have a type for the database connection info: 
 
-<pre>&gt; type DbConnection = Text
-&gt; type DbSchema     = Text
-&gt;
-&gt; data DbConfig = DbConfig
-&gt;     { _dbConn :: DbConnection
-&gt;     , _schema :: DbSchema
-&gt;     }
+<pre>> type DbConnection = Text
+> type DbSchema     = Text
+>
+> data DbConfig = DbConfig
+>     { _dbConn :: DbConnection
+>     , _schema :: DbSchema
+>     }
 </pre>
 
 For the network we have a port and some kind of SSL setting: 
 
-<pre>&gt; type Port = Integer
-&gt; type Ssl  = Text
-&gt;
-&gt; data NetworkConfig = NetworkConfig
-&gt;     { _port     :: Port
-&gt;     , _ssl      :: Ssl
-&gt;     }
+<pre>> type Port = Integer
+> type Ssl  = Text
+>
+> data NetworkConfig = NetworkConfig
+>     { _port     :: Port
+>     , _ssl      :: Ssl
+>     }
 </pre>
 
 At the top level, our application has a database and a network configuration: 
 
-<pre>&gt; data AppConfig = AppConfig
-&gt;     { _appDbConfig   :: DbConfig
-&gt;     , _appNetConfig  :: NetworkConfig
-&gt;     }
+<pre>> data AppConfig = AppConfig
+>     { _appDbConfig   :: DbConfig
+>     , _appNetConfig  :: NetworkConfig
+>     }
 </pre>
 
 Types for errors that we see when dealing with the database and the network: 
 
-<pre>&gt; data DbError = QueryError Text | InvalidConnection
-&gt;
-&gt; data NetworkError = Timeout Int | ServerOnFire
-&gt;
-&gt; data AppError = AppDbError  { dbError  :: DbError      }
-&gt;               | AppNetError { netError :: NetworkError }
+<pre>> data DbError = QueryError Text | InvalidConnection
+>
+> data NetworkError = Timeout Int | ServerOnFire
+>
+> data AppError = AppDbError  { dbError  :: DbError      }
+>               | AppNetError { netError :: NetworkError }
 </pre>
 
 ## Classy lenses and prisms 
 
 Use Template Haskell to make all of the classy lenses and prisms. Documentation for makeClassy and makeClassyPrisms is in [Control.Lens.TH](https://hackage.haskell.org/package/lens-4.11/docs/Control-Lens-TH.html).
 
-<pre>&gt; makeClassy ''DbConfig
-&gt; makeClassy ''NetworkConfig
-&gt; makeClassy ''AppConfig
-&gt;
-&gt; makeClassyPrisms ''DbError
-&gt; makeClassyPrisms ''NetworkError
-&gt; makeClassyPrisms ''AppError
+<pre>> makeClassy ''DbConfig
+> makeClassy ''NetworkConfig
+> makeClassy ''AppConfig
+>
+> makeClassyPrisms ''DbError
+> makeClassyPrisms ''NetworkError
+> makeClassyPrisms ''AppError
 </pre>
 
 We get the following typeclasses: 
@@ -97,11 +97,11 @@ We get the following typeclasses:
 
 For example, here is the generated class HasDbConfig: 
 
-<pre>*Classy&gt; :i HasDbConfig
+<pre>*Classy> :i HasDbConfig
 class HasDbConfig c_a6IY where
-  dbConfig :: Functor f =&gt; (DbConfig -&gt; f DbConfig) -&gt; c0 -&gt; f c0
-  dbConn   :: Functor f =&gt; (DbConnection -&gt; f DbConnection) -&gt; c0 -&gt; f c0
-  schema   :: Functor f =&gt; (DbSchema -&gt; f DbSchema) -&gt; c0 -&gt; f c0
+  dbConfig :: Functor f => (DbConfig -> f DbConfig) -> c0 -> f c0
+  dbConn   :: Functor f => (DbConnection -> f DbConnection) -> c0 -> f c0
+  schema   :: Functor f => (DbSchema -> f DbSchema) -> c0 -> f c0
 instance HasDbConfig DbConfig -- Defined at Classy.lhs:58:3
 </pre>
 
@@ -109,19 +109,19 @@ If we write HasDbConfig r in the class constraints of a type signature then we c
 
 In contrast, the constraint AsNetworkError r means that we can use the prisms \_NetworkError, \_Timeout, and _ServerOnFire on a value of type r to get at the network error details.
 
-<pre>*Classy&gt; :i AsNetworkError
+<pre>*Classy> :i AsNetworkError
 class AsNetworkError r_a759 where
   _NetworkError ::
-    (Choice p, Control.Applicative.Applicative f) =&gt;
-    p NetworkError (f NetworkError) -&gt; p r0 (f r0)
+    (Choice p, Control.Applicative.Applicative f) =>
+    p NetworkError (f NetworkError) -> p r0 (f r0)
 
   _Timeout ::
-    (Choice p, Control.Applicative.Applicative f) =&gt;
-    p Int (f Int) -&gt; p r0 (f r0)
+    (Choice p, Control.Applicative.Applicative f) =>
+    p Int (f Int) -> p r0 (f r0)
 
   _ServerOnFire ::
-    (Choice p, Control.Applicative.Applicative f) =&gt;
-    p () (f ()) -&gt; p r0 (f r0)
+    (Choice p, Control.Applicative.Applicative f) =>
+    p () (f ()) -> p r0 (f r0)
     -- Defined at Classy.lhs:63:3
 
 instance AsNetworkError NetworkError -- Defined at Classy.lhs:63:3
@@ -131,77 +131,77 @@ instance AsNetworkError NetworkError -- Defined at Classy.lhs:63:3
 
 The first function is loadFromDb which uses a reader environment for database configuration, can throw a database error, and do IO actions. 
 
-<pre>&gt; loadFromDb :: ( MonadError e m,
-&gt;                 MonadReader r m,
-&gt;                 AsDbError e,
-&gt;                 HasDbConfig r,
-&gt;                 MonadIO m) =&gt; m Text
-&gt; loadFromDb = do
-&gt;
-&gt;   -- Due to "MonadReader r m" and "HasDbConfig r"
-&gt;   -- we can ask for the database config:
-&gt;   rdr    let dbconf  = rdr ^. dbConfig :: DbConfig
-&gt;
-&gt;   -- We can ask for the connection string directly:
-&gt;   let connstr  = rdr ^. dbConn :: DbConnection
-&gt;
-&gt;   -- We have "AsDbError e", so we can throw a DB error:
-&gt;   throwError $ (_InvalidConnection #) ()
-&gt;   throwError $ (_QueryError #) "Bad SQL!"
-&gt;
-&gt;   return "foo"
+<pre>> loadFromDb :: ( MonadError e m,
+>                 MonadReader r m,
+>                 AsDbError e,
+>                 HasDbConfig r,
+>                 MonadIO m) => m Text
+> loadFromDb = do
+>
+>   -- Due to "MonadReader r m" and "HasDbConfig r"
+>   -- we can ask for the database config:
+>   rdr    let dbconf  = rdr ^. dbConfig :: DbConfig
+>
+>   -- We can ask for the connection string directly:
+>   let connstr  = rdr ^. dbConn :: DbConnection
+>
+>   -- We have "AsDbError e", so we can throw a DB error:
+>   throwError $ (_InvalidConnection #) ()
+>   throwError $ (_QueryError #) "Bad SQL!"
+>
+>   return "foo"
 </pre>
 
 Another function, sendOverNet uses a reader environment with a network config, throws network errors, and does IO actions. 
 
-<pre>&gt; sendOverNet :: ( MonadError e m,
-&gt;                  MonadReader r m,
-&gt;                  AsNetworkError e,
-&gt;                  AsAppError e,
-&gt;                  HasNetworkConfig r,
-&gt;                  MonadIO m) =&gt; Text -&gt; m ()
-&gt; sendOverNet mydata = do
-&gt;
-&gt;   -- We have "MonadReader r m" and "HasNetworkConfig r"
-&gt;   -- so we can ask about the network config:
-&gt;   rdr    let netconf = rdr ^. networkConfig  :: NetworkConfig
-&gt;       p       = rdr ^. port           :: Port
-&gt;       s       = rdr ^. ssl            :: Ssl
-&gt;
-&gt;   liftIO $ putStrLn $ "Pretending to connect to the network..."
-&gt;
-&gt;   -- We have "AsNetworkError e" so we can throw a network error:
-&gt;   throwError $ (_NetworkError #) (Timeout 100)
-&gt;
-&gt;   -- We have "AsAppError e" so we can throw an application-level error:
-&gt;   throwError $ (_AppNetError #) (Timeout 100)
-&gt;
-&gt;   return ()
+<pre>> sendOverNet :: ( MonadError e m,
+>                  MonadReader r m,
+>                  AsNetworkError e,
+>                  AsAppError e,
+>                  HasNetworkConfig r,
+>                  MonadIO m) => Text -> m ()
+> sendOverNet mydata = do
+>
+>   -- We have "MonadReader r m" and "HasNetworkConfig r"
+>   -- so we can ask about the network config:
+>   rdr    let netconf = rdr ^. networkConfig  :: NetworkConfig
+>       p       = rdr ^. port           :: Port
+>       s       = rdr ^. ssl            :: Ssl
+>
+>   liftIO $ putStrLn $ "Pretending to connect to the network..."
+>
+>   -- We have "AsNetworkError e" so we can throw a network error:
+>   throwError $ (_NetworkError #) (Timeout 100)
+>
+>   -- We have "AsAppError e" so we can throw an application-level error:
+>   throwError $ (_AppNetError #) (Timeout 100)
+>
+>   return ()
 </pre>
 
 If we load from the database and also send over the network then we get extra class constraints: 
 
-<pre>&gt; loadAndSend :: ( AsAppError e,
-&gt;                  AsNetworkError e,
-&gt;                  AsDbError e,
-&gt;                  HasNetworkConfig r,
-&gt;                  HasDbConfig r,
-&gt;                  MonadReader r m,
-&gt;                  MonadError e m,
-&gt;                  MonadIO m) =&gt; m ()
-&gt; loadAndSend = do
-&gt;   liftIO $ putStrLn "Loading from the database..."
-&gt;   t 
-&gt;   liftIO $ putStrLn "Sending to the network..."
-&gt;   sendOverNet t
+<pre>> loadAndSend :: ( AsAppError e,
+>                  AsNetworkError e,
+>                  AsDbError e,
+>                  HasNetworkConfig r,
+>                  HasDbConfig r,
+>                  MonadReader r m,
+>                  MonadError e m,
+>                  MonadIO m) => m ()
+> loadAndSend = do
+>   liftIO $ putStrLn "Loading from the database..."
+>   t 
+>   liftIO $ putStrLn "Sending to the network..."
+>   sendOverNet t
 </pre>
 
 ## Things that won’t compile 
 
 We can’t throw the database error InvalidConnection without the right class constraint: 
 
-<pre>&gt; nope1 :: (MonadError e m, AsNetworkError e) =&gt; m ()
-&gt; nope1 = throwError $ (_InvalidConnection #) ()
+<pre>> nope1 :: (MonadError e m, AsNetworkError e) => m ()
+> nope1 = throwError $ (_InvalidConnection #) ()
 </pre>
 
 <font color="red"></p> 
@@ -219,8 +219,8 @@ arising from a use of ‘_InvalidConnection’
   We can’t throw an application error if we are only allowed to throw network errors, even though this specific application error is a network error:
 </p>
 
-<pre>&gt; nope2 :: (MonadError e m, AsNetworkError e) =&gt; m ()
-&gt; nope2 = throwError $ (_AppNetError #) (Timeout 100)
+<pre>> nope2 :: (MonadError e m, AsNetworkError e) => m ()
+> nope2 = throwError $ (_AppNetError #) (Timeout 100)
 </pre>
 
 <p>
@@ -239,11 +239,11 @@ arising from a use of ‘_AppNetError’
     We can’t get the network config from a value of type r if we only have the constraint about having the database config:
   </p>
   
-  <pre>&gt; nope3 :: (MonadReader r m, HasDbConfig r) =&gt; m ()
-&gt; nope3 = do
-&gt;   rdr    let netconf = rdr ^. networkConfig
-&gt;
-&gt;   return ()
+  <pre>> nope3 :: (MonadReader r m, HasDbConfig r) => m ()
+> nope3 = do
+>   rdr    let netconf = rdr ^. networkConfig
+>
+>   return ()
 </pre>
   
   <p>
@@ -267,11 +267,11 @@ arising from a use of ‘networkConfig’
     </p>
     
     <pre>
-*Classy&gt; :t review _InvalidConnection ()
-review _InvalidConnection () :: AsDbError e =&gt; e
+*Classy> :t review _InvalidConnection ()
+review _InvalidConnection () :: AsDbError e => e
 
-*Classy&gt; :t throwError $ review _InvalidConnection ()
-throwError $ review _InvalidConnection () :: (AsDbError e, MonadError e m) =&gt; m a
+*Classy> :t throwError $ review _InvalidConnection ()
+throwError $ review _InvalidConnection () :: (AsDbError e, MonadError e m) => m a
 </pre>
     
     <h2>

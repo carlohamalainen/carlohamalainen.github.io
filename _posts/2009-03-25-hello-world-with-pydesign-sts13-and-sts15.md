@@ -1,6 +1,6 @@
 ---
 id: 709
-title: 'Hello world with pydesign &#8211; STS(13) and STS(15)'
+title: 'Hello world with pydesign -- STS(13) and STS(15)'
 date: 2009-03-25T00:00:00+00:00
 author: Carlo Hamalainen
 layout: post
@@ -43,7 +43,7 @@ assert len(STS[15]) == 80
 print "An STS(13):", STS[13][0]
 </pre>
 
-Here&#8217;s the source: [STS\_13\_15.py](http://carlo-hamalainen.net/code/STS_13_15.py).
+Here's the source: [STS\_13\_15.py](http://carlo-hamalainen.net/code/STS_13_15.py).
 
 **Archived Comments**
 
@@ -51,4 +51,4 @@ Date: 2009-05-11 18:10:46 UTC
 
 Author: david joyner
 
-Why don&#8217;t you add this to Sage? Sage&#8217;s incidence structure class is based on pydesign but the database read-write functionality was left out. Please feel free to add it back in and ask me or Dan Gordon to referee.
+Why don't you add this to Sage? Sage's incidence structure class is based on pydesign but the database read-write functionality was left out. Please feel free to add it back in and ask me or Dan Gordon to referee.

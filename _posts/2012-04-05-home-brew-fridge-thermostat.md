@@ -28,7 +28,7 @@ You can run the thermostat wire inside the door on the hinged side so there is n
 
 
 
-The thermostat turns the fridge on when the temperature goes above the preset value. It doesn&#8217;t get very cold at night in Brisbane so I haven&#8217;t bothered with a dual control thermostat that can turn on a cooling and heating source.
+The thermostat turns the fridge on when the temperature goes above the preset value. It doesn't get very cold at night in Brisbane so I haven't bothered with a dual control thermostat that can turn on a cooling and heating source.
 
 Brewing at a constant 23-24C temperature has made a huge difference to the quality of my home brew. 
 
@@ -53,7 +53,7 @@ Date: 2013-01-03 14:53:35 UTC
 
 Author: Brooke
 
-I just bought the same model temp controller to turn my bar fridge into a cheese cave. I&#8217;m trying to maintain 10 degrees for aging my cheeses, but I&#8217;m having trouble as I&#8217;ve plugged it all in, set the temp but it is not cooling down to the 10 degrees. Do you need to set the temp while your fridge is below the desired temp to get the controller to work properly? Thanks.
+I just bought the same model temp controller to turn my bar fridge into a cheese cave. I'm trying to maintain 10 degrees for aging my cheeses, but I'm having trouble as I've plugged it all in, set the temp but it is not cooling down to the 10 degrees. Do you need to set the temp while your fridge is below the desired temp to get the controller to work properly? Thanks.
 
 Date: 2013-01-03 20:39:14 UTC
 
@@ -61,13 +61,13 @@ Author: carlo
 
 Brooke: I tested out my fridge and thermostat this afternoon. At 4pm with the fridge off the thermostat said 27C. I then set it for 10C and by 8pm it had reached this temperature.
 
-Have you set the fridge&#8217;s own thermostat for maximum cooling?
+Have you set the fridge's own thermostat for maximum cooling?
 
 Date: 2013-01-05 11:16:18 UTC
 
 Author: sverre
 
-hi, i&#8217;ve bought the same thermostat, what does the indicator led mean? what does red light mean? green led? witch mode do i use to keep lets say 26 to 28c degrees? what did you use to keep the fridge temp low??
+hi, i've bought the same thermostat, what does the indicator led mean? what does red light mean? green led? witch mode do i use to keep lets say 26 to 28c degrees? what did you use to keep the fridge temp low??
 
 Date: 2013-06-02 06:44:48 UTC
 
@@ -91,17 +91,17 @@ Operating instructions:
 
 Switch on the thermostat with power. The screen shows current temperature. 
 
-Button &#8220;SETTING&#8221;: used for switch between &#8220;WORKING&#8221; mode and &#8220;SETTING&#8221; mode. Press once, the thermostat go into setting mode, press another, the thermostat goes back to working mode. 
+Button "SETTING": used for switch between "WORKING" mode and "SETTING" mode. Press once, the thermostat go into setting mode, press another, the thermostat goes back to working mode. 
 
-Button &#8220;TEMPERATURE &#8220;: used for elevating temperature. When the screen shows &#8220;SETTING&#8221;, each pressing on the button elevates 1 degree . Long pressing on increases the temperature till 38 degree. After 5 seconds no operating, the thermostat returns to working mode. 
+Button "TEMPERATURE ": used for elevating temperature. When the screen shows "SETTING", each pressing on the button elevates 1 degree . Long pressing on increases the temperature till 38 degree. After 5 seconds no operating, the thermostat returns to working mode. 
 
-Button &#8220;TEMPERATURE -&#8220;: used for lowering temperature. When the screen shows &#8220;SETTING&#8221;, each pressing on the button reduce 1degree . Long pressing on lowers the temperature till -9 degree. After 5 seconds no operating, the thermostat returns to working mode. 
+Button "TEMPERATURE -": used for lowering temperature. When the screen shows "SETTING", each pressing on the button reduce 1degree . Long pressing on lowers the temperature till -9 degree. After 5 seconds no operating, the thermostat returns to working mode. 
 
 Heating mode and cooling mode change: 
 
-In the &#8220;WORKING&#8221; mode, press Button &#8220;TEMPERATURE &#8220;, after 4 seconds, the &#8220;WORK&#8221; mode will change, heating mode to cooling mode, or cooling mode to heating mode. Heating mode(red light bright): 
+In the "WORKING" mode, press Button "TEMPERATURE ", after 4 seconds, the "WORK" mode will change, heating mode to cooling mode, or cooling mode to heating mode. Heating mode(red light bright): 
 
-When current temperature ≤ set temperature &#8211; 1degree ,switch on the power; 
+When current temperature ≤ set temperature -- 1degree ,switch on the power; 
 
 When current temperature ≥ set temperature 1degree ,cut off the power; 
 
@@ -109,7 +109,7 @@ Cooling mode(green light bright):
 
 When current temperature ≥ set temperature 1degree ,switch on the power; 
 
-When current temperature ≤ set temperature &#8211; 1degree ,cut off the power; 
+When current temperature ≤ set temperature -- 1degree ,cut off the power; 
 
 Protection function: 
 
@@ -139,7 +139,7 @@ Date: 2014-01-29 06:43:40.506599 UTC
 
 Author: Carlo
 
-It only operates in cooling or warming mode, not both. So assuming the outside temperature is significantly above 20C, you&#8217;d set it to cooling mode (green light will come on) and 12C, fridge thermostat as cold as possible, and then it will turn the fridge on when the temperature hits 13C or so.
+It only operates in cooling or warming mode, not both. So assuming the outside temperature is significantly above 20C, you'd set it to cooling mode (green light will come on) and 12C, fridge thermostat as cold as possible, and then it will turn the fridge on when the temperature hits 13C or so.
 
 Date: 2014-01-29 08:00:53.797336 UTC
 
@@ -151,13 +151,13 @@ Date: 2014-03-15 12:37:52.610013 UTC
 
 Author: Brad
 
-The comments here are super useful. I just got one of these for the brewing fridge and couldn&#8217;t figure out how to get it to cool mode!
+The comments here are super useful. I just got one of these for the brewing fridge and couldn't figure out how to get it to cool mode!
 
 Date: 2016-12-07 22:13:00.989218 UTC
 
 Author: Dave
 
-Thanks for the translation &#8211; impossible to use the original instructions. Cheers. 
+Thanks for the translation -- impossible to use the original instructions. Cheers. 
 
 I am hoping to set mine up to keep an outdoor palm from freezing by switching on a set of Xmas lights, which are wrapped around the plant base, once the temp falls close to freezing.(+3degC). The string of lights total about 20W of power. So tree, then lights, then insulation fleece, then fingers crossed!! 
 

@@ -88,7 +88,7 @@ Install the fonts:
 cp pfb/*.pfb /usr/local/share/texmf/fonts/type1/adobe/MinionPro/
 </pre>
 
-Determine which version of the Adobe fonts you have. For example, I have the &#8220;002.000&#8221; family: 
+Determine which version of the Adobe fonts you have. For example, I have the "002.000" family: 
 
 <pre>$ otfinfo -v ~/Desktop/minionpro-scripts/otf/MinionPro-Regular.otf
 Version 2.015;PS 002.000;Core 1.0.38;makeotf.lib1.7.9032
@@ -150,7 +150,7 @@ or some other large value. Then run
 <pre>update-texmf
 </pre>
 
-I&#8217;m not sure about newer versions of TexLive, e.g. <http://tug.org/pipermail/tex-live/2012-November/032677.html>.
+I'm not sure about newer versions of TexLive, e.g. <http://tug.org/pipermail/tex-live/2012-November/032677.html>.
 
 **Archived Comments**
 
@@ -169,7 +169,7 @@ Author: Marc
 Hi from Paris/France,  
 Thanks a lot for this tutorial. I strictly followed your instructions and everything went fine.  
 My system : Debian Lenny on 386 and a classic latex installation via aptitude.  
-On debian, Adobe fonts are in /usr/lib/Adobe, so it&#8217;s on this directory I had to &#8220;find&#8221;.  
+On debian, Adobe fonts are in /usr/lib/Adobe, so it's on this directory I had to "find".  
 Real great job ! Thx !  
 Marc
 
@@ -181,7 +181,7 @@ Dear Carlo,
 
 it works like a charm! Thanks a lot!
 
-Mail me your address, i&#8217;ll send you some selfmade wine.
+Mail me your address, i'll send you some selfmade wine.
 
 Thank you so much!  
 Alex
@@ -202,12 +202,12 @@ Date: 2009-06-11 06:02:02 UTC
 
 Author: svat
 
-Thanks a lot for this detailed tutorial! Although I&#8217;m using Mac OS X with TexLive (MacTeX) 2008, it worked perfectly for me, with only minor modifications:  
+Thanks a lot for this detailed tutorial! Although I'm using Mac OS X with TexLive (MacTeX) 2008, it worked perfectly for me, with only minor modifications:  
 * I used ~Library/texmf instead of /usr/local/share/texmf everywhere  
 * Some of the commands required sudo  
-* There was no update-updmap, nor was there a /etc/texmf/updmap.d/, but running &#8220;sudo updmap-sys &#8211;enable Map=MinionPro.map&#8221; did the trick.
+* There was no update-updmap, nor was there a /etc/texmf/updmap.d/, but running "sudo updmap-sys --enable Map=MinionPro.map" did the trick.
 
-I&#8217;m amazed by how well it all worked; thanks again for the perfectly clear instructions!
+I'm amazed by how well it all worked; thanks again for the perfectly clear instructions!
 
 Date: 2009-07-27 09:32:56 UTC
 
@@ -215,13 +215,13 @@ Author: John
 
 Thanks! Very clear!  
 Some people might also need to unzip the opticals file (I think).  
-Oh, for the mac it&#8217;s &#8220;- &#8211; enable&#8221; (there two dashes there).
+Oh, for the mac it's "- -- enable" (there two dashes there).
 
 Date: 2009-09-15 13:03:58 UTC
 
 Author: lydia
 
-I am more or less a Latex noob and am not that familiar to working with the terminal. I use mac os x. I managed to do the copying but when I try to do the mtexlsr (what&#8217;s that for anyways?) it echoes command not found, the same with udpmap-sys.  
+I am more or less a Latex noob and am not that familiar to working with the terminal. I use mac os x. I managed to do the copying but when I try to do the mtexlsr (what's that for anyways?) it echoes command not found, the same with udpmap-sys.  
 thx for your help!
 
 Date: 2009-12-22 11:39:17 UTC
@@ -234,19 +234,19 @@ Date: 2011-12-04 22:06:31 UTC
 
 Author: Thomas
 
-I still don&#8217;T know how to use it in my latex document.
+I still don'T know how to use it in my latex document.
 
-usepackage{minion} doesn&#8217;t work.
+usepackage{minion} doesn't work.
 
-&#8212;&#8212;&#8212;&#8212;-
+-----
 
-I ran latex on a file called &#8216;MinionPro.dtx&#8217;. Or was it &#8216;MinionPro.ins&#8217;? Anyway, it was contained in the MinionPro Source.Zip Package from CTAN. Namely, in they subdirectory called &#8220;tex&#8221;.
+I ran latex on a file called 'MinionPro.dtx'. Or was it 'MinionPro.ins'? Anyway, it was contained in the MinionPro Source.Zip Package from CTAN. Namely, in they subdirectory called "tex".
 
 Date: 2013-03-14 02:01:50 UTC
 
 Author: Dane
 
-Thanks for this write-up. When you link to mnsymbol, you should leave off the trailing slash, otherwise the link to download it as a zip archive isn&#8217;t available (CTAN&#8217;s server is a little finicky)
+Thanks for this write-up. When you link to mnsymbol, you should leave off the trailing slash, otherwise the link to download it as a zip archive isn't available (CTAN's server is a little finicky)
 
 Date: 2013-03-14 07:24:08 UTC
 
@@ -278,7 +278,7 @@ For now these files have been included, but expect inconsistencies.
 
 In the end it worked for me but maybe one should edit the file /var/lib/texmf/updmap.cfg-DEBIAN instead (on Ubuntu 13.10).
 
-Also, I never saw this line: updmap-sys: using map file \`/usr/local/share/texmf/fonts/map/dvips/MnSymbol/MnSymbol.map&#8217;
+Also, I never saw this line: updmap-sys: using map file \`/usr/local/share/texmf/fonts/map/dvips/MnSymbol/MnSymbol.map'
 
 Date: 2015-03-28 05:49:23.528116 UTC
 
@@ -290,7 +290,7 @@ sudo mktexlsr
 
 Then when I try the last command, I get this error:
 
-updmap: resetting $HOME value (was /Users/xx) to root&#8217;s actual home (/var/root).  
+updmap: resetting $HOME value (was /Users/xx) to root's actual home (/var/root).  
 updmap is using the following updmap.cfg files (in precedence order):  
 /var/root/Library/texlive/2014/texmf-config/web2c/updmap.cfg  
 /usr/local/texlive/2014/texmf-config/web2c/updmap.cfg  

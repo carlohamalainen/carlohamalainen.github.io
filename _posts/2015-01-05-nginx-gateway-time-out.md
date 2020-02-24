@@ -14,7 +14,7 @@ categories:
   - Uncategorized
 format: image
 ---
-Occasionally I get a &#8220;504 Gateway Time-out&#8221; from nginx in conjunction with php-fastcgi. Restarting php-fcgi has no effect (Debian wheezy amd64). 
+Occasionally I get a "504 Gateway Time-out" from nginx in conjunction with php-fastcgi. Restarting php-fcgi has no effect (Debian wheezy amd64). 
 
 Stop php-fcgi completely: 
 

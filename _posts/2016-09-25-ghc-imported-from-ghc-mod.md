@@ -1,6 +1,6 @@
 ---
 id: 724
-title: 'ghc-imported-from =&gt; ghc-mod'
+title: 'ghc-imported-from => ghc-mod'
 date: 2016-09-25T00:00:00+00:00
 author: Carlo Hamalainen
 layout: post
@@ -14,9 +14,9 @@ categories:
   - Uncategorized
 format: image
 ---
- **This post has some errors; see [ghc-imported-from&#8211;ghc-mod-march-2017](https://carlo-hamalainen.net/blog/2017/3/19/ghc-imported-from--ghc-mod-march-2017) for the latest instructions.** 
+ **This post has some errors; see [ghc-imported-from--ghc-mod-march-2017](https://carlo-hamalainen.net/blog/2017/3/19/ghc-imported-from--ghc-mod-march-2017) for the latest instructions.** 
 
-I have a [pull request](https://github.com/DanielG/ghc-mod/pull/823) to merge [ghc-imported-from](https://hackage.haskell.org/package/ghc-imported-from) into [ghc-mod](https://github.com/DanielG/ghc-mod). The main benefit of being part of ghc-mod is that I don&#8217;t have to duplicate ghc-mod&#8217;s infrastructure for handling sandboxes, GHC options, interfaces to other build tools like Stack, and compatibility with more versions of GHC.
+I have a [pull request](https://github.com/DanielG/ghc-mod/pull/823) to merge [ghc-imported-from](https://hackage.haskell.org/package/ghc-imported-from) into [ghc-mod](https://github.com/DanielG/ghc-mod). The main benefit of being part of ghc-mod is that I don't have to duplicate ghc-mod's infrastructure for handling sandboxes, GHC options, interfaces to other build tools like Stack, and compatibility with more versions of GHC.
 
 The pull request is still under review, so until then you can try it out by cloning the development branches: 
 

@@ -13,7 +13,7 @@ categories:
 ---
 My Boardman Team TXC 650b hardtail mountain bike has an FSA crankset and bottom bracket. After a year and a half the bottom bracket got quite rough so I decided to swap it out with a Hope Hollowtech II bottom bracket.
 
-I couldn&#8217;t find much online about this bottom bracket. Markings include: &#8220;FSA B3164 MegaExo 24mm MS185&#8221; and &#8220;BC1.37&#8243; x 24T&#8221;.
+I couldn't find much online about this bottom bracket. Markings include: "FSA B3164 MegaExo 24mm MS185" and "BC1.37" x 24T".
 
 <img class="wp-image-964" src="https://i1.wp.com/carlo-hamalainen.net/wp-content/uploads/2017/08/img_1073-1.jpg?resize=1100%2C825&#038;ssl=1" width="1100" height="825" data-recalc-dims="1" /><img class="wp-image-963" src="https://i1.wp.com/carlo-hamalainen.net/wp-content/uploads/2017/08/img_1074-1.jpg?resize=1100%2C937&#038;ssl=1" width="1100" height="937" data-recalc-dims="1" /> 
 
@@ -29,7 +29,7 @@ I managed to get the cup out and then used a dremel (on low speed) to clean up t
 
 <img class="wp-image-982" src="https://i1.wp.com/carlo-hamalainen.net/wp-content/uploads/2017/08/img_1060.jpg?resize=1100%2C1467&#038;ssl=1" width="1100" height="1467" data-recalc-dims="1" /> 
 
-To chase the threads, I made a few cuts into the new bottom bracket cup (following [this video](https://m.youtube.com/watch?v=1IrAGP22V34)), which let me push into the bottom bracket enough to bite into the thread. <span style="color:#ff0000;">If you do this you&#8217;ll probably destroy the thread completely, rendering the frame junk.</span>
+To chase the threads, I made a few cuts into the new bottom bracket cup (following [this video](https://m.youtube.com/watch?v=1IrAGP22V34)), which let me push into the bottom bracket enough to bite into the thread. <span style="color:#ff0000;">If you do this you'll probably destroy the thread completely, rendering the frame junk.</span>
 
 <img class="wp-image-981" src="https://i0.wp.com/carlo-hamalainen.net/wp-content/uploads/2017/08/img_1061.jpg?resize=1100%2C996&#038;ssl=1" width="1100" height="996" data-recalc-dims="1" /> 
 

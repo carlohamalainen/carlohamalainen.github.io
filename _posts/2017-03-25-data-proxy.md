@@ -18,161 +18,161 @@ Short note on [Data.Proxy](https://hackage.haskell.org/package/base-4.9.1.0/docs
 
 First, a few imports: 
 
-<pre>&gt; {-# LANGUAGE RankNTypes          #-}
-&gt; {-# LANGUAGE ScopedTypeVariables #-}
-&gt;
-&gt; module Proxy where
-&gt;
-&gt; import Data.Proxy
-&gt; import Text.Read
+<pre>> {-# LANGUAGE RankNTypes          #-}
+> {-# LANGUAGE ScopedTypeVariables #-}
+>
+> module Proxy where
+>
+> import Data.Proxy
+> import Text.Read
 </pre>
 
 Suppose we want to check if some fuzzy real world data can be read as certain concrete types. We could write a few helper functions using [readMaybe](https://hackage.haskell.org/package/base-4.9.1.0/docs/Text-Read.html#v:readMaybe): 
 
-<pre>&gt; readableAsInt :: String -&gt; Bool
-&gt; readableAsInt s
-&gt;   = case readMaybe s of
-&gt;       Just (_ :: Int) -&gt; True
-&gt;       _               -&gt; False
-&gt;
-&gt; readableAsDouble :: String -&gt; Bool
-&gt; readableAsDouble s
-&gt;   = case readMaybe s of
-&gt;       Just (_ :: Double) -&gt; True
-&gt;       _                  -&gt; False
-&gt;
-&gt; readableAsBool :: String -&gt; Bool
-&gt; readableAsBool s
-&gt;   = case readMaybe s of
-&gt;       Just (_ :: Bool) -&gt; True
-&gt;       _                -&gt; False
+<pre>> readableAsInt :: String -> Bool
+> readableAsInt s
+>   = case readMaybe s of
+>       Just (_ :: Int) -> True
+>       _               -> False
+>
+> readableAsDouble :: String -> Bool
+> readableAsDouble s
+>   = case readMaybe s of
+>       Just (_ :: Double) -> True
+>       _                  -> False
+>
+> readableAsBool :: String -> Bool
+> readableAsBool s
+>   = case readMaybe s of
+>       Just (_ :: Bool) -> True
+>       _                -> False
 </pre>
 
 These are all basically the same. How to generalise? Let’s try a typeclass. 
 
-<pre>&gt; class ReadableAs t where
-&gt;    readableAs :: String -&gt; Bool
+<pre>> class ReadableAs t where
+>    readableAs :: String -> Bool
 </pre>
 
 This doesn’t work since readableAs doesn’t depend on the type t: 
 
 <pre>The class method ‘readableAs’
     mentions none of the type or kind variables of the class ‘ReadableAs t’
-    When checking the class method: readableAs :: String -&gt; Bool
+    When checking the class method: readableAs :: String -> Bool
     In the class declaration for ‘ReadableAs’
 Failed, modules loaded: none.
 </pre>
 
 So put the type in: 
 
-<pre>&gt; class ReadableAs' t where
-&gt;    readableAs' :: t -&gt; String -&gt; Bool
+<pre>> class ReadableAs' t where
+>    readableAs' :: t -> String -> Bool
 </pre>
 
 This compiles, so let’s write some instances: 
 
-<pre>&gt; instance ReadableAs' Int where
-&gt;   readableAs' _ s
-&gt;      = case readMaybe s of
-&gt;          Just (_ :: Int) -&gt; True
-&gt;          _               -&gt; False
-&gt;
-&gt; instance ReadableAs' Double where
-&gt;   readableAs' _ s
-&gt;      = case readMaybe s of
-&gt;          Just (_ :: Double) -&gt; True
-&gt;          _                  -&gt; False
-&gt;
-&gt; instance ReadableAs' Bool where
-&gt;   readableAs' _ s
-&gt;      = case readMaybe s of
-&gt;          Just (_ :: Bool) -&gt; True
-&gt;          _                -&gt; False
+<pre>> instance ReadableAs' Int where
+>   readableAs' _ s
+>      = case readMaybe s of
+>          Just (_ :: Int) -> True
+>          _               -> False
+>
+> instance ReadableAs' Double where
+>   readableAs' _ s
+>      = case readMaybe s of
+>          Just (_ :: Double) -> True
+>          _                  -> False
+>
+> instance ReadableAs' Bool where
+>   readableAs' _ s
+>      = case readMaybe s of
+>          Just (_ :: Bool) -> True
+>          _                -> False
 </pre>
 
 Using it is clunky since we have to come up with a concrete value for the first argument: 
 
-<pre>&gt; readableAs' (0::Int) "0"
+<pre>> readableAs' (0::Int) "0"
  True
- &gt; readableAs' (0::Double) "0"
+ > readableAs' (0::Double) "0"
  True
 </pre>
 
 For some types we could use [Data.Default](https://hackage.haskell.org/package/data-default) for this placeholder value. But for other types nothing will make sense. How do we choose a default value for Foo? 
 
-<pre>&gt; data Foo = Cat | Dog
+<pre>> data Foo = Cat | Dog
 </pre>
 
 Haskell has non-strict evaluation so we can use undefined, but, ugh. Bad idea. 
 
-<pre>&gt; readableAs' (undefined::Int) "0"
+<pre>> readableAs' (undefined::Int) "0"
  True
 </pre>
 
 So let’s try out Proxy. It has a single constructor and a free type variable that we can set: 
 
-<pre>&gt; :t Proxy
+<pre>> :t Proxy
  Proxy :: Proxy t
 </pre>
 
-<pre>&gt; Proxy :: Proxy Bool
+<pre>> Proxy :: Proxy Bool
  Proxy
- &gt; Proxy :: Proxy Int
+ > Proxy :: Proxy Int
  Proxy
- &gt; Proxy :: Proxy Double
+ > Proxy :: Proxy Double
  Proxy
 </pre>
 
 Let’s use Proxy t instead of t: 
 
-<pre>&gt; class ReadableAsP t where
-&gt;    readableAsP :: Proxy t -&gt; String -&gt; Bool
-&gt;
-&gt; instance ReadableAsP Int where
-&gt;   readableAsP _ s
-&gt;      = case readMaybe s of
-&gt;          Just (_ :: Int) -&gt; True
-&gt;          _               -&gt; False
-&gt;
-&gt; instance ReadableAsP Double where
-&gt;   readableAsP _ s
-&gt;      = case readMaybe s of
-&gt;          Just (_ :: Double) -&gt; True
-&gt;          _                  -&gt; False
-&gt;
-&gt; instance ReadableAsP Bool where
-&gt;   readableAsP _ s
-&gt;      = case readMaybe s of
-&gt;          Just (_ :: Bool) -&gt; True
-&gt;          _                -&gt; False
+<pre>> class ReadableAsP t where
+>    readableAsP :: Proxy t -> String -> Bool
+>
+> instance ReadableAsP Int where
+>   readableAsP _ s
+>      = case readMaybe s of
+>          Just (_ :: Int) -> True
+>          _               -> False
+>
+> instance ReadableAsP Double where
+>   readableAsP _ s
+>      = case readMaybe s of
+>          Just (_ :: Double) -> True
+>          _                  -> False
+>
+> instance ReadableAsP Bool where
+>   readableAsP _ s
+>      = case readMaybe s of
+>          Just (_ :: Bool) -> True
+>          _                -> False
 </pre>
 
 This works, and we don’t have to come up with the unused concrete value: 
 
-<pre>&gt; readableAsP (Proxy :: Proxy Bool) "0"
+<pre>> readableAsP (Proxy :: Proxy Bool) "0"
  False
- &gt; readableAsP (Proxy :: Proxy Bool) "True"
+ > readableAsP (Proxy :: Proxy Bool) "True"
  True
- &gt; readableAsP (Proxy :: Proxy Int) "0"
+ > readableAsP (Proxy :: Proxy Int) "0"
  True
- &gt; readableAsP (Proxy :: Proxy Double) "0"
+ > readableAsP (Proxy :: Proxy Double) "0"
  True
- &gt; readableAsP (Proxy :: Proxy Double) "0.0"
+ > readableAsP (Proxy :: Proxy Double) "0.0"
  True
 </pre>
 
 Still, there’s a lot of duplication in the class and instances. We can do away with the class entirely. With the ScopedTypeVariables language extension and the forall, the t in the type signature can be referred to in the body: 
 
-<pre>&gt; readableAs :: forall t. Read t =&gt; Proxy t -&gt; String -&gt; Bool
-&gt; readableAs _ s
-&gt;      = case readMaybe s of
-&gt;          Just (_ :: t) -&gt; True
-&gt;          _             -&gt; False
+<pre>> readableAs :: forall t. Read t => Proxy t -> String -> Bool
+> readableAs _ s
+>      = case readMaybe s of
+>          Just (_ :: t) -> True
+>          _             -> False
 </pre>
 
-<pre>&gt; readableAs (Proxy :: Proxy Int) "0"
+<pre>> readableAs (Proxy :: Proxy Int) "0"
  True
- &gt; readableAs (Proxy :: Proxy Int) "foo"
+ > readableAs (Proxy :: Proxy Int) "foo"
  False
 </pre>
 
@@ -193,7 +193,7 @@ This can also now be done without Proxy, thanks to explicit type application:
 
 import Data.Maybe (isJust)
 
-readableAs :: forall t. Read t =&gt; String -&gt; Bool
+readableAs :: forall t. Read t => String -> Bool
 readableAs = isJust @t . readMaybe
 
 example1 = readableAs @Int "0"

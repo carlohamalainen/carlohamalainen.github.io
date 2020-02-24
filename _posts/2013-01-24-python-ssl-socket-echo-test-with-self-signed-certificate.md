@@ -161,11 +161,11 @@ Author: Limey
 
 In order to get this to work with python V3 I had to change:
 
-ssl_sock.write(&#8220;boo!&#8221;)
+ssl_sock.write("boo!")
 
 to:
 
-ssl_sock.write(&#8220;boo!&#8221;.encode())
+ssl_sock.write("boo!".encode())
 
 No idea if this is the best solution, but it made it work. =)
 
@@ -173,4 +173,4 @@ Date: 2015-11-06 06:06:35.515219 UTC
 
 Author: Ketan Kothari
 
-Thank&#8217;s for describing with example. Good to use and easy to understand.
+Thank's for describing with example. Good to use and easy to understand.

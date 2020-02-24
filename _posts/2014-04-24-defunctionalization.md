@@ -63,38 +63,38 @@ It turns out that Java programmers are forced to do _defunctionalization_ since 
 
 In Haskell we might implement yDot as follows: 
 
-<pre>&gt; module Defun where
-&gt;
-&gt; yDot :: [Double] -&gt; Double -&gt; [Double] -&gt; [Double]
-&gt; yDot c omega y = [omega * (c !! 1 - y !! 1), omega * (y !! 0 - c !! 0)]
+<pre>> module Defun where
+>
+> yDot :: [Double] -> Double -> [Double] -> [Double]
+> yDot c omega y = [omega * (c !! 1 - y !! 1), omega * (y !! 0 - c !! 0)]
 </pre>
 
 The parameters c and omega are the slowest varying, so we put them before y. Since all functions in Haskell are [curried](http://www.haskell.org/haskellwiki/Currying), we can conveniently produce the function that we need by partially applying the c and omega values:
 
-<pre>*Defun&gt; :t yDot [1.0, 1.0] 0.1
-yDot [1.0, 1.0] 0.1 :: [Double] -&gt; [Double]
+<pre>*Defun> :t yDot [1.0, 1.0] 0.1
+yDot [1.0, 1.0] 0.1 :: [Double] -> [Double]
 </pre>
 
 In this way yDot is a higher order function. To make it first-order we have to defunctionalize it. Following the example on [plover.net](http://blog.plover.com/prog/defunctionalization.html) we define a data structure to hole the c and omega values:
 
-<pre>&gt; data Hold = MkHold [Double] Double
+<pre>> data Hold = MkHold [Double] Double
 </pre>
 
 And we need a function to “apply” this value to get the actual yDot value.
 
-<pre>&gt; fakeApply :: Hold -&gt; [Double] -&gt; [Double]
-&gt; fakeApply (MkHold c omega) y = [omega * (c !! 1 - y !! 1), omega * (y !! 0 - c !! 0)]
+<pre>> fakeApply :: Hold -> [Double] -> [Double]
+> fakeApply (MkHold c omega) y = [omega * (c !! 1 - y !! 1), omega * (y !! 0 - c !! 0)]
 </pre>
 
 Basically Hold and fakeApply are equivalent to the CircleODE class above. 
 
 Example: 
 
-<pre>&gt; hold :: Hold
-&gt; hold = MkHold [1.0, 1.0] 0.1
-&gt;
-&gt; result :: [Double]
-&gt; result = fakeApply hold [1.0, 1.0]
+<pre>> hold :: Hold
+> hold = MkHold [1.0, 1.0] 0.1
+>
+> result :: [Double]
+> result = fakeApply hold [1.0, 1.0]
 </pre>
 
 Defunctionalization appears to be the cause of the excessive use of nouns in Java code, resulting in things like the [Abstract Singleton Proxy Factory Bean](http://docs.spring.io/spring/docs/2.5.x/api/org/springframework/aop/framework/AbstractSingletonProxyFactoryBean.html), or the [Abstract Factory](http://en.wikipedia.org/wiki/Abstract_factory_pattern) design pattern.
@@ -102,8 +102,8 @@ Defunctionalization appears to be the cause of the excessive use of nouns in Jav
 Further reading: 
 
   * Defunctionalization and Java: <http://blog.plover.com/prog/defunctionalization.html> ([local copy](http://carlo-hamalainen.net/stuff/defunctionalization_local_copies/The%20Universe%20of%20Discourse%20%20%20Defunctionalization%20and%20Java.html)) 
-  * Ken Knowles&#8217; blog post: <https://github.com/kennknowles/functional-lens/blob/master/2008/2008-05-24-Defunctionalization/Defunctionalization.lhs> ([local copy](http://carlo-hamalainen.net/stuff/defunctionalization_local_copies/Defunctionalization.lhs)) 
-  * Steve Yegge&#8217;s rant on execution in the kingdom of nouns: <http://steve-yegge.blogspot.com/2006/03/execution-in-kingdom-of-nouns.html> ([local copy](http://carlo-hamalainen.net/stuff/defunctionalization_local_copies/Stevey%27s%20Blog%20Rants%20%20Execution%20in%20the%20Kingdom%20of%20Nouns.html)) 
+  * Ken Knowles' blog post: <https://github.com/kennknowles/functional-lens/blob/master/2008/2008-05-24-Defunctionalization/Defunctionalization.lhs> ([local copy](http://carlo-hamalainen.net/stuff/defunctionalization_local_copies/Defunctionalization.lhs)) 
+  * Steve Yegge's rant on execution in the kingdom of nouns: <http://steve-yegge.blogspot.com/2006/03/execution-in-kingdom-of-nouns.html> ([local copy](http://carlo-hamalainen.net/stuff/defunctionalization_local_copies/Stevey%27s%20Blog%20Rants%20%20Execution%20in%20the%20Kingdom%20of%20Nouns.html)) 
 
 Literate Haskell source for this post is here: <https://github.com/carlohamalainen/playground/tree/master/haskell/java-defun>. 
 

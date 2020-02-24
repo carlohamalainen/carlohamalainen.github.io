@@ -14,7 +14,7 @@ categories:
   - Uncategorized
 format: image
 ---
-I wrote a Python interpreter for the SECD abstract machine, following the presentation in [Kogge&#8217;s book](http://carlo-hamalainen.net/blog/2012/08/15/kogges-the-architecture-of-symbolic-computers-1991/). The [pydot](http://code.google.com/p/pydot/) library was convenient for visualising the graph in memory corresponding to data and code. For example this short program: 
+I wrote a Python interpreter for the SECD abstract machine, following the presentation in [Kogge's book](http://carlo-hamalainen.net/blog/2012/08/15/kogges-the-architecture-of-symbolic-computers-1991/). The [pydot](http://code.google.com/p/pydot/) library was convenient for visualising the graph in memory corresponding to data and code. For example this short program: 
 
 <pre>[LDC, [3, 4], LDF, [LD, [1, 2], LD, [1, 1], ADD, RTN], AP, WRITEI, STOP,]
 </pre>

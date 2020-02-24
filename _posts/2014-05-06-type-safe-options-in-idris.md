@@ -60,70 +60,70 @@ A few times I made mistakes with these xor specifications which resulted in run 
 
 A basic implementation in Haskell of a command line wrapper might look like this: 
 
-<pre>&gt; module OptionsInHaskell where
+<pre>> module OptionsInHaskell where
 </pre>
 
-<pre>&gt; import Control.Monad (when)
-&gt; import Data.List (intersect)
+<pre>> import Control.Monad (when)
+> import Data.List (intersect)
 </pre>
 
 A command line option has a description, argument string, and a value. For simplicity we will only consider integer values. 
 
-<pre>&gt; data Option = MkOption { optDesc :: String
-&gt;                        , optArgStr :: String
-&gt;                        , optValue  :: Int
-&gt;                        } deriving Show
+<pre>> data Option = MkOption { optDesc :: String
+>                        , optArgStr :: String
+>                        , optValue  :: Int
+>                        } deriving Show
 </pre>
 
 Again, for simplicity, two options are considered equal if their arg strings match: 
 
-<pre>&gt; instance Eq Option where
-&gt;   (MkOption _ a _) == (MkOption _ a' _) = a == a'
+<pre>> instance Eq Option where
+>   (MkOption _ a _) == (MkOption _ a' _) = a == a'
 </pre>
 
 Here are some example options: 
 
-<pre>&gt; opt1 :: Option
-&gt; opt1 = MkOption "Value of Foo."   "-foo"  34
-&gt;
-&gt; opt2 :: Option
-&gt; opt2 = MkOption "Do bar."         "-bar"  99
-&gt;
-&gt; opt3 :: Option
-&gt; opt3 = MkOption "Blah."           "-blah" 0
+<pre>> opt1 :: Option
+> opt1 = MkOption "Value of Foo."   "-foo"  34
+>
+> opt2 :: Option
+> opt2 = MkOption "Do bar."         "-bar"  99
+>
+> opt3 :: Option
+> opt3 = MkOption "Blah."           "-blah" 0
 </pre>
 
 A program consists of a path to a binary, a list of options, and a list of xor conditions, which are lists of options that cannot be set simultaneously. 
 
-<pre>&gt; data Program = Program { progPath :: FilePath
-&gt;                        , progOptions :: [Option]
-&gt;                        , progXorOptions :: [[Option]]
-&gt;                        } deriving Show
+<pre>> data Program = Program { progPath :: FilePath
+>                        , progOptions :: [Option]
+>                        , progXorOptions :: [[Option]]
+>                        } deriving Show
 </pre>
 
 A list of options has a clash if it intersects with any of the xor-lists in more than two elements: 
 
-<pre>&gt; clash :: [Option] -&gt; [[Option]] -&gt; Bool
-&gt; clash opts xors = any (x -&gt; length (intersect opts x) &gt;= 2) xors
+<pre>> clash :: [Option] -> [[Option]] -> Bool
+> clash opts xors = any (x -> length (intersect opts x) >= 2) xors
 </pre>
 
 We won’t bother with the full details of spawning a process, tidying up output files, capturing stdout and stderr, and so on, so this runProgram function just prints some details and checks that the options list is acceptable: 
 
-<pre>&gt; runProgram :: Program -&gt; IO ()
-&gt; runProgram (Program path opts xorOpts) = do
-&gt;   putStrLn $ "Pretending to run: " ++ path
-&gt;   putStrLn $ "with options: " ++ show opts
-&gt;   putStrLn $ "and xor lists: " ++ show xorOpts
-&gt;   when (clash opts xorOpts) $ error "eek, options clash :("
+<pre>> runProgram :: Program -> IO ()
+> runProgram (Program path opts xorOpts) = do
+>   putStrLn $ "Pretending to run: " ++ path
+>   putStrLn $ "with options: " ++ show opts
+>   putStrLn $ "and xor lists: " ++ show xorOpts
+>   when (clash opts xorOpts) $ error "eek, options clash :("
 </pre>
 
 Here’s a program with no xor conditions; it runs ok: 
 
-<pre>&gt; prog1 :: Program
-&gt; prog1 = Program "/usr/local/bin/foo" [opt1, opt2, opt3] []
+<pre>> prog1 :: Program
+> prog1 = Program "/usr/local/bin/foo" [opt1, opt2, opt3] []
 </pre>
 
-<pre>*OptionsInHaskell&gt; runProgram prog1
+<pre>*OptionsInHaskell> runProgram prog1
 Pretending to run: /usr/local/bin/foo
 with options: [ MkOption {optDesc = "Value of Foo.", optArgStr = "-foo", optValue = 34}
               , MkOption {optDesc = "Do bar.", optArgStr = "-bar", optValue = 99}
@@ -134,11 +134,11 @@ and xor lists: []
 
 On the other hand, this program is not valid since options 1, 2, and 3 are set, but the xor list specifies that options 1 and 2 cannot be set at the same time: 
 
-<pre>&gt; prog2 :: Program
-&gt; prog2 = Program "/usr/local/bin/foo" [opt1, opt2, opt3] [[opt1, opt2]]
+<pre>> prog2 :: Program
+> prog2 = Program "/usr/local/bin/foo" [opt1, opt2, opt3] [[opt1, opt2]]
 </pre>
 
-<pre>*OptionsInHaskell&gt; runProgram prog2
+<pre>*OptionsInHaskell> runProgram prog2
 Pretending to run: /usr/local/bin/foo
 with options: [ MkOption {optDesc = "Value of Foo.", optArgStr = "-foo", optValue = 34}
               , MkOption {optDesc = "Do bar.", optArgStr = "-bar", optValue = 99}
@@ -184,11 +184,11 @@ Next we need to encode _in the type system_ the result of an option list clashin
 
 Checking if an option list has a clash is basically the same as in Haskell except that we return a ClashValue instead of a Bool: 
 
-<pre>notclash : List Option -&gt; List (List Option) -&gt; ClashValue
-notclash opts xors = if (any (x =&gt; length (intersect opts x) &gt;= 2) xors)
+<pre>notclash : List Option -> List (List Option) -> ClashValue
+notclash opts xors = if (any (x => length (intersect opts x) >= 2) xors)
                            then Clashing
                            else NotClashing
-   where intersect : Eq a =&gt; List a -&gt; List a -&gt; List a
+   where intersect : Eq a => List a -> List a -> List a
          intersect [] _ = []
          intersect (x :: xs) ys = if x `elem` ys then x :: intersect xs ys
                                                  else intersect xs ys
@@ -196,7 +196,7 @@ notclash opts xors = if (any (x =&gt; length (intersect opts x) &gt;= 2) xors)
 
 Next, the tricky bit. We create a data type IsNotClashing which has only one constructor, called Ok, that produces a value IsNotClashing NotClashing. _There is no way to produce the value IsNotClashing Clashing_.
 
-<pre>data IsNotClashing : ClashValue -&gt; Type where
+<pre>data IsNotClashing : ClashValue -> Type where
   Ok : IsNotClashing NotClashing
 </pre>
 
@@ -223,16 +223,16 @@ myXors23 = [[opt2, opt3]]
 
 The heart of the solution is the ValidOptionList data type. We take an option list and an xor list and, if a proof can be constructed for the value Ok using the expression IsNotClashing (notclash opts xors), then we produce the actual value ValidOptionList opts. Due to the definition of Ok, this condition means that notclash opts xors must evaluate to NotClashing. Hopefully this makes it clear why the data types ClashValue and IsNotClashing were needed.
 
-<pre>data ValidOptionList : List Option -&gt; Type where
+<pre>data ValidOptionList : List Option -> Type where
   MkValidOptionList : (opts : List Option) -- WrappedOptionList opts
-                   -&gt; (xors : List (List Option))
-                   -&gt; {default Ok prf : IsNotClashing (notclash opts xors)}
-                   -&gt; ValidOptionList opts
+                   -> (xors : List (List Option))
+                   -> {default Ok prf : IsNotClashing (notclash opts xors)}
+                   -> ValidOptionList opts
 </pre>
 
 Finally, the runProgram function takes a path to an executable and a valid list of options. _The fact that the list of options is valid is encoded in the type system_.
 
-<pre>runProgram : String -&gt; ValidOptionList opts -&gt; String
+<pre>runProgram : String -> ValidOptionList opts -> String
 runProgram binary (MkValidOptionList opts xorsHere) = "pretended to run the program with options: " ++ show opts
 </pre>
 
@@ -253,7 +253,7 @@ The first part of the error is a bit scary:
 <pre>Can't unify
          IsNotClashing NotClashing
  with
-         IsNotClashing (boolElim (foldrImpl (flip (.) . flip (x =&gt; y =&gt; x || Delay (Prelude.Classes.Nat instance of Prelude.Classes.Ord, method &gt; (Nat instance of Prelude.Classes.Ord, method compare (length (OptionsInIdris.notclash, intersect myOptions23 myXors23 myOptions23 y)) 2) (length (OptionsInIdris.notclash, intersect myOptions23 myXors23 myOptions23 y)) 2 || Delay (Nat instance of Prelude.Classes.Eq, method == (length (OptionsInIdris.notclash, intersect myOptions23 myXors23 myOptions23 y)) 2)))) id id myXors23 False) (Delay Clashing) (Delay NotClashing))
+         IsNotClashing (boolElim (foldrImpl (flip (.) . flip (x => y => x || Delay (Prelude.Classes.Nat instance of Prelude.Classes.Ord, method > (Nat instance of Prelude.Classes.Ord, method compare (length (OptionsInIdris.notclash, intersect myOptions23 myXors23 myOptions23 y)) 2) (length (OptionsInIdris.notclash, intersect myOptions23 myXors23 myOptions23 y)) 2 || Delay (Nat instance of Prelude.Classes.Eq, method == (length (OptionsInIdris.notclash, intersect myOptions23 myXors23 myOptions23 y)) 2)))) id id myXors23 False) (Delay Clashing) (Delay NotClashing))
 </pre>
 
 but the second part has the goods: 

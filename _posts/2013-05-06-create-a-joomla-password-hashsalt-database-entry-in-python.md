@@ -14,6 +14,6 @@ categories:
   - Uncategorized
 format: image
 ---
-Handy for manually resetting a user&#8217;s password. Tested on Joomla 2.5.
+Handy for manually resetting a user's password. Tested on Joomla 2.5.
 
 <https://gist.github.com/carlohamalainen/5523233.js>

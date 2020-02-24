@@ -30,17 +30,17 @@ pkgadd -d pkgutil-sparc.pkg
 pkgutil -U
 </pre>
 
-It&#8217;s handy to have bash, wget, vim, and screen:
+It's handy to have bash, wget, vim, and screen:
 
 <pre>pkgutil -i bash wget vim screen
 </pre>
 
-A few things that we&#8217;ll need for building gcc:
+A few things that we'll need for building gcc:
 
 <pre>pkgutil -i binutil autoconf automake gtar bzip2 gmake
 </pre>
 
-I don&#8217;t think that all of these exports are necessary apart from the path but my build worked with all of them:
+I don't think that all of these exports are necessary apart from the path but my build worked with all of them:
 
 <pre>export LIBRARY_PATH="/usr/local/lib"
 export LIBRARY_PATH="/usr/local/lib"
@@ -152,7 +152,7 @@ gmake[1]: Leaving directory `/export/home/carlo/gcc-4.4.1/build1'
 gmake: *** [all] Error 2
 </pre>
 
-Other people hit this same problem but I couldn&#8217;t find a solution.
+Other people hit this same problem but I couldn't find a solution.
 
 **Archived Comments**
 
@@ -168,7 +168,7 @@ Date: 2014-07-14 11:44:54.794208 UTC
 
 Author: Aejaz
 
-don&#8217;t use this option export LDFLAGS=&#8221;-RLIBDIR&#8221;, gmp will install, if you have already set it use export LDFLAGS=
+don't use this option export LDFLAGS="-RLIBDIR", gmp will install, if you have already set it use export LDFLAGS=
 
 Date: 2014-07-24 14:58:44.657682 UTC
 
@@ -176,13 +176,13 @@ Author: UX-admin
 
 Doesnt work for me. The compile of gmp fails straight away with libtool: link: only absolute run-paths are allowed. 
 
-That&#8217;s because of the dumbass libtool (or rather, the author of  
+That's because of the dumbass libtool (or rather, the author of  
 it): libtool has no notion of the special $ORIGIN ld keyword. There  
 are multiple possible fixes for that: 
 
-&#8211; never use LDFLAGS; O=&#8217;$$O&#8217;; export O; ORIGIN=&#8217;$ORIGIN&#8217;; export ORIGIN; LD\_OPTIONS=&#8217;$ORIGIN:$ORIGIN/../../lib:$ORIGIN/../lib:/opt/gcc/lib&#8217;; export LD\_OPTIONS 
+-- never use LDFLAGS; O='$$O'; export O; ORIGIN='$ORIGIN'; export ORIGIN; LD\_OPTIONS='$ORIGIN:$ORIGIN/../../lib:$ORIGIN/../lib:/opt/gcc/lib'; export LD\_OPTIONS 
 
-&#8211; patch the idiotic libtool by applying the following patch, offsets will vary depending on the version of libtool, but the fix is always the same: 
+-- patch the idiotic libtool by applying the following patch, offsets will vary depending on the version of libtool, but the fix is always the same: 
 
 <pre>--- libtool.orig
 +++ libtool
@@ -221,9 +221,9 @@ apply the patch with:
 <pre>/usr/sfw/bin/gpatch -uNp0; libtool.patch
 </pre>
 
-LD\_OPTIONS is a very powerful variable, because the link editor will inject into his option stream whatever is in it right before the final link-edit stage. It&#8217;s basically a backdoor override into the linker, and as such, will work with any compiler in existence on Solaris which uses ld. LD\_OPTIONS enables compiling most software with Sun Studio compilers, which produce much better / faster / more optimized code than GCC, but this trick works with GCC just as well. 
+LD\_OPTIONS is a very powerful variable, because the link editor will inject into his option stream whatever is in it right before the final link-edit stage. It's basically a backdoor override into the linker, and as such, will work with any compiler in existence on Solaris which uses ld. LD\_OPTIONS enables compiling most software with Sun Studio compilers, which produce much better / faster / more optimized code than GCC, but this trick works with GCC just as well. 
 
-With this patch and LD_OPTIONS, or a combination of both, it is possible to build 99% of the freeware open source software on Solaris in record times without any hassles. Whatever won&#8217;t build with Sun Studio will build with GCC with a combination of these two applied, unless it&#8217;s kernel code for a non SunOS kernel. 
+With this patch and LD_OPTIONS, or a combination of both, it is possible to build 99% of the freeware open source software on Solaris in record times without any hassles. Whatever won't build with Sun Studio will build with GCC with a combination of these two applied, unless it's kernel code for a non SunOS kernel. 
 
 To wit: 
 

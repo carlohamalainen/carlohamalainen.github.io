@@ -22,6 +22,6 @@ In a similar style to [an earlier post](http://carlo-hamalainen.net/blog/?p=495)
 
 [Christbait: Dirty Punk Mutha](http://carlo-hamalainen.net/music/Christbait/Dirty%20Punk%20Mutha/)
 
-As usual, if you are the original artist and want these files taken down, let me know and I&#8217;ll do so as soon as possible.
+As usual, if you are the original artist and want these files taken down, let me know and I'll do so as soon as possible.
 
 Enjoy! </s>

@@ -18,4 +18,4 @@ An article about journal impact factors: <http://www.jcb.org/cgi/content/full/17
 
 > It became clear that Thomson Scientific could not or (for some as yet unexplained reason) would not sell us the data used to calculate their published impact factor. If an author is unable to produce original data to verify a figure in one of our papers, we revoke the acceptance of the paper. We hope this account will convince some scientists and funding organizations to revoke their acceptance of impact factors as an accurate representation of the quality—or impact—of a paper published in a given journal.
 
-Despite this people cling to impact factors. But it doesn&#8217;t make sense to put a linear ordering people, papers, or entire journals.
+Despite this people cling to impact factors. But it doesn't make sense to put a linear ordering people, papers, or entire journals.

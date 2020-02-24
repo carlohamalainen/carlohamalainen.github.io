@@ -14,11 +14,11 @@ categories:
   - Uncategorized
 format: image
 ---
-**2008-10-19**: I use [PyX](http://pyx.sourceforge.net/) instead of Metapost. It&#8217;s based on Python so the syntax is clear and straightforward, and is easily used from Sage (install with &#8220;sage -python setup.py install&#8221; from the PyX source directory).
+**2008-10-19**: I use [PyX](http://pyx.sourceforge.net/) instead of Metapost. It's based on Python so the syntax is clear and straightforward, and is easily used from Sage (install with "sage -python setup.py install" from the PyX source directory).
 
 ### Introduction
 
-My favourite package for drawing diagrams is [MetaPost](http://en.wikipedia.org/wiki/MetaPost). Here&#8217;s an example, taken from my PhD thesis:
+My favourite package for drawing diagrams is [MetaPost](http://en.wikipedia.org/wiki/MetaPost). Here's an example, taken from my PhD thesis:
 
 <img class="displayed" src="https://i1.wp.com/s3.amazonaws.com/carlo-hamalainen.net/oldblog/stuff/myfiles/metapostrules.png?w=1100&#038;ssl=1" alt="Metapost diagram" data-recalc-dims="1" /> 
 
@@ -89,8 +89,8 @@ enddef;
 This is MetaPost, Version 0.901 (Web2C 7.5.5)
 (/usr/share/texmf-texlive/web2c/natural.tcx)
 (bug.mp (mptextmp.mp
-&gt;&gt; mptextmp.mp
-&gt;&gt; mptextmp.mpx
+>> mptextmp.mp
+>> mptextmp.mpx
 ! Unable to make mpx file.
 l.5 btex
          1 etex
@@ -115,7 +115,7 @@ mptopdf bug.1
 </p>
 
 <p>
-  I&#8217;m not sure why this is the case &#8211; is this a bug or just undocumented behaviour?
+  I'm not sure why this is the case -- is this a bug or just undocumented behaviour?
 </p>
 
 <h3>
@@ -123,5 +123,5 @@ mptopdf bug.1
 </h3>
 
 <p>
-  <a href="http://wiki.contextgarden.net/MetaFun">MetaFun</a> looks good. It&#8217;s also worth checking out what other peope have <a href="http://del.icio.us/search/?fr=del_icio_us&p=metapost&type=all">tagged as metapost</a> on <a href="http://del.icio.us">del.icio.us</a>.
+  <a href="http://wiki.contextgarden.net/MetaFun">MetaFun</a> looks good. It's also worth checking out what other peope have <a href="http://del.icio.us/search/?fr=del_icio_us&p=metapost&type=all">tagged as metapost</a> on <a href="http://del.icio.us">del.icio.us</a>.
 </p>

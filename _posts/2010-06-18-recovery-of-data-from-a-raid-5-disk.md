@@ -16,7 +16,7 @@ format: image
 ---
 At work I replaced a single drive in a HP DL380 RAID 5 array. The drive was only giving SMART 1720 errors (imminent failure) and HP wanted the drive back due to warranty conditions, so the question came up of erasing any data on the drive.
 
-I got conflicting advice &#8211; some people said that you would definitely be able to read data off the drive, and other people said that because it was part of a RAID 5 array, it was impossible to reconstruct the array, so the drive could be sent back with no worries. I decided to test how much data could be read from a single drive from a three disk RAID 5 array.
+I got conflicting advice -- some people said that you would definitely be able to read data off the drive, and other people said that because it was part of a RAID 5 array, it was impossible to reconstruct the array, so the drive could be sent back with no worries. I decided to test how much data could be read from a single drive from a three disk RAID 5 array.
 
 Details of the server: HP DL380, Smart Array P400 controller. The RAID 5 array was configured with two logical volumes.
 
@@ -30,7 +30,7 @@ Assembly Part# 431930-002
 Model# DH072ABAA6
 </pre>
 
-Due to physical access issues the drive was taken out of the server and installed in a standard desktop PC running Windows XP with a Promise FastTrak TX2650 SAS controller card. After installing the TX2650 drivers the SAS drive was recognised as a standard hard drive using JBOD, so it immediately appeared as a logical drive in Windows XP. Here&#8217;s the card and drive (fortunately the TX2650 comes with all the cables that you need):
+Due to physical access issues the drive was taken out of the server and installed in a standard desktop PC running Windows XP with a Promise FastTrak TX2650 SAS controller card. After installing the TX2650 drivers the SAS drive was recognised as a standard hard drive using JBOD, so it immediately appeared as a logical drive in Windows XP. Here's the card and drive (fortunately the TX2650 comes with all the cables that you need):
 
 <img src="https://i1.wp.com/s3.amazonaws.com/carlo-hamalainen.net/oldblog/stuff/wp-content/uploads/2010/06/card_and_drive.png?w=1100&#038;ssl=1" data-recalc-dims="1" /> 
 
@@ -42,13 +42,13 @@ After about two hours PhotoRec finished:
 
 <img src="https://i1.wp.com/s3.amazonaws.com/carlo-hamalainen.net/oldblog/stuff/wp-content/uploads/2010/06/photorec2.png?w=1100&#038;ssl=1" data-recalc-dims="1" /> 
 
-Those recovered files total about 8Gb (the original RAID 5 array contained about 50Gb of data). From our perspective, the best hit is searching for a certain prefix &#8220;PATNOK&#8221; that we use in files for daily demographics imports:
+Those recovered files total about 8Gb (the original RAID 5 array contained about 50Gb of data). From our perspective, the best hit is searching for a certain prefix "PATNOK" that we use in files for daily demographics imports:
 
 <img src="https://i0.wp.com/s3.amazonaws.com/carlo-hamalainen.net/oldblog/stuff/wp-content/uploads/2010/06/photorec-patnok.png?w=1100&#038;ssl=1" data-recalc-dims="1" /> 
 
 Each of those 1443 files contains _at least_ one set of patient details (name, address, Medicare number, date of birth, phone number, next of kin, next of kin contact details).
 
-That&#8217;s a clear example of sensitive data coming off a single drive from a RAID 5 array.
+That's a clear example of sensitive data coming off a single drive from a RAID 5 array.
 
 The success rate for larger files was pretty low, I suspect due to the fact that data is striped on a RAID 5 disk.
 
@@ -76,7 +76,7 @@ Date: 2013-10-06 12:34:11.421942 UTC
 
 Author: SAM
 
-Thanks man for this wonderful information, U helped me a lot with ur test, I&#8217;m having a dell server with SAS raid 5 configuration, one of the hard drivers got failed, by mistake they did something prevented us to complete the normal procedure of replacing the hard drive and to continue with the standard raid 5 features as we all know, so now I&#8217;m having the tow remained SAS hard drives & was looking for a way of how to read the contained data till I read ur post here, and as I understood that I can buy the Promise FastTrak TX2650 SAS controller card to attach both hard drives on it to be able to retrieve data,,
+Thanks man for this wonderful information, U helped me a lot with ur test, I'm having a dell server with SAS raid 5 configuration, one of the hard drivers got failed, by mistake they did something prevented us to complete the normal procedure of replacing the hard drive and to continue with the standard raid 5 features as we all know, so now I'm having the tow remained SAS hard drives & was looking for a way of how to read the contained data till I read ur post here, and as I understood that I can buy the Promise FastTrak TX2650 SAS controller card to attach both hard drives on it to be able to retrieve data,,
 
 Thank U very much and hope I get my data back,,
 

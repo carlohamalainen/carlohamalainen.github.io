@@ -6,59 +6,50 @@ author: Carlo Hamalainen
 layout: post
 guid: http://carlo-hamalainen.net/2016/12/31/subkeys-in-gpg-for-a-yubikey/
 permalink: /2016/12/31/subkeys-in-gpg-for-a-yubikey/
-restapi_import_id:
-  - 596a05ef0330b
-original_post_id:
-  - "16"
-categories:
-  - Uncategorized
-format: image
 ---
-I recently got two [YubiKeys](https://www.yubico.com/) to try out another form of 2FA and to see how they work with my PGP setup (Enigmail and Thunderbird). I followed ankitrasto&#8217;s guide ([part 1](https://ankitrasto.wordpress.com/2015/08/16/part-12-email-encryption-with-the-yubikey-neo-gpg-and-linux/) and [part 2](https://ankitrasto.wordpress.com/2015/10/20/part-22-email-encryption-with-the-yubikey-neo-gpg-and-linux/)) to move a key to the YubiKey. 
+I recently got two [YubiKeys](https://www.yubico.com/) to try out another form of 2FA and to see how they work with my PGP setup (Enigmail and Thunderbird). I followed ankitrasto's guide ([part 1](https://ankitrasto.wordpress.com/2015/08/16/part-12-email-encryption-with-the-yubikey-neo-gpg-and-linux/) and [part 2](https://ankitrasto.wordpress.com/2015/10/20/part-22-email-encryption-with-the-yubikey-neo-gpg-and-linux/)) to move a key to the YubiKey. 
 
-I then exported my public key with `gpg2 -a --export carlo@carlo-hamalainen.net` and sent it to a friend. He replied with the reasonable question: why didn&#8217;t the fingerprint `E3E4A5B8` change? The exported data changed (was longer) yet the fingerprint, which looks like a hash, was the same. 
+I then exported my public key with `gpg2 -a --export carlo@carlo-hamalainen.net` and sent it to a friend. He replied with the reasonable question: why didn't the fingerprint `E3E4A5B8` change? The exported data changed (was longer) yet the fingerprint, which looks like a hash, was the same. 
 
-What&#8217;s going on here is that originally I had a main key `E3E4A5B8` for signing (the &#8220;S&#8221; next to usage) and certification (the &#8220;C&#8221;). Meanwhile, encryption was done using a subkey `81E07A3C` (the &#8220;E&#8221;).
+What's going on here is that originally I had a main key `E3E4A5B8` for signing (the "S" next to usage) and certification (the "C"). Meanwhile, encryption was done using a subkey `81E07A3C` (the "E").
 
-<pre>$ gpg2 --edit-key carlo@carlo-hamalainen.net
-gpg (GnuPG) 2.1.11; Copyright (C) 2016 Free Software Foundation, Inc.
-This is free software: you are free to change and redistribute it.
-There is NO WARRANTY, to the extent permitted by law.
+    $ gpg2 --edit-key carlo@carlo-hamalainen.net
+    gpg (GnuPG) 2.1.11; Copyright (C) 2016 Free Software Foundation, Inc.
+    This is free software: you are free to change and redistribute it.
+    There is NO WARRANTY, to the extent permitted by law.
 
-Secret key is available.
+    Secret key is available.
 
-sec  rsa4096/E3E4A5B8
-     created: 2013-07-10  expires: never       usage: SC
-     trust: ultimate      validity: ultimate
-ssb  rsa4096/81E07A3C
-     created: 2013-07-10  expires: never       usage: E
-[ultimate] (1). Carlo Hamalainen 
-</pre>
+    sec  rsa4096/E3E4A5B8
+         created: 2013-07-10  expires: never       usage: SC
+         trust: ultimate      validity: ultimate
+    ssb  rsa4096/81E07A3C
+         created: 2013-07-10  expires: never       usage: E
+    [ultimate] (1). Carlo Hamalainen 
 
-From my friend&#8217;s perspective, I only had one &#8220;public key&#8221;, the one with fingerprint `E3E4A5B8`. 
+From my friend's perspective, I only had one "public key", the one with fingerprint `E3E4A5B8`. 
 
 When I added two subkeys (one for each YubiKey), I got `BE8897FA` and `766D56F8`. These entries have a `card-no` which refers to the serial number of the YubiKey where the subkey lives. 
 
-<pre>$ gpg2 --edit-key carlo@carlo-hamalainen.net
-gpg (GnuPG) 2.1.11; Copyright (C) 2016 Free Software Foundation, Inc.
-This is free software: you are free to change and redistribute it.
-There is NO WARRANTY, to the extent permitted by law.
+    $ gpg2 --edit-key carlo@carlo-hamalainen.net
+    gpg (GnuPG) 2.1.11; Copyright (C) 2016 Free Software Foundation, Inc.
+    This is free software: you are free to change and redistribute it.
+    There is NO WARRANTY, to the extent permitted by law.
 
-Secret key is available.
+    Secret key is available.
 
-sec  rsa4096/E3E4A5B8
-     created: 2013-07-10  expires: never       usage: SC
-     trust: ultimate      validity: ultimate
-ssb  rsa4096/81E07A3C
-     created: 2013-07-10  expires: never       usage: E
-ssb  rsa2048/BE8897FA
-     created: 2016-11-20  expires: never       usage: E
-     card-no: 0006 XXXXXXXX
-ssb  rsa2048/766D56F8
-     created: 2016-12-13  expires: never       usage: E
-     card-no: 0006 YYYYYYYY
-[ultimate] (1). Carlo Hamalainen 
-</pre>
+    sec  rsa4096/E3E4A5B8
+         created: 2013-07-10  expires: never       usage: SC
+         trust: ultimate      validity: ultimate
+    ssb  rsa4096/81E07A3C
+         created: 2013-07-10  expires: never       usage: E
+    ssb  rsa2048/BE8897FA
+         created: 2016-11-20  expires: never       usage: E
+         card-no: 0006 XXXXXXXX
+    ssb  rsa2048/766D56F8
+         created: 2016-12-13  expires: never       usage: E
+         card-no: 0006 YYYYYYYY
+    [ultimate] (1). Carlo Hamalainen 
 
 To see more detail about the keys, we have to inspect the packets in the export. 
 
@@ -186,7 +177,7 @@ Here is the original packet dump when I had just the main key and the encryption
 
 
 <p>
-  2. The <span style="color:purple;">next block</span> is the same in both dumps &#8211; it is the encryption subkey. The signature packet is our way of proving that the subkey is attached to our main key. Note the line <code>issuer key ID 269E0DC4E3E4A5B8</code>. 
+  2. The <span style="color:purple;">next block</span> is the same in both dumps -- it is the encryption subkey. The signature packet is our way of proving that the subkey is attached to our main key. Note the line <code>issuer key ID 269E0DC4E3E4A5B8</code>. 
 </p>
 
 
@@ -254,7 +245,7 @@ Old: Signature Packet(tag 2)(568 bytes)
         Key ID - 0x269E0DC4E3E4A5B8
     Hash left 2 bytes - 05 44
     RSA m^d mod n(4095 bits) - ...
-        -&gt; PKCS-1</span>
+        -> PKCS-1</span>
 <span style="color:purple;">Old: Public Subkey Packet(tag 14)(525 bytes)
     Ver 4 - new
     Public key creation time - Wed Jul 10 14:56:35 SGT 2013
@@ -275,7 +266,7 @@ Old: Signature Packet(tag 2)(543 bytes)
         Key ID - 0x269E0DC4E3E4A5B8
     Hash left 2 bytes - b9 63
     RSA m^d mod n(4095 bits) - ...
-        -&gt; PKCS-1</span>
+        -> PKCS-1</span>
 <span style="color:blue;">Old: Public Subkey Packet(tag 14)(269 bytes)
     Ver 4 - new
     Public key creation time - Sun Nov 20 13:10:35 SGT 2016
@@ -296,7 +287,7 @@ Old: Signature Packet(tag 2)(543 bytes)
         Key ID - 0x269E0DC4E3E4A5B8
     Hash left 2 bytes - bc 2c
     RSA m^d mod n(4096 bits) - ...
-        -&gt; PKCS-1</span>
+        -> PKCS-1</span>
 <span style="color:orange;">Old: Public Subkey Packet(tag 14)(269 bytes)
     Ver 4 - new
     Public key creation time - Tue Dec 13 14:41:19 SGT 2016
@@ -317,7 +308,7 @@ Old: Signature Packet(tag 2)(543 bytes)
         Key ID - 0x269E0DC4E3E4A5B8
     Hash left 2 bytes - a2 63
     RSA m^d mod n(4093 bits) - ...
-        -&gt; PKCS-1</span>
+        -> PKCS-1</span>
 </pre>
 
 
@@ -401,7 +392,7 @@ assert key_id == '17118623766D56F8'
 
 
 <p>
-  The signature packet doesn&#8217;t refer to the offset <code>3038</code> or the key id <code>17118623766D56F8</code> of the subkey packet, so let&#8217;s check the contents of the signature packet to see if it really does match the subkey data. 
+  The signature packet doesn't refer to the offset <code>3038</code> or the key id <code>17118623766D56F8</code> of the subkey packet, so let's check the contents of the signature packet to see if it really does match the subkey data. 
 </p>
 
 
@@ -424,7 +415,7 @@ assert key_id == '17118623766D56F8'
 
 
 <p>
-  The first thing that we can check is that the left 16 bits of the hash matches <code>A2 63</code> (red line above). Checking this hash wasn&#8217;t completely straightforward, just reading from <a href="https://tools.ietf.org/html/rfc4880">RFC</a>.  (Other people ran into <a href="http://crypto.stackexchange.com/questions/2734/openpgp-signature-packet-hashed-data">similar issues</a>.) The full block of code is <a href="https://github.com/carlohamalainen/playground/blob/master/pgp/key_id/calculate_key_id.py#L129-L277">here</a>. Sample is below: 
+  The first thing that we can check is that the left 16 bits of the hash matches <code>A2 63</code> (red line above). Checking this hash wasn't completely straightforward, just reading from <a href="https://tools.ietf.org/html/rfc4880">RFC</a>.  (Other people ran into <a href="http://crypto.stackexchange.com/questions/2734/openpgp-signature-packet-hashed-data">similar issues</a>.) The full block of code is <a href="https://github.com/carlohamalainen/playground/blob/master/pgp/key_id/calculate_key_id.py#L129-L277">here</a>. Sample is below: 
 </p>
 
 
@@ -432,15 +423,15 @@ assert key_id == '17118623766D56F8'
 signature_block = xs[3310:3310+543+2]
 
 # Starts off with two bytes for the length.
-assert 543 == (ord(signature_block[0]) &lt;&lt; 8) + ord(signature_block[1])
+assert 543 == (ord(signature_block[0]) << 8) + ord(signature_block[1])
 
-hash_subpacket_length = (ord(signature_block[6]) &lt;&lt; 8) + ord(signature_block[7])
+hash_subpacket_length = (ord(signature_block[6]) << 8) + ord(signature_block[7])
 assert hash_subpacket_length == 9
 
 start_of_hashed_part   = 8
 start_of_unhashed_part = 7 + hash_subpacket_length + 1
 
-unhash_subpacket_length = ( (ord(signature_block[start_of_unhashed_part]) &lt;&lt; 8)
+unhash_subpacket_length = ( (ord(signature_block[start_of_unhashed_part]) << 8)
                           +  ord(signature_block[start_of_unhashed_part+1])
                           )
 
@@ -470,7 +461,7 @@ version_class_algos = [ 'x04', 'x18',
 
 m = hash_subpacket_length
 assert m == 9
-hash_chunk_length = [chr(m &gt;&gt; 8), chr(m)]
+hash_chunk_length = [chr(m >> 8), chr(m)]
 
 """
 According to https://tools.ietf.org/html/rfc4880#section-5.2.4
@@ -487,13 +478,13 @@ But in gnupg-2.1.11, we see the following in g10/sig-check.c:
 410     else {
 411     byte buf[6];
 412     size_t n;
-413     gcry_md_putc( digest, sig-&gt;pubkey_algo );
-414     gcry_md_putc( digest, sig-&gt;digest_algo );
-415     if( sig-&gt;hashed ) {
-416         n = sig-&gt;hashed-&gt;len;
-417             gcry_md_putc (digest, (n &gt;&gt; 8) );
+413     gcry_md_putc( digest, sig->pubkey_algo );
+414     gcry_md_putc( digest, sig->digest_algo );
+415     if( sig->hashed ) {
+416         n = sig->hashed->len;
+417             gcry_md_putc (digest, (n >> 8) );
 418             gcry_md_putc (digest,  n       );
-419         gcry_md_write (digest, sig-&gt;hashed-&gt;data, n);
+419         gcry_md_write (digest, sig->hashed->data, n);
 420         n += 6;
 421     }
 422     else {
@@ -504,11 +495,11 @@ But in gnupg-2.1.11, we see the following in g10/sig-check.c:
 427       n = 6;
 428     }
 429     /* add some magic per Section 5.2.4 of RFC 4880.  */
-430     buf[0] = sig-&gt;version;
+430     buf[0] = sig->version;
 431     buf[1] = 0xff;
-432     buf[2] = n &gt;&gt; 24;
-433     buf[3] = n &gt;&gt; 16;
-434     buf[4] = n &gt;&gt;  8;
+432     buf[2] = n >> 24;
+433     buf[3] = n >> 16;
+434     buf[4] = n >>  8;
 435     buf[5] = n;
 436     gcry_md_write( digest, buf, 6 );
 437     }
@@ -523,9 +514,9 @@ n = m + 6
 assert n == 15
 
 magic = ['x04', 'xff',
-         chr(n &gt;&gt; 24),
-         chr(n &gt;&gt; 16),
-         chr(n &gt;&gt;  8),
+         chr(n >> 24),
+         chr(n >> 16),
+         chr(n >>  8),
          chr(n)]
 
 for_digest = []
@@ -563,7 +554,7 @@ assert 'A2 63' == to_hexdump(digest[:2])
 
 
 <p>
-  The RFC alone wasn&#8217;t enough for me to reconstruct the subkey hash check, for example the <code>+6</code> quirk. I had to poke around in <code>gpg 2.1.11</code> to see what was being used in the hash. For efficiency reasons, libgcrypt lets you push single characters or blocks of bytes to the hash buffer (<code>gcry_md_putc</code> and <code>gcry_md_write</code>; see <a href="https://gnupg.org/documentation/manuals/gcrypt/Working-with-hash-algorithms.html">the libgcrypt docs</a>) so you can&#8217;t dump a contiguous block of memory to compare against <code>for_digest</code>).  My hacky debugging (print statements) is in <a href="https://github.com/carlohamalainen/playground/blob/master/pgp/key_id/debugging-against-gpg-2.1.11.patch">this patch</a>. For some reason <code>gpg2 --check-sigs 766D56F8!</code> wasn&#8217;t exercising the signature checking code (cached somewhere!?) so on <a href="https://github.com/carlohamalainen/playground/blob/master/pgp/key_id/debugging-against-gpg-2.1.11.patch#L108">line 108</a> of my patch I had to force <code>opt.no_sig_cache = 1;</code>.
+  The RFC alone wasn't enough for me to reconstruct the subkey hash check, for example the <code>+6</code> quirk. I had to poke around in <code>gpg 2.1.11</code> to see what was being used in the hash. For efficiency reasons, libgcrypt lets you push single characters or blocks of bytes to the hash buffer (<code>gcry_md_putc</code> and <code>gcry_md_write</code>; see <a href="https://gnupg.org/documentation/manuals/gcrypt/Working-with-hash-algorithms.html">the libgcrypt docs</a>) so you can't dump a contiguous block of memory to compare against <code>for_digest</code>).  My hacky debugging (print statements) is in <a href="https://github.com/carlohamalainen/playground/blob/master/pgp/key_id/debugging-against-gpg-2.1.11.patch">this patch</a>. For some reason <code>gpg2 --check-sigs 766D56F8!</code> wasn't exercising the signature checking code (cached somewhere!?) so on <a href="https://github.com/carlohamalainen/playground/blob/master/pgp/key_id/debugging-against-gpg-2.1.11.patch#L108">line 108</a> of my patch I had to force <code>opt.no_sig_cache = 1;</code>.
 </p>
 
 
@@ -573,7 +564,7 @@ assert 'A2 63' == to_hexdump(digest[:2])
 
 
 <p>
-  So why doesn&#8217;t Enigmail let you choose which subkey is being used for encryption? As far as I can tell this is by design: 
+  So why doesn't Enigmail let you choose which subkey is being used for encryption? As far as I can tell this is by design: 
 </p>
 
 
@@ -602,17 +593,17 @@ assert 'A2 63' == to_hexdump(digest[:2])
 
 <blockquote>
   <p>
-    Unfortunately, this doesn&#8217;t work in this case. gpg is invoked by enigmail with the -u / &#8211;local-user argument, completely overriding my settings in gpg.conf. If you / enigmail invoked it with the &#8211;default-key argument, it would be a different story. But it does not. 
+    Unfortunately, this doesn't work in this case. gpg is invoked by enigmail with the -u / --local-user argument, completely overriding my settings in gpg.conf. If you / enigmail invoked it with the --default-key argument, it would be a different story. But it does not. 
   </p>
   
   
   <p>
-    &#8230; 
+    ... 
   </p>
   
   
   <p>
-    If you would change the next enigmail update to use the &#8211;default-key argument instead of the -u argument, it would really help. 
+    If you would change the next enigmail update to use the --default-key argument instead of the -u argument, it would really help. 
   </p>
   
   
@@ -622,7 +613,7 @@ assert 'A2 63' == to_hexdump(digest[:2])
   
   
   <p>
-    Ok, patched enigmail myself. It works as expected with &#8211;default-key instead of -u. 
+    Ok, patched enigmail myself. It works as expected with --default-key instead of -u. 
   </p>
   
 </blockquote>
@@ -635,24 +626,24 @@ assert 'A2 63' == to_hexdump(digest[:2])
 
 <blockquote>
   <p>
-    I have decided that I will not replace &#8220;-u&#8221; (or the equivalent &#8220;&#8211;local-user&#8221;) by &#8220;&#8211;default-key&#8221; in Enigmail. Here is why: 
+    I have decided that I will not replace "-u" (or the equivalent "--local-user") by "--default-key" in Enigmail. Here is why: 
   </p>
   
   
   <p>
-    If a user specified local-user in gpg.conf, then use of &#8220;-u&#8221; in Enigmail will lead to the key being signed by both keys. This is what some users (especially companies) want, expect from Enigmail, and know that it&#8217;s been supported for the last 10 years. Using &#8211;default-key will break this; in other words, gpg.conf will &#8220;win&#8221; over Enigmail. 
+    If a user specified local-user in gpg.conf, then use of "-u" in Enigmail will lead to the key being signed by both keys. This is what some users (especially companies) want, expect from Enigmail, and know that it's been supported for the last 10 years. Using --default-key will break this; in other words, gpg.conf will "win" over Enigmail. 
   </p>
   
   
   <p>
-    The requirement to a specific subkey for signing is by far less common, and average users don&#8217;t need to do this. 
+    The requirement to a specific subkey for signing is by far less common, and average users don't need to do this. 
   </p>
   
 </blockquote>
 
 
 <p>
-  We can see what&#8217;s going on by using an old Unix trick: make a gpg2 &#8220;binary&#8221; that is a shell script and put it before the real gpg2 binary in the <code>$PATH</code>: 
+  We can see what's going on by using an old Unix trick: make a gpg2 "binary" that is a shell script and put it before the real gpg2 binary in the <code>$PATH</code>: 
 </p>
 
 
@@ -660,7 +651,7 @@ assert 'A2 63' == to_hexdump(digest[:2])
 $ cat bin/gpg2
 #!/bin/bash
 
-echo $@ &gt;&gt; /tmp/gpg2.txt
+echo $@ >> /tmp/gpg2.txt
 
 /usr/bin/gpg2 `echo $@ | sed 's/-u 0x7679121C22964C12888893D1269E0DC4E3E4A5B8/-u 766D56F8!/g'`
 </pre>
@@ -672,7 +663,7 @@ echo $@ &gt;&gt; /tmp/gpg2.txt
 
 
 <p>
-  <span style="color:red;">This trick is stupid, and potentially dangerous, since someone could convince you to <a href="http://security.stackexchange.com/questions/1806/why-should-one-not-use-the-same-asymmetric-key-for-encryption-as-they-do-for-sig">sign a document with the encryption key instead of the signing key</a>.  So don&#8217;t do it! By default gpg2 uses the last encryption subkey for encryption.</span>
+  <span style="color:red;">This trick is stupid, and potentially dangerous, since someone could convince you to <a href="http://security.stackexchange.com/questions/1806/why-should-one-not-use-the-same-asymmetric-key-for-encryption-as-they-do-for-sig">sign a document with the encryption key instead of the signing key</a>.  So don't do it! By default gpg2 uses the last encryption subkey for encryption.</span>
 </p>
 
 

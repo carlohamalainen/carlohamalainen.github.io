@@ -22,7 +22,7 @@ In June 2008 there will be a design theory and combinatorics conference in Istan
 > 
 > The web page of the conference was updated recently. You can find more information about the registration, accommodation options and the cost of the conference.
 > 
-> We will be delighted to see all of you in Istanbul. Please fill in the pre-registration form in the webpage of the conference as soon as possible if you haven&#8217;t done so. There is no obligations attached to filling the Pre-Registration form. This information is very important for us to have an estimate on the number of participants.
+> We will be delighted to see all of you in Istanbul. Please fill in the pre-registration form in the webpage of the conference as soon as possible if you haven't done so. There is no obligations attached to filling the Pre-Registration form. This information is very important for us to have an estimate on the number of participants.
 > 
 > For more information please refer to the [conference webpage](http://storage.ku.edu.tr/~eyazici/Research/Conference/index.htm).
 > 

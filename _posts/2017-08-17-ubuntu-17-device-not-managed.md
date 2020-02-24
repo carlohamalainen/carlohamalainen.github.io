@@ -1,6 +1,6 @@
 ---
 id: 945
-title: 'Ubuntu 17 &#8211; device not managed'
+title: 'Ubuntu 17 -- device not managed'
 date: 2017-08-17T10:30:29+00:00
 author: Carlo Hamalainen
 layout: post
@@ -11,7 +11,7 @@ jabber_published:
 categories:
   - Uncategorized
 ---
-I plugged in a D-Link DUB-1312 to my laptop running Ubuntu Zesty but Network Manager said that the interface was &#8220;not managed&#8221;.
+I plugged in a D-Link DUB-1312 to my laptop running Ubuntu Zesty but Network Manager said that the interface was "not managed".
 
 The fix, found [here](https://askubuntu.com/questions/882806/ethernet-device-not-managed), is to remove the contents of one file. Better to save the original file and touch an empty one:
 
@@ -19,7 +19,7 @@ The fix, found [here](https://askubuntu.com/questions/882806/ethernet-device-not
 $ sudo touch /usr/lib/NetworkManager/conf.d/10-globally-managed-devices.conf
 </pre>
 
-For reference, here&#8217;s the info about the DUB-1312 USB ethernet adapter:
+For reference, here's the info about the DUB-1312 USB ethernet adapter:
 
 <pre>$ sudo apt update
 $ sudo apt install hwinfo

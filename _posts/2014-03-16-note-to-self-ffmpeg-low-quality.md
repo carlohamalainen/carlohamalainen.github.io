@@ -14,7 +14,7 @@ categories:
   - Uncategorized
 format: image
 ---
-Sometimes high quality video files (e.g. mkv) don&#8217;t play on my HP Mini Netbook, so here is an ffmpeg command to rescale the video to lower quality: 
+Sometimes high quality video files (e.g. mkv) don't play on my HP Mini Netbook, so here is an ffmpeg command to rescale the video to lower quality: 
 
 <pre>opts='-qscale 5 -r 25 -ar 44100 -ab 96 -s 500x374'
 

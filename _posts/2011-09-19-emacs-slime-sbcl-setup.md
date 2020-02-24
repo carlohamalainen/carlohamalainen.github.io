@@ -23,7 +23,7 @@ Recently I tried to set up Emacs, SLIME, and SBCL, all compiled from source. The
 (slime-setup)
 </pre>
 
-This doesn&#8217;t quite do it for the latest CVS version of SLIME. For example after typing &#8220;(defun &#8221; nothing sensible showed up in the minibuffer at the bottom of the emacs window. By looking at the latest Ubuntu distribution&#8217;s slime init file, I found that this is also needed:
+This doesn't quite do it for the latest CVS version of SLIME. For example after typing "(defun " nothing sensible showed up in the minibuffer at the bottom of the emacs window. By looking at the latest Ubuntu distribution's slime init file, I found that this is also needed:
 
 <pre>(eval-after-load "slime"
   '(progn

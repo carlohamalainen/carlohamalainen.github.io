@@ -14,13 +14,13 @@ categories:
   - Uncategorized
 format: image
 ---
- **This example has bitrotted &#8211; see the [Bokeh slider](https://carlo-hamalainen.net/blog/2015/7/31/bokeh-slider-for-phenology-of-two-interdependent-traits-in-migratory-birds-in-response-to-climate-change) instead.** 
+ **This example has bitrotted -- see the [Bokeh slider](https://carlo-hamalainen.net/blog/2015/7/31/bokeh-slider-for-phenology-of-two-interdependent-traits-in-migratory-birds-in-response-to-climate-change) instead.** 
 
 
 
 My partner [Nadiah](http://nadiah.org) has developed  
 an eco-evolutionary model describing the response of a migratory  
-bird&#8217;s arrival time and prelaying period to climate change. The Octave code is here:  
+bird's arrival time and prelaying period to climate change. The Octave code is here:  
 <https://github.com/nadiahpk/phenology-two-trait-migratory-bird>.
 
 The final plots look like this: 
@@ -64,7 +64,7 @@ server {
 }
 </pre>
 
-5. The notebook doesn&#8217;t appear on nbviewer&#8217;s front page, so just naviate to a URL of the form 
+5. The notebook doesn't appear on nbviewer's front page, so just naviate to a URL of the form 
 
 <pre>http://your.host.example.com/localfiles/foo.ipynb
 </pre>
@@ -74,7 +74,7 @@ to see the notebook foo.ipynb.
 Here is a HTML iframe containing the nbviewer view of [the phenology-two-trait-migratory-bird notebook](https://github.com/nadiahpk/phenology-two-trait-migratory-bird).  
 Try out the slider at the bottom. 
 
-<!&#8211; [http://ec2-107-22-54-51.compute-1.amazonaws.com/localfile/arrival\_times\_notebook.ipynb](http://ec2-107-22-54-51.compute-1.amazonaws.com/localfile/arrival_times_notebook.ipynb) 
+<!-- [http://ec2-107-22-54-51.compute-1.amazonaws.com/localfile/arrival\_times\_notebook.ipynb](http://ec2-107-22-54-51.compute-1.amazonaws.com/localfile/arrival_times_notebook.ipynb) 
 
 IPython development has really taken off recently; check out the SciPy 2013 keynote for more info: 
 

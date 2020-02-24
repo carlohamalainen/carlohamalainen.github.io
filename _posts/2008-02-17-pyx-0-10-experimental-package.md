@@ -25,10 +25,10 @@ import pyx
 x = y = int(0)
 
 c = pyx.canvas.canvas()  
-c.text(x, y, &#8220;Hello, world!&#8221;)  
+c.text(x, y, "Hello, world!")  
 c.stroke(pyx.path.line(x, y, x+5, y+0))  
-c.writePDFfile(&#8220;hello&#8221;)
+c.writePDFfile("hello")
 
-The previous pyx spkg tried to put the pyxrc file into /etc but I prefer to run Sage as a normal user, and sudo-ing to install a package isn&#8217;t completely straightforward (you have to set some environment variables, so it&#8217;s not newbie-friendly). I made my spkg-install file put pyxrc into $SAGE_LOCAL/etc but I&#8217;m not sure if this is a suitable location. Any suggestions?
+The previous pyx spkg tried to put the pyxrc file into /etc but I prefer to run Sage as a normal user, and sudo-ing to install a package isn't completely straightforward (you have to set some environment variables, so it's not newbie-friendly). I made my spkg-install file put pyxrc into $SAGE_LOCAL/etc but I'm not sure if this is a suitable location. Any suggestions?
 
 edit: On the sage-devel mailing list I was told to use ~/.sage so I have ammended the pyx-0.10 package to do this.

@@ -29,7 +29,7 @@ First, [install Raspbian](https://www.raspberrypi.org/documentation/installation
 /dev/mmcblk0p1                63M   21M   42M  34% /media/carlo/boot
 </pre>
 
-It&#8217;s a good idea to make a backup of the working installation: 
+It's a good idea to make a backup of the working installation: 
 
 <pre>dd if=/dev/mmcblk0 of=pi-debian-unencrypted-backup.img
 </pre>
@@ -106,7 +106,7 @@ The new one refers to the encrypted partition:
 
 Add this to the boot config: 
 
-<pre>echo "initramfs initramfs.gz 0x00f00000" &gt;&gt; /boot/config.txt
+<pre>echo "initramfs initramfs.gz 0x00f00000" >> /boot/config.txt
 </pre>
 
 Cat the private key and copy to the laptop; save as pikey: 
@@ -192,9 +192,9 @@ Now put the sd card into the Pi and boot it up. If you see this on the console:
 <pre>/scripts/local-top/cryptroot: line 1: /sbin/cryptsetup: not found
 </pre>
 
-it means that the initramfs image didn&#8217;t include the cryptsetup binary. It is a [known bug](https://bugs.launchpad.net/ubuntu/+source/cryptsetup/+bug/1256730/comments/4) and the workaround that worked for me was: 
+it means that the initramfs image didn't include the cryptsetup binary. It is a [known bug](https://bugs.launchpad.net/ubuntu/+source/cryptsetup/+bug/1256730/comments/4) and the workaround that worked for me was: 
 
-<pre>echo "export CRYPTSETUP=y" &gt;&gt; /usr/share/initramfs-tools/conf-hooks.d/forcecryptsetup
+<pre>echo "export CRYPTSETUP=y" >> /usr/share/initramfs-tools/conf-hooks.d/forcecryptsetup
 </pre>
 
 (I had to do this in the chroot environment and rebuild the initramfs image. Ugh.) 
@@ -210,7 +210,7 @@ Then in the busybox session:
 
 <pre>kill $(pidof plymouthd)
 # Wait a few seconds...
-echo -ne password &gt; /lib/cryptsetup/passfifo
+echo -ne password > /lib/cryptsetup/passfifo
 /scripts/local-top/cryptroot
 </pre>
 

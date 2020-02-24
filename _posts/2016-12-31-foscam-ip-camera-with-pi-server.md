@@ -27,7 +27,7 @@ The camera supports power over ethernet but it comes with an AC adaptor so you c
 These are the bits that I bought:
 
   * Raspberry Pi model 3. Mine came with free [heatsinks](http://www.ebay.com.au/itm/291696505888?_trksid=p2060353.m2749.l2649&ssPageName=STRK%3AMEBIDX%3AIT).
-  * Micro-SD card for the Pi&#8217;s root file system.
+  * Micro-SD card for the Pi's root file system.
   * 2.4amp AC to USB adaptor; powers the Pi via a micro-USB cable.
   * Foscam FI9805E IP camera.
   * Standard ethernet cable.
@@ -52,11 +52,11 @@ Due to the garage being hot I mounted an old peg basket using picture frame hook
 
 ## Setup
 
-Unfortunately the camera&#8217;s web interface requires a browser plugin to be installed (an EXE). Microsoft provides [free Windows virtual machine images](https://developer.microsoft.com/en-us/microsoft-edge/tools/vms/) which is handy.
+Unfortunately the camera's web interface requires a browser plugin to be installed (an EXE). Microsoft provides [free Windows virtual machine images](https://developer.microsoft.com/en-us/microsoft-edge/tools/vms/) which is handy.
 
 For security reasons I have the camera on its own 192.168.1.x subnet, with the Pi running a DHCP server to give the camera a static IP. There is no route from 192.168.1.x to the outside world so I also run an ntp and ftp server on the Pi. Meanwhile, the Pi connects via wifi the normal 10.1.1.x network.
 
-To view the camera&#8217;s web interface via the Pi, I have [socat](http://www.dest-unreach.org/socat/) passing 8088 (on 10.1.1.x) to the 192.168.1.x network. I keep these going with supervisor:
+To view the camera's web interface via the Pi, I have [socat](http://www.dest-unreach.org/socat/) passing 8088 (on 10.1.1.x) to the 192.168.1.x network. I keep these going with supervisor:
 
 <pre>$ cat /etc/supervisor/conf.d/socatcamera.conf
 [program:socatcameratcp]
@@ -80,14 +80,14 @@ stdout_logfile=/var/log/socatcamera/socatcamera_udp.out.log
 user=root
 </pre>
 
-(TCP is probably enough, maybe the UDP isn&#8217;t needed.)
+(TCP is probably enough, maybe the UDP isn't needed.)
 
 Then I can view the live video stream using vlc (the Pi is 10.1.1.220):
 
 <pre>vlc rtsp://user:pass@10.1.1.220:8088/videoMain
 </pre>
 
-The camera has motion detection software and can store snapshots to an FTP server. For this I have vsftpd on the Pi. The snapshot files have names like MDAlarm_20161220-195958.jpg so it&#8217;s easy to parse the year, month, day, time. A small Python script archives snapshots to an archive directory, and another script makes a html index (by day) which is served up via nginx.
+The camera has motion detection software and can store snapshots to an FTP server. For this I have vsftpd on the Pi. The snapshot files have names like MDAlarm_20161220-195958.jpg so it's easy to parse the year, month, day, time. A small Python script archives snapshots to an archive directory, and another script makes a html index (by day) which is served up via nginx.
 
 For maintenance I have ssh access to the Pi from outside, with [rate limited ssh](https://www.rackaid.com/blog/how-to-block-ssh-brute-force-attacks/).
 
@@ -109,7 +109,7 @@ Having a Pi on NBN fibre in Australia is convenient for running [WebDL](https://
 
 I gave up on the Rasperry Pi because it locked solid almost every day, requiring a hard reset. Dodgy SD Card? Who knows.
 
-The replacement is a bottom end [Intel NUC](https://www.intel.sg/content/www/xa/en/products/boards-kits/nuc/kits/nuc5cpyh.html) with a 500Gb laptop SATA drive. It&#8217;s a proper mini-PC so you can run 64bit Ubuntu, has a cooling fan, wifi, ethernet, bluetooth, etc.
+The replacement is a bottom end [Intel NUC](https://www.intel.sg/content/www/xa/en/products/boards-kits/nuc/kits/nuc5cpyh.html) with a 500Gb laptop SATA drive. It's a proper mini-PC so you can run 64bit Ubuntu, has a cooling fan, wifi, ethernet, bluetooth, etc.
 
 <div class="tiled-gallery type-rectangular tiled-gallery-unresized" data-original-width="1100" data-carousel-extra='{&quot;blog_id&quot;:1,&quot;permalink&quot;:&quot;https:\/\/carlo-hamalainen.net\/2016\/12\/31\/foscam-ip-camera-with-pi-server\/&quot;,&quot;likes_blog_id&quot;:132634093}' itemscope itemtype="http://schema.org/ImageGallery" >
   <div class="gallery-row" style="width: 1100px; height: 414px;" data-original-width="1100" data-original-height="414" >

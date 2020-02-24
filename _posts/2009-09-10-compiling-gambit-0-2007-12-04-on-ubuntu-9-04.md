@@ -26,7 +26,7 @@ Unpack a fresh copy of Gambit:
 Save the patch in the same directory; apply the patch:
 
 <pre>cd gambit-0.2007.12.04
-patch -p1 &lt; ../gambit-0.2007.12.04-ubuntu-9.04-patch
+patch -p1 < ../gambit-0.2007.12.04-ubuntu-9.04-patch
 </pre>
 
 Now configure and make as usual:
@@ -42,4 +42,4 @@ Date: 2009-09-15 16:44:23 UTC
 
 Author: Ryan
 
-Very helpful &#8212; thanks!
+Very helpful - thanks!

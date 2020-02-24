@@ -14,7 +14,7 @@ categories:
   - Uncategorized
 format: image
 ---
-In [The Physiology of Willpower: Linking Blood Glucose to Self-Control (Gailliot and Baumeister)](http://psr.sagepub.com/cgi/content/short/11/4/303) (local copy: [PDF](http://carlo-hamalainen.net/stuff/Gailliot%20Baumeister%20-%20The%20physiology%20of%20willpower:%20linking%20blood%20glucose%20to%20self-control.pdf)) the authors look at the effect that exerting one&#8217;s willpower has on blood glucose levels. There are some pretty strong connections between glucose tolerance and antisocial behaviour:
+In [The Physiology of Willpower: Linking Blood Glucose to Self-Control (Gailliot and Baumeister)](http://psr.sagepub.com/cgi/content/short/11/4/303) (local copy: [PDF](http://carlo-hamalainen.net/stuff/Gailliot%20Baumeister%20-%20The%20physiology%20of%20willpower:%20linking%20blood%20glucose%20to%20self-control.pdf)) the authors look at the effect that exerting one's willpower has on blood glucose levels. There are some pretty strong connections between glucose tolerance and antisocial behaviour:
 
 > Several other studies have shown that improving the diet of incarcerated adolescents or adult prisoners reduces the incidence of violence in prison (e.g., “New Studies Show Strong Link,” 2004). It is plausible that the reduction in prison violence by improved diet is partially attributable to improved glucose levels or glucose tolerance.
 > 

@@ -23,4 +23,4 @@ rm -r ~/.pulse
 sudo apt-get install alsa-base alsa-tools alsa-tools-gui alsa-utils alsa-oss alsamixergui libalsaplayer0
 </pre>
 
-One day I&#8217;ll work out how to get pavucontrol (?) to do its thing, or Jack, or whatever.
+One day I'll work out how to get pavucontrol (?) to do its thing, or Jack, or whatever.

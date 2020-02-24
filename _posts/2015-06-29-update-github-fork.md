@@ -38,7 +38,7 @@ Get all the branches of the upstream repo into remote-tracking branches. These b
 <pre>git fetch upstream
 </pre>
 
-Now replay all of the upstream&#8217;s commits from the master branch against ours: 
+Now replay all of the upstream's commits from the master branch against ours: 
 
 <pre>git checkout master
 git rebase upstream/master
