@@ -10,10 +10,10 @@ I am pleased to announce the opening of [Playing Fair](http://playingfair.com.au
 
 Here's a small sample of the products that are available:</p> 
 
-<img src="https://i1.wp.com/playingfair.com.au/static/images/productimage-picture-cotton-knit-hoodie-47_jpg_285x285_q85.jpg?w=1100" data-recalc-dims="1" /> 
+<img src="https://playingfair.com.au/static/images/productimage-picture-cotton-knit-hoodie-47_jpg_285x285_q85.jpg?w=1100" data-recalc-dims="1" /> 
 
-<img src="https://i0.wp.com/playingfair.com.au/static/images/productimage-picture-cotton-block-print-dresses-66_jpg_285x285_q85.jpg?w=1100" data-recalc-dims="1" /> 
+<img src="https://playingfair.com.au/static/images/productimage-picture-cotton-block-print-dresses-66_jpg_285x285_q85.jpg?w=1100" data-recalc-dims="1" /> 
 
-<img src="https://i0.wp.com/playingfair.com.au/static/images/productimage-picture-tibetan-style-vests-62_jpg_285x285_q85.jpg?w=1100" data-recalc-dims="1" /> 
+<img src="https://playingfair.com.au/static/images/productimage-picture-tibetan-style-vests-62_jpg_285x285_q85.jpg?w=1100" data-recalc-dims="1" /> 
 
 [Playing Fair](http://playingfair.com.au/) was developed using 100% open source software, including [Python](http://python.org), [Satchmo](http://satchmoproject.com), and runs on an [Ubuntu Linux](http://ubuntu.com) server.
