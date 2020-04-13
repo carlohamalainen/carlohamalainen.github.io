@@ -29,7 +29,7 @@ The main benefit of importance sampling is that your estimates will be "close to
 
 <img src="/integral_errors_g.png?w=1100&ssl=1" data-recalc-dims="1" /> 
 
-More precisely, the standard deviation of the errors of the uniform and importance sampling estimates is 0.0193 and 0.0001, respectively. The code is available as a [Sage](http://sagemath.org) worksheet: [Importance_sampling.sws](https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/stuff/Importance_sampling.sws).
+More precisely, the standard deviation of the errors of the uniform and importance sampling estimates is 0.0193 and 0.0001, respectively. The code is available as a [Sage](http://sagemath.org) worksheet: [Importance_sampling.sws](/stuff/Importance_sampling.sws).
 
 For some reason, Dembski says that "We are interested, rather, in locating a single point in T". In our picture, the only sensible thing that his statement could mean is that he wants to find the peak of the curve. Right? But we have algorithms specifically formulated for doing that sort of thing. Back in undergrad I remember learning about [Newton's method](http://en.wikipedia.org/wiki/Newton%27s_method#Application_to_minimization_and_maximization_problems) and other search/optimisation algorithms. 
 

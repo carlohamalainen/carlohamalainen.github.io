@@ -53,7 +53,7 @@ Regenerate the indexes and enable MnSymbol:
     mktexlsr
     updmap-sys --enable MixedMap MnSymbol.map
 
-You should be able to compile [mnsymbol-test.tex](https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/stuff/myfiles/minionpro/mnsymbol-test.tex) with no errors. 
+You should be able to compile [mnsymbol-test.tex](/stuff/myfiles/minionpro/mnsymbol-test.tex) with no errors. 
 
 ### Install the MinionPro package
 
@@ -115,7 +115,7 @@ You should see a line like this:
 
     updmap-sys: using map file `/usr/local/share/texmf/fonts/map/dvips/MnSymbol/MnSymbol.map'
 
-You should now be able to compile [minionpro-test.tex](https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/stuff/myfiles/minionpro/minionpro-test.tex) with no errors. 
+You should now be able to compile [minionpro-test.tex](/stuff/myfiles/minionpro/minionpro-test.tex) with no errors. 
 
 You might see this error on large documents: 
 

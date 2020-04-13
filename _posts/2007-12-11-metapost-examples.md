@@ -47,11 +47,11 @@ Bash, you could do:
 
 Here are all the MetaPost diagrams from my PhD thesis. There are a few duplicates and some dodgy code, I make no claim of being an expert in MetaPost. 
 
-[metapostexamples.pdf](https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/stuff/myfiles/metapost/metapostexamples/metapostexamples.pdf) 
+[metapostexamples.pdf](/stuff/myfiles/metapost/metapostexamples/metapostexamples.pdf) 
 
-[Browse files](https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/stuff/myfiles/metapost/metapostexamples/) 
+[Browse files](/stuff/myfiles/metapost/metapostexamples/) 
 
-[All files in a compressed tar archive](https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/stuff/myfiles/metapost/metapostexamples.tgz) 
+[All files in a compressed tar archive](/stuff/myfiles/metapost/metapostexamples.tgz) 
 
 ### Metapost to PDF
 
