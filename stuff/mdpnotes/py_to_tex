@@ -1,0 +1,5 @@
+pygmentize -f latex ipod_mdp.py > ipod_mdp.tex
+pygmentize -f latex sailing.py > sailing.tex
+pygmentize -f latex sailing_mc.py > sailing_mc.tex
+pygmentize -f latex sailing_uct.py > sailing_uct.tex
+pygmentize -f latex ucb.py > ucb.tex

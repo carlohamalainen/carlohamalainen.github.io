@@ -1,0 +1,118 @@
+\begin{Verbatim}[commandchars=@\[\]]
+@PYaE[# -*- coding: utf-8 -*-]
+
+@PYaE[#*****************************************************************************]
+@PYaE[#       Copyright (C) 2009 Carlo Hamalainen <carlo.hamalainen@at[]gmail.com>, ]
+@PYaE[#]
+@PYaE[#  Distributed under the terms of the GNU General Public License (GPL)]
+@PYaE[#]
+@PYaE[#    This code is distributed in the hope that it will be useful,]
+@PYaE[#    but WITHOUT ANY WARRANTY; without even the implied warranty of]
+@PYaE[#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU]
+@PYaE[#    General Public License for more details.]
+@PYaE[#]
+@PYaE[#  The full text of the GPL is available at:]
+@PYaE[#]
+@PYaE[#                  http://www.gnu.org/licenses/]
+@PYaE[#*****************************************************************************]
+
+
+@PYaE[# For debugging, put these lines somewhere to drop into an ipython shell:]
+@PYaE[#import IPython]
+@PYaE[#IPython.Shell.IPShell(user_ns=dict(globals(), **locals())).mainloop()]
+
+@PYaE[# To profile, put these in __main__():]
+@PYaE[#import cProfile]
+@PYaE[#cProfile.run('thing_to_run()')]
+
+@PYay[from] @PYaV[sailing] @PYay[import] @PYbd[*]
+
+@PYay[from] @PYaV[random] @PYay[import] random
+@PYay[from] @PYaV[scipy] @PYay[import] @PYaj[log], @PYaj[sqrt]
+@PYay[from] @PYaV[incdict] @PYay[import] IncDict
+@PYay[from] @PYaV[sailing_mc] @PYay[import] SailingPlanner
+
+@PYay[class] @PYaO[SailingUCT](SailingPlanner):
+    @PYay[def] @PYaL[random_action_of_untried](@PYaA[self], state):
+        possible_actions @PYbd[=] @lb[]@rb[]
+
+        @PYay[for] action @PYav[in] @PYaX[range](@PYaw[8]):
+            @PYay[if] @PYaA[self]@PYbd[.]is_into(state, action): @PYay[continue]
+            @PYay[if] @PYav[not] @PYaA[self]@PYbd[.]stays_in_lake(state, action): @PYay[continue]
+            @PYay[if] @PYaA[self]@PYbd[.]Q@PYbd[.]has_key((state, action)): @PYay[continue]
+
+            possible_actions@PYbd[.]@PYaj[append](action)
+
+        @PYay[if] @PYaX[len](possible_actions) @PYbd[==] @PYaw[0]: @PYay[return] @PYaA[None]
+
+        @PYay[return] possible_actions@lb[]my_randint(@PYaX[len](possible_actions))@rb[]
+
+    @PYay[def] @PYaL[select_action_uct](@PYaA[self], state):
+        @PYaE[# If there is an untried action, give that a go.]
+        action @PYbd[=] @PYaA[self]@PYbd[.]random_action_of_untried(state)
+        @PYay[if] action @PYav[is] @PYav[not] @PYaA[None]: @PYay[return] action
+
+        uct_best @PYbd[=] @PYaA[None]
+        uct_best_action @PYbd[=] @PYaA[None]
+
+        @PYay[for] action @PYav[in] @PYaX[range](@PYaw[8]):
+            @PYay[if] @PYav[not] @PYaA[self]@PYbd[.]Q@PYbd[.]has_key((state, action)): @PYay[continue]
+
+            average_reward @PYbd[=] @PYbd[-]@PYaw[1.0]@PYbd[*]@PYaA[self]@PYbd[.]Q@lb[](state, action)@rb[]
+
+            @PYay[assert] average_reward @PYbd[!=] @PYaw[0]
+
+            n_s_a @PYbd[=] @PYaA[self]@PYbd[.]state_action_counts@lb[](state, action)@rb[]
+            n_s @PYbd[=] @PYaA[self]@PYbd[.]state_visit_counts@lb[](state)@rb[]
+
+            uct_factor @PYbd[=] @PYaw[15.0]
+
+            this_val @PYbd[=] average_reward @PYbd[+] uct_factor@PYbd[*]@PYaj[sqrt](@PYaj[log](n_s)@PYbd[/]n_s_a)
+
+            @PYay[if] this_val @PYbd[>] uct_best:
+                uct_best @PYbd[=] this_val
+                uct_best_action @PYbd[=] action
+
+        @PYay[return] uct_best_action
+
+    @PYay[def] @PYaL[tree_policy](@PYaA[self], state):
+        @PYay[return] @PYaA[self]@PYbd[.]select_action_uct(state)
+ 
+@PYaE[####################################################]
+
+@PYay[def] @PYaL[random_state](S):
+    w1 @PYbd[=] my_randint(@PYaw[8])
+    @PYay[while] @PYaA[True]: @PYaE[# we weren't sailing into the wind...]
+        d @PYbd[=] my_randint(@PYaw[8])
+        @PYay[if] tack(d, w1) @PYbd[!=] @PYaB[']@PYaB[into]@PYaB[']: @PYay[break]
+    w2 @PYbd[=] S@PYbd[.]new_wind(w1)
+
+    @PYay[while] @PYaA[True]:
+        state @PYbd[=] (my_randint(S@PYbd[.]lake_size), my_randint(S@PYbd[.]lake_size), d, w1, w2)
+        @PYay[if] @PYav[not] S@PYbd[.]is_terminal(state): @PYay[break]
+
+    @PYay[return] state
+
+@PYay[def] @PYaL[sailing_uct_planner](lake_size, V_optimal, V_approx, initial_state, max_nr_samples):
+    S @PYbd[=] SailingUCT(lake_size)
+    S@PYbd[.]V_approx @PYbd[=] V_approx
+
+    S@PYbd[.]search_init(initial_state)
+    S@PYbd[.]search(initial_state)
+
+    optimal_cost @PYbd[=] V_optimal@lb[]initial_state@rb[]
+
+    @PYay[while] @PYaA[True]:
+        _, min_cost @PYbd[=] S@PYbd[.]best_Q_value(initial_state)
+
+        error @PYbd[=] @PYaX[abs](min_cost @PYbd[-] optimal_cost)
+
+        @PYay[if] error @PYbd[<] @PYaw[0.1]: @PYay[break]
+
+        q @PYbd[=] S@PYbd[.]search(initial_state)
+
+        @PYay[if] S@PYbd[.]nr_samples @PYbd[>] max_nr_samples:
+            @PYay[return] @PYaA[None]
+
+    @PYay[return] S@PYbd[.]nr_samples
+\end{Verbatim}

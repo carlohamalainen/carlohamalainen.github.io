@@ -1,0 +1,4 @@
+python sailing.py "save_optimal_solution(5)"
+python sailing.py "save_optimal_solution(10)"
+python sailing.py "save_optimal_solution(20)"
+python sailing.py "save_optimal_solution(40)"

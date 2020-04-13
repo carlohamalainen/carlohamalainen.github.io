@@ -1,0 +1,1484 @@
+<!DOCTYPE html>
+<html style="position: relative; transition: right 0.25s ease-in-out 0s; right: 0px;" class="cufon-active cufon-ready" lang="en"><script id="bug.surrogate">function quantserve(){}</script><script id="bug.surrogate">var mpq={track:function(a,b,c){if(typeof c=='function'){window.setTimeout(c,50);}},init:function(){},track_links:function(){},track_forms:function(){}};</script><script id="bug.surrogate">var urchinTracker=function(){},_gaq={push:function(){try {if(arguments[0][0]=='_link')window.location.href=arguments[0][1]}catch(er){}}},_gat={_createTracker:function(){}, _getTracker:function(){return{__noSuchMethod__:function(){},_link:function(o){if(o)location.href=o;},_linkByPost:function(){return true;},_getLinkerUrl:function(o){return o;},_trackEvent:function(){}}}}; if (document.location.host == 'www.salon.com') {var _ga_ = document.querySelectorAll('script[src$=ga\\.js]')[0], ga_e = document.createEvent('Event'); ga_e.initEvent('load', true, true);_ga_.dispatchEvent(ga_e);}</script><script src="Spent%204%20hours%20on%20a%20bug%20only%20to%20find%20it%20was%20a%20misspelled%20variable%20name%20-%20DevOps%20Reactions_files/widgets.js" id="twitter-wjs"></script><script id="bug.surrogate">FB={Event:{subscribe:function(){}},UIServer:{},XFBML:{parse:function(){}},init:function(){},__noSuchMethod__:function(){}}; if (document.location.host == 'news.yahoo.com') {var fb = document.querySelectorAll('script[src$=connect\\.facebook\\.net\\/en_US\\/all\\.js]')[0], le = document.createEvent('Event');le.initEvent('load', true, true);fb.dispatchEvent(le);}</script><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><script>var __pbpa = true;</script><script>var translated_warning_string = 'Warning: Never enter your Tumblr password unless \u201chttps://www.tumblr.com/login\u201d\x0ais the address in your web browser.\x0a\x0aYou should also see a green \u201cTumblr, Inc.\u201d identification in the address bar.\x0a\x0aSpammers and other bad guys use fake forms to steal passwords.\x0a\x0aTumblr will never ask you to log in from a user\u2019s blog.\x0a\x0aAre you absolutely sure you want to continue?';</script><script type="text/javascript" language="javascript" src="Spent%204%20hours%20on%20a%20bug%20only%20to%20find%20it%20was%20a%20misspelled%20variable%20name%20-%20DevOps%20Reactions_files/pre_tumblelog.js"></script>
+
+
+
+  <meta name="description" content="Spent 4 hours on a bug only to find it was a misspelled variable name - by imaginarythomas">
+  <meta name="if:Show Notes" content="1">
+	<meta name="text:Disqus Shortname" content="">
+  <meta name="text:Google Analytics ID" content="">
+  <title>Spent 4 hours on a bug only to find it was a misspelled variable name - DevOps Reactions</title>
+  <link rel="shortcut icon" href="http://24.media.tumblr.com/avatar_3c617802d89c_128.png">
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="http://devopsreactions.tumblr.com/rss">
+  <script src="Spent%204%20hours%20on%20a%20bug%20only%20to%20find%20it%20was%20a%20misspelled%20variable%20name%20-%20DevOps%20Reactions_files/jquery-1.js"></script>
+  <script src="Spent%204%20hours%20on%20a%20bug%20only%20to%20find%20it%20was%20a%20misspelled%20variable%20name%20-%20DevOps%20Reactions_files/cufon-yui.js"></script><style type="text/css">cufon{text-indent:0!important;}@media screen,projection{cufon{display:inline!important;display:inline-block!important;position:relative!important;vertical-align:middle!important;font-size:1px!important;line-height:1px!important;}cufon cufontext{display:-moz-inline-box!important;display:inline-block!important;width:0!important;height:0!important;overflow:hidden!important;text-indent:-10000in!important;}cufon canvas{position:relative!important;}}@media print{cufon{padding:0!important;}cufon canvas{display:none!important;}}</style>
+  <script src="Spent%204%20hours%20on%20a%20bug%20only%20to%20find%20it%20was%20a%20misspelled%20variable%20name%20-%20DevOps%20Reactions_files/bebas_neue_400.js"></script>
+  <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <script type="text/javascript" src="http://static.tumblr.com/silmimt/omqlyhox5/pie.js"></script>
+  <![endif]-->
+  <style type="text/css">/* Reset CSS */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+caption, table, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+html, body {
+    height: 100%;
+}
+
+a { 
+    text-decoration: none;
+    color: inherit;
+}
+</style>
+  <style type="text/css">body {
+  background-color: #23272f;
+  background: url(http://static.tumblr.com/silmimt/LdNlyhoz4/background.png);
+  font-family: Helvetica, Arial, sans-serif; }
+
+#topbar {
+  background: url(http://static.tumblr.com/silmimt/oAglyhp58/header.png) repeat-x;
+  height: 56px;
+  width: 100%; }
+  #topbar #topbar_contents {
+    height: 30px;
+    width: 1020px;
+    padding: 11px 0;
+    margin: auto;
+    position: relative; }
+    #topbar #topbar_contents ul {
+      list-style-type: none; }
+      #topbar #topbar_contents ul li {
+        float: left;
+        margin-right: 7px;
+        height: 25px;
+        display: block; }
+        #topbar #topbar_contents ul li a {
+          float: left;
+          display: block;
+          height: 25px;
+          line-height: 23px;
+          font-size: 12px;
+          font-weight: 500;
+          color: white;
+          text-shadow: 0px 2px rgba(0, 0, 0, 0.21);
+          padding-top: -10px;
+          user-select: none;
+          -moz-user-select: none;
+          -webkit-user-select: none; }
+          #topbar #topbar_contents ul li a .button_left {
+            float: left;
+            width: 11px;
+            height: 25px;
+            background: url(http://static.tumblr.com/silmimt/TQllyhozk/buttons_left.png); }
+          #topbar #topbar_contents ul li a .button_middle {
+            float: left;
+            height: 25px;
+            background: url(http://static.tumblr.com/silmimt/1Qwlyhozx/buttons_mid.png) repeat-x; }
+          #topbar #topbar_contents ul li a .button_right {
+            float: left;
+            width: 10px;
+            height: 25px;
+            background: url(http://static.tumblr.com/silmimt/MLLlyhp2m/buttons_right.png); }
+          #topbar #topbar_contents ul li a:hover .button_left {
+            background-position: 0px -25px; }
+          #topbar #topbar_contents ul li a:hover .button_middle {
+            background-position: 0px -25px; }
+          #topbar #topbar_contents ul li a:hover .button_right {
+            background-position: 0px -25px; }
+          #topbar #topbar_contents ul li a:active .button_left {
+            background-position: 0px -50px; }
+          #topbar #topbar_contents ul li a:active .button_middle {
+            background-position: 0px -50px; }
+          #topbar #topbar_contents ul li a:active .button_right {
+            background-position: 0px -50px; }
+
+#content {
+  width: 1020px;
+  margin: 0 auto;
+  color: #272d33;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  text-shadow: 0px 1px rgba(255, 255, 255, 0.21);
+  position: relative; }
+  #content a {
+    color: white;
+    text-shadow: 0px -1px #333333; }
+    #content a:hover {
+      color: #edeff0;
+      text-decoration: underline; }
+    #content a.item_footer_button {
+      color: #a6b0bd;
+      text-shadow: 0px 1px #222; }
+  #content #right {
+    width: 360px;
+    position: absolute;
+    top: -56px;
+    left: 660px;
+    font-size: 13px;
+    color: #777; }
+    #content #right .very_top {
+      height: 24px;
+      background: url(http://static.tumblr.com/silmimt/QELlyhpb0/sidebar_very_top.png) repeat-y; }
+    #content #right .sidebar_item {
+      position: relative;
+      text-shadow: 0px 1px white; }
+      #content #right .sidebar_item a {
+        color: #2577d3;
+        text-shadow: 0px 1px rgba(255, 255, 255, 0.21); }
+      #content #right .sidebar_item .above_upper {
+        height: 32px;
+        margin-top: -30px;
+        background: url(http://static.tumblr.com/silmimt/QELlyhpb0/sidebar_very_top.png) repeat-y; }
+      #content #right .sidebar_item .upper {
+        height: 10px;
+        background: url(http://static.tumblr.com/silmimt/hjGlyhpaq/sidebar_upper.png); }
+      #content #right .sidebar_item .middle {
+        min-height: 0px;
+        background: url(http://static.tumblr.com/silmimt/Dntlyhp9t/sidebar_middle.png);
+        padding: 0px 54px 0px 53px; }
+        #content #right .sidebar_item .middle .sidebar_text {
+          line-height: 18px; }
+      #content #right .sidebar_item .lower {
+        height: 64px;
+        background: url(http://static.tumblr.com/silmimt/2zplyhp9g/sidebar_lower.png);
+        z-index: 200; }
+    #content #right hr {
+      border: 0;
+      margin: 0;
+      width: 283px;
+      height: 2px;
+      margin-left: -16px;
+      background: url(http://static.tumblr.com/silmimt/MMPlyhpae/sidebar_seperator_full.png); }
+      #content #right hr.fade {
+        margin-top: 8px;
+        width: 214px;
+        background: url(http://static.tumblr.com/silmimt/Yrblyhpa4/sidebar_seperator_fade.png); }
+    #content #right #about_section {
+      z-index: 10; }
+      #content #right #about_section #about_title_container {
+        padding: 12px 0 11px; }
+        #content #right #about_section #about_title_container #about_title {
+          width: 91px;
+          height: 27px;
+          background: url(http://static.tumblr.com/silmimt/lnQlyhoyl/about_me_title.png); }
+      #content #right #about_section #user_avatar {
+        width: 64px;
+        height: 64px;
+        border-radius: 999px;
+        border: 4px solid white;
+        box-shadow: 0px 1px 1px #b7b7b7;
+        background: url(http://24.media.tumblr.com/avatar_3c617802d89c_64.png) no-repeat center;
+        position: absolute;
+        top: -5px;
+        right: 50px; }
+    #content #right #mplift_widget_holder {
+      z-index: 9;
+      display: block;
+      width: 360px;
+      background-color: transparent;
+      border: none;
+      border-image: initial; }
+      #content #right #mplift_widget_holder #mplift_header {
+        display: none !important; }
+      #content #right #mplift_widget_holder #recommendations_header {
+        height: 28px;
+        background: url(http://static.tumblr.com/silmimt/Fn8lyhp87/recommendations_title.png) no-repeat left center;
+        padding: 10px 0; }
+      #content #right #mplift_widget_holder #mplift_footer {
+        background: url(http://static.tumblr.com/silmimt/Dntlyhp9t/sidebar_middle.png);
+        margin-top: -16px; }
+      #content #right #mplift_widget_holder .mplift_item {
+        padding: 10px 16px;
+        width: 253px;
+        border: 0;
+        margin-left: -16px;
+        background: url(http://static.tumblr.com/silmimt/MMPlyhpae/sidebar_seperator_full.png) no-repeat left top; }
+      #content #right #mplift_widget_holder .recessed_button {
+        display: block;
+        width: 160px;
+        height: 24px;
+        margin: auto;
+        position: relative;
+        top: 15px; }
+    #content #right #twitter_section {
+      z-index: 8; }
+      #content #right #twitter_section #twitter_title {
+        width: 261px;
+        height: 79px;
+        margin: 0px auto -12px;
+        background: url(http://static.tumblr.com/silmimt/Ysylyhpdm/twitter_sidebar_header.png);
+        position: relative;
+        top: -16px; }
+      #content #right #twitter_section .sidebar_text {
+        text-align: center; }
+      #content #right #twitter_section a#follow_me {
+        background: url(http://static.tumblr.com/silmimt/p7alyhp4w/follow_me_buttons.png); }
+        #content #right #twitter_section a#follow_me:hover {
+          background-position: 0px -41px; }
+        #content #right #twitter_section a#follow_me:active {
+          background-position: 0px -82px; }
+    #content #right #want_this_section {
+      z-index: 7; }
+      #content #right #want_this_section #i_want_this_container {
+        padding: 15px 0 5px; }
+        #content #right #want_this_section #i_want_this_container #i_want_this {
+          width: 225px;
+          height: 28px;
+          background: url(http://static.tumblr.com/silmimt/gKRlyhp5l/i_want_this.png);
+          margin: auto; }
+      #content #right #want_this_section a#want {
+        background: url(http://static.tumblr.com/silmimt/9Sjlyhp5w/install_theme_buttons.png); }
+        #content #right #want_this_section a#want:hover {
+          background-position: 0px -41px; }
+        #content #right #want_this_section a#want:active {
+          background-position: 0px -82px; }
+      #content #right #want_this_section .download_icon {
+        width: 27px;
+        height: 24px;
+        background: url(http://static.tumblr.com/silmimt/DfPlyhp4j/download_theme_icon.png); }
+        #content #right #want_this_section .download_icon.left {
+          float: left;
+          position: relative;
+          top: 10px; }
+        #content #right #want_this_section .download_icon.right {
+          float: right;
+          position: relative;
+          top: 10px; }
+    #content #right a.linked_button {
+      display: block; }
+    #content #right .bright_blue_button {
+      width: 178px;
+      height: 41px;
+      margin: auto;
+      position: relative;
+      top: 22px;
+      margin-top: -12px;
+      cursor: pointer;
+      cursor: hand; }
+  #content #left {
+    width: 624px;
+    padding-bottom: 50px;
+    position: absolute; }
+    #content #left div.item {
+      position: relative;
+      margin-bottom: 10px; }
+    #content #left h1#blog_title {
+      margin: 30px 0px 42px;
+      text-transform: uppercase;
+      font-size: 63px; }
+      #content #left h1#blog_title canvas {
+        opacity: 0.95;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=95)";
+        filter: alpha(opacity=95); }
+      #content #left h1#blog_title cufon {
+        opacity: 0.95;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=95)";
+        filter: alpha(opacity=95); }
+    #content #left #blog_posts {
+      margin-bottom: 10px; }
+      #content #left #blog_posts .upper {
+        height: 7px;
+        background: url(http://static.tumblr.com/silmimt/9vWlyhpdc/story_box_upper.png); }
+      #content #left #blog_posts .middle {
+        min-height: 0px;
+        background: url(http://static.tumblr.com/silmimt/wRilyhq0t/story_box_middle.png); }
+      #content #left #blog_posts .lower {
+        height: 12px;
+        background: url(http://static.tumblr.com/silmimt/6Rolyhpzs/story_box_lower.png); }
+      #content #left #blog_posts .item_content {
+        padding: 16px 23px 14px 24px;
+        line-height: 20px; }
+        #content #left #blog_posts .item_content .post_title {
+          font-size: 24px;
+          font-weight: 500;
+          margin-bottom: 20px;
+          color: #272d33;
+          text-shadow: 0px 1px rgba(255, 255, 255, 0.21); }
+          #content #left #blog_posts .item_content .post_title a {
+            color: #272d33;
+            text-shadow: 0px 1px rgba(255, 255, 255, 0.21); }
+        #content #left #blog_posts .item_content .quote_container {
+          font-size: 17px;
+          line-height: 22px; }
+          #content #left #blog_posts .item_content .quote_container .quote_upper {
+            width: 577px;
+            height: 5px;
+            background: url(http://static.tumblr.com/silmimt/u9Elyhp7u/quote_box_upper.png); }
+          #content #left #blog_posts .item_content .quote_container .quote_middle {
+            width: 577px;
+            min-height: 21px;
+            background: url(http://static.tumblr.com/silmimt/lLxlyhp7h/quote_box_middle.png); }
+            #content #left #blog_posts .item_content .quote_container .quote_middle .quote_text {
+              padding: 6px 12px; }
+          #content #left #blog_posts .item_content .quote_container .quote_lower {
+            width: 577px;
+            height: 22px;
+            background: url(http://static.tumblr.com/silmimt/lq8lyhp73/quote_box_lower.png); }
+          #content #left #blog_posts .item_content .quote_container cite {
+            line-height: 24px;
+            padding-left: 4px; }
+        #content #left #blog_posts .item_content .rounded_gray_border {
+          border-radius: 4px;
+          border: 4px solid #393b42;
+          box-shadow: 0px 0px 1px #999; }
+        #content #left #blog_posts .item_content .large_offset {
+          position: relative;
+          margin-left: -15px;
+          margin-top: -15px;
+          margin-bottom: 5px; }
+        #content #left #blog_posts .item_content .line {
+          font-size: 15px; }
+          #content #left #blog_posts .item_content .line.odd {
+            width: 579px;
+            min-height: 0px;
+            margin: 0px 10px 10px -2px; }
+            #content #left #blog_posts .item_content .line.odd .raised_upper {
+              height: 5px;
+              background: url(http://static.tumblr.com/silmimt/7Belyhp41/chat_odd_upper.png); }
+            #content #left #blog_posts .item_content .line.odd .raised_middle {
+              background: url(http://static.tumblr.com/silmimt/DHilyhp3p/chat_odd_middle.png); }
+              #content #left #blog_posts .item_content .line.odd .raised_middle span {
+                display: block;
+                padding: 4px 10px; }
+            #content #left #blog_posts .item_content .line.odd .raised_lower {
+              height: 6px;
+              background: url(http://static.tumblr.com/silmimt/Hqalyhp3a/chat_odd_lower.png); }
+          #content #left #blog_posts .item_content .line.even {
+            margin: 0px 10px 10px 10px; }
+        #content #left #blog_posts .item_content .no_top_margin {
+          margin-top: 0px !important; }
+        #content #left #blog_posts .item_content .item_footer {
+          height: 29px;
+          margin-top: 16px;
+          font-size: 13px;
+          position: relative; }
+          #content #left #blog_posts .item_content .item_footer .item_buttons {
+            margin: 0px;
+            list-style-type: none;
+            color: #a6b0bd;
+            text-shadow: 0px 1px rgba(0, 0, 0, 0.44); }
+            #content #left #blog_posts .item_content .item_footer .item_buttons li {
+              float: left;
+              display: block;
+              margin-right: 7px; }
+              #content #left #blog_posts .item_content .item_footer .item_buttons li a {
+                display: block; }
+              #content #left #blog_posts .item_content .item_footer .item_buttons li .button_left {
+                float: left;
+                background: url(http://static.tumblr.com/silmimt/N4alyhpc2/story_box_button_left.png);
+                width: 7px;
+                height: 29px; }
+              #content #left #blog_posts .item_content .item_footer .item_buttons li .button_middle {
+                float: left;
+                background: url(http://static.tumblr.com/silmimt/8EJlyhpcd/story_box_button_middle.png) repeat-x;
+                height: 29px;
+                line-height: 29px; }
+                #content #left #blog_posts .item_content .item_footer .item_buttons li .button_middle .post_date {
+                  background: url(http://static.tumblr.com/silmimt/KjZlyhpw7/story_box_clock_icon.png) no-repeat;
+                  background-position: left 6px;
+                  padding-left: 20px; }
+                #content #left #blog_posts .item_content .item_footer .item_buttons li .button_middle .num_notes {
+                  background: url(http://static.tumblr.com/silmimt/EUelyhpwo/story_box_heart_icon.png) no-repeat;
+                  background-position: left 7px;
+                  padding-left: 20px; }
+                #content #left #blog_posts .item_content .item_footer .item_buttons li .button_middle .num_comments {
+                  background: url(http://static.tumblr.com/silmimt/KNolyhpx1/story_box_comments_icon.png) no-repeat;
+                  background-position: left center;
+                  padding-left: 20px;
+                  text-transform: lowercase; }
+                #content #left #blog_posts .item_content .item_footer .item_buttons li .button_middle .share {
+                  background: url(http://static.tumblr.com/silmimt/V16lyhpcn/story_box_share_icon.png) no-repeat;
+                  background-position: left 6px;
+                  padding-left: 20px; }
+              #content #left #blog_posts .item_content .item_footer .item_buttons li .button_right {
+                float: left;
+                background: url(http://static.tumblr.com/silmimt/hrWlyhq1t/story_box_button_right.png);
+                width: 9px;
+                height: 29px; }
+            #content #left #blog_posts .item_content .item_footer .item_buttons li.rightmost {
+              float: right;
+              margin: 0; }
+    #content #left .item p {
+      margin: 15px 0px; }
+      #content #left .item p:first-child {
+        margin-top: 0px; }
+    #content #left .item ul, #content #left .item ol {
+      margin: 15px 0px 15px 30px; }
+    #content #left .item img {
+      max-width: 577px; }
+    #content #left .item blockquote {
+      font-style: italic;
+      border-left: 4px solid #3a424c;
+      padding: 2px 0 2px 8px;
+      margin: 20px 0; }
+      #content #left .item blockquote p:first-child {
+        margin-top: 0px; }
+      #content #left .item blockquote p:last-child {
+        margin-bottom: 0px; }
+      #content #left .item blockquote img {
+        max-width: 565px !important; }
+      #content #left .item blockquote * img {
+        max-width: 565px !important; }
+    #content #left .item.link a.the_link {
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      text-shadow: 1px -1px rgba(0, 0, 0, 0.41);
+      text-decoration: underline; }
+      #content #left .item.link a.the_link:hover {
+        color: #edeff0; }
+    #content #left .item.photo img {
+      max-width: 577px; }
+    #content #left .item.audio .art {
+      float: left;
+      padding-right: 25px;
+      margin-right: 16px;
+      background: url(http://static.tumblr.com/silmimt/FzWlyhp8i/record_sleeve.png) no-repeat right top; }
+    #content #left .item.audio .track_info {
+      float: left;
+      width: 420px; }
+      #content #left .item.audio .track_info .track_name {
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: -2px;
+        padding-bottom: 5px; }
+      #content #left .item.audio .track_info .artist_album {
+        font-size: 15px;
+        padding-bottom: 5px; }
+      #content #left .item.audio .track_info .artist_desc {
+        padding-bottom: 12px; }
+        #content #left .item.audio .track_info .artist_desc p:first-child {
+          margin-top: 0px; }
+        #content #left .item.audio .track_info .artist_desc p:last-child {
+          margin-bottom: 0px; }
+    #content #left .item.audio .audio_player {
+      width: 210px;
+      height: 27px;
+      background-color: #E4E4E4;
+      border-radius: 4px;
+      padding: 4px;
+      margin-top: 4px;
+      margin-bottom: 10px;
+      border: 1px solid #C2C2CC;
+      box-shadow: inset 0px 1px #f6f6f7;
+      border-image: initial; }
+    #content #left .item.video .video_container {
+      width: 597px;
+      max-width: 597px; }
+      #content #left .item.video .video_container iframe, #content #left .item.video .video_container embed, #content #left .item.video .video_container object {
+        display: block;
+        width: 597px !important;
+        height: 447px !important; }
+    #content #left #notes {
+      margin-top: 25px;
+      margin-bottom: 50px;
+      margin-left: -2px; }
+      #content #left #notes #notes_header {
+        width: 626px;
+        height: 47px;
+        background: url(http://static.tumblr.com/silmimt/uOYlyj6cu/notes_header.png); }
+      #content #left #notes #notes_middle {
+        width: 626px;
+        background: url(http://static.tumblr.com/silmimt/4Mglyj7pb/notes_middle.png) repeat-y; }
+        #content #left #notes #notes_middle ol.notes {
+          list-style: none;
+          width: 578px;
+          margin: 0;
+          padding: 10px 24px; }
+          #content #left #notes #notes_middle ol.notes li {
+            padding: 3px 0px 12px;
+            background: url(http://static.tumblr.com/silmimt/o1Zlyj7zo/notes_seperator.png) no-repeat bottom center; }
+            #content #left #notes #notes_middle ol.notes li:first-child {
+              padding-top: 0px; }
+            #content #left #notes #notes_middle ol.notes li:last-child {
+              background: none; }
+            #content #left #notes #notes_middle ol.notes li.more_notes_link_container {
+              padding-top: 15px; }
+            #content #left #notes #notes_middle ol.notes li img.avatar {
+              position: relative;
+              top: 5px;
+              padding: 1px;
+              background-color: #252a2f;
+              border: 1px solid #929ba9;
+              width: 16px;
+              height: 16px; }
+            #content #left #notes #notes_middle ol.notes li span.action {
+              margin-left: 8px; }
+            #content #left #notes #notes_middle ol.notes li blockquote {
+              padding: 10px 32px 4px; }
+      #content #left #notes #notes_footer {
+        width: 626px;
+        height: 10px;
+        background: url(http://static.tumblr.com/silmimt/irhlyj6em/notes_footer.png); }
+    #content #left #disqus {
+      margin-top: 27px;
+      margin-left: -2px; }
+      #content #left #disqus #disqus_header {
+        width: 626px;
+        height: 47px;
+        background: url(http://static.tumblr.com/silmimt/WNJlyjdbh/comments_header.png) no-repeat top; }
+      #content #left #disqus #disqus_thread {
+        padding: 2px 21px;
+        margin-bottom: 0px;
+        background: url(http://static.tumblr.com/silmimt/4Mglyj7pb/notes_middle.png) repeat-y; }
+        #content #left #disqus #disqus_thread .dsq-comment-header {
+          border: 1px solid rgba(0, 0, 0, 0.5);
+          border-radius: 0px;
+          background: rgba(255, 255, 255, 0.08); }
+        #content #left #disqus #disqus_thread .dsq-comment-message {
+          margin: 10px 0px 10px 15px; }
+        #content #left #disqus #disqus_thread .dsq-comment-footer {
+          margin-left: 15px;
+          font-size: 14px; }
+          #content #left #disqus #disqus_thread .dsq-comment-footer a {
+            color: #272d33;
+            text-shadow: 0px 1px rgba(255, 255, 255, 0.21); }
+          #content #left #disqus #disqus_thread .dsq-comment-footer ul.dsq-comment-actions li {
+            margin: 0px 3px 0px 12px; }
+      #content #left #disqus #disqus_footer {
+        width: 626px;
+        height: 10px;
+        background: url(http://static.tumblr.com/silmimt/irhlyj6em/notes_footer.png) no-repeat bottom; }
+    #content #left #pagination {
+      margin-top: 25px;
+      margin-bottom: 25px; }
+      #content #left #pagination a {
+        display: block;
+        background: url(http://static.tumblr.com/silmimt/Nd4lyhp6c/pagination.png);
+        width: 93px;
+        height: 38px; }
+        #content #left #pagination a:hover {
+          cursor: pointer;
+          cursor: hand; }
+        #content #left #pagination a#newer_posts {
+          float: left;
+          margin-left: -3px;
+          background-position: 0px 0px; }
+          #content #left #pagination a#newer_posts:hover {
+            background-position: 0px -38px; }
+          #content #left #pagination a#newer_posts:active {
+            background-position: 0px -76px; }
+        #content #left #pagination a#older_posts {
+          float: right;
+          background-position: 93px 0px; }
+          #content #left #pagination a#older_posts:hover {
+            background-position: 93px -38px; }
+          #content #left #pagination a#older_posts:active {
+            background-position: 93px -76px; }
+</style>
+  <style type="text/css"></style>
+
+<!-- BEGIN TUMBLR FACEBOOK OPENGRAPH TAGS -->
+<!-- If you'd like to specify your own Open Graph tags, define the og:url and og:title tags in your theme's HTML. -->
+<!-- Read more: http://ogp.me/ -->
+<meta property="fb:app_id" content="48119224995">
+<meta property="og:site_name" content="DevOps Reactions">
+<meta property="og:title" content="Spent 4 hours on a bug only to find it was a misspelled variable name">
+<meta property="og:url" content="http://devopsreactions.tumblr.com/post/55411631444/spent-4-hours-on-a-bug-only-to-find-it-was-a-misspelled">
+<meta property="og:description" content="by imaginarythomas">
+<meta property="og:determiner" content="a">
+<meta property="og:type" content="tumblr-feed:entry">
+<meta property="og:image" content="http://i.imgur.com/JpX3fCQ.jpg">
+<!-- END TUMBLR FACEBOOK OPENGRAPH TAGS -->
+
+
+<!-- TWITTER TAGS -->
+<meta charset="utf-8">
+            <meta name="twitter:card" content="summary">
+            <meta name="twitter:description" content="
+ by imaginarythomas">
+            <meta name="twitter:title" content="Spent 4 hours on a bug only to find it was a misspelled variable name">
+            <meta name="twitter:url" content="http://devopsreactions.tumblr.com/post/55411631444/spent-4-hours-on-a-bug-only-to-find-it-was-a-misspelled">
+            <meta name="twitter:site" content="tumblr">
+            <meta name="twitter:creator" content="devopsreactions">
+            <meta name="twitter:app:name:iphone" content="Tumblr">
+            <meta name="twitter:app:name:ipad" content="Tumblr">
+            <meta name="twitter:app:name:googleplay" content="Tumblr">
+            <meta name="twitter:app:id:iphone" content="305343404">
+            <meta name="twitter:app:id:ipad" content="305343404">
+            <meta name="twitter:app:id:googleplay" content="com.tumblr">
+            <meta name="twitter:app:url:iphone" content="tumblr://x-callback-url/blog?blogName=devopsreactions&amp;postID=55411631444&amp;referrer=twitter-cards">
+            <meta name="twitter:app:url:ipad" content="tumblr://x-callback-url/blog?blogName=devopsreactions&amp;postID=55411631444&amp;referrer=twitter-cards">
+            <meta name="twitter:app:url:googleplay" content="tumblr://x-callback-url/blog?blogName=devopsreactions&amp;postID=55411631444&amp;referrer=twitter-cards">
+    
+
+<script type="text/javascript" src="Spent%204%20hours%20on%20a%20bug%20only%20to%20find%20it%20was%20a%20misspelled%20variable%20name%20-%20DevOps%20Reactions_files/tumblelog.js"></script><meta http-equiv="x-dns-prefetch-control" content="off"></head>
+<body data-twttr-rendered="true">
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+  <div id="topbar">
+    <div id="topbar_contents">
+      <ul>
+        <li>
+          <a href="http://devopsreactions.tumblr.com/">
+            <div class="button_left"></div>
+            <div class="button_middle">Home</div>
+            <div class="button_right"></div>
+          </a>
+        </li>
+        
+        
+        
+          <li>
+            <a href="http://devopsreactions.tumblr.com/submit">
+              <div class="button_left"></div>
+              <div class="button_middle">Submit a post</div>
+              <div class="button_right"></div>
+            </a>
+          </li>
+        
+        
+        <li>
+          <a href="http://devopsreactions.tumblr.com/archive">
+            <div class="button_left"></div>
+            <div class="button_middle">Archive</div>
+            <div class="button_right"></div>
+          </a>
+        </li>
+        <li>
+          <a href="http://devopsreactions.tumblr.com/rss">
+            <div class="button_left"></div>
+            <div class="button_middle">RSS</div>
+            <div class="button_right"></div>
+          </a>
+        </li>
+        
+          <li>
+            <a href="http://twitter.com/devopsreactions">
+              <div class="button_left"></div>
+              <div class="button_middle">Twitter</div>
+              <div class="button_right"></div>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+  <div id="content">
+    <div id="right">
+      <div class="very_top"></div>
+      <div id="about_section" class="sidebar_item">
+        <div class="upper"></div>
+        <div class="middle">
+          <div id="about_title_container">
+            <div id="about_title2" style="font-size: 150%; font-weight:bold; color: #5A7CA8;">DevOps Reactions</div>
+            <div id="user_avatar"></div>
+            <script type="text/javascript">
+              if (window.PIE) { PIE.attach($("#user_avatar")[0]); }
+            </script>
+            <hr class="fade">
+          </div>
+          <div class="sidebar_text">
+            <div>Say it with pictures. Describe your feelings about your everyday sysadmin interactions.
+<br><br>
+Inspired by Infosec Reactions.</div>
+          </div>
+        </div>
+        <div class="lower"></div>
+      </div>
+      <script type="text/javascript" src="Spent%204%20hours%20on%20a%20bug%20only%20to%20find%20it%20was%20a%20misspelled%20variable%20name%20-%20DevOps%20Reactions_files/widget.js"></script>
+      <script type="text/javascript">
+        $("#mplift_widget_holder")
+          .addClass("sidebar_item")
+          .prepend('<div class="upper"></div>')
+          .prepend('<div class="above_upper"></div>')
+          .append('<div class="lower"></div>')
+          .find("#mplift_items")
+            .addClass("middle")
+            .prepend('<div id="recommendations_header"></div>').end()
+          .find("#mplift_footer")
+            .find("a")
+              .addClass("linked_button recessed_button")
+              .html('<img src="http://static.tumblr.com/silmimt/cK7lyhp6r/powered_by_mixpanel.png"/>');
+      </script>
+      
+        <div id="twitter_section" class="sidebar_item">
+          <div class="above_upper"></div>
+          <div class="upper"></div>
+          <div class="middle">
+            <div id="twitter_title"></div>
+            <div class="sidebar_text" id="latest_tweet"></div>
+            <div style="text-align: center; margin-top: 10px;">
+                
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+                
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+            </div>
+<!--
+            <a href="http://twitter.com/devopsreactions" class="linked_button bright_blue_button" id="follow_me"></a>
+-->
+          </div>
+          <div class="lower"></div>
+<!--
+          <script type="text/javascript">
+            function link_urls(text) {
+              var regex = /[A-Za-z]+:\/\/[A-Za-z0-9-_]+\.[A-Za-z0-9-_:%&~\?\/.=]+/g;
+              return text.replace(regex, function(url) { return url.link(url); });
+            }
+            function recent_tweets(data) {
+              if (data.length > 0) {
+                var latest = data[0];
+                $("#latest_tweet").html(link_urls(latest.text));
+              }
+            }
+          </script>
+-->
+        </div>
+      
+      <!--
+      <div id="want_this_section" class="sidebar_item">
+        <div class="above_upper"></div>
+        <div class="upper"></div>
+        <div class="middle">
+          <div id="i_want_this_container">
+            <div id="i_want_this"></div>
+          </div>
+          <div id="download_icons">
+            <div class="download_icon left"></div>
+            <div class="download_icon right"></div>
+          </div>
+          <a href="http://www.tumblr.com/theme/33758" class="linked_button bright_blue_button" id="want"></a>
+        </div>
+        <div class="lower"></div>
+      </div>
+      -->
+    </div>
+    <div id="left">
+      <h1 id="blog_title"><a href="http://devopsreactions.tumblr.com/"><cufon style="width: 157px; height: 63px;" alt="DevOps " class="cufon cufon-canvas"><canvas style="width: 189px; height: 62px; top: -5px; left: 0px;" height="62" width="189"></canvas><cufontext>DevOps </cufontext></cufon><cufon style="width: 209px; height: 63px;" alt="Reactions" class="cufon cufon-canvas"><canvas style="width: 228px; height: 62px; top: -5px; left: 0px;" height="62" width="228"></canvas><cufontext>Reactions</cufontext></cufon></a></h1>
+      <script type="text/javascript">
+        Cufon.replace('#blog_title a', { textShadow: '#000 0px -2px' });
+        Cufon.now();
+      </script>
+      <div id="blog_posts">
+        
+        <div class="item text">
+          <div class="upper"></div>
+          <div class="middle">
+            <div class="item_content">
+              
+                
+                  <div class="post_title"><a href="http://devopsreactions.tumblr.com/post/55411631444/spent-4-hours-on-a-bug-only-to-find-it-was-a-misspelled">Spent 4 hours on a bug only to find it was a misspelled variable name</a></div>
+                
+                <p><img src="Spent%204%20hours%20on%20a%20bug%20only%20to%20find%20it%20was%20a%20misspelled%20variable%20name%20-%20DevOps%20Reactions_files/JpX3fCQ.gif"></p>
+<p>by imaginarythomas</p>
+              
+
+              
+
+              
+
+              
+
+              
+          
+              
+
+              
+
+              
+
+              
+                <div class="item_footer">
+                  <ul class="item_buttons">
+                    <li>
+                      <a href="http://devopsreactions.tumblr.com/post/55411631444/spent-4-hours-on-a-bug-only-to-find-it-was-a-misspelled" class="item_footer_button">
+                        <div class="button_left"></div>
+                        <div class="button_middle">
+                          <div class="post_date">2 hours ago</div>
+                        </div>
+                        <div class="button_right"></div>
+                      </a>
+                    </li>
+                    
+                      
+                        <li>
+                          <a href="http://devopsreactions.tumblr.com/post/55411631444/spent-4-hours-on-a-bug-only-to-find-it-was-a-misspelled#notes" class="item_footer_button">
+                            <div class="button_left"></div>
+                            <div class="button_middle">
+                              <div class="num_notes">23 notes</div>
+                            </div>
+                            <div class="button_right"></div>
+                          </a>
+                        </li>
+                      
+                    
+                    
+                    <li class="rightmost">
+                        
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+                    </li>
+                    <li style="margin-right: 10px;" class="rightmost">
+                        <a class="fb-like" data-href="http://devopsreactions.tumblr.com/post/55411631444/spent-4-hours-on-a-bug-only-to-find-it-was-a-misspelled" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"><iframe style="width: 30px; height: 19px; border: 0px none;" id="ghostery-Facebook Connect-message-61142"></iframe></a>
+                    </li>                                        
+                    <!--
+                    <li class="rightmost" class="item_footer_button">
+                      <a class="item_footer_button" href="http://www.tumblr.com/reblog/55411631444/rFIu4xUv" target="_blank">
+                        <div class="button_left"></div>
+                        <div class="button_middle">
+                          <div class="share">share</div>
+                        </div>
+                        <div class="button_right"></div>
+                      </a>
+                    </li>
+                    -->
+                  </ul>
+                </div>
+              
+            </div>
+          </div>
+          <div class="lower"></div>
+        </div>
+        
+      </div>
+      
+        
+        <div id="pagination">
+            
+            
+                <a id="older_posts" href="http://devopsreactions.tumblr.com/post/55330446743"></a>
+            
+            <div style="clear:both"></div>
+        </div>      
+        
+        
+        
+          
+            <div id="notes">
+              <div id="notes_header"></div>
+              <div id="notes_middle">
+                
+    
+<ol class="notes">
+
+    <!-- START NOTES -->
+                            
+        
+                                                                
+        
+        
+        <li class="note reblog tumblelog_vernyak with_commentary">
+
+                        
+                
+                                                                                        <a rel="nofollow" class="avatar_frame" target="_blank" href="http://vernyak.tumblr.com/" title="vernyákolásaim puha bársonyköntösben"><img src="Spent%204%20hours%20on%20a%20bug%20only%20to%20find%20it%20was%20a%20misspelled%20variable%20name%20-%20DevOps%20Reactions_files/avatar_f86f6bbdcc04_16.png" class="avatar " alt=""></a>
+                    
+                    <span class="action" data-post-url="http://vernyak.tumblr.com/post/55415917813">
+                                                    
+                                                                        
+                                                                        
+                                    <a rel="nofollow" href="http://vernyak.tumblr.com/" class="tumblelog" title="vernyákolásaim puha bársonyköntösben">vernyak</a> reblogged this from <a rel="nofollow" href="http://devopsreactions.tumblr.com/" class="source_tumblelog" title="DevOps Reactions">devopsreactions</a>
+ and added:                                                             
+                                                                        
+                                               </span>
+                    <div class="clear"></div>
+
+                                            <blockquote>
+                            <a rel="nofollow" href="http://vernyak.tumblr.com/post/55415917813" title="View post">
+                                péntekem                            </a>
+                        </blockquote>
+                                    
+                        
+        </li>
+                            
+        
+                                                                
+        
+        
+        <li class="note like tumblelog_gigor without_commentary">
+
+                                                                                <a rel="nofollow" class="avatar_frame" target="_blank" href="http://www.tlog.gigor.ru/" title="Gigor "><img src="Spent%204%20hours%20on%20a%20bug%20only%20to%20find%20it%20was%20a%20misspelled%20variable%20name%20-%20DevOps%20Reactions_files/avatar_ee13e61e64c3_16.png" class="avatar " alt=""></a>
+                
+                <span class="action">
+                    
+                                            <a rel="nofollow" href="http://www.tlog.gigor.ru/" title="Gigor">gigor</a> likes this                                    </span>
+
+                <div class="clear"></div>
+
+                        
+        </li>
+                            
+        
+                                                                
+        
+        
+        <li class="note reblog tumblelog_drcabl3 with_commentary">
+
+                        
+                
+                                                                                        <a rel="nofollow" class="avatar_frame" target="_blank" href="http://drcabl3.tumblr.com/" title="Farts of an infovore"><img src="Spent%204%20hours%20on%20a%20bug%20only%20to%20find%20it%20was%20a%20misspelled%20variable%20name%20-%20DevOps%20Reactions_files/avatar_b89e877e87c8_16.png" class="avatar " alt=""></a>
+                    
+                    <span class="action" data-post-url="http://drcabl3.tumblr.com/post/55414448737">
+                                                    
+                                                                        
+                                                                        
+                                    <a rel="nofollow" href="http://drcabl3.tumblr.com/" class="tumblelog" title="Farts of an infovore">drcabl3</a> reblogged this from <a rel="nofollow" href="http://devopsreactions.tumblr.com/" class="source_tumblelog" title="DevOps Reactions">devopsreactions</a>
+ and added:                                                             
+                                                                        
+                                               </span>
+                    <div class="clear"></div>
+
+                                            <blockquote>
+                            <a rel="nofollow" href="http://drcabl3.tumblr.com/post/55414448737" title="View post">
+                                moar like                            </a>
+                        </blockquote>
+                                    
+                        
+        </li>
+                            
+        
+                                                                
+        
+        
+        <li class="note like tumblelog_rastacsko without_commentary">
+
+                                                                                <a rel="nofollow" class="avatar_frame" target="_blank" href="http://rastacsko.tumblr.com/" title="RasTacsko "><img src="Spent%204%20hours%20on%20a%20bug%20only%20to%20find%20it%20was%20a%20misspelled%20variable%20name%20-%20DevOps%20Reactions_files/avatar_6237fac302fb_16.png" class="avatar " alt=""></a>
+                
+                <span class="action">
+                    
+                                            <a rel="nofollow" href="http://rastacsko.tumblr.com/" title="RasTacsko">rastacsko</a> likes this                                    </span>
+
+                <div class="clear"></div>
+
+                        
+        </li>
+                            
+        
+                                                                
+        
+        
+        <li class="note like tumblelog_grabowsky without_commentary">
+
+                                                                                <a rel="nofollow" class="avatar_frame" target="_blank" href="http://grabowsky.tumblr.com/" title="Grabowsky "><img src="Spent%204%20hours%20on%20a%20bug%20only%20to%20find%20it%20was%20a%20misspelled%20variable%20name%20-%20DevOps%20Reactions_files/avatar_4c2f7a32e70b_16.png" class="avatar " alt=""></a>
+                
+                <span class="action">
+                    
+                                            <a rel="nofollow" href="http://grabowsky.tumblr.com/" title="Grabowsky">grabowsky</a> likes this                                    </span>
+
+                <div class="clear"></div>
+
+                        
+        </li>
+                            
+        
+                                                                
+        
+        
+        <li class="note reblog tumblelog_sutiverzum without_commentary">
+
+                        
+                
+                                                                                        <a rel="nofollow" class="avatar_frame" target="_blank" href="http://sutiverzum.tumblr.com/" title="Sütiverzum"><img src="Spent%204%20hours%20on%20a%20bug%20only%20to%20find%20it%20was%20a%20misspelled%20variable%20name%20-%20DevOps%20Reactions_files/avatar_df2a34134de1_16.png" class="avatar " alt=""></a>
+                    
+                    <span class="action" data-post-url="http://sutiverzum.tumblr.com/post/55413987611">
+                                                    
+                                                                        
+                                                                        
+                                    <a rel="nofollow" href="http://sutiverzum.tumblr.com/" class="tumblelog" title="Sütiverzum">sutiverzum</a> reblogged this from <a rel="nofollow" href="http://devopsreactions.tumblr.com/" class="source_tumblelog" title="DevOps Reactions">devopsreactions</a>
+                                                                        
+                                                                        
+                                    </span>
+                    <div class="clear"></div>
+
+                                    
+                        
+        </li>
+                            
+        
+                                                                
+        
+        
+        <li class="note reblog tumblelog_nynni without_commentary">
+
+                        
+                
+                                                                                        <a rel="nofollow" class="avatar_frame" target="_blank" href="http://nynni.tumblr.com/" title="peaches and diesel"><img src="Spent%204%20hours%20on%20a%20bug%20only%20to%20find%20it%20was%20a%20misspelled%20variable%20name%20-%20DevOps%20Reactions_files/avatar_23ba114006ce_16.png" class="avatar " alt=""></a>
+                    
+                    <span class="action" data-post-url="http://nynni.tumblr.com/post/55413828006">
+                                                    
+                                                                        
+                                                                        
+                                    <a rel="nofollow" href="http://nynni.tumblr.com/" class="tumblelog" title="peaches and diesel">nynni</a> reblogged this from <a rel="nofollow" href="http://devopsreactions.tumblr.com/" class="source_tumblelog" title="DevOps Reactions">devopsreactions</a>
+                                                                        
+                                                                        
+                                    </span>
+                    <div class="clear"></div>
+
+                                    
+                        
+        </li>
+                            
+        
+                                                                
+        
+        
+        <li class="note like tumblelog_silver488 without_commentary">
+
+                                                                                <a rel="nofollow" class="avatar_frame" target="_blank" href="http://silver488.tumblr.com/" title="Silver Bullet "><img src="Spent%204%20hours%20on%20a%20bug%20only%20to%20find%20it%20was%20a%20misspelled%20variable%20name%20-%20DevOps%20Reactions_files/avatar_1817d3851d94_16.png" class="avatar " alt=""></a>
+                
+                <span class="action">
+                    
+                                            <a rel="nofollow" href="http://silver488.tumblr.com/" title="Silver Bullet">silver488</a> likes this                                    </span>
+
+                <div class="clear"></div>
+
+                        
+        </li>
+                            
+        
+                                                                
+        
+        
+        <li class="note reblog tumblelog_jhaesus without_commentary">
+
+                        
+                
+                                                                                        <a rel="nofollow" class="avatar_frame" target="_blank" href="http://jhaesus.tumblr.com/" title="Your tone is in your fingers."><img src="Spent%204%20hours%20on%20a%20bug%20only%20to%20find%20it%20was%20a%20misspelled%20variable%20name%20-%20DevOps%20Reactions_files/avatar_57b02fbb2acf_16.png" class="avatar " alt=""></a>
+                    
+                    <span class="action" data-post-url="http://jhaesus.tumblr.com/post/55413639921">
+                                                    
+                                                                        
+                                                                        
+                                    <a rel="nofollow" href="http://jhaesus.tumblr.com/" class="tumblelog" title="Your tone is in your fingers.">jhaesus</a> reblogged this from <a rel="nofollow" href="http://devopsreactions.tumblr.com/" class="source_tumblelog" title="DevOps Reactions">devopsreactions</a>
+                                                                        
+                                                                        
+                                    </span>
+                    <div class="clear"></div>
+
+                                    
+                        
+        </li>
+                            
+        
+                                                                
+        
+        
+        <li class="note like tumblelog_vattapanda without_commentary">
+
+                                                                                <a rel="nofollow" class="avatar_frame" target="_blank" href="http://vattapanda.tumblr.com/" title="vattapanda "><img src="Spent%204%20hours%20on%20a%20bug%20only%20to%20find%20it%20was%20a%20misspelled%20variable%20name%20-%20DevOps%20Reactions_files/avatar_cc8349d4af7c_16.png" class="avatar " alt=""></a>
+                
+                <span class="action">
+                    
+                                            <a rel="nofollow" href="http://vattapanda.tumblr.com/" title="vattapanda">vattapanda</a> likes this                                    </span>
+
+                <div class="clear"></div>
+
+                        
+        </li>
+                            
+        
+                                                                
+        
+        
+        <li class="note like tumblelog_space-muffin-man without_commentary">
+
+                                                                                <a rel="nofollow" class="avatar_frame" target="_blank" href="http://space-muffin-man.tumblr.com/" title="I can, but I won't "><img src="Spent%204%20hours%20on%20a%20bug%20only%20to%20find%20it%20was%20a%20misspelled%20variable%20name%20-%20DevOps%20Reactions_files/avatar_bb0fe1e31347_16.png" class="avatar " alt=""></a>
+                
+                <span class="action">
+                    
+                                            <a rel="nofollow" href="http://space-muffin-man.tumblr.com/" title="I can, but I won't">space-muffin-man</a> likes this                                    </span>
+
+                <div class="clear"></div>
+
+                        
+        </li>
+                            
+        
+                                                                
+        
+        
+        <li class="note like tumblelog_raisethetempest without_commentary">
+
+                                                                                <a rel="nofollow" class="avatar_frame" target="_blank" href="http://raisethetempest.tumblr.com/" title="tempest "><img src="Spent%204%20hours%20on%20a%20bug%20only%20to%20find%20it%20was%20a%20misspelled%20variable%20name%20-%20DevOps%20Reactions_files/avatar_e7eb30acd8ee_16.png" class="avatar " alt=""></a>
+                
+                <span class="action">
+                    
+                                            <a rel="nofollow" href="http://raisethetempest.tumblr.com/" title="tempest">raisethetempest</a> likes this                                    </span>
+
+                <div class="clear"></div>
+
+                        
+        </li>
+                            
+        
+                                                                
+        
+        
+        <li class="note like tumblelog_arianaavida without_commentary">
+
+                                                                                <a rel="nofollow" class="avatar_frame" target="_blank" href="http://arianaavida.tumblr.com/" title="Dark &amp; Twisty "><img src="Spent%204%20hours%20on%20a%20bug%20only%20to%20find%20it%20was%20a%20misspelled%20variable%20name%20-%20DevOps%20Reactions_files/avatar_a75e9e91587b_16.png" class="avatar " alt=""></a>
+                
+                <span class="action">
+                    
+                                            <a rel="nofollow" href="http://arianaavida.tumblr.com/" title="Dark &amp; Twisty">arianaavida</a> likes this                                    </span>
+
+                <div class="clear"></div>
+
+                        
+        </li>
+                            
+        
+                                                                
+        
+        
+        <li class="note reblog tumblelog_schroder without_commentary">
+
+                        
+                
+                                                                                        <a rel="nofollow" class="avatar_frame" target="_blank" href="http://schroder.tumblr.com/" title="Tiago Fernandes • Schröder"><img src="Spent%204%20hours%20on%20a%20bug%20only%20to%20find%20it%20was%20a%20misspelled%20variable%20name%20-%20DevOps%20Reactions_files/avatar_bb04a6e754b9_16.png" class="avatar " alt=""></a>
+                    
+                    <span class="action" data-post-url="http://schroder.tumblr.com/post/55412570415">
+                                                    
+                                                                        
+                                                                        
+                                    <a rel="nofollow" href="http://schroder.tumblr.com/" class="tumblelog" title="Tiago Fernandes • Schröder">schroder</a> reblogged this from <a rel="nofollow" href="http://devopsreactions.tumblr.com/" class="source_tumblelog" title="DevOps Reactions">devopsreactions</a>
+                                                                        
+                                                                        
+                                    </span>
+                    <div class="clear"></div>
+
+                                    
+                        
+        </li>
+                            
+        
+                                                                
+        
+        
+        <li class="note reblog tumblelog_mattdevuk without_commentary">
+
+                        
+                
+                                                                                        <a rel="nofollow" class="avatar_frame" target="_blank" href="http://mattdevuk.tumblr.com/" title="Matt Hines Development"><img src="Spent%204%20hours%20on%20a%20bug%20only%20to%20find%20it%20was%20a%20misspelled%20variable%20name%20-%20DevOps%20Reactions_files/avatar_e2631dfb67a6_16.png" class="avatar " alt=""></a>
+                    
+                    <span class="action" data-post-url="http://mattdevuk.tumblr.com/post/55412114719">
+                                                    
+                                                                        
+                                                                        
+                                    <a rel="nofollow" href="http://mattdevuk.tumblr.com/" class="tumblelog" title="Matt Hines Development">mattdevuk</a> reblogged this from <a rel="nofollow" href="http://devopsreactions.tumblr.com/" class="source_tumblelog" title="DevOps Reactions">devopsreactions</a>
+                                                                        
+                                                                        
+                                    </span>
+                    <div class="clear"></div>
+
+                                    
+                        
+        </li>
+                            
+        
+                                                                
+        
+        
+        <li class="note like tumblelog_nerdybiker without_commentary">
+
+                                                                                <a rel="nofollow" class="avatar_frame" target="_blank" href="http://nerdybiker.tumblr.com/" title="Nerdy Biker "><img src="Spent%204%20hours%20on%20a%20bug%20only%20to%20find%20it%20was%20a%20misspelled%20variable%20name%20-%20DevOps%20Reactions_files/avatar_7c9b8125b9df_16.png" class="avatar " alt=""></a>
+                
+                <span class="action">
+                    
+                                            <a rel="nofollow" href="http://nerdybiker.tumblr.com/" title="Nerdy Biker">nerdybiker</a> likes this                                    </span>
+
+                <div class="clear"></div>
+
+                        
+        </li>
+                            
+        
+                                                                
+        
+        
+        <li class="note like tumblelog_z3le without_commentary">
+
+                                                                                <a rel="nofollow" class="avatar_frame" target="_blank" href="http://z3le.tumblr.com/" title=" "><img src="Spent%204%20hours%20on%20a%20bug%20only%20to%20find%20it%20was%20a%20misspelled%20variable%20name%20-%20DevOps%20Reactions_files/avatar_77efa4103f6c_16.png" class="avatar " alt=""></a>
+                
+                <span class="action">
+                    
+                                            <a rel="nofollow" href="http://z3le.tumblr.com/" title="">z3le</a> likes this                                    </span>
+
+                <div class="clear"></div>
+
+                        
+        </li>
+                            
+        
+                                                                
+        
+        
+        <li class="note reblog tumblelog_islandpingu without_commentary">
+
+                        
+                
+                                                                                        <a rel="nofollow" class="avatar_frame" target="_blank" href="http://islandpingu.tumblr.com/" title="islandPINGU"><img src="Spent%204%20hours%20on%20a%20bug%20only%20to%20find%20it%20was%20a%20misspelled%20variable%20name%20-%20DevOps%20Reactions_files/avatar_5d9c9d4f23e0_16.png" class="avatar " alt=""></a>
+                    
+                    <span class="action" data-post-url="http://islandpingu.tumblr.com/post/55411903797">
+                                                    
+                                                                        
+                                                                        
+                                    <a rel="nofollow" href="http://islandpingu.tumblr.com/" class="tumblelog" title="islandPINGU">islandpingu</a> reblogged this from <a rel="nofollow" href="http://devopsreactions.tumblr.com/" class="source_tumblelog" title="DevOps Reactions">devopsreactions</a>
+                                                                        
+                                                                        
+                                    </span>
+                    <div class="clear"></div>
+
+                                    
+                        
+        </li>
+                            
+        
+                                                                
+        
+        
+        <li class="note like tumblelog_entropiae without_commentary">
+
+                                                                                <a rel="nofollow" class="avatar_frame" target="_blank" href="http://entropiae.tumblr.com/" title="entropiæ "><img src="Spent%204%20hours%20on%20a%20bug%20only%20to%20find%20it%20was%20a%20misspelled%20variable%20name%20-%20DevOps%20Reactions_files/avatar_208d65f5e018_16.png" class="avatar " alt=""></a>
+                
+                <span class="action">
+                    
+                                            <a rel="nofollow" href="http://entropiae.tumblr.com/" title="entropiæ">entropiae</a> likes this                                    </span>
+
+                <div class="clear"></div>
+
+                        
+        </li>
+                            
+        
+                                                                
+        
+        
+        <li class="note like tumblelog_hurlthelittlestreets without_commentary">
+
+                                                                                <a rel="nofollow" class="avatar_frame" target="_blank" href="http://hurlthelittlestreets.tumblr.com/" title="hurl the little streets "><img src="Spent%204%20hours%20on%20a%20bug%20only%20to%20find%20it%20was%20a%20misspelled%20variable%20name%20-%20DevOps%20Reactions_files/default_avatar_16.png" class="avatar " alt=""></a>
+                
+                <span class="action">
+                    
+                                            <a rel="nofollow" href="http://hurlthelittlestreets.tumblr.com/" title="hurl the little streets">hurlthelittlestreets</a> likes this                                    </span>
+
+                <div class="clear"></div>
+
+                        
+        </li>
+                            
+        
+                                                                
+        
+        
+        <li class="note reblog tumblelog_kelly-dunn without_commentary">
+
+                        
+                
+                                                                                        <a rel="nofollow" class="avatar_frame" target="_blank" href="http://kelly-dunn.tumblr.com/" title="~/*"><img src="Spent%204%20hours%20on%20a%20bug%20only%20to%20find%20it%20was%20a%20misspelled%20variable%20name%20-%20DevOps%20Reactions_files/avatar_6707fa3e30be_16.png" class="avatar " alt=""></a>
+                    
+                    <span class="action" data-post-url="http://kelly-dunn.tumblr.com/post/55411778550">
+                                                    
+                                                                        
+                                                                        
+                                    <a rel="nofollow" href="http://kelly-dunn.tumblr.com/" class="tumblelog" title="~/*">kelly-dunn</a> reblogged this from <a rel="nofollow" href="http://devopsreactions.tumblr.com/" class="source_tumblelog" title="DevOps Reactions">devopsreactions</a>
+                                                                        
+                                                                        
+                                    </span>
+                    <div class="clear"></div>
+
+                                    
+                        
+        </li>
+                            
+        
+                                                                
+        
+        
+        <li class="note like tumblelog_kelly-dunn without_commentary">
+
+                                                                                <a rel="nofollow" class="avatar_frame" target="_blank" href="http://kelly-dunn.tumblr.com/" title="~/* "><img src="Spent%204%20hours%20on%20a%20bug%20only%20to%20find%20it%20was%20a%20misspelled%20variable%20name%20-%20DevOps%20Reactions_files/avatar_6707fa3e30be_16.png" class="avatar " alt=""></a>
+                
+                <span class="action">
+                    
+                                            <a rel="nofollow" href="http://kelly-dunn.tumblr.com/" title="~/*">kelly-dunn</a> likes this                                    </span>
+
+                <div class="clear"></div>
+
+                        
+        </li>
+                            
+        
+                                                                
+        
+        
+        <li class="note like tumblelog_zangyou without_commentary">
+
+                                                                                <a rel="nofollow" class="avatar_frame" target="_blank" href="http://zangyou.tumblr.com/" title="zangyou "><img src="Spent%204%20hours%20on%20a%20bug%20only%20to%20find%20it%20was%20a%20misspelled%20variable%20name%20-%20DevOps%20Reactions_files/avatar_1f20dd54b98e_16.png" class="avatar " alt=""></a>
+                
+                <span class="action">
+                    
+                                            <a rel="nofollow" href="http://zangyou.tumblr.com/" title="zangyou">zangyou</a> likes this                                    </span>
+
+                <div class="clear"></div>
+
+                        
+        </li>
+                            
+        
+                                                                
+        
+        
+        <li class="note reblog tumblelog_devopsreactions original_post without_commentary">
+
+                        
+                
+                                                                                        <a rel="nofollow" class="avatar_frame" target="_blank" href="http://devopsreactions.tumblr.com/" title="DevOps Reactions"><img src="Spent%204%20hours%20on%20a%20bug%20only%20to%20find%20it%20was%20a%20misspelled%20variable%20name%20-%20DevOps%20Reactions_files/avatar_3c617802d89c_16.png" class="avatar " alt=""></a>
+                    
+                    <span class="action" data-post-url="http://devopsreactions.tumblr.com/post/55411631444">
+                                                    
+                                                            <a rel="nofollow" href="http://devopsreactions.tumblr.com/" class="tumblelog" title="DevOps Reactions">devopsreactions</a> posted this                                                                        </span>
+                    <div class="clear"></div>
+
+                                    
+                        
+        </li>
+    
+    
+    <!-- END NOTES -->
+</ol>
+
+
+              </div>
+              <div id="notes_footer"></div>
+            </div>
+          
+        
+       
+      
+    </div>
+  </div>
+  <script type="text/javascript">
+    if (window.PIE) {
+      $("iframe").attr('allowtransparency',true);
+      $(".audio_player").each(function(i,e) { PIE.attach(e); });
+      $(".rounded_gray_border").each(function(i,e) { PIE.attach(e); });
+    }
+  </script>
+  <script type="text/javascript">
+    $('.photo_image').each(function(){
+      var self = this;
+      $(self).bind('load', function() {
+        var width = self.clientWidth;
+        if ($(self).width() > 400) {
+          $(self)
+            .attr('width',597)
+            .css('max-width',597)
+            .addClass("rounded_gray_border large_offset");
+          if (window.PIE) {
+            PIE.attach(self);
+          }
+        }
+      });
+    });
+    $(".item_content img").not(".photo_image").each(function() {
+      var self = this;
+      $(self).bind('load', function() {
+        var maxWidth = $(self).parent().width();
+        if ($(self).width() > maxWidth) {
+          $(self).attr('width', maxWidth);
+        }
+      });
+    });
+    $("iframe.photoset").each(function() {
+      var src = $(this).attr('src').replace(/\/500$/, '/577');
+      $(this).attr('src', src).css('width',577);
+    });
+  </script>
+  
+  
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-38803179-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  
+  <script type="text/javascript">
+    var mpq = [];
+    mpq.push(["init", "6cf95e12c61200943a5c574cb0c71629"]);
+    (function(){var b,a,e,d,c;b=document.createElement("script");b.type="text/javascript";
+    b.async=true;b.src=(document.location.protocol==="https:"?"https:":"http:")+
+    "//api.mixpanel.com/site_media/js/api/mixpanel.js";a=document.getElementsByTagName("script")[0];
+    a.parentNode.insertBefore(b,a);e=function(f){return function(){mpq.push(
+    [f].concat(Array.prototype.slice.call(arguments,0)))}};d=["init","track","track_links",
+    "track_forms","register","register_once","identify","name_tag","set_config"];for(c=0;c<
+    d.length;c++){mpq[d[c]]=e(d[c])}})();
+    $('#want').click(function() {
+      mpq.track('Want Click', {'theme': 'Dimension'});
+    });
+  </script>
+  
+    <script type="text/javascript" src="Spent%204%20hours%20on%20a%20bug%20only%20to%20find%20it%20was%20a%20misspelled%20variable%20name%20-%20DevOps%20Reactions_files/tweets.html"></script>
+  
+<!-- BEGIN TUMBLR CODE -->
+        
+    
+        <iframe id="tumblr_controls" style="position: fixed; z-index: 2147483647; top: 0px; right: 0px; border: 0px none; background-color: transparent; overflow: hidden;" src="Spent%204%20hours%20on%20a%20bug%20only%20to%20find%20it%20was%20a%20misspelled%20variable%20name%20-%20DevOps%20Reactions_files/o.html" frameborder="0" height="36" scrolling="no" width="381"></iframe>    <div id="teaser_iframe_container" style="display: block; opacity: 0; visibility: hidden; position: fixed; top: 0px; right: 0px; bottom: 0px; width: 1px; height: 100%; z-index: 2147483646; overflow: hidden; background-color: rgba(0, 0, 0, 0.6); transition: width 0.25s ease-in-out 0s;"><iframe style="display: block; opacity: 1; visibility: visible; position: absolute; top: 0px; right: 0px; min-width: 100%; width: 360px; height: 100%;" src="Spent%204%20hours%20on%20a%20bug%20only%20to%20find%20it%20was%20a%20misspelled%20variable%20name%20-%20DevOps%20Reactions_files/teaser.html" id="teaser_iframe" frameborder="0" height="1" scrolling="no" width="1"></iframe></div>    
+    <!--[if IE]><script type="text/javascript">document.getElementById('tumblr_controls').allowTransparency=true;</script><![endif]-->
+    
+        
+<iframe src="Spent%204%20hours%20on%20a%20bug%20only%20to%20find%20it%20was%20a%20misspelled%20variable%20name%20-%20DevOps%20Reactions_files/analytics.html" style="background-color:transparent; overflow:hidden; position:absolute; top:0; left:0 z-index:9999;" id="ga_target" frameborder="0" height="1" scrolling="no" width="1"></iframe>
+
+    <script>
+        var COMSCORE = true;
+        window.setTimeout(function() {
+            var analytics_frame = document.getElementById('ga_target');
+            analytics_frame.contentWindow.postMessage('enable_comscore;' + window.location, analytics_frame.src.split('/analytics.html')[0]);
+        }, 1000);
+    </script>
+
+
+
+    <script type="text/javascript">
+      var _qevents = _qevents || [];
+
+      (function() {
+       var elem = document.createElement('script');
+
+       elem.src = (document.location.protocol == "https:" ? "https://secure" : "http://edge") + ".quantserve.com/quant.js";
+       elem.async = true;
+       elem.type = "text/javascript";
+       var scpt = document.getElementsByTagName('script')[0];
+       scpt.parentNode.insertBefore(elem, scpt);
+      })();
+    </script>
+    <script type="text/javascript">
+        _qevents.push( { qacct: 'p-19UtqE8ngoZbM' } );
+    </script>
+    <noscript>
+        <div style="display: none;"><img src="//pixel.quantserve.com/pixel/'p-19UtqE8ngoZbM'.gif" height="1" width="1" alt="Quantcast"/></div>
+    </noscript>
+
+
+    <script type="text/javascript">!function(s){s.src='http://www.tumblr.com/impixu?T=1373799976&J=eyJ0eXBlIjoidXJsIiwidXJsIjoiaHR0cDpcL1wvZGV2b3BzcmVhY3Rpb25zLnR1bWJsci5jb21cL3Bvc3RcLzU1NDExNjMxNDQ0XC9zcGVudC00LWhvdXJzLW9uLWEtYnVnLW9ubHktdG8tZmluZC1pdC13YXMtYS1taXNzcGVsbGVkIiwicmVxdHlwZSI6MH0=&U=HKJELEEPAJ&K=e845563751f65097ef31869eaefe157bfda6a3f7bb8735b59210b60b4ffccf47&R=http%3A%2F%2Ft.co%2Fvy2W6j1Rcc'.replace(/&R=[^&$]*/,'').concat('&R='+escape(document.referrer)).slice(0,2000).replace(/%.?.?$/,'');}(new Image());</script><noscript><img style="position:absolute;z-index:-3334;top:0px;left:0px;visibility:hidden;" src="http://www.tumblr.com/impixu?T=1373799976&J=eyJ0eXBlIjoidXJsIiwidXJsIjoiaHR0cDpcL1wvZGV2b3BzcmVhY3Rpb25zLnR1bWJsci5jb21cL3Bvc3RcLzU1NDExNjMxNDQ0XC9zcGVudC00LWhvdXJzLW9uLWEtYnVnLW9ubHktdG8tZmluZC1pdC13YXMtYS1taXNzcGVsbGVkIiwicmVxdHlwZSI6MCwibm9zY3JpcHQiOjF9&U=HKJELEEPAJ&K=beee0f3c97ce4212ef8cdd90de97a2a92c81c0b9abbfb3a7eeaefce053a61367&R=http%3A%2F%2Ft.co%2Fvy2W6j1Rcc"></noscript><script type="text/javascript">!function(s){s.src='http://www.tumblr.com/impixu?T=1373799976&J=eyJ0eXBlIjoicG9zdCIsInVybCI6Imh0dHA6XC9cL2Rldm9wc3JlYWN0aW9ucy50dW1ibHIuY29tXC9wb3N0XC81NTQxMTYzMTQ0NFwvc3BlbnQtNC1ob3Vycy1vbi1hLWJ1Zy1vbmx5LXRvLWZpbmQtaXQtd2FzLWEtbWlzc3BlbGxlZCIsInJlcXR5cGUiOjAsInBvc3RzIjpbeyJwb3N0aWQiOjU1NDExNjMxNDQ0LCJibG9naWQiOiI4MTEwOTA0MiIsInNvdXJjZSI6MzN9XX0=&U=HMMGGGLDBC&K=4f476816177544f81a4a5e056ad0640bbdbf3811d0e766c09ddb7026950b5c04&R=http%3A%2F%2Ft.co%2Fvy2W6j1Rcc'.replace(/&R=[^&$]*/,'').concat('&R='+escape(document.referrer)).slice(0,2000).replace(/%.?.?$/,'');}(new Image());</script><noscript><img style="position:absolute;z-index:-3334;top:0px;left:0px;visibility:hidden;" src="http://www.tumblr.com/impixu?T=1373799976&J=eyJ0eXBlIjoicG9zdCIsInVybCI6Imh0dHA6XC9cL2Rldm9wc3JlYWN0aW9ucy50dW1ibHIuY29tXC9wb3N0XC81NTQxMTYzMTQ0NFwvc3BlbnQtNC1ob3Vycy1vbi1hLWJ1Zy1vbmx5LXRvLWZpbmQtaXQtd2FzLWEtbWlzc3BlbGxlZCIsInJlcXR5cGUiOjAsInBvc3RzIjpbeyJwb3N0aWQiOjU1NDExNjMxNDQ0LCJibG9naWQiOiI4MTEwOTA0MiIsInNvdXJjZSI6MzN9XSwibm9zY3JpcHQiOjF9&U=HMMGGGLDBC&K=4f24e3205487c161bff31ec7a212b252122a54c919d067002839a6de9f961764&R=http%3A%2F%2Ft.co%2Fvy2W6j1Rcc"></noscript><!-- END TUMBLR CODE -->
+
+</body></html>

@@ -1,0 +1,36 @@
+\begin{thebibliography}{1}
+
+\bibitem{viconvergence}
+The convergence of a general value iteration process.
+\newblock
+  \url{http://jmlr.csail.mit.edu/papers/volume3/szita02a/html/node21.html}.
+
+\bibitem{Auer:2002}
+Peter Auer, Nicol\`{o} Cesa-Bianchi, and Paul Fischer.
+\newblock Finite-time analysis of the multiarmed bandit problem.
+\newblock {\em Machine Learning}, 47(2):235--256, May 2002.
+
+\bibitem{citeulike:2976742}
+Sylvain Gelly and David Silver.
+\newblock Combining online and offline knowledge in uct.
+\newblock In {\em ICML '07: Proceedings of the 24th international conference on
+  Machine learning}, pages 273--280, New York, NY, USA, 2007. ACM.
+
+\bibitem{Kocsis06banditbased}
+Levente Kocsis and Csaba Szepesvári.
+\newblock Bandit based monte-carlo planning.
+\newblock In {\em In: ECML-06. Number 4212 in LNCS}, pages 282--293. Springer,
+  2006.
+
+\bibitem{ipodnorvig}
+Peter Norvig.
+\newblock Doing the martin shuffle (with your ipod).
+\newblock \url{http://norvig.com/ipod.html}.
+
+\bibitem{sail}
+Robert~J. Vanderbei.
+\newblock Sailing strategies: An application involving stochastics,
+  optimization, and statistics (sos).
+\newblock \url{http://www.orfe.princeton.edu/~rvdb/sail/sail.html}.
+
+\end{thebibliography}

@@ -1,0 +1,59 @@
+a:link {
+	color: #103b10;
+}
+
+a:active {
+	color: #103b10;
+}
+
+a:hover {
+	color: #346732;
+}
+
+a:visited {
+	color: #103b10;
+}
+
+a:visited:hover {
+	color: #346732;
+}
+
+a.dynamicColoredLink:link {
+	color: #95a095;
+}
+
+a.dynamicColoredLink:active {
+	color: #95a095;
+}
+
+a.dynamicColoredLink:hover {
+	color: #95a095;
+}
+
+a.dynamicColoredLink:visited {
+	color: #95a095;
+}
+
+a.dynamicColoredLink:visited:hover {
+	color: #95a095;
+}
+
+a.dynamicColoredLink:link span {
+	color: #103b10;
+}
+
+a.dynamicColoredLink:active span {
+	color: #103b10;
+}
+
+a.dynamicColoredLink:hover span {
+	color: #346732;
+}
+
+a.dynamicColoredLink:visited span {
+	color: #103b10;
+}
+
+a.dynamicColoredLink:visited:hover span {
+	color: #346732;
+}

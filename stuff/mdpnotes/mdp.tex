@@ -1,0 +1,624 @@
+\documentclass[12pt,amstags,fleqn]{article}
+
+% Uncomment only one of these lines:
+\usepackage[mathlf,textlf,minionint]{MinionPro} \usepackage[T1]{fontenc} \usepackage{textcomp} \usepackage{amsthm}
+%\usepackage{amssymb}
+
+\usepackage{url}
+
+\usepackage{xspace}
+
+\usepackage{fancyvrb}
+\usepackage{color}
+\include{pygments}
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{construction}[theorem]{Construction}
+\newtheorem{convention}[theorem]{Convention}
+
+
+% CH: I like Remarks to be in normal font, not italics.
+\theoremstyle{definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{question}[theorem]{Question}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This stuff is needed to correctly render the metapost
+% diagrams depending on whether latex or pdflatex was
+% called. Don't change any of it!
+\usepackage{ifpdf}
+
+\ifpdf
+        \pdfcompresslevel=9
+        \usepackage[pdftex]{graphicx}
+        %\usepackage{thumbpdf}
+        \usepackage[pdftex,colorlinks,bookmarks,backref]{hyperref}
+        %\usepackage[pdftex,backref]{hyperref}
+        \DeclareGraphicsRule{*}{mps}{*}{}
+\else
+        %\usepackage{hyperref}
+        %\usepackage[dvips]{graphicx}
+        %\usepackage[dvips]{color}
+    \usepackage{epsfig}
+        \usepackage{graphicx}
+        \DeclareGraphicsRule{*}{eps}{*}{}
+\fi
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\title{Markov Decision Processes and \\the UCT algorithm}
+
+\author{Carlo H\"{a}m\"{a}l\"{a}inen\\
+{\texttt{carlo.hamalainen@gmail.com}}}
+
+%\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract} 
+In this note we introduce the concept of a Markov Decision Process. We
+show how to solve for the optimal policy and value vectors for two
+examples (iPod shuffle and sailing shortest path) using value
+iteration. We then show how to use the UCT algorithm on the same two
+problems. Complete source code (in Python) is available.
+\end{abstract}
+
+\section{Introduction}
+
+This file and related source code is available at\\
+\url{http://carlo-hamalainen.net/stuff/mdpnotes} \\
+
+An MDP (Markov Decision Process) is fully described by the following
+items:
+
+\begin{itemize}
+\item A set of states $S$. Here we will only consider the case that $S$
+is finite, but it may in general be infinite.
+
+\item A set of actions $A$. An action is a function that takes us from
+some state to a new state.
+\item For each action $a \in A$ and state $s \in S$, the transition
+probability $P_a(s,s')$ is the probability of moving from state $s$ to
+$s'$ under action $a$.
+\item For each state $s$, the (local) cost of taking action $a \in
+A$ is denoted $\textnormal{cost}(s,a)$.
+\end{itemize}
+
+Here we will assume that the cost is fixed for each state-action pair
+$(s,a)$. (It is possible to extend the definition to stochastic costs.)
+
+If we reach a {\em target state} $t \in S$ then we stop.  
+The goal is to find a {\em policy} $\pi$ that gives the optimal action
+$\pi(s) \in A$ for each state.
+The Markov property means that the transition probabilities
+$P_a(s,s')$ only depend on the current state $s$ and the action $a$
+(so no information about past states is used).
+Once we have an optimal policy $\pi$ we can use it in a simulation as
+shown in the pseudo-Python of Figure~\ref{mdpsim}.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\begin{figure}[htb]
+\hrule
+~
+\begin{verbatim}
+s = initial_state
+this_cost = 0
+while s != target_state:
+    best_action = pi[s]
+    this_cost += cost(s, best_action)
+    s = next_state(s, best_action)
+
+print this_cost
+\end{verbatim}
+~
+\hrule
+\caption{Using an optimal policy $\pi$ to run a simulation of an MDP.}\label{mdpsim}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+The \texttt{next\_state} function assumes that we have available a 
+{\em generative model} of the MDP that allows us to sample from the
+possible next states given a state and action. In particular we do not
+need to know the explicit transition probabilities $P_a(s,s')$.
+
+
+\section{iPod example}
+
+A ``real world'' example~\cite{ipodnorvig} comes from the iPod
+shuffle, an MP3 player with two modes: sequential (in order) play
+and shuffle. There is no screen so finding a particular song can
+be difficult -- you can either jump around randomly or try to move
+forwards (or backwards) in a linear manner.
+
+We can assume that the $N$ songs on our iPod have been sorted in some
+sensible way, and we'll label the songs $0$, $1$, \dots, $N-1$.
+There are two actions that we can take at any given song (state)
+
+\begin{itemize}
+
+\item Sequential: set the iPod to non-random playback and use the
+forward or backward track buttons to get to the target song. If we
+are at song $s$ and the target song is $t$, then this strategy will take
+$\left| s - t \right|$ button presses to find the target.
+
+\item Shuffle: set the iPod to random playback and move to the next
+track if we are not at the target song. This incurs a cost $T$ because
+it will take us some time to recognise the new song.
+
+\end{itemize}
+
+In a typical execution of this algorithm we will start at some
+initial song, randomly skip around a bit, and then use the sequential
+action to get to the final song. Or, if the target song is very close,
+we would only use the sequential strategy.
+
+Suppose that the iPod has $N$ songs. The set of states for this MDP
+is
+\[
+S = \{0, 1, \dots, N-1\}.
+\]
+There are two actions, so
+\[
+A = \{ \textnormal{sequential}, \textnormal{shuffle} \}.
+\]
+For the costs, the sequential strategy takes
+$\left| s - t \right|$ button presses from state  $s$, so
+\[
+\textnormal{cost}(s, \textnormal{sequential}) = \left| s - t \right|.
+\]
+The shuffle action only takes us to a different track but we have to
+recognise if this is the target song, so
+\[
+ \textnormal{cost}(s, \textnormal{shuffle}) = T
+\]
+for some constant $T$.
+Finally we have the transition probabilities. The sequential action is
+guaranteed to take us to the target song, so
+$P_{\textnormal{sequential}}(s,s') = 1$ if $s' = t$ and $0$ otherwise.
+The shuffle action merely takes us to another track, with equal
+probability, so
+$P_{\textnormal{shuffle}}(s,s') = 1/N$ for any state $s'$.
+
+\section{Value iteration}
+
+To find the optimal policy $\pi$ we will compute the value vector $V$.
+For each state $s \in S$, $V(s)$ is the expected cost of reaching the
+target state, using the best possible sequence of actions starting at
+state $s$.
+
+We can start from an initial value vector $V_0(s) = 0$ for all $s \in
+S$. Then the update step is
+\[
+V_{t+1}(s) = \min_{a \in A} \left\{ \textnormal{cost}(s,a) + \sum_{s' \in S} P_a(s,s') V_t(s')\right\}.
+\]
+In other words, we minimise the sum of the local cost of taking some
+action, along with the expected cost from the possible new states.
+The policy is updated at each step by
+\[
+\pi_{t+1}(s) = \underset{a \in A}{\operatorname{argmin}} 
+ \left\{ \textnormal{cost}(s,a) + \sum_{s' \in S} P_a(s,s') V_t(s')\right\}.
+\]
+The value iteration algorithm is guaranteed to
+converge~\cite{viconvergence}.
+
+We can also apply a discounting factor $\gamma$ to reflect the fact that
+costs (or rewards) incurred in the future are worth less than ones
+incurred in the present. If $0 \leq \gamma \leq 1$ then the value iteration
+update is simply
+\[
+V_{t+1}(s) = \min_{a \in A} \left\{ \textnormal{cost}(s,a) + \gamma \sum_{s' \in S} P_a(s,s') V_t(s')\right\}.
+\]
+
+\subsection{Value iteration for the iPod example}
+
+See Section~\ref{secipodpython} for the Python source code for value
+iteration on the iPod example. In this example we have $\gamma = 1$, so
+there is no discounting.
+
+With $N = 10$ songs, recognition cost of $T = 0.5$, and target song
+$N/2$, we get the following value and policy vectors:
+
+\begin{Verbatim}
+>>> from ipod_mdp import *
+>>> N = 10; value_iteration(N, 0.5, N/2)
+([2.1984130546875003, 2.1984130546875003, 2.1984130546875003, 2.0, 
+1.0, 0.0, 1.0, 2.0, 2.1984130546875003, 2.1984130546875003], 
+['shuffle', 'shuffle', 'shuffle', 'sequential', 'sequential', 
+'sequential', 'sequential', 'sequential', 'shuffle', 'shuffle'], 2)
+\end{Verbatim}
+
+For example, if the initial state is $1$, an execution may proceed as
+follows:
+
+\begin{itemize}
+
+\item $s = 1$, $\pi(1) = \textnormal{shuffle}$. Jump to random song $s = 8$.
+\item $s = 8$, $\pi(8) = \textnormal{shuffle}$. Jump to random song $s = 3$.
+\item $s = 3$, $\pi(3) = \textnormal{sequential}$. Click $5-3 = 2$ times
+to get to the target state $5$. 
+\end{itemize}
+The cost of this run is $T + T + 2 = 0.5 + 0.5 + 2 = 3$, while the value
+vector has $V(1) = 2.1992065273437502$, which is reasonably close. 
+
+A general execution with $N = 250$ and $T = 0.5$:
+
+\begin{Verbatim}
+$ python ipod_mdp.py 250 0.5
+mean(V) = 10.6647967086
+mean (simulation): 10.679298
+difference: -0.0145012913545
+shuffle when: 12 or more away
+\end{Verbatim}
+
+\section{Sailing}
+
+Original reference: \cite{sail}. Imagine a sailing boat on a
+rectangular lake. Our goal is to get to the north-east corner of the
+lake from some starting position. To simplify things we assume that
+the lake is divided into a grid of {\em waypoints}, and that we sail
+from one waypoint to another (so the boat can only travel in one of
+eight directions north, north-east, east, etc). To further simplify
+the situation, we assume that the wind blows in only one direction for
+the duration of a journey from one waypoint to another waypoint. The
+wind changes just as we set off towards a new waypoint.
+
+Directions will be the integers 
+$D = \{0, 1, \dots, 7 \}$ where $0$ is north, $1$ is
+north-east, $2$ is east, etc. A state $s = (x,y,d,w_1,w_2)$ consists of a location $(x,y) \in
+\mathbb{N} \times \mathbb{N}$, the previous boat direction $d \in D$,
+previous wind direction $w_1 \in D$, next wind direction $w_2 \in D$.
+An action is the direction $d \in D$ to sail the boat on the next leg.
+For each action $a \in A$ and state $s \in S$, the transition
+probability
+\[
+P_{d'}((x,y,d,w_1,w_2),\,(x',y',d',w_1',w_2')) = 0
+\]
+unless $w_2 = w_1'$, $(x',y') = (x,y) + \vec{d'}$, in which case the
+probability is $P(w_1', w_2')$, the probability that the wind changes
+from direction $w_1'$ to $w_2'$.
+
+If the boat is in direction $d$ and the wind is in direction $w$ then we
+have the following costs:
+\[
+\textnormal{cost}(d,w) =
+\begin{cases} 
+    1\textnormal{ minute}, &\textnormal{if $\alpha = 0$} \\
+    2\textnormal{ minutes}, &\textnormal{if $\alpha = 1$} \\
+    3\textnormal{ minutes}, &\textnormal{if $\alpha = 2$} \\
+    4\textnormal{ minutes}, &\textnormal{if $\alpha = 3$}
+\end{cases}
+\]
+where $\alpha = \min(d-w, 8-(d-w))$. We do not allow the case
+$\alpha = 4$ which corresponds to sailing directly into the wind.
+The original description of the sailing problem also includes a cost
+for changing tack of the boat (i.e. when the wind goes from being on
+the left side of the sails to the right side or vice versa) but we
+ignore that cost to simplify the model.
+
+The wind transition probabilities are given in an $8 \times 8$ matrix
+$W$. The probability that the wind will be in direction $w_2$ given that it
+is currently in direction $w_1$ is $W_{w_1,w_2}$. In our simulations we fix
+$W$ to the following matrix: 
+\[
+W =
+\left[ {\begin{array}{cccccccc}
+0.4 & 0.3 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.3 \\
+0.4 & 0.3 & 0.3 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\
+0.0 & 0.4 & 0.3 & 0.3 & 0.0 & 0.0 & 0.0 & 0.0 \\
+0.0 & 0.0 & 0.4 & 0.3 & 0.3 & 0.0 & 0.0 & 0.0 \\
+0.0 & 0.0 & 0.0 & 0.4 & 0.2 & 0.4 & 0.0 & 0.0 \\
+0.0 & 0.0 & 0.0 & 0.0 & 0.3 & 0.3 & 0.4 & 0.0 \\
+0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.3 & 0.3 & 0.4 \\
+0.4 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.3 & 0.3 \\
+ \end{array} } \right]
+\]
+We can now use value iteration to solve for the value and policy
+vectors.
+
+
+\subsection{Example of sailing}
+
+See Section~\ref{pythonsailing} for Python code for value iteration
+on the sailing example. We run value iteration and 10,000 simulations
+with a lake of size $5 \times 5$, target location $(4,4)$, and all
+other parameters as described above.
+
+\begin{Verbatim}
+$ python sailing.py "value_iteration_example()"
+Top of value_iteration(), max difference: 1.0
+Top of value_iteration(), max difference: 4.0
+Top of value_iteration(), max difference: 2.89
+Top of value_iteration(), max difference: 2.2653
+Top of value_iteration(), max difference: 1.935648
+Top of value_iteration(), max difference: 1.66572639
+Top of value_iteration(), max difference: 1.4497415721
+Top of value_iteration(), max difference: 1.25418853297
+Top of value_iteration(), max difference: 0.998954591375
+Top of value_iteration(), max difference: 0.769139503728
+Top of value_iteration(), max difference: 0.510518276155
+Top of value_iteration(), max difference: 0.337118955482
+Top of value_iteration(), max difference: 0.193325220838
+Top of value_iteration(), max difference: 0.0315788407471
+Done with value iteration
+Running simulations...
+
+Lake size: 5 x 5
+
+Value iteration:
+    Mean cost: 7.3
+    Median cost: 7.1
+    Standard dev: 3.7
+
+Simulations (run 1000 times):
+    Mean cost: 7.3
+    Median cost: 6.8
+    Standard dev: 4.1
+
+Mean cost to sail across lake from (1, 1) to (4, 4): 8.5
+\end{Verbatim}
+
+\section{UCT: Upper Confidence bounds on Trees}\label{uctsec}
+
+Solving an MDP system using value iteration can become computationally
+intensive on large examples (e.g. sailing on a lake of size $40 \times
+40$) because each update step necessarily reads and changes every
+element of the value and policy vectors.
+
+An alternative approach is to use Monte Carlo planning. See
+Figure~\ref{mcplanning} for pseudo-Python. The algorithm alternates randomly
+between between trying new actions at each state (in order to search for
+better policies) or using the current best policy to improve the
+estimate of the policy. The policy vector $\pi$ is not explicitly
+computed. Instead we have the state-action vector $Q(s,a)$, the average seen cost (reward) of taking
+action $a$ when in state $s$. The update line
+\begin{center}
+\begin{verbatim}
+new_average = old_average + (0.5)*(q - old_average)
+\end{verbatim}
+\end{center}
+has a bias of $0.5$ instead of $1/n$ and this may need to be tuned for
+each application of Monte Carlo planning.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\begin{figure}[htb]
+\begin{verbatim}
+def select_action(state):
+    if random() < 0.01:
+        return random_action(state)
+    else:
+        return best_action(state)
+
+def search(state):
+    if state == terminal: return 0
+
+    action = select_action(state)
+    new_state, cost = simulate_action(state, action)
+
+    state_visit_counts[(state)] += 1
+    state_action_counts[(state, action)] += 1
+
+    try:
+        old_average = Q[(state, action)]
+        n = state_action_counts[(state, action)]
+        new_average = old_average + (0.5)*(q - old_average)
+    except KeyError:
+        new_average = q
+
+    self.Q[(state, action)] = new_average
+
+    return q
+
+def monte_carlo_planning(initial_state):
+    while True:
+        search(initial_state)
+
+\end{verbatim}
+\caption{Pseudo-Python for Monte Carlo planning.}\label{mcplanning}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+There are some subtleties to the implementation. See
+Section~\ref{pythonmc} for source code.
+
+The UCT algorithm~\cite{Kocsis06banditbased} just changes the way
+that actions are selected during a rollout. The algorithm used is
+called UCB, and described in the next section.
+
+\subsection{UCB: Upper Confidence Bounds}
+
+Imagine that we have $K$ gambling machines with arbitrary reward
+distributions $P_1$, \dots, $P_K$. At each time step we can play
+any machine $j$ that we choose, and receive a reward according to
+the distribution $P_j$. We would like a strategy that maximises our
+total reward over $n$ plays. Since the distributions $P_j$ are fixed
+but unknown, we want to avoid sampling too many times from machines
+with low reward. In other words, we have to balance exploration versus exploitation.
+
+The UCB1 strategy~\cite{Auer:2002} is:
+
+\begin{enumerate}
+
+\item Play each machine once.
+
+\item Play machine $j$ that maximises $\bar x_j + \sqrt{\frac{2 \ln n}{n_j}}$ where $\bar x_j$ is the average reward from machine $j$, machine $j$ has been played $n_j$ times so far, and $n$ is the total number of plays so far.
+\end{enumerate}
+
+The $\bar x_j$ term gives preference to machines that have performed well in
+past plays, while the $\sqrt{{2 \ln n}/{n_j}}$ term gives preference
+to machines that have not been played many times so far, relative to
+$\ln n$.
+
+Write $\mu_j$ for the mean of distribution $P_j$. Obviously the best
+possible strategy is to only play the machine with the maximum mean
+$\mu^* = \max_j{\mu_j}$. Figure~\ref{figucbreward} shows best and actual
+reward for some simulations using the UCB1 strategy.
+See Section~\ref{pythonucb} for Python source code.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=.75\textwidth]{best_and_total_reward.pdf}
+\end{center}
+\caption{Comparing best and actual reward using the UCB1 strategy with
+$10$ machines. See Section~\ref{pythonucb} for details on the machines' reward
+distributions.}\label{figucbreward}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+The {\em regret} is the lost reward due to not having played the optimal
+machine at each step:
+\[
+n \mu^* - \mu_j \sum_{j=1}^K \mathbb{E}(T_j(n))
+\]
+where $T_j(n)$ is the number of times that machine $j$ has been played
+after $n$ plays. Importantly, the regret can be bounded to be
+logarithmic in the number of plays so far:
+
+\begin{theorem}[\cite{Auer:2002}]\label{thmUCB}
+For all $K > 1$, if policy \textnormal{UCB1} is run on $K$ machines
+having arbitrary reward distributions $P_1$, \dots, $P_K$ with support
+in $[0,1]$ then its expected regret after $n$ plays is at most
+\[
+\left[ 8 \sum_{i:\mu_i < \mu^*} \left( \frac{\ln n}{\Delta_i} \right)  \right] + 
+\left( 1 + \frac{\pi^2}{3} \right)
+\left( \sum_{j=1}^K \Delta_j \right)
+\]
+where $\Delta_i = \mu^* - \mu_i$.
+\end{theorem}
+
+Figure~\ref{ucbregret} shows the result of some simulations with $K =
+10$ machines and fixed reward distributions.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=.75\textwidth]{regret_and_bound.pdf}
+\end{center}
+\caption{Regret and upper bound on regret given by Theorem~\ref{thmUCB}}\label{ucbregret}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{UCT}
+
+The UCT algorithm is the same as Monte Carlo planning except that UCB is used to
+select the action at each tree node. To do this we have to keep track of
+the average cost so far (i.e. up to time $t$)
+of taking action $a$ from state $s$,
+denoted $Q_t(s,a)$. We also track $N_{s}(t)$, the number of times
+that state $s$ has been visited up to time $t$. If we are
+at a tree node $s$ then the action is chosen using
+the UCB rule
+\begin{equation}\label{eqnuct}
+a^* = \underset{a \in A}{\operatorname{argmax}} 
+ \left\{ Q_t(s,a) + \alpha \sqrt{\frac{\ln N_{s}(t)}{N_{s,a}(t)}} \, \right\}.
+\end{equation}
+where $\alpha$ is a constant that has to be chosen empirically. A badly
+chosen $\alpha$ can have a huge effect on the convergence of the
+algorithm.
+
+See Section~\ref{pythonuct} for Python source code that uses UCT to
+solve the sailing problem.\footnote{I asked the authors of
+\cite{Kocsis06banditbased} for their full list of parameter values and source code
+but got no reply. If anyone improves my code I will be happy to update
+this document and give a reference or URL.}
+
+\subsection{UCT on the sailing problem}
+
+First we used value iteration to solve the sailing problem on lakes of size
+$5 \times 5$,
+$10 \times 10$, $20 \times 20$,
+and $30 \times 30$, with $\varepsilon =
+0.01$ (solving just the $20 \times 20$ instance took about 5
+hours on a 2.5Ghz Intel Xeon server).
+The optimal value and policy vectors $V^*$ and $\pi^*$ 
+are available in the pickled Python format as
+{\texttt lake\_5.pkl},
+{\texttt lake\_10.pkl},
+{\texttt lake\_20.pkl}, and
+{\texttt lake\_30.pkl}.
+
+Next, we chose $20$ random points (excluding the target point). For
+each of these states $s$, we ran the Monte Carlo and UCT algorithm until the estimated
+cost for sailing from $s$ to the target state was within $0.1$ of the
+optimal value $V^*(s)$. A good measure of the efficiency of a Monte Carlo type of planning
+algorithm is the total number of samples taken from the underlying MDP's
+generative model. Figure~\ref{uctsailing} shows the number of samples
+required to get the estimated error to within the bounds specified.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=.75\textwidth]{nr_samples_uct_sailing.pdf}
+\end{center}
+\caption{Performance of plain Monte Carlo planning and UCT on the
+sailing problem.}\label{uctsailing}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{What else?}
+
+There are a few factors that have to be chosen by hand in {\texttt
+sailing\_uct.py}. If we are working on a huge problem, where value
+iteration isn't feasible, how do we know if we are converging to the
+optimal solution? The $0.1$ factor for the $Q$ value update step in
+Section~\ref{uctsec} is meant to decay to zero if we want convergence.
+But at what rate? Using something like $1/n$ works badly
+on the sailing domain with lake sizes up to $20 \times 20$.
+
+Also, there are many ways to improve the UCT algorithm, for example
+combining online and offline data to speed up convergence of the $Q$
+values: \cite{citeulike:2976742}.
+
+\clearpage
+\section{iPod value iteration}\label{secipodpython}
+
+Here is \texttt{ipod\_mdp.py}, also available at\\
+\url{http://carlo-hamalainen.net/stuff/mdpnotes}
+
+\input{ipod_mdp.tex}
+
+\clearpage
+\section{Value iteration for sailing}\label{pythonsailing}
+
+Here is \texttt{sailing.py}, also available at\\
+\url{http://carlo-hamalainen.net/stuff/mdpnotes}
+
+\input{sailing.tex}
+
+\clearpage
+\section{UCB}\label{pythonucb}
+
+Here is \texttt{ucb.py}, also available at\\
+\url{http://carlo-hamalainen.net/stuff/mdpnotes}
+
+\input{ucb.tex}
+
+\clearpage
+\section{Sailing MCT}\label{pythonmc}
+
+Here is \texttt{sailing\_mc.py}, also available at\\
+\url{http://carlo-hamalainen.net/stuff/mdpnotes}
+
+\input{sailing_mc.tex}
+
+\clearpage
+\section{UCT}\label{pythonuct}
+
+Here is \texttt{sailing\_uct.py}, also available at\\
+\url{http://carlo-hamalainen.net/stuff/mdpnotes}
+
+\input{sailing_uct.tex}
+
+
+\bibliographystyle{plain}
+\bibliography{mdp}
+
+
+\end{document}

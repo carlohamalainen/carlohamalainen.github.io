@@ -1,0 +1,153 @@
+\begin{Verbatim}[commandchars=@\[\]]
+@PYaE[# -*- coding: utf-8 -*-]
+
+@PYaE[#*****************************************************************************]
+@PYaE[#       Copyright (C) 2009 Carlo Hamalainen <carlo.hamalainen@at[]gmail.com>, ]
+@PYaE[#]
+@PYaE[#  Distributed under the terms of the GNU General Public License (GPL)]
+@PYaE[#]
+@PYaE[#    This code is distributed in the hope that it will be useful,]
+@PYaE[#    but WITHOUT ANY WARRANTY; without even the implied warranty of]
+@PYaE[#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU]
+@PYaE[#    General Public License for more details.]
+@PYaE[#]
+@PYaE[#  The full text of the GPL is available at:]
+@PYaE[#]
+@PYaE[#                  http://www.gnu.org/licenses/]
+@PYaE[#*****************************************************************************]
+
+
+@PYaE[# For debugging, put these lines somewhere to drop into an ipython shell:]
+@PYaE[#import IPython]
+@PYaE[#IPython.Shell.IPShell(user_ns=dict(globals(), **locals())).mainloop()]
+
+@PYaE[# To profile, put these in __main__():]
+@PYaE[#import cProfile]
+@PYaE[#cProfile.run('thing_to_run()')]
+
+@PYay[from] @PYaV[sailing] @PYay[import] @PYbd[*]
+
+@PYay[from] @PYaV[random] @PYay[import] random
+@PYay[from] @PYaV[scipy] @PYay[import] @PYaj[log], @PYaj[sqrt]
+@PYay[from] @PYaV[incdict] @PYay[import] IncDict
+
+@PYay[class] @PYaO[SailingPlanner](Sailing):
+    @PYay[def] @PYaL[__init__](@PYaA[self], lake_size):
+        Sailing@PYbd[.]__init__(@PYaA[self], lake_size)
+
+    @PYay[def] @PYaL[random_action](@PYaA[self], state):
+        possible_actions @PYbd[=] @lb[]@rb[]
+
+        @PYay[for] action @PYav[in] @PYaX[range](@PYaw[8]):
+            @PYay[if] @PYaA[self]@PYbd[.]is_into(state, action): @PYay[continue]
+            @PYay[if] @PYav[not] @PYaA[self]@PYbd[.]stays_in_lake(state, action): @PYay[continue]
+
+            possible_actions@PYbd[.]@PYaj[append](action)
+
+        @PYay[assert] @PYaX[len](possible_actions) @PYbd[>] @PYaw[0]
+
+        @PYay[return] possible_actions@lb[]my_randint(@PYaX[len](possible_actions))@rb[]
+
+    @PYay[def] @PYaL[tree_policy](@PYaA[self], state):
+        @PYay[return] @PYaA[self]@PYbd[.]best_Q_value(state)@lb[]@PYaw[0]@rb[]
+
+    @PYay[def] @PYaL[select_action](@PYaA[self], state):
+        @PYay[if] random() @PYbd[<] @PYaw[0.01]:
+            @PYay[return] @PYaA[self]@PYbd[.]random_action(state)
+
+        action @PYbd[=] @PYaA[self]@PYbd[.]tree_policy(state)
+        @PYay[if] action @PYav[is] @PYaA[None]: action @PYbd[=] @PYaA[self]@PYbd[.]random_action(state)
+
+        @PYay[return] action
+
+    @PYay[def] @PYaL[search_init](@PYaA[self], initial_state):
+        @PYaA[self]@PYbd[.]nr_samples @PYbd[=] @PYaw[0]
+
+        @PYaA[self]@PYbd[.]initial_state @PYbd[=] initial_state
+
+        @PYaE[# keys: state]
+        @PYaE[# values: how many times we have visited this state during the]
+        @PYaE[# searches.]
+        @PYaA[self]@PYbd[.]state_visit_counts @PYbd[=] IncDict()
+
+        @PYaE[# keys: (state, action) tuples]
+        @PYaE[# values: how many times we have taken 'action' from 'state']
+        @PYaA[self]@PYbd[.]state_action_counts @PYbd[=] IncDict()
+
+        @PYaE[# keys: (state, action) tuples]
+        @PYaE[# values: average cost of taking 'action' from 'state'.]
+        @PYaA[self]@PYbd[.]Q @PYbd[=] {}
+
+    @PYay[def] @PYaL[search](@PYaA[self], state, depth @PYbd[=] @PYaw[0]):
+        @PYay[if] @PYaA[self]@PYbd[.]is_terminal(state): @PYay[return] @PYaw[0]
+
+        action @PYbd[=] @PYaA[self]@PYbd[.]select_action(state)
+        new_state, cost @PYbd[=] @PYaA[self]@PYbd[.]sample_next_state(state, action)
+
+        @PYay[if] random() @PYbd[<] @PYaw[1.0]@PYbd[/](@PYaA[self]@PYbd[.]state_visit_counts@lb[](state)@rb[] @PYbd[+] @PYaw[1]):
+            @PYay[try]: q @PYbd[=] cost @PYbd[+] @PYaA[self]@PYbd[.]gamma@PYbd[*]@PYaA[self]@PYbd[.]Q@lb[](new_state, action)@rb[]
+            @PYay[except] @PYbe[KeyError]: q @PYbd[=] cost @PYbd[+] @PYaA[self]@PYbd[.]gamma@PYbd[*]@PYaA[self]@PYbd[.]V_approx@lb[]new_state@rb[]
+        @PYay[else]:
+            q @PYbd[=] cost @PYbd[+] @PYaA[self]@PYbd[.]gamma@PYbd[*]@PYaA[self]@PYbd[.]search(new_state, depth @PYbd[+] @PYaw[1])
+
+        @PYay[assert] q @PYbd[!=] @PYaw[0]
+
+        @PYaA[self]@PYbd[.]state_visit_counts@lb[](state)@rb[] @PYbd[+]@PYbd[=] @PYaw[1]
+        @PYaA[self]@PYbd[.]nr_samples @PYbd[+]@PYbd[=] @PYaw[1]
+        @PYaA[self]@PYbd[.]state_action_counts@lb[](state, action)@rb[] @PYbd[+]@PYbd[=] @PYaw[1]
+
+        @PYay[try]:
+            old_average @PYbd[=] @PYaA[self]@PYbd[.]Q@lb[](state, action)@rb[]
+            n @PYbd[=] @PYaA[self]@PYbd[.]state_action_counts@lb[](state, action)@rb[]
+            @PYaE[#new_average = old_average + (1.0/n)*(q - old_average)]
+            new_average @PYbd[=] old_average @PYbd[+] (@PYaw[0.5])@PYbd[*](q @PYbd[-] old_average)
+        @PYay[except] @PYbe[KeyError]:
+            new_average @PYbd[=] q
+
+        @PYaA[self]@PYbd[.]Q@lb[](state, action)@rb[] @PYbd[=] new_average
+        @PYay[return] q
+
+    @PYay[def] @PYaL[best_Q_value](@PYaA[self], state):
+        best_avg @PYbd[=] @PYaA[None]
+        best_action @PYbd[=] @PYaA[None]
+
+        @PYay[for] action @PYav[in] @PYaX[range](@PYaw[8]):
+            @PYay[try]:
+                average_cost @PYbd[=] @PYaA[self]@PYbd[.]Q@lb[](state, action)@rb[]
+            @PYay[except] @PYbe[KeyError]:
+                @PYay[continue]
+
+            @PYay[assert] average_cost @PYbd[!=] @PYaw[0]
+
+            @PYay[if] best_avg @PYav[is] @PYaA[None] @PYav[or] average_cost @PYbd[<] best_avg:
+                best_avg @PYbd[=] average_cost
+                best_action @PYbd[=] action
+
+        @PYay[return] best_action, best_avg
+
+@PYaE[####################################################]
+
+@PYay[def] @PYaL[sailing_mc_planner](lake_size, V_optimal, V_approx, initial_state, max_nr_samples):
+    S @PYbd[=] SailingPlanner(lake_size)
+    S@PYbd[.]V_approx @PYbd[=] V_approx
+
+    S@PYbd[.]search_init(initial_state)
+
+    S@PYbd[.]search(initial_state)
+
+    optimal_cost @PYbd[=] V_optimal@lb[]initial_state@rb[]
+
+    @PYay[while] @PYaA[True]:
+        _, min_cost @PYbd[=] S@PYbd[.]best_Q_value(initial_state)
+
+        error @PYbd[=] @PYaX[abs](min_cost @PYbd[-] optimal_cost)
+
+        @PYay[if] error @PYbd[<] @PYaw[0.1]: @PYay[break]
+
+        q @PYbd[=] S@PYbd[.]search(initial_state)
+
+        @PYay[if] S@PYbd[.]nr_samples @PYbd[>] max_nr_samples:
+            @PYay[return] @PYaA[None]
+
+    @PYay[return] S@PYbd[.]nr_samples
+\end{Verbatim}

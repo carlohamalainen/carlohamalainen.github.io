@@ -1,0 +1,15 @@
+#epgModal{position:fixed; width:100%; height:100%; top:0px; z-index:100; display:none; text-align:center;}
+#epgModal .epgModalBG{background-color:#000000; opacity:.8; filter: alpha(opacity=80); width:100%; height:100%; position:absolute;}
+#epgModal .epgModalCloseButton{position:absolute; width:50px; height:50px; cursor:pointer; top:50%; left:50%; margin:-25px 0 0 -24px; display:none; z-index:2; overflow:hidden;}
+#epgModal .epgModalCloseButton > img{height:100%; width:auto;}
+#epgModal .epgModalCloseButton > img:hover{margin-left:-50px;}
+#epgModal .epgModalSmallCloseButton{width:30px; height:30px;}
+#epgModal .epgModalSmallCloseButton > img:hover{margin-left:-30px;}
+#epgModal .epgModalBorderProtector{top:50px; bottom:40px; left:40px; right:40px; position:absolute; text-align:center; overflow:auto;}
+#epgModal .epgModalBorderProtector > *:first-child{vertical-align:middle; display:inline-block; line-height:normal; border:5px solid grey; box-sizing:border-box; max-height:100%; overflow:auto;}
+#epgModal .clearFixVert{display: inline-block; width: 0px; height:100%; vertical-align: middle; overflow: hidden;}
+
+
+@media screen and (max-width: 480px), only screen and (max-device-width: 480px) {
+  #epgModal .epgModalBorderProtector{left:10px; right:10px;}
+}

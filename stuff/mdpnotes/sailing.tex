@@ -1,0 +1,594 @@
+\begin{Verbatim}[commandchars=@\[\]]
+@PYaE[# -*- coding: utf-8 -*-]
+
+@PYaE[#*****************************************************************************]
+@PYaE[#       Copyright (C) 2009 Carlo Hamalainen <carlo.hamalainen@at[]gmail.com>, ]
+@PYaE[#]
+@PYaE[#  Distributed under the terms of the GNU General Public License (GPL)]
+@PYaE[#]
+@PYaE[#    This code is distributed in the hope that it will be useful,]
+@PYaE[#    but WITHOUT ANY WARRANTY; without even the implied warranty of]
+@PYaE[#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU]
+@PYaE[#    General Public License for more details.]
+@PYaE[#]
+@PYaE[#  The full text of the GPL is available at:]
+@PYaE[#]
+@PYaE[#                  http://www.gnu.org/licenses/]
+@PYaE[#*****************************************************************************]
+
+
+@PYaE[# For debugging, put these lines somewhere to drop into an ipython shell:]
+@PYaE[#import IPython]
+@PYaE[#IPython.Shell.IPShell(user_ns=dict(globals(), **locals())).mainloop()]
+
+@PYaE[# To profile, put these in __main__():]
+@PYaE[#import cProfile]
+@PYaE[#cProfile.run('thing_to_run()')]
+
+@PYay[import] @PYaV[math]
+@PYay[import] @PYaV[pickle]
+@PYay[import] @PYaV[random]
+@PYay[import] @PYaV[sys]
+
+@PYay[from] @PYaV[scipy] @PYay[import] @PYaj[arange], @PYaj[log], logn
+@PYay[from] @PYaV[scipy.stats] @PYay[import] rv_discrete
+
+@PYay[def] @PYaL[mean](L): @PYay[return] @PYaX[sum](L)@PYbd[/](@PYaw[1.0]@PYbd[*]@PYaX[len](L))
+
+@PYay[def] @PYaL[stddev](values, meanval@PYbd[=]@PYaA[None]):
+    @PYaE[# copied from http://aima.cs.berkeley.edu/python/utils.html]
+    @PYaE[# and fixed the denominator.]
+    @PYas["""The standard deviation of a set of values.]
+@PYas[    Pass in the mean if you already know it."""]
+    @PYay[if] meanval @PYbd[==] @PYaA[None]: meanval @PYbd[=] @PYaj[mean](values)
+    @PYay[return] math@PYbd[.]@PYaj[sqrt](@PYaX[sum](@lb[](x @PYbd[-] meanval)@PYbd[*]@PYbd[*]@PYaw[2] @PYay[for] x @PYav[in] values@rb[]) @PYbd[/] (@PYaX[len](values)))
+
+@PYay[def] @PYaL[median](values):
+    @PYaE[# copied from http://aima.cs.berkeley.edu/python/utils.html]
+    @PYas["""Return the middle value, when the values are sorted.]
+@PYas[    If there are an odd number of elements, try to average the middle two.]
+@PYas[    If they can't be averaged (e.g. they are strings), choose one at random.]
+@PYas[    >>> median(@lb[]10, 100, 11@rb[])]
+@PYas[    11]
+@PYas[    >>> median(@lb[]1, 2, 3, 4@rb[])]
+@PYas[    2.5]
+@PYas[    """]
+    n @PYbd[=] @PYaX[len](values)
+    values @PYbd[=] sorted(values)
+    @PYay[if] n @PYbd[%] @PYaw[2] @PYbd[==] @PYaw[1]:
+        @PYay[return] values@lb[]n@PYbd[/]@PYaw[2]@rb[]
+    @PYay[else]:
+        middle2 @PYbd[=] values@lb[](n@PYbd[/]@PYaw[2])@PYbd[-]@PYaw[1]:(n@PYbd[/]@PYaw[2])@PYbd[+]@PYaw[1]@rb[]
+        @PYay[try]:
+            @PYay[return] @PYaj[mean](middle2)
+        @PYay[except] @PYbe[TypeError]:
+            @PYay[return] random@PYbd[.]choice(middle2)
+
+@PYay[def] @PYaL[my_randint](n):
+    @PYas["""]
+@PYas[    Return a random integer from @lb[]0, n).]
+@PYas[    """]
+
+    @PYay[return] random@PYbd[.]@PYaj[randint](@PYaw[0], n @PYbd[-] @PYaw[1])
+
+@PYay[def] @PYaL[add_vector](x, y, v):
+    @PYas["""]
+@PYas[    Returns (x + v@lb[]0@rb[], y + v@lb[]1@rb[]).]
+
+@PYas[    EXAMPLES::]
+
+@PYas[        >>> add_vector(0, 0, (0, 1))]
+@PYas[        (0, 1)]
+@PYas[        >>> add_vector(0, 0, (-2, 1))]
+@PYas[        (-2, 1)]
+@PYas[    """]
+    @PYay[return] (x @PYbd[+] v@lb[]@PYaw[0]@rb[], y @PYbd[+] v@lb[]@PYaw[1]@rb[])
+
+@PYay[def] @PYaL[check_probability_matrix](P):
+    @PYas["""]
+@PYas[    Rows must sum to 1 and no entry can be negative.]
+
+@PYas[    EXAMPLE::]
+
+@PYas[        >>> wind_array = @lb[] @lb[]0.4, 0.3, 0.0, 0.0, 0.0, 0.0, 0.0, 0.3@rb[], \]
+@PYas[                           @lb[]0.4, 0.3, 0.3, 0.0, 0.0, 0.0, 0.0, 0.0@rb[], \]
+@PYas[                           @lb[]0.0, 0.4, 0.3, 0.3, 0.0, 0.0, 0.0, 0.0@rb[], \]
+@PYas[                           @lb[]0.0, 0.0, 0.4, 0.3, 0.3, 0.0, 0.0, 0.0@rb[], \]
+@PYas[                           @lb[]0.0, 0.0, 0.0, 0.4, 0.2, 0.4, 0.0, 0.0@rb[], \]
+@PYas[                           @lb[]0.0, 0.0, 0.0, 0.0, 0.3, 0.3, 0.4, 0.0@rb[], \]
+@PYas[                           @lb[]0.0, 0.0, 0.0, 0.0, 0.0, 0.3, 0.3, 0.4@rb[], \]
+@PYas[                           @lb[]0.4, 0.0, 0.0, 0.0, 0.0, 0.0, 0.3, 0.3@rb[] @rb[]]
+@PYas[        >>> check_probability_matrix(wind_array)]
+@PYas[        True]
+@PYas[    """]
+
+    @PYay[for] x @PYav[in] P:
+        @PYay[if] @PYaX[sum](x) @PYbd[!=] @PYaw[1]: @PYay[return] @PYaA[False]
+
+        @PYay[for] y @PYav[in] x:
+            @PYay[if] y @PYbd[<] @PYaw[0]: @PYay[return] @PYaA[False]
+
+    @PYay[return] @PYaA[True]
+
+@PYay[def] @PYaL[abs_direction_difference](d1, d2):
+    @PYas["""]
+@PYas[    Absolute difference in directions.]
+
+@PYas[    EXAMPLES::]
+
+@PYas[        >>> abs_direction_difference(0, 1)]
+@PYas[        1]
+@PYas[        >>> abs_direction_difference(3, 2)]
+@PYas[        1]
+@PYas[        >>> abs_direction_difference(3, 5)]
+@PYas[        2]
+@PYas[        >>> abs_direction_difference(3, 7)]
+@PYas[        4]
+@PYas[    """]
+
+    @PYay[assert] d1 @PYbd[>]@PYbd[=] @PYaw[0]
+    @PYay[assert] d1 @PYbd[<] @PYaw[8]
+
+    @PYay[assert] d2 @PYbd[>]@PYbd[=] @PYaw[0]
+    @PYay[assert] d2 @PYbd[<] @PYaw[8]
+
+    x @PYbd[=] @PYaX[abs](d1 @PYbd[-] d2)
+
+    @PYay[if] x @PYbd[<] @PYaw[8] @PYbd[-] x:   @PYay[return] x
+    @PYay[else]:           @PYay[return] @PYaw[8] @PYbd[-] x
+
+@PYay[def] @PYaL[tack](boat_direction, wind_direction):
+    @PYas["""]
+@PYas[    The tack of the boat depends on the relative difference of]
+@PYas[    the boat's direction and the wind.]
+
+@PYas[    EXAMPLES::]
+
+@PYas[        >>> tack(0, 0)]
+@PYas[        'away']
+@PYas[        >>> tack(0, 7)]
+@PYas[        'down']
+@PYas[        >>> tack(0, 2)]
+@PYas[        'cross']
+@PYas[        >>> tack(0, 3)]
+@PYas[        'up']
+@PYas[        >>> tack(0, 4)]
+@PYas[        'into']
+@PYas[    """]
+
+    @PYay[assert] boat_direction @PYbd[>]@PYbd[=] @PYaw[0]
+    @PYay[assert] boat_direction @PYbd[<] @PYaw[8]
+
+    @PYay[assert] wind_direction @PYbd[>]@PYbd[=] @PYaw[0]
+    @PYay[assert] wind_direction @PYbd[<] @PYaw[8]
+
+    d @PYbd[=] abs_direction_difference(boat_direction, wind_direction)
+
+    @PYay[if] d @PYbd[==] @PYaw[0]: @PYay[return] @PYaB[']@PYaB[away]@PYaB[']
+    @PYay[if] d @PYbd[==] @PYaw[1]: @PYay[return] @PYaB[']@PYaB[down]@PYaB[']
+    @PYay[if] d @PYbd[==] @PYaw[2]: @PYay[return] @PYaB[']@PYaB[cross]@PYaB[']
+    @PYay[if] d @PYbd[==] @PYaw[3]: @PYay[return] @PYaB[']@PYaB[up]@PYaB[']
+    @PYay[if] d @PYbd[==] @PYaw[4]: @PYay[return] @PYaB[']@PYaB[into]@PYaB[']
+
+    @PYay[raise] @PYbe[ValueError]
+
+@PYay[def] @PYaL[wind_on_left](boat_dirn, wind_dirn):
+    @PYas["""]
+@PYas[    Relative to the boat, is the wind blowing to the left of the boat?]
+@PYas[    """]
+
+    @PYaE[# If the boat had been going north then we just need to check ]
+    @PYaE[# if the wind direction is in @lb[]5, 6, 7@rb[]]
+
+    w @PYbd[=] wind_dirn @PYbd[-] boat_dirn
+
+    @PYay[while] w @PYbd[<] @PYaw[0]: w @PYbd[+]@PYbd[=] @PYaw[8]
+
+    @PYay[return] w @PYav[in] @lb[]@PYaw[5], @PYaw[6], @PYaw[7]@rb[]
+
+@PYay[def] @PYaL[direction_vector](d):
+    @PYas["""]
+@PYas[    The direction 0 is north so we move by (0, 1) in cartesian]
+@PYas[    coordinates.]
+
+@PYas[    EXAMPLES::]
+
+@PYas[        >>> direction_vector(0) # north]
+@PYas[        (0, 1)]
+@PYas[        >>> direction_vector(6) # west]
+@PYas[        (-1, 0)]
+@PYas[    """]
+
+    @PYay[assert] d @PYbd[>]@PYbd[=] @PYaw[0]
+    @PYay[assert] d @PYbd[<] @PYaw[8]
+
+    @PYay[if] d @PYbd[==] @PYaw[0]: @PYay[return] (@PYaw[0], @PYaw[1])
+    @PYay[if] d @PYbd[==] @PYaw[1]: @PYay[return] (@PYaw[1], @PYaw[1])
+    @PYay[if] d @PYbd[==] @PYaw[2]: @PYay[return] (@PYaw[1], @PYaw[0])
+    @PYay[if] d @PYbd[==] @PYaw[3]: @PYay[return] (@PYaw[1], @PYbd[-]@PYaw[1])
+    @PYay[if] d @PYbd[==] @PYaw[4]: @PYay[return] (@PYaw[0], @PYbd[-]@PYaw[1])
+    @PYay[if] d @PYbd[==] @PYaw[5]: @PYay[return] (@PYbd[-]@PYaw[1], @PYbd[-]@PYaw[1])
+    @PYay[if] d @PYbd[==] @PYaw[6]: @PYay[return] (@PYbd[-]@PYaw[1], @PYaw[0])
+    @PYay[if] d @PYbd[==] @PYaw[7]: @PYay[return] (@PYbd[-]@PYaw[1], @PYaw[1])
+
+@PYay[class] @PYaO[Sailing]:
+    @PYay[def] @PYaL[__init__](@PYaA[self], lake_size):
+        @PYaA[self]@PYbd[.]gamma @PYbd[=] @PYaw[0.9] @PYaE[# discounting factor]
+
+        @PYaA[self]@PYbd[.]lake_size @PYbd[=] lake_size
+
+        @PYaE[# Wind transition probabilities.]
+        @PYaA[self]@PYbd[.]wind_array @PYbd[=] @lb[] \
+            @lb[]@PYaw[0.4], @PYaw[0.3], @PYaw[0.0], @PYaw[0.0], @PYaw[0.0], @PYaw[0.0], @PYaw[0.0], @PYaw[0.3]@rb[], \
+            @lb[]@PYaw[0.4], @PYaw[0.3], @PYaw[0.3], @PYaw[0.0], @PYaw[0.0], @PYaw[0.0], @PYaw[0.0], @PYaw[0.0]@rb[], \
+            @lb[]@PYaw[0.0], @PYaw[0.4], @PYaw[0.3], @PYaw[0.3], @PYaw[0.0], @PYaw[0.0], @PYaw[0.0], @PYaw[0.0]@rb[], \
+            @lb[]@PYaw[0.0], @PYaw[0.0], @PYaw[0.4], @PYaw[0.3], @PYaw[0.3], @PYaw[0.0], @PYaw[0.0], @PYaw[0.0]@rb[], \
+            @lb[]@PYaw[0.0], @PYaw[0.0], @PYaw[0.0], @PYaw[0.4], @PYaw[0.2], @PYaw[0.4], @PYaw[0.0], @PYaw[0.0]@rb[], \
+            @lb[]@PYaw[0.0], @PYaw[0.0], @PYaw[0.0], @PYaw[0.0], @PYaw[0.3], @PYaw[0.3], @PYaw[0.4], @PYaw[0.0]@rb[], \
+            @lb[]@PYaw[0.0], @PYaw[0.0], @PYaw[0.0], @PYaw[0.0], @PYaw[0.0], @PYaw[0.3], @PYaw[0.3], @PYaw[0.4]@rb[], \
+            @lb[]@PYaw[0.4], @PYaw[0.0], @PYaw[0.0], @PYaw[0.0], @PYaw[0.0], @PYaw[0.0], @PYaw[0.3], @PYaw[0.3]@rb[] \
+        @rb[]
+
+        @PYaA[self]@PYbd[.]end_x @PYbd[=] lake_size @PYbd[-] @PYaw[1]
+        @PYaA[self]@PYbd[.]end_y @PYbd[=] lake_size @PYbd[-] @PYaw[1]
+
+        @PYaA[self]@PYbd[.]costs @PYbd[=] { @PYaB[']@PYaB[up]@PYaB[']:@PYaw[4], @PYaB[']@PYaB[cross]@PYaB[']:@PYaw[3], @PYaB[']@PYaB[down]@PYaB[']:@PYaw[2], @PYaB[']@PYaB[away]@PYaB[']:@PYaw[1] }
+
+        @PYaA[self]@PYbd[.]wind_distribution @PYbd[=] @lb[]@rb[]
+        @PYay[for] i @PYav[in] @PYaX[range](@PYaX[len](@PYaA[self]@PYbd[.]wind_array)):
+            vals @PYbd[=] @lb[]@PYaj[arange](@PYaX[len](@PYaA[self]@PYbd[.]wind_array@lb[]i@rb[])), @PYaA[self]@PYbd[.]wind_array@lb[]i@rb[]@rb[]
+            @PYaA[self]@PYbd[.]wind_distribution@PYbd[.]@PYaj[append](rv_discrete(name@PYbd[=]@PYaB[']@PYaB[custm]@PYaB['], \
+                                                    values@PYbd[=]vals))
+
+    @PYay[def] @PYaL[states](@PYaA[self]):
+        @PYas["""]
+@PYas[        Instead of storing the states in a large list/dictionary, we]
+@PYas[        provide an iterator.]
+@PYas[        """]
+
+        @PYay[for] x @PYav[in] @PYaX[range](@PYaA[self]@PYbd[.]lake_size):
+            @PYay[for] y @PYav[in] @PYaX[range](@PYaA[self]@PYbd[.]lake_size):
+                @PYay[for] d @PYav[in] @PYaX[range](@PYaw[8]):
+                    @PYay[for] w1 @PYav[in] @PYaX[range](@PYaw[8]):
+                        @PYay[for] w2 @PYav[in] @PYaX[range](@PYaw[8]):
+                            @PYay[yield] (x, y, d, w1, w2)
+
+    @PYay[def] @PYaL[is_terminal](@PYaA[self], state):
+        @PYay[return] (state@lb[]@PYaw[0]@rb[], state@lb[]@PYaw[1]@rb[]) @PYbd[==] (@PYaA[self]@PYbd[.]end_x, @PYaA[self]@PYbd[.]end_y)
+
+    @PYay[def] @PYaL[is_into](@PYaA[self], state, action):
+        @PYay[try]:
+            @PYaA[self]@PYbd[.]cost(state, action)
+        @PYay[except] @PYbe[KeyError]:
+            @PYay[return] @PYaA[True]
+
+        @PYay[return] @PYaA[False]
+
+    @PYay[def] @PYaL[random_state](@PYaA[self]):
+        w1 @PYbd[=] my_randint(@PYaw[8])
+        @PYay[while] @PYaA[True]: @PYaE[# we weren't sailing into the wind...]
+            d @PYbd[=] my_randint(@PYaw[8])
+            @PYay[if] tack(d, w1) @PYbd[!=] @PYaB[']@PYaB[into]@PYaB[']: @PYay[break]
+        w2 @PYbd[=] @PYaA[self]@PYbd[.]new_wind(w1)
+
+        @PYay[while] @PYaA[True]:
+            state @PYbd[=] (my_randint(@PYaA[self]@PYbd[.]lake_size), my_randint(@PYaA[self]@PYbd[.]lake_size), d, w1, w2)
+            @PYay[if] @PYav[not] @PYaA[self]@PYbd[.]is_terminal(state): @PYay[break]
+
+        @PYay[return] state
+
+
+    @PYay[def] @PYaL[stays_in_lake](@PYaA[self], state, action):
+        x, y, _, _, _ @PYbd[=] state
+        x2, y2 @PYbd[=] add_vector(x, y, direction_vector(action))
+
+        @PYay[if] x2 @PYav[in] @PYaX[range](@PYaA[self]@PYbd[.]lake_size) @PYav[and] y2 @PYav[in] @PYaX[range](@PYaA[self]@PYbd[.]lake_size):
+            @PYay[return] @PYaA[True]
+
+        @PYay[return] @PYaA[False]
+
+    @PYay[def] @PYaL[average_cost_of_transition](@PYaA[self], V, s, new_d):
+        x, y, _, _, w2 @PYbd[=] s
+
+        x2, y2 @PYbd[=] add_vector(x, y, direction_vector(new_d))
+
+        @PYay[if] @PYav[not] @PYaA[self]@PYbd[.]stays_in_lake(s, new_d): @PYay[return] @PYaA[None]
+
+        this_cost @PYbd[=] @PYaw[0]
+
+        @PYaE[# We perform the local action]
+        @PYay[try]:
+            this_cost @PYbd[+]@PYbd[=] @PYaA[self]@PYbd[.]cost(s, new_d)
+        @PYay[except] @PYbe[KeyError]:
+            @PYaE[# don't sail into the wind...]
+            @PYay[return] @PYaA[None]
+
+        @PYay[for] w3 @PYav[in] @PYaX[range](@PYaw[8]):
+            s_new @PYbd[=] (x2, y2, new_d, w2, w3)
+
+            this_cost @PYbd[+]@PYbd[=] @PYaA[self]@PYbd[.]gamma@PYbd[*]@PYaA[self]@PYbd[.]transition_probability(s, s_new)@PYbd[*]V@lb[]s_new@rb[] 
+
+        @PYay[return] this_cost
+
+    @PYay[def] @PYaL[transition_probability](@PYaA[self], s1, s2):
+        @PYas["""]
+@PYas[        What is the probability of moving from state s1 to s2?]
+
+@PYas[        s1 = (x1, y1, _, w1, w2)]
+@PYas[        s2 = (x2, y2, d2, w2_2, w3)]
+
+@PYas[        The boat was at (x1, y1) and travelled to (x2, y2). Then it must]
+@PYas[        be the case that (x2, y2) = (x1, y1) + direction_vector(d2). If this]
+@PYas[        does not hold then the probability is 0.]
+
+@PYas[        If the previous wind direction of s2 does not match the new]
+@PYas[        wind direction of s1 then the probability is 0 (so we need ]
+@PYas[        w2_2 == w2).]
+
+@PYas[        Finally, the probability of moving from s1 to s2 is just the]
+@PYas[        probability of the wind changing from w2=w2_2 to w3, which is ]
+@PYas[        stored in the global variable wind_array.]
+
+@PYas[        >>> x1, y1 = 1, 1]
+@PYas[        >>> x2, y2 = 2, 1]
+@PYas[        >>> d1 = 0]
+@PYas[        >>> d2 = 2 # the direction that we just travelled]
+@PYas[        >>> w1 = 3]
+@PYas[        >>> w2 = 2]
+@PYas[        >>> w2_2 = w2]
+
+@PYas[        >>> lake_size = 5]
+
+@PYas[        >>> S = Sailing(lake_size)]
+
+@PYas[        >>> S.transition_probability((x1, y1, d1, w1, w2), \]
+@PYas[                                    (x2, y2, d2, w2_2, 1))]
+@PYas[        0.40000000000000002]
+@PYas[        >>> S.transition_probability((x1, y1, d1, w1, w2), \]
+@PYas[                                    (x2, y2, d2, w2_2, 0))]
+@PYas[        0.0]
+@PYas[        """]
+
+        x1, y1, _, w1, w2 @PYbd[=] s1
+        x2, y2, d2, w2_2, w3 @PYbd[=] s2
+
+        d_vec1, d_vec2 @PYbd[=] direction_vector(d2)
+
+        @PYaE[# The boat was at (x1,y1) and travelled in]
+        @PYaE[# direction d2 to arrive at (x2, y2).]
+        @PYay[if] x2 @PYbd[!=] x1 @PYbd[+] d_vec1: @PYay[return] @PYaw[0]
+        @PYay[if] y2 @PYbd[!=] y1 @PYbd[+] d_vec2: @PYay[return] @PYaw[0]
+
+        @PYaE[# The new wind direction for s1 must be the]
+        @PYaE[# previous wind direction of s2.]
+        @PYay[if] w2 @PYbd[!=] w2_2: @PYay[return] @PYaw[0]
+
+        @PYaE[# Now we just have the probability of going from]
+        @PYaE[# wind direction w2 to wind direction w3.]
+
+        @PYay[return] @PYaA[self]@PYbd[.]wind_array@lb[]w2@rb[]@lb[]w3@rb[]
+
+    @PYay[def] @PYaL[new_wind](@PYaA[self], w):
+        @PYas["""]
+@PYas[        The wind is currently blowing in direction w and it changes to a]
+@PYas[        new direction according to the matrix wind_array, which is encoded]
+@PYas[        by general probability distribution in wind_probability_space.]
+
+@PYas[        EXAMPLES::]
+
+@PYas[            >>> lake_size = 5]
+@PYas[            >>> S = Sailing(lake_size)]
+@PYas[            >>> S.new_wind(0) in range(8)]
+@PYas[            True]
+@PYas[            >>> S.new_wind(4) in range(8)]
+@PYas[            True]
+@PYas[        """]
+
+        @PYaE[#assert w in range(8)]
+
+        @PYaE[#return self.wind_distribution@lb[]w@rb[].get_random_element()]
+        @PYay[return] @PYaA[self]@PYbd[.]wind_distribution@lb[]w@rb[]@PYbd[.]rvs()
+
+    @PYay[def] @PYaL[cost](@PYaA[self], s, d):
+        @PYas["""]
+@PYas[        If we are in state s and we decide to travel in direction d, how]
+@PYas[        much will this cost? Note that the wind for this new leg is in the ]
+@PYas[        last element of s.]
+
+@PYas[        EXAMPLES::]
+
+@PYas[            >>> x1, y1 = 1, 1]
+@PYas[            >>> x2, y2 = 2, 1]
+@PYas[            >>> d1 = 0]
+@PYas[            >>> d2 = 2]
+@PYas[            >>> w1 = 3]
+@PYas[            >>> w2 = 2]
+@PYas[            >>> s = (x1, y1, d1, w1, w2)]
+
+@PYas[            >>> lake_size = 5]
+@PYas[            >>> S = Sailing(lake_size)]
+@PYas[            >>> S.cost(s, 0)]
+@PYas[            3]
+@PYas[            >>> S.cost(s, 1)]
+@PYas[            2]
+@PYas[        """]
+        new_wind @PYbd[=] s@lb[]@PYbd[-]@PYaw[1]@rb[]
+
+        @PYay[return] @PYaA[self]@PYbd[.]costs@lb[]tack(d, new_wind)@rb[]
+
+    @PYay[def] @PYaL[best_action](@PYaA[self], s, V):
+        @PYas["""]
+@PYas[        If we are in state s, use the value vector V to work out the]
+@PYas[        best direction to travel in and its estimated cost.]
+@PYas[        """]
+
+        x, y, d, w1, w2 @PYbd[=] s
+
+        @PYaE[# this is the end state]
+        @PYay[if] @PYaA[self]@PYbd[.]is_terminal(s): @PYay[return] (@PYbd[-]@PYaw[1], @PYaw[0]) @PYaE[# (no action, terminal cost)]
+
+        @PYaE[# Otherwise we have to loop through all possible actions]
+        @PYaE[# and find the one with the minimum cost.]
+
+        min_d @PYbd[=] @PYaA[None]
+        min_d_cost @PYbd[=] @PYaA[None]
+
+        @PYay[for] new_d @PYav[in] @PYaX[range](@PYaw[8]):
+            new_d_cost @PYbd[=] @PYaA[self]@PYbd[.]average_cost_of_transition(V, s, new_d)
+            @PYay[if] new_d_cost @PYbd[==] @PYaA[None]: @PYay[continue]
+
+            @PYay[if] min_d @PYav[is] @PYaA[None]:
+                min_d @PYbd[=] new_d
+                min_d_cost @PYbd[=] new_d_cost
+            @PYay[elif] new_d_cost @PYbd[<] min_d_cost:
+                min_d @PYbd[=] new_d
+                min_d_cost @PYbd[=] new_d_cost
+
+        @PYay[return] (min_d, min_d_cost)
+
+    @PYay[def] @PYaL[value_iteration](@PYaA[self], epsilon):
+        V1 @PYbd[=] {}
+        V2 @PYbd[=] {}
+        policy @PYbd[=] {}
+        @PYay[for] s @PYav[in] @PYaA[self]@PYbd[.]states():
+            V1@lb[]s@rb[] @PYbd[=] @PYaw[0]
+            V2@lb[]s@rb[] @PYbd[=] @PYaw[10]@PYbd[*]epsilon
+            policy@lb[]s@rb[] @PYbd[=] @PYbd[-]@PYaw[1]
+
+            @PYay[if] @PYaA[self]@PYbd[.]is_terminal(s):
+                V1@lb[]s@rb[] @PYbd[=] @PYaw[0]
+                V2@lb[]s@rb[] @PYbd[=] @PYaw[0]
+
+        @PYay[while] @PYaA[True]:
+            max_diff @PYbd[=] @PYaX[max](@lb[]@PYaX[abs](V1@lb[]i@rb[] @PYbd[-] V2@lb[]i@rb[]) @PYay[for] i @PYav[in] @PYaA[self]@PYbd[.]states()@rb[])
+            @PYay[print] @PYaB["]@PYaB[Top of value_iteration(), max difference:]@PYaB["], max_diff
+            sys@PYbd[.]stdout@PYbd[.]flush()
+
+            @PYay[if] max_diff @PYbd[<] epsilon: @PYay[break]
+
+            @PYay[for] s @PYav[in] @PYaA[self]@PYbd[.]states():
+                @PYay[if] @PYaA[self]@PYbd[.]is_terminal(s): @PYay[continue]
+
+                policy@lb[]s@rb[], V2@lb[]s@rb[] @PYbd[=] @PYaA[self]@PYbd[.]best_action(s, V1)
+
+            V1, V2 @PYbd[=] V2, V1
+
+        V @PYbd[=] V2
+
+        V_avg @PYbd[=] @PYaX[sum](V@PYbd[.]values())@PYbd[/]@PYaX[len](V)
+        V_stddev @PYbd[=] stddev(V@PYbd[.]values(), meanval @PYbd[=] V_avg)
+
+        @PYay[return] V, policy, V_avg, V_stddev
+
+    @PYay[def] @PYaL[simulate](@PYaA[self], policy):
+        w1 @PYbd[=] my_randint(@PYaw[8])
+
+        @PYaE[# boat not facing into the wind]
+        @PYay[while] @PYaA[True]:
+            d @PYbd[=] my_randint(@PYaw[8])
+            @PYay[if] tack(d, w1) @PYbd[!=] @PYaB[']@PYaB[into]@PYaB[']: @PYay[break]
+
+        w2 @PYbd[=] @PYaA[self]@PYbd[.]new_wind(w1)
+
+        current_state @PYbd[=] (my_randint(@PYaA[self]@PYbd[.]lake_size), my_randint(@PYaA[self]@PYbd[.]lake_size), d, w1, w2)
+
+        this_cost @PYbd[=] @PYaw[0]
+        factor @PYbd[=] @PYaw[1.0]
+
+        @PYay[while] @PYav[not] @PYaA[self]@PYbd[.]is_terminal(current_state):
+            new_d @PYbd[=] policy@lb[]current_state@rb[]
+
+            this_cost @PYbd[+]@PYbd[=] factor@PYbd[*]@PYaA[self]@PYbd[.]cost(current_state, new_d)
+
+            x2, y2 @PYbd[=] add_vector(current_state@lb[]@PYaw[0]@rb[], current_state@lb[]@PYaw[1]@rb[], \
+                direction_vector(new_d))
+            w3 @PYbd[=] @PYaA[self]@PYbd[.]new_wind(current_state@lb[]@PYbd[-]@PYaw[1]@rb[])
+            current_state @PYbd[=] x2, y2, new_d, current_state@lb[]@PYbd[-]@PYaw[1]@rb[], w3
+
+            factor @PYbd[*]@PYbd[=] @PYaA[self]@PYbd[.]gamma
+
+        @PYay[return] this_cost
+
+    @PYay[def] @PYaL[run_simulations](@PYaA[self], policy, nr_sims):
+        sims @PYbd[=] @lb[]@rb[]
+        @PYay[for] i @PYav[in] @PYaX[range](@PYaw[1], nr_sims @PYbd[+] @PYaw[1]):
+            sims@PYbd[.]@PYaj[append](@PYaA[self]@PYbd[.]simulate(policy))
+
+        sims_avg @PYbd[=] @PYaX[sum](sims)@PYbd[/]@PYaX[len](sims)
+        sims_stddev @PYbd[=] stddev(sims, meanval @PYbd[=] sims_avg)
+
+        @PYay[return] sims, sims_avg, sims_stddev
+
+    @PYay[def] @PYaL[sample_next_state](@PYaA[self], state, action):
+        @PYas["""]
+@PYas[        Use the generative model of S to find the next state given that]
+@PYas[        we are in state and take action action.]
+@PYas[        """]
+
+        @PYay[if] @PYaA[self]@PYbd[.]is_terminal(state): 
+            @PYay[return] @PYaA[None]
+
+        cost @PYbd[=] @PYaA[self]@PYbd[.]cost(state, action)
+        x2, y2 @PYbd[=] add_vector(state@lb[]@PYaw[0]@rb[], state@lb[]@PYaw[1]@rb[], direction_vector(action))
+        w3 @PYbd[=] @PYaA[self]@PYbd[.]new_wind(state@lb[]@PYbd[-]@PYaw[1]@rb[])
+        new_state @PYbd[=] x2, y2, action, state@lb[]@PYbd[-]@PYaw[1]@rb[], w3
+
+        @PYay[return] new_state, cost
+
+@PYay[def] @PYaL[value_iteration_example]():
+    lake_size @PYbd[=] @PYaw[5]
+
+    S @PYbd[=] Sailing(lake_size @PYbd[=] lake_size) 
+    V, policy, V_avg, V_stddev @PYbd[=] S@PYbd[.]value_iteration(epsilon @PYbd[=] @PYaw[0.1])
+    @PYay[print] @PYaB["]@PYaB[Done with value iteration]@PYaB["]
+
+    @PYaE[# Run a few thousand simulations:]
+    nr_sims @PYbd[=] @PYaw[1000]
+    @PYay[print] @PYaB["]@PYaB[Running simulations...]@PYaB["]
+    sims, sims_avg, sims_stddev @PYbd[=] S@PYbd[.]run_simulations(policy, nr_sims)
+
+    @PYay[print]
+    @PYay[print] @PYaB["]@PYaB[Lake size: ]@PYbf[%d]@PYaB[ x ]@PYbf[%d]@PYaB["] @PYbd[%] (lake_size, lake_size)
+    @PYay[print]
+    @PYay[print] @PYaB["]@PYaB[Value iteration:]@PYaB["]
+    @PYay[print] @PYaB["]@PYaB[    Mean cost: ]@PYbf[%.1f]@PYaB["] @PYbd[%] V_avg
+    @PYay[print] @PYaB["]@PYaB[    Median cost: ]@PYbf[%.1f]@PYaB["] @PYbd[%] @PYaj[median](V@PYbd[.]values())
+    @PYay[print] @PYaB["]@PYaB[    Standard dev: ]@PYbf[%.1f]@PYaB["] @PYbd[%] V_stddev
+    @PYay[print]
+    @PYay[print] @PYaB["]@PYaB[Simulations (run ]@PYbf[%d]@PYaB[ times):]@PYaB["] @PYbd[%] nr_sims
+    @PYay[print] @PYaB["]@PYaB[    Mean cost: ]@PYbf[%.1f]@PYaB["] @PYbd[%] sims_avg
+    @PYay[print] @PYaB["]@PYaB[    Median cost: ]@PYbf[%.1f]@PYaB["] @PYbd[%] @PYaj[median](sims)
+    @PYay[print] @PYaB["]@PYaB[    Standard dev: ]@PYbf[%.1f]@PYaB["] @PYbd[%] sims_stddev
+
+    @PYay[print]
+    v_11 @PYbd[=] @PYaw[0.0]
+    v_11_count @PYbd[=] @PYaw[0]
+
+    @PYay[for] s @PYav[in] V@PYbd[.]keys():
+        @PYay[if] (s@lb[]@PYaw[0]@rb[], s@lb[]@PYaw[1]@rb[]) @PYbd[==] (@PYaw[1], @PYaw[1]):
+            v_11_count @PYbd[+]@PYbd[=] @PYaw[1]
+            v_11 @PYbd[+]@PYbd[=] V@lb[]s@rb[]
+
+    @PYay[print] @PYaB["]@PYaB[Mean cost to sail across lake from (1, 1) to (]@PYbf[%d]@PYaB[, ]@PYbf[%d]@PYaB[): ]@PYbf[%.1f]@PYaB["] \
+        @PYbd[%] (S@PYbd[.]end_x, S@PYbd[.]end_y, (v_11@PYbd[/]v_11_count))
+
+@PYay[def] @PYaL[save_optimal_solution](lake_size):
+    S @PYbd[=] Sailing(lake_size)
+    V, policy, V_avg, V_stddev @PYbd[=] S@PYbd[.]value_iteration(@PYaw[0.01])
+
+    lake_filename @PYbd[=] @PYaB["]@PYaB[lake_]@PYaB["] @PYbd[+] @PYaX[str](lake_size) @PYbd[+] @PYaB["]@PYaB[.pkl]@PYaB["]
+
+    output @PYbd[=] @PYaX[open](lake_filename, @PYaB[']@PYaB[wb]@PYaB['])
+    pickle@PYbd[.]@PYaj[dump](V, output)
+    pickle@PYbd[.]@PYaj[dump](policy, output)
+    pickle@PYbd[.]@PYaj[dump](V_avg, output)
+    pickle@PYbd[.]@PYaj[dump](V_stddev, output)
+    output@PYbd[.]close()
+
+
+@PYay[if] __name__ @PYbd[==] @PYaB["]@PYaB[__main__]@PYaB["]:
+    @PYay[if] @PYaX[len](sys@PYbd[.]argv) @PYbd[==] @PYaw[2]:
+        @PYaX[eval](sys@PYbd[.]argv@lb[]@PYaw[1]@rb[])
+    @PYay[else]:
+        value_iteration_example()
+\end{Verbatim}

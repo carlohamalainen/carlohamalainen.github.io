@@ -1,0 +1,50 @@
+.GaramondPro, body, h1, h2, h3 {
+	font-weight: 400;
+	font-style: normal;
+	line-height: normal;
+	font-family: "adobe-garamond-pro-1","adobe-garamond-pro-2", "Times New Roman", serif;
+}
+
+.GaramondPro-Italic {
+	font-weight: 400;
+	font-style: italic;
+	line-height: normal;
+	font-family: "adobe-garamond-pro-1","adobe-garamond-pro-2", "Times New Roman", serif;
+}
+
+.GaramondPro-Semibold {
+	font-weight: 600;
+	font-style: normal;
+	line-height: normal;
+	font-family: "adobe-garamond-pro-1","adobe-garamond-pro-2", "Times New Roman", serif;
+}
+
+.GaramondPro-SemiboldItalic {
+	font-weight: 600;
+	font-style: italic;
+	line-height: normal;
+	font-family: "adobe-garamond-pro-1","adobe-garamond-pro-2", "Times New Roman", serif;
+}
+
+.GaramondPro-Bold {
+	font-weight: 700;
+	font-style: normal;
+	line-height: normal;
+	font-family: "adobe-garamond-pro-1","adobe-garamond-pro-2", "Times New Roman", serif;
+}
+
+.GaramondPro-BoldItalic {
+	font-weight: 700;
+	font-style: italic;
+	line-height: normal;
+	font-family: "adobe-garamond-pro-1","adobe-garamond-pro-2", "Times New Roman", serif;
+}
+
+.mcSweeneysLetterSpacing {
+	letter-spacing: 5px;
+}
+
+.mcSweeneysSmallCap {
+	vertical-align: 50%;
+	font-size: 0.5em;
+}

@@ -1,0 +1,57 @@
+div.divider {
+	float: left;
+	width: 100%;
+	height: 2px;
+	border-top: 2px solid #000000;
+	border-bottom: 1px solid #000000;
+}
+
+div.birdDivider {
+	float: left;
+	width: 100%;
+	height: 30px;
+	margin-top: 0px;
+	margin-bottom: 14px;
+	background-image: url(/mcsweeneys_gem/images/birdDivider.png);
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+div.ornamentDivider {
+	float: left;
+	width: 100%;
+	height: 11px;
+	margin-top: 10px;
+	margin-bottom: 20px;
+	background-image: url(/mcsweeneys_gem/images/ornamentDivider.png);
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+div.ornamentDividerMoreMargin {
+	margin-top: 0px;
+	margin-bottom: 23px;
+}
+
+div.pagination {
+	text-align: center;
+	background-color: #eeeeee;
+	margin-top: 10px;
+	margin-bottom: 30px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+div.pagination span.disabled {
+	display: none;
+}
+
+div.pagination > em {
+	font-weight: bold;
+	font-style: normal;
+}
+
+.clearer {
+	font-size: 1px;
+	clear: both;
+}

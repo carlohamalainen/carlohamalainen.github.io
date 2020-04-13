@@ -1,0 +1,16 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}
+\BOOKMARK [1][-]{section.2}{iPod example}{}
+\BOOKMARK [1][-]{section.3}{Value iteration}{}
+\BOOKMARK [2][-]{subsection.3.1}{Value iteration for the iPod example}{section.3}
+\BOOKMARK [1][-]{section.4}{Sailing}{}
+\BOOKMARK [2][-]{subsection.4.1}{Example of sailing}{section.4}
+\BOOKMARK [1][-]{section.5}{UCT: Upper Confidence bounds on Trees}{}
+\BOOKMARK [2][-]{subsection.5.1}{UCB: Upper Confidence Bounds}{section.5}
+\BOOKMARK [2][-]{subsection.5.2}{UCT}{section.5}
+\BOOKMARK [2][-]{subsection.5.3}{UCT on the sailing problem}{section.5}
+\BOOKMARK [1][-]{section.6}{What else?}{}
+\BOOKMARK [1][-]{section.7}{iPod value iteration}{}
+\BOOKMARK [1][-]{section.8}{Value iteration for sailing}{}
+\BOOKMARK [1][-]{section.9}{UCB}{}
+\BOOKMARK [1][-]{section.10}{Sailing MCT}{}
+\BOOKMARK [1][-]{section.11}{UCT}{}

@@ -1,0 +1,524 @@
+diff -r cfd7354b0951 src/libgambit/integer.cc
+--- a/src/libgambit/integer.cc	Thu Sep 10 13:45:40 2009 +0200
++++ b/src/libgambit/integer.cc	Thu Sep 10 14:30:08 2009 +0200
+@@ -44,16 +44,17 @@
+ #pragma implementation
+ #endif
+ #include "integer.h"
+ #include <ctype.h>
+ #include <float.h>
+ #include <limits.h>
+ #include <math.h>
+ #include <assert.h>
++#include <string.h>
+ 
+ namespace Gambit {
+ 
+ long lg(unsigned long x)
+ {
+   long l = 0;
+   while (x > 1)
+   {
+diff -r cfd7354b0951 src/libgambit/subgame.cc
+--- a/src/libgambit/subgame.cc	Thu Sep 10 13:45:40 2009 +0200
++++ b/src/libgambit/subgame.cc	Thu Sep 10 14:30:08 2009 +0200
+@@ -21,16 +21,17 @@
+ //
+ // You should have received a copy of the GNU General Public License
+ // along with this program; if not, write to the Free Software
+ // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ //
+ 
+ #include "libgambit.h"
+ #include "subgame.h"
++#include <stdlib.h>
+ 
+ namespace Gambit {
+ 
+ 
+ // A nested anonymous namespace to privatize these functions 
+ 
+ namespace {
+ 
+diff -r cfd7354b0951 src/tools/convert/nfg2html.cc
+--- a/src/tools/convert/nfg2html.cc	Thu Sep 10 13:45:40 2009 +0200
++++ b/src/tools/convert/nfg2html.cc	Thu Sep 10 14:30:08 2009 +0200
+@@ -22,16 +22,17 @@
+ // You should have received a copy of the GNU General Public License
+ // along with this program; if not, write to the Free Software
+ // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ //
+ 
+ #include <unistd.h>
+ #include <iostream>
+ #include <iomanip>
++#include <stdlib.h>
+ 
+ #include "libgambit/libgambit.h"
+ 
+ void WriteHtmlFile(std::ostream &p_file, const Gambit::Game &p_nfg,
+ 		   int p_rowPlayer, int p_colPlayer)
+ {
+   std::string theHtml;
+   theHtml += "<center><h1>" + p_nfg->GetTitle() + "</h1></center>\n";
+diff -r cfd7354b0951 src/tools/convert/nfg2tex.cc
+--- a/src/tools/convert/nfg2tex.cc	Thu Sep 10 13:45:40 2009 +0200
++++ b/src/tools/convert/nfg2tex.cc	Thu Sep 10 14:30:08 2009 +0200
+@@ -22,16 +22,17 @@
+ // You should have received a copy of the GNU General Public License
+ // along with this program; if not, write to the Free Software
+ // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ //
+ 
+ #include <unistd.h>
+ #include <iostream>
+ #include <iomanip>
++#include <stdlib.h>
+ 
+ #include "libgambit/libgambit.h"
+ 
+ void WriteOsborneFile(std::ostream &p_file, const Gambit::Game &p_nfg,
+ 		      int p_rowPlayer, int p_colPlayer)
+ {
+   std::string theHtml;
+ 
+diff -r cfd7354b0951 src/tools/enummixed/enummixed.cc
+--- a/src/tools/enummixed/enummixed.cc	Thu Sep 10 13:45:40 2009 +0200
++++ b/src/tools/enummixed/enummixed.cc	Thu Sep 10 14:30:08 2009 +0200
+@@ -22,16 +22,17 @@
+ // You should have received a copy of the GNU General Public License
+ // along with this program; if not, write to the Free Software
+ // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ //
+ 
+ #include <unistd.h>
+ #include <iostream>
+ #include <iomanip>
++#include <stdlib.h>
+ 
+ #include "vertenum.imp"
+ #include "tableau.imp"
+ 
+ #include "libgambit/libgambit.h"
+ #include "clique.h"
+ 
+ using namespace Gambit;
+diff -r cfd7354b0951 src/tools/enumpoly/complex.cc
+--- a/src/tools/enumpoly/complex.cc	Thu Sep 10 13:45:40 2009 +0200
++++ b/src/tools/enumpoly/complex.cc	Thu Sep 10 14:30:08 2009 +0200
+@@ -28,20 +28,20 @@
+ #pragma implementation
+ #endif
+ 
+ #include <stdio.h>
+ #include <math.h>
+ #include <float.h>
+ #include <assert.h>
+ #include <ctype.h>
++#include <stdlib.h>
+ 
+ #include "libgambit/libgambit.h"
+ #include "complex.h"
+-
+ //--------------------------------------------------------------------------
+ //                              class: gComplex
+ //--------------------------------------------------------------------------
+ 
+ //--------------------------------------------------------------------------
+ //                       constructors and a destructor
+ //--------------------------------------------------------------------------
+ 
+diff -r cfd7354b0951 src/tools/enumpoly/enumpoly.cc
+--- a/src/tools/enumpoly/enumpoly.cc	Thu Sep 10 13:45:40 2009 +0200
++++ b/src/tools/enumpoly/enumpoly.cc	Thu Sep 10 14:30:08 2009 +0200
+@@ -21,16 +21,17 @@
+ //
+ // You should have received a copy of the GNU General Public License
+ // along with this program; if not, write to the Free Software
+ // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ //
+ 
+ #include <iostream>
+ #include <unistd.h>
++#include <stdlib.h>
+ #include "libgambit/libgambit.h"
+ #include "nfghs.h"
+ 
+ int g_numDecimals = 6;
+ bool g_verbose = false;
+ 
+ void PrintBanner(std::ostream &p_stream)
+ {
+diff -r cfd7354b0951 src/tools/enumpoly/gpoly.cc
+--- a/src/tools/enumpoly/gpoly.cc	Thu Sep 10 13:45:40 2009 +0200
++++ b/src/tools/enumpoly/gpoly.cc	Thu Sep 10 14:30:08 2009 +0200
+@@ -19,16 +19,17 @@
+ // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ // GNU General Public License for more details.
+ //
+ // You should have received a copy of the GNU General Public License
+ // along with this program; if not, write to the Free Software
+ // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ //
+ 
++#include <stdlib.h>
+ #include "gpoly.imp"
+ #include "libgambit/libgambit.h"
+ 
+ template<> double gPoly<double>::String_Coeff(double nega)
+ {
+   std::string Coeff = "";
+   while (charc >= '0' && charc <= '9' || charc == '.'){
+     Coeff += charc;
+diff -r cfd7354b0951 src/tools/enumpoly/linrcomb.cc
+--- a/src/tools/enumpoly/linrcomb.cc	Thu Sep 10 13:45:40 2009 +0200
++++ b/src/tools/enumpoly/linrcomb.cc	Thu Sep 10 14:30:08 2009 +0200
+@@ -22,11 +22,12 @@
+ // You should have received a copy of the GNU General Public License
+ // along with this program; if not, write to the Free Software
+ // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ //
+ 
+ #include "linrcomb.imp"
+ #include <libgambit/vector.imp>
+ #include <libgambit/matrix.imp>
++#include <stdlib.h>
+ 
+ template class LinearCombination<double>;
+ //template class LinearCombination<Gambit::Rational>;
+diff -r cfd7354b0951 src/tools/enumpoly/linrcomb.imp
+--- a/src/tools/enumpoly/linrcomb.imp	Thu Sep 10 13:45:40 2009 +0200
++++ b/src/tools/enumpoly/linrcomb.imp	Thu Sep 10 14:30:08 2009 +0200
+@@ -21,16 +21,17 @@
+ //
+ // You should have received a copy of the GNU General Public License
+ // along with this program; if not, write to the Free Software
+ // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ //
+ 
+ #include "libgambit/libgambit.h"
+ #include "linrcomb.h"
++#include <stdlib.h>
+ 
+ //-------------------------------------------------------------------------
+ // LinearCombination<T>: Constructors, destructors, constructive operators
+ //-------------------------------------------------------------------------
+ 
+ template <class T> 
+ LinearCombination<T>::LinearCombination(const Gambit::Matrix<T> &M)
+ : scrambled(M), weights(M.NumRows()), last_row_is_spanned(true)
+diff -r cfd7354b0951 src/tools/enumpoly/odometer.cc
+--- a/src/tools/enumpoly/odometer.cc	Thu Sep 10 13:45:40 2009 +0200
++++ b/src/tools/enumpoly/odometer.cc	Thu Sep 10 14:30:08 2009 +0200
+@@ -20,17 +20,17 @@
+ // GNU General Public License for more details.
+ //
+ // You should have received a copy of the GNU General Public License
+ // along with this program; if not, write to the Free Software
+ // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ //
+ 
+ #include "odometer.h"
+-
++#include <stdlib.h>
+ 
+ //---------------------------------------------------------------
+ //                      gIndexOdometer
+ //---------------------------------------------------------------
+ 
+ //---------------------------
+ // Constructors / Destructors
+ //---------------------------
+diff -r cfd7354b0951 src/tools/enumpoly/poly.cc
+--- a/src/tools/enumpoly/poly.cc	Thu Sep 10 13:45:40 2009 +0200
++++ b/src/tools/enumpoly/poly.cc	Thu Sep 10 14:30:08 2009 +0200
+@@ -21,13 +21,14 @@
+ //
+ // You should have received a copy of the GNU General Public License
+ // along with this program; if not, write to the Free Software
+ // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ //
+ 
+ #include "libgambit/libgambit.h"
+ #include "poly.imp"
++#include <stdlib.h>
+ 
+ //template class polynomial<Gambit::Rational>;
+ template class polynomial<int>;
+ template class polynomial<double>;
+ 
+diff -r cfd7354b0951 src/tools/enumpoly/poly.imp
+--- a/src/tools/enumpoly/poly.imp	Thu Sep 10 13:45:40 2009 +0200
++++ b/src/tools/enumpoly/poly.imp	Thu Sep 10 14:30:08 2009 +0200
+@@ -20,16 +20,17 @@
+ // GNU General Public License for more details.
+ //
+ // You should have received a copy of the GNU General Public License
+ // along with this program; if not, write to the Free Software
+ // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ //
+ 
+ #include "poly.h"
++#include <stdlib.h>
+ 
+ //--------------------------------------------------------------------------
+ //                      class: polynomial<T>
+ //--------------------------------------------------------------------------
+ 
+ //--------------------------------------------------------------------------
+ //                 constructors and a destructor
+ //--------------------------------------------------------------------------
+diff -r cfd7354b0951 src/tools/enumpoly/rectangl.cc
+--- a/src/tools/enumpoly/rectangl.cc	Thu Sep 10 13:45:40 2009 +0200
++++ b/src/tools/enumpoly/rectangl.cc	Thu Sep 10 14:30:08 2009 +0200
+@@ -22,16 +22,17 @@
+ // You should have received a copy of the GNU General Public License
+ // along with this program; if not, write to the Free Software
+ // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ //
+ 
+ #include <assert.h>
+ #include "libgambit/libgambit.h"
+ #include "rectangl.imp"
++#include <stdlib.h>
+ 
+ //template class gRectangle<Gambit::Rational>;
+ //template gRectangle<double> TogDouble(const gRectangle<Gambit::Rational>&);
+ 
+ template class gRectangle<double>;
+ template gRectangle<double> TogDouble(const gRectangle<double>&);
+ 
+ 
+diff -r cfd7354b0951 src/tools/enumpoly/rectangl.imp
+--- a/src/tools/enumpoly/rectangl.imp	Thu Sep 10 13:45:40 2009 +0200
++++ b/src/tools/enumpoly/rectangl.imp	Thu Sep 10 14:30:08 2009 +0200
+@@ -21,16 +21,17 @@
+ //
+ // You should have received a copy of the GNU General Public License
+ // along with this program; if not, write to the Free Software
+ // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ //
+ 
+ #include "rectangl.h"
+ #include "odometer.h"
++#include <stdlib.h>
+ 
+ //--------------------------------------------------------------------------
+ //                   rectangle -- constructors and destructor
+ //--------------------------------------------------------------------------
+ 
+ template<class T> gRectangle<T>::gRectangle(const gRectangle<T>& given) 
+ : sides(given.sides)
+ {
+diff -r cfd7354b0951 src/tools/enumpure/enumpure.cc
+--- a/src/tools/enumpure/enumpure.cc	Thu Sep 10 13:45:40 2009 +0200
++++ b/src/tools/enumpure/enumpure.cc	Thu Sep 10 14:30:08 2009 +0200
+@@ -23,16 +23,17 @@
+ // along with this program; if not, write to the Free Software
+ // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ //
+ 
+ #include <unistd.h>
+ #include <iostream>
+ #include "libgambit/libgambit.h"
+ #include "libgambit/subgame.h"
++#include <stdlib.h>
+ 
+ using namespace Gambit;
+ 
+ template <class T>
+ void PrintProfile(std::ostream &p_stream,
+ 		  const MixedBehavProfile<T> &p_profile)
+ {
+   p_stream << "NE,";
+diff -r cfd7354b0951 src/tools/gt/cmatrix.h
+--- a/src/tools/gt/cmatrix.h	Thu Sep 10 13:45:40 2009 +0200
++++ b/src/tools/gt/cmatrix.h	Thu Sep 10 14:30:08 2009 +0200
+@@ -26,16 +26,17 @@
+ #endif
+ #include <iostream>
+ #include <fstream>
+ #include <stdlib.h>
+ #include <assert.h>
+ #include <strings.h>
+ #include <string>
+ #include <iomanip>
++#include <string.h>
+ 
+ using namespace std;
+ class cmatrix;
+ 
+ class cmatrixrow {
+ public:
+ 	double operator[](int) const {
+ 		return 0.0;
+diff -r cfd7354b0951 src/tools/lcp/lcp.cc
+--- a/src/tools/lcp/lcp.cc	Thu Sep 10 13:45:40 2009 +0200
++++ b/src/tools/lcp/lcp.cc	Thu Sep 10 14:30:08 2009 +0200
+@@ -23,16 +23,17 @@
+ // along with this program; if not, write to the Free Software
+ // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ //
+ 
+ #include <iostream>
+ #include <unistd.h>
+ #include "libgambit/libgambit.h"
+ #include "libgambit/subgame.h"
++#include <stdlib.h>
+ 
+ using namespace Gambit;
+ 
+ template <class T>
+ List<MixedBehavProfile<T> > SolveExtensive(const BehavSupport &p);
+ template <class T>
+ List<MixedBehavProfile<T> > SolveExtensiveSilent(const BehavSupport &p);
+ template <class T> void SolveStrategic(const Game &p_game);
+diff -r cfd7354b0951 src/tools/liap/efgliap.cc
+--- a/src/tools/liap/efgliap.cc	Thu Sep 10 13:45:40 2009 +0200
++++ b/src/tools/liap/efgliap.cc	Thu Sep 10 14:30:08 2009 +0200
+@@ -26,16 +26,18 @@
+ 
+ #include <unistd.h>
+ #include <iostream>
+ #include <fstream>
+ 
+ #include "libgambit/libgambit.h"
+ #include "funcmin.h"
+ 
++#include <stdlib.h>
++
+ extern int m_stopAfter;
+ extern int m_numTries;
+ extern int m_maxits1;
+ extern int m_maxitsN;
+ extern double m_tol1;
+ extern double m_tolN;
+ extern std::string startFile;
+ extern bool useRandom;
+diff -r cfd7354b0951 src/tools/liap/liap.cc
+--- a/src/tools/liap/liap.cc	Thu Sep 10 13:45:40 2009 +0200
++++ b/src/tools/liap/liap.cc	Thu Sep 10 14:30:08 2009 +0200
+@@ -22,16 +22,17 @@
+ // You should have received a copy of the GNU General Public License
+ // along with this program; if not, write to the Free Software
+ // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ //
+ 
+ #include <iostream>
+ #include <unistd.h>
+ #include "libgambit/libgambit.h"
++#include <stdlib.h>
+ 
+ void PrintBanner(std::ostream &p_stream)
+ {
+   p_stream << "Compute Nash equilibria by minimizing the Lyapunov function\n";
+   p_stream << "Gambit version " VERSION ", Copyright (C) 2005, The Gambit Project\n";
+   p_stream << "This is free software, distributed under the GNU GPL\n\n";
+ }
+ 
+diff -r cfd7354b0951 src/tools/liap/nfgliap.cc
+--- a/src/tools/liap/nfgliap.cc	Thu Sep 10 13:45:40 2009 +0200
++++ b/src/tools/liap/nfgliap.cc	Thu Sep 10 14:30:08 2009 +0200
+@@ -22,16 +22,17 @@
+ // You should have received a copy of the GNU General Public License
+ // along with this program; if not, write to the Free Software
+ // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ //
+ 
+ #include <unistd.h>
+ #include <iostream>
+ #include <fstream>
++#include <stdlib.h>
+ 
+ #include "libgambit/libgambit.h"
+ #include "funcmin.h"
+ 
+ extern int m_stopAfter;
+ extern int m_numTries;
+ extern int m_maxits1;
+ extern int m_maxitsN;
+diff -r cfd7354b0951 src/tools/logit/logit.cc
+--- a/src/tools/logit/logit.cc	Thu Sep 10 13:45:40 2009 +0200
++++ b/src/tools/logit/logit.cc	Thu Sep 10 14:30:08 2009 +0200
+@@ -24,16 +24,17 @@
+ // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ //
+ 
+ #include <iostream>
+ #include <fstream>
+ #include <unistd.h>
+ #include "libgambit/libgambit.h"
+ #include "logbehav.h"
++#include <stdlib.h>
+ 
+ double g_maxDecel = 1.1;
+ double g_hStart = .03;
+ bool g_fullGraph = true;
+ int g_numDecimals = 6;
+ bool g_maxLike = false;
+ Gambit::Array<double> g_obsProbs;
+ double g_targetLambda = -1.0;
+diff -r cfd7354b0951 src/tools/logit/nfgdyn.cc
+--- a/src/tools/logit/nfgdyn.cc	Thu Sep 10 13:45:40 2009 +0200
++++ b/src/tools/logit/nfgdyn.cc	Thu Sep 10 14:30:08 2009 +0200
+@@ -26,17 +26,17 @@
+ //
+ 
+ #include <unistd.h>
+ #include <math.h>
+ #include <iostream>
+ #include <fstream>
+ #include <iomanip>
+ #include "libgambit/libgambit.h"
+-
++#include <stdlib.h>
+ //
+ // This program attempts to identify the quantal response equilibria
+ // which are stable under the perturbed best-reply dynamics for a given
+ // value of the logit precision parameter 'lambda'.
+ //
+ // The program takes a normal form game on standard input.  The following
+ // command-line parameters modify its operation:
+ //
+diff -r cfd7354b0951 src/tools/lp/lp.cc
+--- a/src/tools/lp/lp.cc	Thu Sep 10 13:45:40 2009 +0200
++++ b/src/tools/lp/lp.cc	Thu Sep 10 14:30:08 2009 +0200
+@@ -23,16 +23,17 @@
+ // You should have received a copy of the GNU General Public License
+ // along with this program; if not, write to the Free Software
+ // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ //
+ 
+ #include <iostream>
+ #include <unistd.h>
+ #include "libgambit/libgambit.h"
++#include <stdlib.h>
+ 
+ template <class T> void SolveExtensive(const Gambit::Game &p_game);
+ template <class T> void SolveStrategic(const Gambit::Game &p_game);
+ 
+ void PrintBanner(std::ostream &p_stream)
+ {
+   p_stream << "Compute Nash equilibria by solving a linear program\n";
+   p_stream << "Gambit version " VERSION ", Copyright (C) 2005, The Gambit Project\n";
+diff -r cfd7354b0951 src/tools/simpdiv/nfgsimpdiv.cc
+--- a/src/tools/simpdiv/nfgsimpdiv.cc	Thu Sep 10 13:45:40 2009 +0200
++++ b/src/tools/simpdiv/nfgsimpdiv.cc	Thu Sep 10 14:30:08 2009 +0200
+@@ -24,16 +24,17 @@
+ // Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ //
+ 
+ #include <unistd.h>
+ #include <iostream>
+ #include <iomanip>
+ #include <fstream>
+ #include "libgambit/libgambit.h"
++#include <stdlib.h>
+ 
+ //
+ // simpdiv is a simplicial subdivision algorithm with restart, for finding
+ // mixed strategy solutions to general finite n-person games.  It is based on
+ // van Der Laan, Talman and van Der Heyden, Math in Oper Res, 1987.
+ //
+ // The program accepts a normal form game file on standard input.
+ //

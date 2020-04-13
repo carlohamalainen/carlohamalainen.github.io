@@ -1,0 +1,47 @@
+This is BibTeX, Version 0.99c (Web2C 7.5.6)
+The top-level auxiliary file: mdp.aux
+The style file: plain.bst
+Database file #1: mdp.bib
+Warning--to sort, need author or key in viconvergence
+You've used 6 entries,
+            2118 wiz_defined-function locations,
+            531 strings with 4905 characters,
+and the built_in function-call counts, 1884 in all, are:
+= -- 195
+> -- 59
+< -- 2
++ -- 25
+- -- 18
+* -- 101
+:= -- 284
+add.period$ -- 19
+call.type$ -- 6
+change.case$ -- 27
+chr.to.int$ -- 0
+cite$ -- 7
+duplicate$ -- 78
+empty$ -- 175
+format.name$ -- 18
+if$ -- 425
+int.to.chr$ -- 0
+int.to.str$ -- 6
+missing$ -- 3
+newline$ -- 32
+num.names$ -- 10
+pop$ -- 42
+preamble$ -- 1
+purify$ -- 21
+quote$ -- 0
+skip$ -- 70
+stack$ -- 0
+substring$ -- 120
+swap$ -- 25
+text.length$ -- 2
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 24
+warning$ -- 1
+while$ -- 18
+width$ -- 7
+write$ -- 63
+(There was 1 warning)

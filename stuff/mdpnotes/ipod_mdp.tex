@@ -1,0 +1,161 @@
+\begin{Verbatim}[commandchars=@\[\]]
+@PYaE[# -*- coding: utf-8 -*-]
+
+@PYaE[#*****************************************************************************]
+@PYaE[#       Copyright (C) 2009 Carlo Hamalainen <carlo.hamalainen@at[]gmail.com>, ]
+@PYaE[#]
+@PYaE[#  Distributed under the terms of the GNU General Public License (GPL)]
+@PYaE[#]
+@PYaE[#    This code is distributed in the hope that it will be useful,]
+@PYaE[#    but WITHOUT ANY WARRANTY; without even the implied warranty of]
+@PYaE[#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU]
+@PYaE[#    General Public License for more details.]
+@PYaE[#]
+@PYaE[#  The full text of the GPL is available at:]
+@PYaE[#]
+@PYaE[#                  http://www.gnu.org/licenses/]
+@PYaE[#*****************************************************************************]
+
+@PYas["""]
+@PYas[A Markov Decision Process (MDP) for the iPod problem ]
+@PYas[described at http://norvig.com/ipod.html]
+@PYas["""]
+
+@PYay[import] @PYaV[random]
+@PYay[import] @PYaV[sys]
+
+@PYay[def] @PYaL[value_iteration](N, T, target, epsilon @PYbd[=] @PYaw[0.001]):
+    @PYaE[# The possible actions from any state:]
+    actions @PYbd[=] @lb[]@PYaB[']@PYaB[sequential]@PYaB['], @PYaB[']@PYaB[shuffle]@PYaB[']@rb[]
+
+    @PYaE[# Transition probabilities:]
+    @PYaE[# transitions@lb[]s, a, w@rb[] = probability of moving from s to w by action a.]
+
+    transitions @PYbd[=] {}
+
+    @PYaE[# Sequential strategy gets us to the target directly.]
+    @PYay[for] s @PYav[in] @PYaX[range](N):
+        @PYay[for] w @PYav[in] @PYaX[range](N):
+            @PYay[if] w @PYbd[==] target:
+                transitions@lb[]s, @PYaB[']@PYaB[sequential]@PYaB['], w@rb[] @PYbd[=] @PYaw[1.0]
+            @PYay[else]:
+                transitions@lb[]s, @PYaB[']@PYaB[sequential]@PYaB['], w@rb[] @PYbd[=] @PYaw[0.0]
+
+    @PYaE[# The Shuffle strategy takes us to any state with equal]
+    @PYaE[# probability.]
+    @PYay[for] s @PYav[in] @PYaX[range](N):
+        @PYay[for] w @PYav[in] @PYaX[range](N):
+            transitions@lb[]s, @PYaB[']@PYaB[shuffle]@PYaB['], w@rb[] @PYbd[=] @PYaw[1.0]@PYbd[/]N
+
+    @PYaE[# Cost of each action from any state s.]
+    cost @PYbd[=] {}
+    @PYay[for] s @PYav[in] @PYaX[range](N): cost@lb[]s, @PYaB[']@PYaB[sequential]@PYaB[']@rb[] @PYbd[=] @PYaX[abs](target @PYbd[-] s)
+    @PYay[for] s @PYav[in] @PYaX[range](N): cost@lb[]s, @PYaB[']@PYaB[shuffle]@PYaB[']@rb[] @PYbd[=] T
+
+    V1 @PYbd[=] @lb[]@PYaw[0]@rb[] @PYbd[*] N
+    V2 @PYbd[=] @lb[]@PYaw[1]@rb[] @PYbd[*] N
+    policy @PYbd[=] @lb[]@PYaB[']@PYaB[shuffle]@PYaB[']@rb[] @PYbd[*] N
+
+    @PYay[while] @PYaX[max](@lb[]@PYaX[abs](V1@lb[]i@rb[] @PYbd[-] V2@lb[]i@rb[]) @PYay[for] i @PYav[in] @PYaX[range](N)@rb[]) @PYbd[>] epsilon:
+        @PYay[for] s @PYav[in] @PYaX[range](N):
+            min_action @PYbd[=] actions@lb[]@PYaw[0]@rb[]
+            min_action_cost @PYbd[=] cost@lb[]s, actions@lb[]@PYaw[0]@rb[]@rb[] \
+                @PYbd[+] @PYaX[sum](@lb[]transitions@lb[]s, actions@lb[]@PYaw[0]@rb[], w@rb[]@PYbd[*]V1@lb[]w@rb[] @PYay[for] w @PYav[in] @PYaX[range](N)@rb[])
+
+            @PYay[for] a @PYav[in] actions:
+                this_cost @PYbd[=] cost@lb[]s, a@rb[] @PYbd[+] @PYaX[sum](@lb[]transitions@lb[]s, a, w@rb[]@PYbd[*]V1@lb[]w@rb[] \
+                    @PYay[for] w @PYav[in] @PYaX[range](N)@rb[])
+
+                @PYay[if] this_cost @PYbd[<] min_action_cost:
+                    min_action @PYbd[=] a
+                    min_action_cost @PYbd[=] this_cost
+
+            V2@lb[]s@rb[] @PYbd[=] min_action_cost
+            policy@lb[]s@rb[] @PYbd[=] min_action
+
+        V1, V2 @PYbd[=] V2, V1   @PYaE[# swapsies]
+
+    @PYay[try]:
+        p @PYbd[=] @PYaX[min](@lb[]s @PYay[for] s @PYav[in] @PYaX[range](N) @PYay[if] policy@lb[]s@rb[] @PYbd[==] @PYaB[']@PYaB[sequential]@PYaB[']@rb[]) @PYbd[-] @PYaw[1]
+        q @PYbd[=] @PYaX[min](@lb[]s @PYay[for] s @PYav[in] @PYaX[range](N) @PYay[if] V2@lb[]s@rb[] @PYbd[==] target @PYbd[-] s@rb[]) @PYbd[-] @PYaw[1]
+
+        @PYaE[# fixme: fails if epsilon is too large, ie. our policy vector isn't]
+        @PYaE[# optimal.]
+        @PYaE[# assert p == q]
+
+        p @PYbd[=] @PYaX[min](@lb[]s @PYay[for] s @PYav[in] @PYaX[range](N) @PYay[if] V2@lb[]s@rb[] @PYbd[==] target @PYbd[-] s@rb[]) @PYbd[-] @PYaw[1]
+
+        @PYay[assert] policy@lb[]p@rb[] @PYbd[==] @PYaB[']@PYaB[shuffle]@PYaB[']
+        @PYay[assert] V2@lb[]p@rb[] @PYbd[!=] target @PYbd[-] p
+
+        @PYay[assert] policy@lb[]p @PYbd[+] @PYaw[1]@rb[] @PYbd[==] @PYaB[']@PYaB[sequential]@PYaB[']
+        @PYay[assert] V2@lb[]p @PYbd[+] @PYaw[1]@rb[] @PYbd[==] target @PYbd[-] (p @PYbd[+] @PYaw[1])
+
+        @PYay[assert] policy@lb[]p @PYbd[+] @PYaw[2]@rb[] @PYbd[==] @PYaB[']@PYaB[sequential]@PYaB[']
+        @PYay[assert] V2@lb[]p @PYbd[+] @PYaw[2]@rb[] @PYbd[==] target @PYbd[-] (p @PYbd[+] @PYaw[2])
+    @PYay[except] @PYbe[ValueError]:
+        @PYaE[# we must have come in with a high epsilon value and didn't get]
+        @PYaE[# a 'correct' value/policy vector.]
+        p @PYbd[=] @PYaA[None]
+
+    @PYay[return] V2, policy, p
+
+@PYay[def] @PYaL[simulate](N, T, initial_state, target, policy):
+    s @PYbd[=] initial_state
+    total_cost @PYbd[=] @PYaw[0]
+
+    @PYay[while] s @PYbd[!=] target:
+        @PYay[if] policy@lb[]s@rb[] @PYbd[==] @PYaB[']@PYaB[sequential]@PYaB[']:
+            total_cost @PYbd[+]@PYbd[=] @PYaX[abs](target @PYbd[-] s)
+            s @PYbd[=] target
+        @PYay[else]: @PYaE[# policy@lb[]s@rb[] == 'shuffle']
+            total_cost @PYbd[+]@PYbd[=] T
+            s @PYbd[=] random@PYbd[.]randrange(N)
+
+    @PYay[return] total_cost
+
+@PYay[def] @PYaL[average_simulation](N, T, policy):
+    @PYaE[# The target state:]
+    target @PYbd[=] N@PYbd[/]@PYaw[2]
+
+    nr_iters @PYbd[=] @PYaw[1000]@PYbd[*]N
+
+    @PYay[return] @PYaX[sum](@lb[]simulate(N, T, random@PYbd[.]randrange(N), target, policy) \
+        @PYay[for] _ @PYav[in] @PYaX[range](nr_iters)@rb[])@PYbd[/]@PYaX[float](nr_iters)
+
+@PYay[def] @PYaL[usage]():
+    @PYay[print]
+    @PYay[print] @PYaB["]@PYaB[Usage:]@PYaB["]
+    @PYay[print] @PYaB["]@PYaB[$ python ipod_mdp.py <N> <T>]@PYaB["]
+    @PYay[print]
+    sys@PYbd[.]exit(@PYaw[0])
+
+
+@PYay[if] __name__ @PYbd[==] @PYaB["]@PYaB[__main__]@PYaB["]:
+    @PYay[if] @PYaX[len](sys@PYbd[.]argv) @PYbd[==] @PYaw[1]: usage()
+
+    @PYay[if] @PYaX[len](sys@PYbd[.]argv) @PYbd[==] @PYaw[3]:
+        N @PYbd[=] @PYaX[int](sys@PYbd[.]argv@lb[]@PYaw[1]@rb[]) 
+        T @PYbd[=] @PYaX[float](sys@PYbd[.]argv@lb[]@PYaw[2]@rb[]) 
+
+        V, policy, p @PYbd[=] value_iteration(N, T, N@PYbd[/]@PYaw[2])
+
+        away @PYbd[=] N@PYbd[/]@PYaw[2] @PYbd[-] p
+
+        @PYay[assert] policy@lb[]N@PYbd[/]@PYaw[2] @PYbd[-] (away @PYbd[-] @PYaw[1])@rb[] @PYbd[==] @PYaB[']@PYaB[sequential]@PYaB[']
+        @PYay[assert] policy@lb[]N@PYbd[/]@PYaw[2] @PYbd[-] (away)@rb[] @PYbd[==] @PYaB[']@PYaB[shuffle]@PYaB[']
+        @PYay[assert] policy@lb[]N@PYbd[/]@PYaw[2] @PYbd[-] (away @PYbd[+] @PYaw[1])@rb[] @PYbd[==] @PYaB[']@PYaB[shuffle]@PYaB[']
+
+        mean_V @PYbd[=] @PYaX[float](@PYaX[sum](V))@PYbd[/]@PYaX[float](@PYaX[len](V))
+        mean_sim @PYbd[=] average_simulation(N, T, policy)
+
+        @PYay[print] @PYaB["]@PYaB[mean(V) =]@PYaB["], mean_V
+        @PYay[print] @PYaB["]@PYaB[mean (simulation):]@PYaB["], mean_sim
+        @PYay[print] @PYaB["]@PYaB[difference:]@PYaB["], mean_V @PYbd[-] mean_sim
+
+        @PYay[print] @PYaB["]@PYaB[shuffle when:]@PYaB["], away, @PYaB["]@PYaB[or more away]@PYaB["]
+
+        sys@PYbd[.]exit(@PYaw[0])
+
+    usage()
+\end{Verbatim}

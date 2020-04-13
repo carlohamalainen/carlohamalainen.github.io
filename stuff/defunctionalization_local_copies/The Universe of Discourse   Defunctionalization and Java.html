@@ -1,0 +1,508 @@
+<html>
+
+<head>
+<title>The Universe of Discourse : Defunctionalization and Java</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://blog.plover.com/index.rss" />
+<link rel="alternate" type="application/atom+xml" title="Atom"
+      href="http://blog.plover.com/index.atom" />
+
+<link rel="openid2.provider" href="https://openid.stackexchange.com/openid/provider">
+<link rel="openid2.local_id" href="https://openid.stackexchange.com/user/1b891001-2f6a-41a9-8754-aeab31dd4599">
+
+<!-- MathJax -->
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- To enable inlining of $ ... $ 
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+-->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['!!','!!']]} <!-- temporary -->
+});
+</script>
+
+
+<style>
+pre {
+  overflow: auto;
+  background-color: #e4f0e4;
+  border-top:  1px #d0d0d0 solid;
+  border-left: 1px #d0d0d0 solid;
+  padding: .6em 0;
+}
+
+pre.digression  {
+  background-color: #ffdddd;
+}
+
+pre.erroneous  {
+  background-color: #ffdddd;
+}
+
+blockquote {
+  border-top:  1px #d0d0d0 solid;
+  border-left: 1px #d0d0d0 solid;
+  padding: 3px;
+  background-color: #f5f5dc;
+}
+
+.emph {
+  color: purple;
+  font-weight: bolder;
+}
+
+.displayImage {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.bookbox table          { margin-left:    0.5em; 
+                          margin-bottom:  0.5em;
+}
+
+@media print, handheld, screen and (max-device-width: 800px) {
+  .sidebar { display: none; }
+  .bookbox { display: none; }
+}
+
+body,td           { font-family: Verdana,Geneva,Arial,Sans-serif; 
+                    font-size: 12px; color: #222222; }
+a                 { color: #000066 }
+.sidebar a        { color: #000000 }
+.pagetitle        { font-family: Verdana,Geneva,Arial,Sans-serif; 
+                    font-size: 18px; font-weight: bold; color: #336699; }
+.dateheader       { font-family: Verdana,Geneva,Arial,Sans-serif; 
+                    font-size: 14px; font-weight: bold; color: #336699; }
+.storytitle       { font-family: Verdana,Geneva,Arial,Sans-serif; 
+                    font-size: 16px; font-weight: bold; color:
+                    #336699; text-decoration: none; }
+ }
+h2       { font-size: 14px; font-weight: bold; color: #996699;
+           font-family: Verdana,Geneva,Arial,Sans-serif;  }
+h3       { font-size: 12px; color: #996699;
+           font-family: Verdana,Geneva,Arial,Sans-serif;  }
+.menuitem         { font-size: 9px; }
+.menuitem a        { font-size: 9px; text-decoration: none }
+.toc     { font-size: 10px; }
+</style>
+
+<link rel='shortcut icon' href='/plover.ico' type="image/x-icon" />
+<meta name="google-site-verification"
+      content="XLxterQkreKJ10X-T_OAhtcZfF6si4ZF2vupilmCNEM" />
+</head>
+
+<body bgcolor="#ffffff">
+
+<!-- Start of StatCounter Code -->
+<script type="text/javascript">
+sc_project=3591028; 
+sc_invisible=1; 
+sc_partition=42; 
+sc_security="0c11f688"; 
+</script>
+
+<script type="text/javascript"
+src="http://www.statcounter.com/counter/counter_xhtml.js"></script><noscript><div
+class="statcounter"><a href="http://www.statcounter.com/"
+target="_blank"><img class="statcounter"
+src="http://c43.statcounter.com/3591028/0/0c11f688/1/" alt="counter
+statistics" ></a></div></noscript>
+<!-- End of StatCounter Code -->
+
+<!-- Google analytics thing -->
+<script src="http://www.google-analytics.com/urchin.js"
+type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-1377963-1";
+urchinTracker();
+</script>
+
+<table border="0" width="100%" cellpadding="0" cellspacing="0">
+ <tr>
+  <!-- main title -->
+  <td colspan="6"><span class="pagetitle"><font size="+2"><a
+  style="text-decoration: none" href="http://blog.plover.com/">The Universe of Discourse</a></font></span></td>
+ </tr>
+
+ <tr>
+  <td colspan="6" bgcolor="#000000" height="1" ></td>
+ </tr>
+ 
+ <tr valign="top">
+  <td bgcolor="#6699cc"><nobr>&nbsp; &nbsp; </nobr>
+
+  <!-- left column -->
+  <td class="sidebar" bgcolor="#6699cc">
+
+   <p>
+   <br />
+   <a href="http://en.wikipedia.org/wiki/Mark_Dominus">Mark Dominus</a> (<a href="http://en.wikipedia.org/wiki/Mark_Dominus">&#38518;&#25935;&#20462;</a>)<br />
+   <a href="mailto:mjd@plover.com">mjd@plover.com</a> <br />
+   </p>
+
+   <p>
+   <img width=100 height=100 src="http://pic.blog.plover.com/TOP.jpg"><br />
+   </p>
+
+   <p>
+   <a href="http://blog.plover.com/index.rss">RSS</a>
+   <a href="http://blog.plover.com/index.atom">Atom</a>   </p>
+
+
+   <p><a href="http://blog.plover.com/">12 recent entries</a><br>
+ <a href="http://blog.plover.com/oops/placeholder.html"><span class=menuitem>Placeholder texts</span></a>&nbsp;/ <a href="http://blog.plover.com/math/IL-contradiction.html"><span class=menuitem>Proof by contradiction</span></a>&nbsp;/ <a href="http://blog.plover.com/tech/2banner.html"><span class=menuitem>2banner, which tells you when someone else is looking at the same web page</span></a>&nbsp;/ <a href="http://blog.plover.com/physics/the-second-law.html"><span class=menuitem>The perfect machine</span></a>&nbsp;/ <a href="http://blog.plover.com/IT/GUID.html"><span class=menuitem>Everything needs an ID</span></a>&nbsp;/ <a href="http://blog.plover.com/prog/Java.html"><span class=menuitem>Why I like Java</span></a>&nbsp;/ <a href="http://blog.plover.com/notes/twingler.html"><span class=menuitem>Twingler, a generic data structure munger</span></a>&nbsp;/ <a href="http://blog.plover.com/notes/quirky.html"><span class=menuitem>Notes on a system for abbreviating SQL queries</span></a>&nbsp;/ <a href="http://blog.plover.com/prog/perl/DateTime-Moonpig.html"><span class=menuitem>DateTime::Moonpig, a saner interface to DateTime</span></a>&nbsp;/ <a href="http://blog.plover.com/math/Cauchy.html"><span class=menuitem>Cauchy and the continuum</span></a>&nbsp;/ <a href="http://blog.plover.com/misc/advice.html"><span class=menuitem>Good advice</span></a>&nbsp;/ <a href="http://blog.plover.com/prog/perl/datetime-floating.html"><span class=menuitem>Two reasons I don't like DateTime's "floating" time zone</span></a>
+</p>
+
+
+   <p>Archive:<br><table>
+<tr><td><a href="http://blog.plover.com/2014/">2014</a>:
+<td><a href="http://blog.plover.com/2014/01/">J</a><a href="http://blog.plover.com/2014/02/">F</a><a href="http://blog.plover.com/2014/03/">M</a>
+<tr><td><a href="http://blog.plover.com/2013/">2013</a>:
+<td>JFMAMJ<tr><td>&nbsp;<td><a href="http://blog.plover.com/2013/07/">J</a>A<a href="http://blog.plover.com/2013/09/">S</a><a href="http://blog.plover.com/2013/10/">O</a>N<a href="http://blog.plover.com/2013/12/">D</a>
+<tr><td><a href="http://blog.plover.com/2012/">2012</a>:
+<td><a href="http://blog.plover.com/2012/01/">J</a><a href="http://blog.plover.com/2012/02/">F</a><a href="http://blog.plover.com/2012/03/">M</a>AMJ
+<tr><td>&nbsp;<td>J<a href="http://blog.plover.com/2010/08/">A</a>SON<a href="http://blog.plover.com/2012/12/">D</a>
+<tr><td><a href="http://blog.plover.com/2011/">2011</a>:
+<td>JFMA<a href="http://blog.plover.com/2011/05/">M</a><a href="http://blog.plover.com/2011/06/">J</a>
+<tr><td>&nbsp;<td>JASO<a href="http://blog.plover.com/2011/11/">N</a>D
+<tr><td><a href="http://blog.plover.com/2010/">2010</a>:
+<td><a href="http://blog.plover.com/2010/01/">J</a>FMAMJ
+<tr><td>&nbsp;<td>J<a href="http://blog.plover.com/2010/08/">A</a><a href="http://blog.plover.com/2010/09/">S</a><a href="http://blog.plover.com/2010/10/">O</a><a href="http://blog.plover.com/2010/11/">N</a>D
+<tr><td><a href="http://blog.plover.com/2009/">2009</a>:
+<td><a href="http://blog.plover.com/2009/01/">J</a><a href="http://blog.plover.com/2009/02/">F</a><a href="http://blog.plover.com/2009/03/">M</a>A<a href="http://blog.plover.com/2009/05/">M</a><a href="http://blog.plover.com/2009/06/">J</a>
+<tr><td>&nbsp;<td><a href="http://blog.plover.com/2009/07/">J</a>A<a href="http://blog.plover.com/2009/09/">S</a>ON<a href="http://blog.plover.com/2009/12/">D</a>
+<tr><td><a href="http://blog.plover.com/2008/">2008</a>:
+<td><a href="http://blog.plover.com/2008/01/">J</a><a href="http://blog.plover.com/2008/02/">F</a><a href="http://blog.plover.com/2008/03/">M</a><a href="http://blog.plover.com/2008/04/">A</a><a href="http://blog.plover.com/2008/05/">M</a><a href="http://blog.plover.com/2008/06/">J</a>
+<tr><td>&nbsp;<td><a href="http://blog.plover.com/2008/07/">J</a>A<a href="http://blog.plover.com/2008/09/">S</a><a href="http://blog.plover.com/2008/10/">O</a><a href="http://blog.plover.com/2008/11/">N</a>D
+<tr><td><a href="http://blog.plover.com/2007/">2007</a>:
+<td><a href="http://blog.plover.com/2007/01/">J</a><a href="http://blog.plover.com/2007/02/">F</a><a href="http://blog.plover.com/2007/03/">M</a><a href="http://blog.plover.com/2007/04/">A</a><a href="http://blog.plover.com/2007/05/">M</a><a href="http://blog.plover.com/2007/06/">J</a>
+<tr><td>&nbsp;<td><a href="http://blog.plover.com/2007/07/">J</a><a href="http://blog.plover.com/2007/08/">A</a><a href="http://blog.plover.com/2007/09/">S</a><a href="http://blog.plover.com/2007/10/">O</a><a href="http://blog.plover.com/2007/11/">N</a><a href="http://blog.plover.com/2007/12/">D</a>
+<tr><td><a href="http://blog.plover.com/2006/">2006</a>:
+<td><a href="http://blog.plover.com/2006/01/">J</a><a href="http://blog.plover.com/2006/02/">F</a><a
+href="http://blog.plover.com/2006/03/">M</a><a href="http://blog.plover.com/2006/04/">A</a><a
+href="http://blog.plover.com/2006/05/">M</a><a href="http://blog.plover.com/2006/06/">J</a>
+<tr><td>&nbsp;<td> <a href="http://blog.plover.com/2006/07/">J</a>A<a
+href="http://blog.plover.com/2006/09/">S</a><a
+href="http://blog.plover.com/2006/10/">O</a><a
+href="http://blog.plover.com/2006/11/">N</a><a
+href="http://blog.plover.com/2006/12/">D</a>
+<tr><td><a href="http://blog.plover.com/2005/">2005</a>: <td><a
+href="http://blog.plover.com/2005/10/">O</a><a href="http://blog.plover.com/2005/11/">N</a><a
+href="http://blog.plover.com/2005/12/">D</a>
+</table>
+<br>
+</p>
+
+
+
+<!--
+
+   <p>
+     <a href="http://blog.plover.com/math/">mathematics</a>
+     <a href="http://blog.plover.com/book/">books</a>
+     <a href="http://blog.plover.com/physics/">physics</a>
+     <a href="http://blog.plover.com/calendar/">calendar</a>
+     <a href="http://blog.plover.com/oops/">mistakes</a>
+     <a href="http://blog.plover.com/bio/">biology</a>
+   </p>
+-->
+
+   <p>
+   <img alt="" src="http://pic.blog.plover.com/buttons/mjd-universe.png"
+   border="0" vspace=1 /></a>
+   <a href="http://hop.perl.plover.com/"><img alt="Higher-Order Perl"
+   src="http://pic.blog.plover.com/buttons/HOP-BUTTON.png" border="0" vspace=1 /></a>
+   <a href="http://www.blosxom.com/"><img alt="Blosxom"
+   src="http://pic.blog.plover.com/buttons/blosxom-sux.png" border="0" vspace=1 /></a>
+   </p>
+
+<!--  <a href="http://www.blosxom.com/"><img alt="Blosxom" rc="http://www.blosxom.com/images/pb_blosxom.gif" border="1" hspace="3" vspace="3" /></a>-->
+   </p>
+
+<!--  <p>  </p> -->
+
+<!--  <p><a href="http://technorati.com/claim/hzrgjnktrw">Technorati Profile</a></p> -->
+
+  <p><span style="font-size: 9px; background-color: #ccccff; padding: 2px;">Comments disabled</span></p>
+  </td>
+
+  <td bgcolor="#6699cc"><nobr>&nbsp; &nbsp; </nobr></td>
+
+  <td bgcolor="#f3f3f3"><nobr>&nbsp; &nbsp; </nobr></td> 
+
+  <!-- main blog entry column -->
+  <td bgcolor="#f3f3f3" width="100%"> 
+
+   <br />
+
+<span class="dateheader">Tue, 17 Jun 2008</span>
+<p>
+<a class="storytitle" name="defunctionalization" href="http://blog.plover.com/prog/defunctionalization.html">Defunctionalization and Java</a>
+<br />
+
+
+A couple of weeks ago I was introduced to the notion of defunctionalization by <a
+href="http://www.kennknowles.com/blog/2008/05/24/what-is-defunctionalization/">this
+article on Ken
+Knowles' blog</a>.  Defunctionalization is a program transformation that removes the
+higher-order functions from a program.  The idea is that you replace
+something like &lambda;<i>x</i>.<i>x</i>+<i>y</i>  with a data structure that
+encapsulates a value of <i>y</i> somewhere, say (HOLD <i>y</i>).  And
+instead of using the language's built-in function application to
+apply this object directly to an argument <i>x</i>, you write a
+synthetic applicator that takes (HOLD <i>y</i>) and <i>x</i> and
+returns <i>x</i> + <i>y</i>.     And anyone who wanted to apply 
+&lambda;<i>x</i>.<i>x</i>+<i>y</i> to some argument <i>x</i> in some context
+in which <i>y</i> was bound should first construct (HOLD <i>y</i>),
+then use the synthetic applicator on (HOLD <i>y</i>) and <i>x</i>.<p>
+
+Consider, for example, the following Haskell program:<p>
+
+
+<pre>
+        -- Haskell
+        aux f = f 1 + f 10
+        res x = aux (&lambda;z <span style="white-space: nowrap;">-&gt;</span> z + x)
+</pre>
+
+The defunctionalization of this example is:<p>
+
+<pre>
+        -- Haskell
+        data Hold = HOLD Int
+        fake_apply (HOLD a) b = a + b
+        aux held = fake_apply held 1 + fake_apply held 10
+        res x = aux (HOLD x)
+</pre>
+
+I hope this will make the idea clear.<p>
+
+M.&nbsp;Knowles cites the paper <a
+href="http://www.brics.dk/RS/01/23/"><cite>Defunctionalization at work</cite></a> by
+Olivier Danvy and Lasse&nbsp;R. Nielsen, which was lots of fun.  
+(My Haskell example above is a 
+simplification of the example from page 5 of Danvy and Nielsen.)
+Among other things, Danvy
+and Nielsen point out that this defunctionalization transformation is in a certain
+sense dual to the transformation that turns ordinary data structures
+into &lambda;-terms in Church encoding.  Church encloding turns data items
+like pairs or booleans into higher-order functions; defunctionalization turns them
+back again.  <p>
+
+Section 1.4 of the Danvy and Nielsen paper lists a whole bunch of
+contexts in which this technique has been studied and used, but one
+thing I didn't think I saw there is that this is essentially the
+transformation that Java programmers use when they want to use
+closures.<p>
+
+For example, suppose a Java programmer wants to write something like
+<tt>aux</tt> in:<p>
+
+<pre>
+        -- Haskell
+        aux f = f 1 + f 10
+        res x = aux (&lambda;z <span style="white-space: nowrap;">-&gt;</span> z + x)
+</pre>
+
+But they can't, because Java doesn't have closures.<p>
+
+So instead, they do this:<p>
+
+<pre>
+        /* Java */
+
+        class Hold {
+          private int a;
+
+          public Hold(int a) {
+            this.a = a;
+          }
+
+          public int fake_apply(int b) {
+            return this.a + b;
+          }
+        }
+
+        private static int aux(Hold h) {
+          return h.fake_apply(1) + h.fake_apply(10);
+        }
+
+        static int res(int x) {
+          Hold h = new Hold(x);
+          return aux(h);
+        }
+</pre>
+
+Where the class <tt>Hold</tt> corresponds directly to the
+data type <tt>Hold</tt> in the defunctionalized Haskell code.<p>
+
+Here is a real example.  Consider GNU Emacs.   When I enter text-mode
+in Emacs, I want a bunch of subsystems to be notified.  Emacs has a
+<tt>text-mode-hook</tt> variable, which is basically a list of
+functions, and when an Emacs buffer is put into text-mode, Emacs
+invokes the hooks.  Any subsystem that wants to be notified puts its
+own hook function into that variable.  If I wanted to accomplish
+something similar in Haskell or SML, I would similarly use a list of
+functions.  <p>
+
+In Java, the corresponding facility is called <a
+href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/Observable.html"><tt>java.util.Observable</tt></a>.
+Were one implementing Emacs in Java (perish the thought!) the mode
+object would inherit from <tt>Observable</tt>, and so would provide an
+<tt>addObserver</tt> method for adding a hook to a list somewhere.
+When the mode was switched to text-mode, the mode object would call
+<tt>notifyObservers</tt>, which would loop over the hook list, calling
+the hooks.  So far this is just like Emacs Lisp.<p>
+
+But in Java the hooks are not functions, as they are in Emacs, because
+in Java functions are not first-class entities.  Instead, the hooks
+are objects which conform to the <a
+href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/Observer.html"><tt>Observer</tt></a>
+interface specification, and instead of invoking functions directly,
+the <tt>notifyObservers</tt> method calls the <tt>update</tt> method
+on each hook object.<p>
+
+Here's another example.  I wrote a recursive descent parser in Java a
+while back.  An <tt>ActionParser</tt> is just like a <tt>Parser</tt>,
+except that if its parse succeeds, it invokes a callback.  If I were
+programming in SML or Haskell or Perl, an <tt>ActionParser</tt> would
+be nothing but a <tt>Parser</tt> with an associated closure, something
+like this:<p>
+
+<pre>
+        # Perl        
+        package ActionParser;
+
+        sub new {
+          my ($class, $parser, $action) = @_;
+          bless { Parser <span style="white-space: nowrap;">=&gt;</span> $parser,
+                  Action <span style="white-space: nowrap;">=&gt;</span> $action } <span style="white-space: nowrap;">=&gt;</span> $class;
+        }
+
+        # Just like the embedded parser, but invoke the action on success
+        sub parse {
+          my $self = shift;
+          my $input = shift;
+          my $result = $self<span style="white-space: nowrap;">-&gt;</span>{Parser}<span style="white-space: nowrap;">-&gt;</span>parse($input);
+          if ($result<span style="white-space: nowrap;">-&gt;</span>success) 
+            $self<span style="white-space: nowrap;">-&gt;</span>{Action}<span style="white-space: nowrap;">-&gt;</span>($result);   # Invoke action
+          }
+          return $result;          
+        }
+</pre>
+
+Here the <tt>Action</tt> member is expected to be a closure, which is
+automatically invoked if the parse succeeds.  To use this, I would
+write something like this:<p>
+
+<pre>
+        # Perl        
+        my $missiles;        
+        ...
+        my $parser = ActionParser<span style="white-space: nowrap;">-&gt;</span>new($otherParser, 
+                                       sub { $missiles<span style="white-space: nowrap;">-&gt;</span>launch() }
+                                      );
+        $parser<span style="white-space: nowrap;">-&gt;</span>parse($input);
+</pre>
+
+And then if the input parses correctly, the parser launches the
+missiles from the anonymous closure, which has captured the local
+<tt>$missiles</tt> object.<p>
+
+But in Java, you have no closures.  Instead, you defunctionalize, and
+represent closures with objects:<p>
+
+<pre>
+        /* Java */
+        abstract class Action {
+          void invoke(ParseResults results) {}
+        }
+
+        class ActionParser extends Parser {
+          Action action;
+          Parser parser;
+
+          ActionParser(Parser p, Action a) {
+            action = a;
+            parser = p;
+          }
+
+          ParseResults Parse(Input input) {
+            ParseResults res = this.parser.Parse(input);
+            if (res.isSuccess) {
+              this.action.invoke(res);
+            }
+            return res;
+          }
+        }
+</pre>
+
+To use this, one writes something like this:<p>
+
+<pre>
+        /* Java */
+
+        class LaunchMissilesAction extends Action {
+          Missiles m;
+
+          LaunchMissilesAction(Missiles m) { this.m = m; }
+          void invoke(ParseResults results) {
+            m.launch();
+          }
+        }
+
+        ...
+
+        Action a = new LaunchMissilesAction(missiles);
+        Parser p = new ActionParser(otherParser, a);
+        p.parse(input);
+</pre>
+
+The constructor argument <tt>missiles</tt> takes the place of a free
+variable in a closure.   The closure itself has been replaced with
+an object from an ad hoc class, just as in Danvy and Nielsen's
+formulation, the closure is replaced with a synthetic data object that
+holds the values of the free variables.  The <tt>invoke</tt> method
+plays the role of <tt>fake_apply</tt>.<p>
+
+Now, it's not a particularly interesting observation that this
+<i>can</i> be done.  The interesting part, I think, is that this is
+what Java programmers actually do.  And also, perhaps, that Danvy and
+Nielsen didn't mention it in their paper, because I think the
+technique is pretty widespread.<p>
+</p>
+
+<br clear=all>
+<p align="right">
+<i>[<a href="http://blog.plover.com/prog">Other articles in category /prog</a>] 
+<a href="http://blog.plover.com/prog/defunctionalization.html">permanent link</a></i>
+</p>
+
+<br />
+
+  </td>
+
+  <td bgcolor="#f3f3f3"><nobr>&nbsp; &nbsp;</nobr>
+
+ </tr>
+
+ <tr>
+
+  <td colspan="6" bgcolor="#000000" height="1"></td> 
+
+ </tr>
+
+</table>
+
+</body>
+
+</html>
+

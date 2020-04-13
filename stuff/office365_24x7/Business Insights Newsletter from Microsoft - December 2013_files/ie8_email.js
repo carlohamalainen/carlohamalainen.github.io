@@ -1,0 +1,1 @@
+meteor.json_query_callback({"url": "http://meme.ms/d5c9tnd", "id": "1", "persist": "http://meme.ms/persist?key=HP7Jv4mMfK64tHnP-v0lVg"}, 1);

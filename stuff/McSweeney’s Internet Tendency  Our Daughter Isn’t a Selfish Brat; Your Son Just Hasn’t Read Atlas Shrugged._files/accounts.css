@@ -1,0 +1,95 @@
+div#mcsweeneysAccountsBar {
+	position: relative;
+	width: 100%;
+	height: 29px;
+	border-bottom: 1px solid #000000;
+}
+
+div#mcsweeneysAccountsBar div#buttonContainer {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	z-index: 0;
+}
+
+div#mcsweeneysAccountsBar div#buttonContainer a#mcsweeneysPortalButton {
+	display: block;
+	width: 78px;
+	height: 54px;
+	margin-left: auto;
+	margin-right: auto;
+	background-image: url(/mcsweeneys_gem/images/button.gif);
+	background-position: 0px;
+}
+
+div#mcsweeneysAccountsBar div#buttonContainer a#mcsweeneysPortalButton:hover {
+	background-position: -78px;
+}
+
+div#mcsweeneysAccountsBar div.itemContainer {
+	position: relative;
+	width: 45%;
+	height: auto;
+	padding: 7px 5px 0px 5px;
+	z-index: 1;
+}
+
+div#mcsweeneysAccountsBar div.left {
+	float: left;
+}
+
+div#mcsweeneysAccountsBar div.right {
+	float: right;
+}
+
+div#mcsweeneysAccountsBar div.itemContainer div.item {
+	width: auto;
+	height: auto;
+	font-size: 14px;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+div#mcsweeneysAccountsBar div.itemContainer div.item {
+	width: auto;
+	height: auto;
+	font-size: 14px;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+div#mcsweeneysAccountsBar div.itemContainer div.item .highlight {
+	background-color: #fcf9aa;
+	padding: 3px;
+}
+
+div#mcsweeneysAccountsBar div.itemContainer div.item a:link {
+	color: #000000;
+	text-decoration: none;
+	padding: 3px;
+}
+
+div#mcsweeneysAccountsBar div.itemContainer div.item a:active {
+	color: #000000;
+	text-decoration: none;
+	padding: 3px;
+}
+
+div#mcsweeneysAccountsBar div.itemContainer div.item a:hover {
+	color: #ffffff;
+	background-color: #000000;
+	padding: 3px;
+}
+
+div#mcsweeneysAccountsBar div.itemContainer div.item a:visited {
+	color: #000000;
+	text-decoration: none;
+	padding: 3px;
+}
+
+div#mcsweeneysAccountsBar div.itemContainer div.item a:visited:hover {
+	color: #ffffff;
+	background-color: #000000;
+	padding: 3px;
+}

@@ -1,0 +1,208 @@
+\documentclass[12pt,amstags,fleqn]{article}
+
+\usepackage{sagetex}
+
+\usepackage{url}
+
+%\usepackage[mathlf,textlf,minionint]{MinionPro} \usepackage[T1]{fontenc} \usepackage{textcomp} \usepackage{amsthm}
+\usepackage{amssymb}
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+
+\usepackage{xspace}
+
+\usepackage{ifpdf}
+
+\ifpdf
+    \pdfcompresslevel=9
+    %\usepackage[pdftex]{graphicx}
+    %\usepackage{thumbpdf}
+    %\usepackage[pdftex,colorlinks,bookmarks,backref]{hyperref}
+    %\usepackage[pdftex,backref]{hyperref}
+    \DeclareGraphicsRule{*}{mps}{*}{}
+\else
+    %\usepackage{hyperref}
+    %\usepackage[dvips]{graphicx}
+    %\usepackage[dvips]{color}
+    \usepackage{epsfig}
+    \usepackage{graphicx}
+    \DeclareGraphicsRule{*}{eps}{*}{}
+\fi
+
+
+\begin{document}
+
+\title{\bf The Slutsky Effect}
+\author{\Large Carlo H\"{a}m\"{a}l\"{a}inen \\ {\texttt carlo.hamalainen@gmail.com} }
+%\date{}
+\maketitle
+
+The {\em Slutsky effect}, as understood by many economists, is
+described in the following quote from Barnett (2006):
+
+\begin{quote} If the variables that were taken to represent business
+cycles were moving averages of past determining quantities that
+were not serially correlated – either real-world moving averages
+or artificially generated moving averages – then the variables of
+interest would become serially correlated, and this process would
+produce a periodicity approaching that of sine waves.  \end{quote}
+
+To demonstrate this effect we take a sequence of independent identically
+distributed random variables with mean $\mu$ and variance $\sigma^2$,
+compute a moving average, and look for oscillatory behaviour. (The
+example that follows is similar to Royama p.~131.)
+
+Suppose that $u_i$ is a sequence of independent identically distributed
+random variables . Here we generate $1000$ samples, shown in
+Figure~\ref{figUseries}.
+
+\begin{sageblock}
+set_random_seed(0)
+
+def avg(L):
+    return sum(L)/(1.0*len(L))
+    
+def variance(L):
+    mu = avg(L)
+    return avg([(x - mu)**2 for x in L])    
+
+nr_samples = 1000
+N = 10 # u_i is in [0, 1, ..., N - 1]
+
+U = [randrange(N) for _ in range(nr_samples)]
+
+U_mu = avg(range(N))
+U_var = variance(range(N))
+\end{sageblock}
+
+\begin{figure}[htb]
+\begin{center}
+\sageplot[width=.75\textwidth]{list_plot(U[:100], ymin = 0, plotjoined = True, marker = 'o', axes_labels = ["time", "u_i"], figsize = 5, rgbcolor = 'black')}
+\end{center}
+\caption{First 100 points from sequence $u_i$.}
+\label{figUseries}
+\end{figure}
+
+There is no trend nor systematic behaviour of the series. We can check this by calculating the autocorrelation $R(t)$:
+\[
+R(t) = \frac{\mathbb{E}((u_i - \mu)(u_{i+t} - \mu))}{\sigma^2}.
+\]
+The autocorrelation ranges between $-1$ and $1$, meaning perfectly
+anti-correlated and perfectly correlated, respectively.
+
+\begin{sageblock}
+def autocorrelation(L, t):
+    """
+    Biased estimator of the autocorrelation.
+    """
+    
+    mu = avg(L)
+    
+    return avg([(L[i] - mu)*(L[i+t] - mu)
+        for i in range(len(L) - t)])/variance(L)
+    
+t_max = 20
+
+U_ac = [autocorrelation(U, t) for t in range(t_max)]
+\end{sageblock}
+
+\begin{figure}[htb]
+\begin{center}
+\sageplot[width=.75\textwidth]{list_plot(U_ac, plotjoined = True, marker = 'o', ymin = 0, rgbcolor = 'black')}
+\end{center}
+\caption{Autocorrelation of the sequence $u_i$.}
+\label{Uautocorr}
+\end{figure}
+
+
+This is as expected. In Figure~\ref{Uautocorr}
+We see that $R(0) = 1$ because any sample is autocorrelated with itself, and $R(t)$ is around $0$ for all $t > 0$ since the samples are independent. So what happens if we take a moving average of the series? Define a new random number $w_t$ by
+\[
+w_t = \frac{1}{k}\sum_{i = 1}^{k} u_{t - i + 1}.
+\]
+Below we compute this new series for $k = 10$ and plot the autocorrelation.
+
+\begin{sageblock}
+moving_avg_len = 10
+
+W = [(1.0/moving_avg_len)*sum(U[i:i+moving_avg_len])
+    for i in range(len(U) - moving_avg_len)]
+
+p = list_plot(W, plotjoined = True, marker = 'o', figsize = 5, 
+    rgbcolor = 'black')
+p.save(filename = "W_plot.pdf", ymin = 0)
+\end{sageblock}
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics{W_plot}
+\end{center}
+\caption{Sequence $w_i$.}
+\label{firstAvg}
+\end{figure}
+
+Figure~\ref{firstAvg} shows oscillatory motion. This is because two points
+that are $j$ points apart share $k-j$ points of the original series
+(if $j < k$) and $0$ otherwise. We see this in the autocorrelation,
+calculated as follows, and shown in Figure~\ref{firstauto}.
+
+\begin{sageblock}
+W_ac = [autocorrelation(W, t) for t in range(t_max)]
+\end{sageblock}
+
+\begin{figure}[htb]
+\begin{center}
+\sageplot[width=.75\textwidth]{list_plot(W_ac, plotjoined = True, marker = 'o', figsize = 5, ymin = 0, rgbcolor = 'black')}
+\end{center}
+\caption{Autocorrelation of the sequence $w_i$.}
+\label{firstauto}
+\end{figure}
+
+If we repeat the taking of a moving average then we see (Figure~\ref{fouravg})
+what appears to be very regular behaviour:
+
+\begin{sageblock}
+W1 = [(1.0/moving_avg_len)*sum(W[i:i+moving_avg_len])
+    for i in range(len(W) - moving_avg_len)]
+
+W2 = [(1.0/moving_avg_len)*sum(W1[i:i+moving_avg_len])
+    for i in range(len(W1) - moving_avg_len)]
+
+W3 = [(1.0/moving_avg_len)*sum(W2[i:i+moving_avg_len])
+    for i in range(len(W2) - moving_avg_len)]
+
+W3_plot = list_plot(W3, plotjoined = True, marker = 'o',
+    figsize = 5, rgbcolor = 'black')
+W3_plot.save("W3_plot.pdf", ymin = 0)
+\end{sageblock}
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics{W3_plot}
+\end{center}
+\caption{Sequence from four moving averages.}
+\label{fouravg}
+\end{figure}
+
+It is interesting (but not surprising?) that the points in
+Figure~\ref{fouravg} stay near the mean of the original,
+$\sage{avg(U)}$.
+
+\clearpage
+
+References:
+    
+\begin{itemize}    
+\item Barnett, 2006. "Chancing an interpretation: Slutsky's random
+cycles revisited ," European Journal of the History of Economic
+Thought, Taylor and Francis Journals, vol. 13(3), pages 411-432,
+September.
+
+\item Royama, 1992. Analytical population dynamics. Springer.
+
+\item Slutsky, 1937. The summation of random causes as the source of cyclic processes. Econometrica 1937;5:105-46
+
+\end{itemize}
+
+\end{document}

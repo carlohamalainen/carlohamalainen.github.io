@@ -1,0 +1,55 @@
+p
+{
+	font-family: 'Lucida Grande', Verdana, Arial, Sans-Serif;
+}
+
+b
+{
+        text-align: justify;
+        color: black;
+        font-family: "sans serif"
+}
+
+pre 
+{
+	border: 1px dashed #C1B496; /* ubuntu dark tan */
+	background-color: #f0eee6; /* ubuntu light salmon */
+	padding: 4pt;
+	font-family: courier, monospace;
+	white-space: pre;
+	/* begin css 3 or browser specific rules - do not remove!
+	see: http://forums.techguy.org/archive/index.php/t-249849.html */
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    /* end css 3 or browser specific rules */
+}
+
+h1, h2, h3 {
+	font-family: 'Trebuchet MS', 'Lucida Grande', Verdana, Arial, Sans-Serif;
+	font-weight: bold;
+	}
+
+h1 {
+	font-size: 4em;
+	text-align: center;
+	}
+
+h2 {
+	font-size: 1.6em;
+	}
+
+h2.pagetitle {
+	font-size: 1.6em;
+	}
+
+h3 {
+	font-size: 1.3em;
+	}
+
+DIV.content { margin-left:5%; }
+DIV.codequote { font-family: 'Courier New'; margin-left:20%; width:60% }
+IMG.displayed { display: block; margin-left: auto; margin-right: auto }
+div.listing pre { maring-left:0 }

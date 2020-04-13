@@ -1,0 +1,68 @@
+0]     (backtrace-with-extra-info)
+
+WARNING: inconsistent form-number-translations
+ 1: BACKTRACE-WITH-EXTRA-INFO
+    At /home/carlo/linode-www/carlo-hamalainen/stuff/sbcl_backtraces/boo.lisp:1
+    Local variables:
+      END-DEFAULTING-TEMP = 20
+      START-DEFAULTING-TEMP = 1
+WARNING: inconsistent form-number-translations
+ 2: (LAMBDA (#:G806))
+    At /home/carlo/linode-www/carlo-hamalainen/stuff/sbcl_backtraces/boo.lisp:1
+ 3: INTERACTIVE-EVAL
+    Local variables:
+      ARG-0 = 3
+      ARG-1 = (BACKTRACE-WITH-EXTRA-INFO)
+ 4: SB-DEBUG::DEBUG-EVAL-PRINT
+    Local variables:
+      ARG-0 = (BACKTRACE-WITH-EXTRA-INFO)
+ 5: SB-DEBUG::DEBUG-LOOP-FUN
+ 6: INTERNAL-DEBUG
+ 7: SB-DEBUG::%INVOKE-DEBUGGER
+    Local variables:
+      ARG-0 = #<SB-INT:SIMPLE-FILE-ERROR "~@<~?: ~2I~_~A~:>" {1002F3B861}>
+ 8: (LAMBDA ())
+ 9: SB-IMPL::CALL-WITH-SANE-IO-SYNTAX
+    Local variables:
+      ARG-0 = #<CLOSURE (LAMBDA ()) {1002F3BD79}>
+10: SB-IMPL::%WITH-STANDARD-IO-SYNTAX
+    Local variables:
+      ARG-0 = #<CLOSURE (LAMBDA ()) {1002F3BD39}>
+11: INVOKE-DEBUGGER
+    Local variables:
+      ARG-0 = #<SB-INT:SIMPLE-FILE-ERROR "~@<~?: ~2I~_~A~:>" {1002F3B861}>
+12: ERROR
+    At /usr/share/sbcl-source/src/code/cold-error.lisp (unknown line)
+    Local variables:
+      ARG-0 = 7
+      ARG-1 = SB-INT:SIMPLE-FILE-ERROR
+13: SB-IMPL::SIMPLE-FILE-PERROR
+    Local variables:
+      ARG-0 = "error opening ~S"
+      ARG-1 = #P"/this_is_not_a_file"
+      ARG-2 = 2
+14: (LABELS SB-IMPL::VANILLA-OPEN-ERROR)
+15: OPEN
+    Local variables:
+      ARG-0 = 3
+      ARG-1 = "/this_is_not_a_file"
+WARNING: inconsistent form-number-translations
+16: (LAMBDA ())
+    At /home/carlo/linode-www/carlo-hamalainen/stuff/sbcl_backtraces/boo.lisp:1
+    Local variables:
+17: SB-INT:SIMPLE-EVAL-IN-LEXENV
+    Local variables:
+      ARG-0 = (WITH-OPEN-FILE (IN "/this_is_not_a_file" :DIRECTION :INPUT)
+                (FORMAT T "We never reach here~%"))
+      ARG-1 = #<NULL-LEXENV>
+18: SB-FASL::LOAD-AS-SOURCE
+    Local variables:
+      ARG-0 = #<SB-SYS:FD-STREAM for "file /home/carlo/linode-www/carlo-hamalainen/stuff/sbcl_backtraces/boo.lisp" {1002C98001}>
+      ARG-1 = NIL
+      ARG-2 = NIL
+19: (FLET SB-FASL::LOAD-STREAM)
+    Local variables:
+      ARG-0 = #<SB-SYS:FD-STREAM for "file /home/carlo/linode-www/carlo-hamalainen/stuff/sbcl_backtraces/boo.lisp" {1002C98001}>
+      ARG-1 = NIL
+NIL
+0] 

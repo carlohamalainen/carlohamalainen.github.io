@@ -1,0 +1,6 @@
+<IfModule mod_rewrite.c>
+  AddType video/ogg .ogv
+  AddType video/webm .webm
+  AddType video/mp4 .mp4
+  AddType video/flv .flv
+</IfModule>

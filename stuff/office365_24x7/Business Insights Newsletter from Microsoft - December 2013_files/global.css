@@ -1,0 +1,99 @@
+﻿/**OneMscomMaster**/
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video { margin: 0; padding: 0; border: 0; font-size: 100%; font-family: inherit; vertical-align: baseline; font-weight: inherit; }
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { display: block; }
+body { line-height: 1; }
+ol, ul { list-style: none; }
+blockquote, q { quotes: none; }
+blockquote:before, blockquote:after, q:before, q:after { content: ''; content: none; }
+table { border-collapse: collapse; border-spacing: 0; }
+strong, b { font-weight: bold; }
+
+
+/* Japan language support, override Segoe UI fonts using Meiryo, and unicode-range */
+@font-face { font-family: "Segoe UI"; font-style: normal; font-weight: normal; src: local(Meiryo), url("/global/enterprise/RenderingAssets/fonts/japan/Meiryo.eot?#iefix") format("embedded-opentype"), url("/global/enterprise/RenderingAssets/fonts/japan/Meiryo.woff") format("woff"), url("/global/enterprise/RenderingAssets/fonts/japan/Meiryo.ttf") format("truetype"), url("/global/enterprise/RenderingAssets/fonts/japan/Meiryo.otf") format("opentype"), url("/global/enterprise/RenderingAssets/fonts/japan/Meiryo.svg#Meiryo") format("svg"); unicode-range: U+A5, U+4E00-9FFF, U+30??, U+FF00-FF9F; }
+@font-face { font-family: "Segoe UI Semibold"; font-style: normal; font-weight: normal; src: local(Meiryo), url("/global/enterprise/RenderingAssets/fonts/japan/Meiryo.eot?#iefix") format("embedded-opentype"), url("/global/enterprise/RenderingAssets/fonts/japan/Meiryo.woff") format("woff"), url("/global/enterprise/RenderingAssets/fonts/japan/Meiryo.ttf") format("truetype"), url("/global/enterprise/RenderingAssets/fonts/japan/Meiryo.otf") format("opentype"), url("/global/enterprise/RenderingAssets/fonts/japan/Meiryo.svg#Meiryo") format("svg"); unicode-range: U+A5, U+4E00-9FFF, U+30??, U+FF00-FF9F; }
+@font-face { font-family: "Segoe UI Bold"; font-style: normal; font-weight: normal; src: local('Meiryo Bold'), url("/global/enterprise/RenderingAssets/fonts/japan/Meiryo-Bold.eot?#iefix") format("embedded-opentype"), url("/global/enterprise/RenderingAssets/fonts/japan/Meiryo-Bold.woff") format("woff"), url("/global/enterprise/RenderingAssets/fonts/japan/Meiryo-Bold.ttf") format("truetype"), url("/global/enterprise/RenderingAssets/fonts/japan/Meiryo-Bold.otf") format("opentype"), url("/global/enterprise/RenderingAssets/fonts/japan/Meiryo-Bold.svg#Meiryo") format("svg"); unicode-range: U+A5, U+4E00-9FFF, U+30??, U+FF00-FF9F; }
+@font-face { font-family: "Segoe UI Light"; font-style: normal; font-weight: normal; src: local(Meiryo), url("/global/enterprise/RenderingAssets/fonts/japan/Meiryo.eot?#iefix") format("embedded-opentype"), url("/global/enterprise/RenderingAssets/fonts/japan/Meiryo.woff") format("woff"), url("/global/enterprise/RenderingAssets/fonts/japan/Meiryo.ttf") format("truetype"), url("/global/enterprise/RenderingAssets/fonts/japan/Meiryo.otf") format("opentype"), url("/global/enterprise/RenderingAssets/fonts/japan/Meiryo.svg#Meiryo") format("svg"); unicode-range: U+A5, U+4E00-9FFF, U+30??, U+FF00-FF9F; }
+
+html[lang="ja"] body { font-family: Meiryo, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Osaka, "メイリオ", "ＭＳ Ｐゴシック", "MS PGothic", sans-serif; }
+
+
+@font-face { font-family: "Segoe UI"; font-style: normal; font-weight: normal; src: local('Segoe UI'), url("/global/enterprise/RenderingAssets/fonts/normal/latest.eot?#iefix") format("embedded-opentype"), url("/global/enterprise/RenderingAssets/fonts/normal/latest.woff") format("woff"), url("/global/enterprise/RenderingAssets/fonts/normal/latest.ttf") format("truetype"), url("/global/enterprise/RenderingAssets/fonts/normal/latest.svg#SegoeUI") format("svg"); }
+@font-face { font-family: "Segoe UI Semibold"; font-style: normal; font-weight: normal; src: local('Segoe UI Semibold'), url("/global/enterprise/RenderingAssets/fonts/semibold/latest.eot?#iefix") format("embedded-opentype"), url("/global/enterprise/RenderingAssets/fonts/semibold/latest.woff") format("woff"), url("/global/enterprise/RenderingAssets/fonts/semibold/latest.ttf") format("truetype"), url("/global/enterprise/RenderingAssets/fonts/semibold/latest.svg#SegoeUISemibold") format("svg"); }
+@font-face { font-family: "Segoe UI Bold"; font-style: normal; font-weight: normal; src: local('Segoe UI Bold'), url("/global/enterprise/RenderingAssets/fonts/bold/latest.eot?#iefix") format("embedded-opentype"), url("/global/enterprise/RenderingAssets/fonts/bold/latest.woff") format("woff"), url("/global/enterprise/RenderingAssets/fonts/bold/latest.ttf") format("truetype"), url("/global/enterprise/RenderingAssets/fonts/bold/latest.svg#SegoeUIBold") format("svg"); }
+@font-face { font-family: "Segoe UI Light"; font-style: normal; font-weight: normal; src: local('Segoe UI Light'), url("/global/enterprise/RenderingAssets/fonts/light/latest.eot?#iefix") format("embedded-opentype"), url("/global/enterprise/RenderingAssets/fonts/light/latest.woff") format("woff"), url("/global/enterprise/RenderingAssets/fonts/light/latest.ttf") format("truetype"), url("/global/enterprise/RenderingAssets/fonts/light/latest.svg#SegoeUILight") format("svg"); }
+
+/* rtl support */
+html[dir="rtl"] .col { float: right; }
+
+#roottoolbar { font-size: 70%; }
+html, body { height: 100%; font-family: "wf_SegoeUI","wf_SegoeUI","Segoe UI","Segoe WP","Segoe UI","Segoe","Segoe WP","Tahoma","Verdana","Arial","sans-serif"; }
+
+.stage .stage-content > .main-content > .page a, table { font-family: "Segoe UI","Segoe WP","Segoe","Tahoma","Verdana","Arial","sans-serif"; }
+.stage .stage-content > .main-content > .page a * { font-family: "Segoe UI","Segoe WP","Segoe","Tahoma","Verdana","Arial","sans-serif"; }
+/*Jianan add 2013/10/11*/
+a { text-decoration: none; }
+body { width: 100%; min-height: 25px; _height: 400px; background-color: #EEE !important; color: #222 !important; }
+body > #aspnetForm { background-color: #fff; overflow: hidden; }
+body > iframe[name='__bkframe'] { display: none; }
+form.mktoForm { padding: 20px; }
+div.form-bottom { position: relative; }
+div.form-bottom-inner { position: absolute; top: -400px; width: 100%; min-width: 960px; height: 400px; }
+div.stage { position: relative; z-index: 1; margin: 0 auto; }
+div.stage { _height: 100%; }
+div.stage-bg-bot { _height: 100%; _height: expression(document.body.clientHeight-430+"px"); }
+div.stage-content { padding-left: 20px; padding-right: 20px; padding: 0; }
+div.stage-bg-top { position: absolute; z-index: -1; top: 0; height: 85px; width: 100%; }
+div.stage-bg-mid { position: absolute; z-index: -1; top: 85px; height: 345px; width: 100%; }
+div.stage-bg-bot { position: absolute; z-index: -1; top: 430px; bottom: 0; width: 100%; }
+div.utility-bar { margin-bottom: 10px; position: relative; z-index: 999; }
+div.main-brand { margin-bottom: 10px; }
+div.main-brand img { border: none; }
+div.main-brand .logo .bg-img, div.main-brand .logo .filter-img { top: 0; width: 100%; height: 100%; }
+div.main-brand .logo .bg-img { background-repeat: no-repeat; }
+.main-brand span.beta { color: #fff; position: relative; top: 16px; }
+div.search-navigation { z-index: 990; position: relative; width: 100%; background-color: transparent; margin-bottom: 20px; }
+div.search-navigation-bg { position: absolute; top: 0; bottom: 0; left: 0; right: 0; }
+div.main-content { min-height: 475px; _height: 555px; margin-bottom: 20px; }
+div.footer { min-height: 50px; _height: 50px; _width: 100%; clear: both; }
+div.footer .mstLcpMenuImg { position: relative; top: -.22em; }
+div.main-brand .brandLogoTextCell { vertical-align: bottom; }
+
+@media screen and (max-width:980px), only screen and (max-device-width: 980px) {
+    .mstFooterPopRes { width: 210px; margin-left: 253px; }
+}
+
+@media screen and (max-width:900px), only screen and (max-device-width: 900px) {
+    /*footer*/
+    .mstFooterPopRes { width: 190px; margin-left: 0; }
+}
+
+@media screen and (max-width:593px), only screen and (max-device-width: 593px) {
+    .mstFooterPopRes { margin-left: 0; }
+}
+
+/**Get Connected Link**/
+.epgGetConnectedLink { font: .75em 'Segoe UI', tahoma, verdana; color: #0071C5; }
+.epgGetConnectedLink:hover { text-decoration: underline; }
+.epgGetConnectedLinkWrap { position: absolute; right: 2.5em; top: .3em; z-index: 100000; }
+/* RTL adjust*/
+html[dir="RTL"] .epgGetConnectedLinkWrap { position: absolute; left: 0; top: .3em; z-index: 100000; }
+
+.cssClear { clear: both; float: none !important; width: 0; height: 0; margin: 0 !important; padding: 0 !important; }
+.stage > .form-bottom { display: none; }
+
+@-ms-viewport { width: device-width; }
+
+@media screen and (max-width:990px), only screen and (max-width:990px) {
+    .confirmCookie > div { width: 100% !important; padding-left: 40px !important; }
+    .confirmCookie > div > span:first-child { float: none !important; display: block; margin-right: 60px; }
+    .confirmCookie > div > span:nth-child(2) { margin-left: -60px; margin-right: 40px; }
+}
+
+.clear { float: none !important; clear: both !important; width: 0 !important; height: 0 !important; }

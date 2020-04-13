@@ -1,0 +1,252 @@
+\begin{Verbatim}[commandchars=@\[\]]
+@PYaE[# -*- coding: utf-8 -*-]
+
+@PYaE[#*****************************************************************************]
+@PYaE[#       Copyright (C) 2009 Carlo Hamalainen <carlo.hamalainen@at[]gmail.com>, ]
+@PYaE[#]
+@PYaE[#  Distributed under the terms of the GNU General Public License (GPL)]
+@PYaE[#]
+@PYaE[#    This code is distributed in the hope that it will be useful,]
+@PYaE[#    but WITHOUT ANY WARRANTY; without even the implied warranty of]
+@PYaE[#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU]
+@PYaE[#    General Public License for more details.]
+@PYaE[#]
+@PYaE[#  The full text of the GPL is available at:]
+@PYaE[#]
+@PYaE[#                  http://www.gnu.org/licenses/]
+@PYaE[#*****************************************************************************]
+
+
+@PYaE[# For debugging, put these lines somewhere to drop into an ipython shell:]
+@PYaE[#import IPython]
+@PYaE[#IPython.Shell.IPShell(user_ns=dict(globals(), **locals())).mainloop()]
+
+@PYaE[# To profile, put these in __main__():]
+@PYaE[#import cProfile]
+@PYaE[#cProfile.run('thing_to_run()')]
+
+@PYay[from] @PYaV[sailing] @PYay[import] @PYbd[*]
+
+@PYay[from] @PYaV[random] @PYay[import] random
+@PYay[from] @PYaV[scipy] @PYay[import] @PYaj[sqrt]
+
+@PYay[class] @PYaO[IncDict](@PYaX[dict]):
+    @PYas["""]
+@PYas[    For code where we update a count in a dictionary, we often need this]
+@PYas[    kind of thing to avoid throwing an exception:]
+
+@PYas[    d = {}]
+@PYas[    try: d@lb[]'a'@rb[] += 1]
+@PYas[    except KeyError: d@lb[]'a'@rb[] = 0 ]
+
+@PYas[    The IncDict class makes __getitem__ return 0 for any key that is]
+@PYas[    not in the dictionary, and so we can do this instead:]
+
+@PYas[    >>> d = IncDict()]
+@PYas[    >>> print d]
+@PYas[    {}]
+@PYas[    >>> d@lb[]'a'@rb[] += 1]
+@PYas[    >>> print d]
+@PYas[    {'a': 1}]
+@PYas[    >>> d@lb[]'a'@rb[] += 1]
+@PYas[    >>> print d]
+@PYas[    {'a': 2}]
+@PYas[    """]
+
+    @PYay[def] @PYaL[__getitem__](@PYaA[self], y):
+        @PYay[if] @PYaA[self]@PYbd[.]has_key(y): @PYay[return] @PYaX[dict]@PYbd[.]__getitem__(@PYaA[self], y)
+        @PYay[else]: @PYay[return] @PYaw[0]
+
+@PYay[class] @PYaO[SailingUCT](Sailing):
+    @PYay[def] @PYaL[__init__](@PYaA[self], wind_array, costs, lake_size, end_x, end_y):
+        Sailing@PYbd[.]__init__(@PYaA[self], wind_array, costs, lake_size, end_x, end_y)
+        @PYaA[self]@PYbd[.]edge_labels @PYbd[=] {}
+
+    @PYay[def] @PYaL[select_action_uct](@PYaA[self], state, depth):
+        best_action @PYbd[=] @PYaA[None]
+        best_action_val @PYbd[=] @PYaA[None]
+
+        @PYaE[# ooh, I don't actually choose uniformly at random, I try in]
+        @PYaE[# order! Implementation detail!!]
+        @PYay[for] action @PYav[in] @PYaX[range](@PYaw[8]):
+            @PYay[if] @PYav[not] @PYaA[self]@PYbd[.]stays_in_lake(state, action): @PYay[continue]
+            @PYay[if] @PYaA[self]@PYbd[.]node_action_counts@lb[](depth, state, action)@rb[] @PYbd[==] @PYaw[0]:
+                @PYay[return] action
+
+        @PYay[for] action @PYav[in] @PYaX[range](@PYaw[8]):
+            @PYay[if] @PYav[not] @PYaA[self]@PYbd[.]stays_in_lake(state, action): @PYay[continue]
+            nr_action_selected @PYbd[=] @PYaA[self]@PYbd[.]node_action_counts@lb[](depth, state, action)@rb[]
+
+            @PYay[assert] nr_action_selected @PYbd[>] @PYaw[0]
+
+            average_cost @PYbd[=] @PYaA[self]@PYbd[.]average_cost@lb[](depth, state, action)@rb[]
+            nr_state_visits @PYbd[=] @PYaA[self]@PYbd[.]node_visit_counts@lb[](depth, state)@rb[]
+
+            UCT_FACTOR @PYbd[=] @PYaw[1.0]
+
+            this_val @PYbd[=] average_cost \
+                        @PYbd[+] UCT_FACTOR@PYbd[*]@PYaj[sqrt](@PYaw[2.0]@PYbd[*]nr_state_visits@PYbd[/]nr_action_selected)
+
+            @PYay[if] best_action @PYav[is] @PYaA[None]:
+                best_action @PYbd[=] action
+                best_action_val @PYbd[=] this_val
+            @PYay[elif] this_val @PYbd[<] best_action_val:
+                best_action @PYbd[=] action
+                best_action_val @PYbd[=] this_val
+
+        @PYay[assert] best_action @PYav[is] @PYav[not] @PYaA[None]
+
+        @PYay[return] best_action
+
+    @PYay[def] @PYaL[search_init](@PYaA[self], initial_state):
+        @PYas["""]
+@PYas[        setup search stuff]
+@PYas[        """]
+
+        @PYaA[self]@PYbd[.]nr_samples @PYbd[=] @PYaw[0]
+
+        @PYaA[self]@PYbd[.]initial_state @PYbd[=] initial_state
+        @PYaA[self]@PYbd[.]nr_rollouts @PYbd[=] @PYaw[0]
+
+        @PYaA[self]@PYbd[.]state_visit_counts @PYbd[=] IncDict()
+        @PYaA[self]@PYbd[.]node_visit_counts @PYbd[=] IncDict()
+        @PYaA[self]@PYbd[.]node_action_counts @PYbd[=] IncDict()
+        @PYaA[self]@PYbd[.]average_cost @PYbd[=] IncDict()
+
+        @PYaA[self]@PYbd[.]edge_labels @PYbd[=] {}
+        @PYaA[self]@PYbd[.]tree @PYbd[=] nx@PYbd[.]DiGraph()
+        @PYaA[self]@PYbd[.]tree@PYbd[.]add_node((@PYaw[0], initial_state))
+
+    @PYay[def] @PYaL[run_rollout](@PYaA[self]):
+        @PYaA[self]@PYbd[.]aborted_search @PYbd[=] @PYaA[False] @PYaE[# mmm, messy]
+        cost @PYbd[=] @PYaA[self]@PYbd[.]_search(@PYaA[self]@PYbd[.]initial_state, @PYaw[0])
+        @PYaA[self]@PYbd[.]nr_rollouts @PYbd[+]@PYbd[=] @PYaw[1]
+
+        @PYay[if] @PYaA[self]@PYbd[.]aborted_search: @PYay[return] @PYaA[None]
+        @PYay[return] cost
+
+    @PYay[def] @PYaL[_search](@PYaA[self], state, depth):
+        @PYas["""]
+@PYas[        Internal function for running UCT search.]
+@PYas[        """]
+
+        @PYay[if] @PYaA[self]@PYbd[.]is_terminal(state):
+            @PYaE[#print "hit target", self.nr_samples ]
+            @PYay[return] @PYaw[0]
+
+        @PYas["""]
+@PYas[        If we need to cut off simulations at]
+@PYas[        some depth we can do so here.]
+
+@PYas[        fixme: from UCT paper, they stopped episodes with]
+@PYas[        probability 1/N_s(t), which is presumably the number of times]
+@PYas[        that state s has been visited up to time t.]
+
+@PYas[        if is_leaf(tree, state):]
+@PYas[            # evaluate state?]
+@PYas[        """]
+
+        action @PYbd[=] @PYaA[self]@PYbd[.]select_action_uct(state, depth)
+
+        @PYaE[# if we were doing MC rollouts:]
+        @PYaE[# action = self.choose_action_uniformly_at_random(state)]
+
+        new_state, cost @PYbd[=] @PYaA[self]@PYbd[.]_sample_next_state(state, action)
+        @PYaA[self]@PYbd[.]nr_samples @PYbd[+]@PYbd[=] @PYaw[1]
+
+        node @PYbd[=] (depth, state)
+        new_node @PYbd[=] (depth @PYbd[+] @PYaw[1], new_state)
+
+        @PYaA[self]@PYbd[.]tree@PYbd[.]add_edge(node, new_node)
+
+        q @PYbd[=] cost @PYbd[+] (@PYaw[1.0])@PYbd[*]@PYaA[self]@PYbd[.]_search(new_state, depth @PYbd[+] @PYaw[1])
+
+        @PYaA[self]@PYbd[.]state_visit_counts@lb[]state@rb[] @PYbd[+]@PYbd[=] @PYaw[1]
+        @PYaA[self]@PYbd[.]node_visit_counts@lb[]node@rb[] @PYbd[+]@PYbd[=] @PYaw[1]
+
+        old_average @PYbd[=] @PYaA[self]@PYbd[.]average_cost@lb[](depth, state, action)@rb[]
+        n @PYbd[=] @PYaA[self]@PYbd[.]node_visit_counts@lb[](depth, state)@rb[]
+        new_average @PYbd[=] ((n @PYbd[-] @PYaw[1])@PYbd[*]old_average @PYbd[+] q)@PYbd[/](@PYaw[1.0]@PYbd[*]n)
+
+        @PYaA[self]@PYbd[.]average_cost@lb[](depth, state, action)@rb[] @PYbd[=] new_average
+        @PYaA[self]@PYbd[.]node_action_counts@lb[](depth, state, action)@rb[] @PYbd[+]@PYbd[=] @PYaw[1]
+
+        @PYay[try]:
+            @PYay[if] q @PYbd[<] @PYaA[self]@PYbd[.]edge_labels@lb[](node, new_node)@rb[]@lb[]@PYaw[1]@rb[]:
+                @PYaA[self]@PYbd[.]edge_labels@lb[](node, new_node)@rb[] @PYbd[=] action, q
+        @PYay[except] @PYbe[KeyError]:
+            @PYaA[self]@PYbd[.]edge_labels@lb[](node, new_node)@rb[] @PYbd[=] action, q
+
+        @PYay[return] q
+
+@PYaE[####################################################]
+
+@PYaE[# same example from sailing.py:]
+
+@PYay[def] @PYaL[main](lake_size):
+    wind_array @PYbd[=] @lb[] \
+        @lb[]@PYaw[0.4], @PYaw[0.3], @PYaw[0.0], @PYaw[0.0], @PYaw[0.0], @PYaw[0.0], @PYaw[0.0], @PYaw[0.3]@rb[], \
+        @lb[]@PYaw[0.4], @PYaw[0.3], @PYaw[0.3], @PYaw[0.0], @PYaw[0.0], @PYaw[0.0], @PYaw[0.0], @PYaw[0.0]@rb[], \
+        @lb[]@PYaw[0.0], @PYaw[0.4], @PYaw[0.3], @PYaw[0.3], @PYaw[0.0], @PYaw[0.0], @PYaw[0.0], @PYaw[0.0]@rb[], \
+        @lb[]@PYaw[0.0], @PYaw[0.0], @PYaw[0.4], @PYaw[0.3], @PYaw[0.3], @PYaw[0.0], @PYaw[0.0], @PYaw[0.0]@rb[], \
+        @lb[]@PYaw[0.0], @PYaw[0.0], @PYaw[0.0], @PYaw[0.4], @PYaw[0.2], @PYaw[0.4], @PYaw[0.0], @PYaw[0.0]@rb[], \
+        @lb[]@PYaw[0.0], @PYaw[0.0], @PYaw[0.0], @PYaw[0.0], @PYaw[0.3], @PYaw[0.3], @PYaw[0.4], @PYaw[0.0]@rb[], \
+        @lb[]@PYaw[0.0], @PYaw[0.0], @PYaw[0.0], @PYaw[0.0], @PYaw[0.0], @PYaw[0.3], @PYaw[0.3], @PYaw[0.4]@rb[], \
+        @lb[]@PYaw[0.4], @PYaw[0.0], @PYaw[0.0], @PYaw[0.0], @PYaw[0.0], @PYaw[0.0], @PYaw[0.3], @PYaw[0.3]@rb[] \
+    @rb[]
+
+    end_x @PYbd[=] lake_size @PYbd[-] @PYaw[1]
+    end_y @PYbd[=] lake_size @PYbd[-] @PYaw[1]
+
+    costs @PYbd[=] { @PYaB[']@PYaB[into]@PYaB[']:@PYaw[1000], @PYaB[']@PYaB[up]@PYaB[']:@PYaw[4], @PYaB[']@PYaB[cross]@PYaB[']:@PYaw[3], @PYaB[']@PYaB[down]@PYaB[']:@PYaw[2], @PYaB[']@PYaB[away]@PYaB[']:@PYaw[1] }
+
+    @PYaE[# Grab the pre-computed optimal solution.]
+    lake_filename @PYbd[=] @PYaB[']@PYaB[lake_]@PYaB['] @PYbd[+] @PYaX[str](lake_size) @PYbd[+] @PYaB[']@PYaB[.pkl]@PYaB[']
+
+    pkl_file @PYbd[=] @PYaX[open](lake_filename, @PYaB[']@PYaB[rb]@PYaB['])
+    V_opt @PYbd[=] pickle@PYbd[.]@PYaj[load](pkl_file)
+    policy_opt @PYbd[=] pickle@PYbd[.]@PYaj[load](pkl_file)
+    V_avg_opt @PYbd[=] pickle@PYbd[.]@PYaj[load](pkl_file)
+    V_stddev_opt @PYbd[=] pickle@PYbd[.]@PYaj[load](pkl_file)
+    pkl_file@PYbd[.]close()
+
+    total_nr_samples @PYbd[=] @PYaw[0]
+
+    @PYay[for] _ @PYav[in] @PYaX[range](@PYaw[100]):
+        @PYay[print] @PYaB["]@PYaB[yarrr]@PYaB["]
+        sys@PYbd[.]stdout@PYbd[.]flush()
+
+        S @PYbd[=] SailingUCT(wind_array, costs, lake_size, end_x, end_y)
+
+        w1 @PYbd[=] my_randint(@PYaw[8])
+        d @PYbd[=] my_randint(@PYaw[8])
+        w2 @PYbd[=] S@PYbd[.]new_wind(w1)
+
+        initial_state @PYbd[=] (my_randint(lake_size), my_randint(lake_size), d, w1, w2)
+
+        S@PYbd[.]search_init(initial_state)
+
+        optimal_cost @PYbd[=] V_opt@lb[]initial_state@rb[]
+
+        min_cost @PYbd[=] @PYaA[None]
+        @PYay[while] @PYaA[True]:
+            cost @PYbd[=] S@PYbd[.]run_rollout()
+            @PYay[if] cost @PYav[is] @PYaA[None]: @PYay[continue]
+
+            @PYay[if] min_cost @PYav[is] @PYaA[None] @PYav[or] cost @PYbd[<] min_cost:
+                min_cost @PYbd[=] cost
+
+            @PYay[if] min_cost @PYbd[<] optimal_cost @PYav[or] min_cost @PYbd[-] @PYaw[0.1] @PYbd[<]@PYbd[=] optimal_cost: @PYay[break]
+
+        @PYay[print] min_cost, S@PYbd[.]nr_samples
+
+        total_nr_samples @PYbd[+]@PYbd[=] S@PYbd[.]nr_samples
+
+    @PYay[print]
+    @PYay[print] @PYaB["]@PYaB[lake_size total_nr_samples for error < 0.1 of optimal]@PYaB["]
+    @PYay[print] lake_size, total_nr_samples
+
+@PYay[if] __name__ @PYbd[==] @PYaB["]@PYaB[__main__]@PYaB["]:
+    @PYay[if] @PYaX[len](sys@PYbd[.]argv) @PYbd[==] @PYaw[2]:
+        @PYaX[eval](sys@PYbd[.]argv@lb[]@PYaw[1]@rb[])
+\end{Verbatim}

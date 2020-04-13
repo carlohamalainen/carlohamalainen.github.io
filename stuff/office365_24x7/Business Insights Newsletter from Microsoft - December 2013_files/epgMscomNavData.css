@@ -1,0 +1,201 @@
+﻿.mstHdrV3 { font-family: Segoe UI,Arial,Verdana,Tahoma,sans-serif; width: 916px; }
+.mstHdrV3 .mstHdr_StaticSecLeftAlign { float: left; }
+/* RTL adjust*/
+html[dir="RTL"] .mstHdrV3 .mstHdr_StaticSecLeftAlign { float: right; }
+
+.mstHdrV3 .mstHdr_StaticSecRightAlign { float: right; }
+/* RTL adjust*/
+html[dir="RTL"] .mstHdrV3 .mstHdr_StaticSecRightAlign { float: left; }
+
+.mstHdrV3 .mstHdr_MenuItemSiteIdentity a, .mstHdrV3 .mstHdr_MenuItemSiteIdentity a:link, .mstHdrV3 .mstHdr_MenuItemSiteIdentity a:visited, .mstHdrV3 .mstHdr_MenuItemSiteIdentity a:active { color: #333333; font-size: 30px; }
+.mstHdrV3 .mstHdr_MenuItemAccount a, .mstHdrV3 .mstHdr_MenuItemAccount a:link, .mstHdrV3 .mstHdr_MenuItemAccount a:visited, .mstHdrV3 .mstHdr_MenuItemAccount a:active { font-size: 13px; color: #0072C6; }
+.mstHdrV3 .mstHdr_SignInOut #idPPScarab { font-size: 13px; color: #0072C6; }
+.mstHdrV3 .mstHdr_MenuItemsAccount .selected .mstHdr_MenuItemAccountText { border-color: #E0E0E0; }
+.mstHdrV3 .mstHdr_Flyout { border: 1px solid #E0E0E0; }
+.mstHdrV3 .mstHdr_MenuItemAccountFlyoutLinkText { margin-right: 8px; }
+.mstHdrV3 .mstHdr_MenuItemSignIn { margin-left: 10px; }
+.mstHdrV3 .mstHdr_BrandLine { background-color: #EEEEEE; }
+.mstHdrV3 .mstHdr_SignInOut .mstHdr_UserProfileTileImage { margin-left: 12px; }
+div.mstSrc { color: #000; }
+.mstSrc, .mstSrc input { font-size: 100%; }
+.mstSrc input.mstSrc_WaterMark { color: #505050; font-family: Segoe UI,Arial,Verdana,Tahoma,sans-serif; *left: 0; _left: 0; }
+.mstSrc, .mstSrc select { font-family: Segoe UI,Arial,Verdana,Tahoma,sans-serif; }
+.mstSrc .mstSrc_Sources li a, .mstSrc .mstSrc_Suggestions li a { padding-left: 10px; }
+.mstSrc .mstSrc_Sources li .mstSrc_chkImageContainer { margin-right: 4px; }
+.mstSrc.mstSrc_BrandOutside { margin-left: 0; }
+.mstSrc input.mstSrc_TextBox, .mstSrc input.mstSrc_WaterMark { margin-left: 3px; }
+.mstSrc.mstSrc_BrandOutside input.mstSrc_TextBox, .mstSrc.mstSrc_BrandOutside input.mstSrc_WaterMark { padding-right: 0; }
+.mstSrc .mstSrc_OuterBrand { margin-left: 9px; }
+.mstSrc input.mstSrc_Button { margin-left: 5px; }
+/* RTL adjust*/
+html[dir="RTL"] .mstSrc input.mstSrc_Button { margin-left: 5px; margin-right:0; }
+
+.mstSrc .mstSrc_Dropdown { left: 0; }
+.mstSrc .mstSrc_Sources, .mstSrc .mstSrc_Suggestions { left: -1px; _left: 0px; }
+.mstSrc .mstSrc_Sources li a:link, .mstSrc .mstSrc_Sources li a:visited { color: #333; }
+.mstSrc .mstSrc_Suggestions li a:link, .mstSrc .mstSrc_Suggestions li a:visited { color: #333; }
+.mstSrc .mstSrc_Suggestions li a:hover, .mstSrc .mstSrc_Suggestions li a:focus, .mstSrc .mstSrc_Suggestions li a:active, .mstSrc .mstSrc_Suggestions li a.selected, .mstSrc .mstSrc_Sources li a:hover, .mstSrc .mstSrc_Sources li a:focus, .mstSrc .mstSrc_Sources li a:active { background-color: blue; color: white; }
+.mstSrc .mstSrc_Sources li.currentScope .mstSrc_Check { left: 0px; top: -41px; }
+.mstSrc .mstSrc_Sources li.currentScope a:hover .mstSrc_Check, .mstSrc .mstSrc_Sources li.currentScope a:focus .mstSrc_Check { left: 0px; top: -21px; }
+.mstSrc .mstSrc_DropdownPositioner { left: 0; }
+.mstSrc .mstSrc_DropdownArrow { margin-left: 0px; right: 5px; }
+.mstSrc .mstSrc_Sources li .mstSrc_Text { padding-right: 12px; }
+.mstSrc .mstSrc_FloatDir { float: left; }
+.oneMscomNavV3 .mstNav4ColFlyoutList
+
+.mstSrcV3 .mstSrc_SearchBox { margin-right: 38px; }
+.mstSrcV3 input.mstSrc_Button { right: 0px; *right: 3px; }
+.mstSrcV3 .mstSrc_FloatDirWidth { right: 2px; }
+.mstSrc .mstSrc_SearchButtonPositioner { right: 0px; }
+/* RTL adjust*/
+html[dir="RTL"] .mstSrc .mstSrc_SearchButtonPositioner { left: 0px; right:inherit; }
+
+.mstNonJs .mstSrc .mstSrc_SearchButtonPositioner { right: 14px; }
+.oneMscomNavV3 .mstNavNavItem { float: left; padding-right: 2px; }
+/* RTL adjust*/
+html[dir="RTL"] .oneMscomNavV3 .mstNavNavItem { float:right; padding-right: 2px; }
+
+.oneMscomNavV3 .mstNavNavItemMiddle { padding-left: 2px; }
+.oneMscomNavV3 .mstNavNavItem .mstNavNavItemTabText, .oneMscomNavV3 .mstNavNavItem .mstNavNavItemTabTextLink { padding-right: 18px; }
+/* RTL adjust*/
+html[dir="RTL"] .oneMscomNavV3 .mstNavNavItem .mstNavNavItemTabText, .oneMscomNavV3 .mstNavNavItem .mstNavNavItemTabTextLink { padding-right:0; }
+
+.oneMscomNavV3 .mstNavNavItemMiddle .mstNavNavItemTabText, .oneMscomNavV3 .mstNavNavItemMiddle .mstNavNavItemTabTextLink { padding-left: 18px; }
+/* RTL adjust*/
+html[dir="RTL"] .oneMscomNavV3 .mstNavNavItemMiddle .mstNavNavItemTabText, .oneMscomNavV3 .mstNavNavItemMiddle .mstNavNavItemTabTextLink { padding-right:18px; }
+
+.oneMscomNavV3 .mstNavNavItemFlyout { left: 0px;  }
+/*.oneMscomNavV3 .mstNav4ColMiddle { padding-left: 20px;}*/
+.oneMscomNavV3 .mstNav4ColFlyoutList { float: left; }
+.oneMscomNavV3 .mstNavMenuLinks { float: left; }
+.oneMscomNavV3 .mstNavMenuImgs { float: left; }
+.oneMscomNavV3 .mstNavMenuListItem a, .oneMscomNavV3 .mstNavMenuListItem2 a { font-size: 0.813em; color: #1570a6; }
+.oneMscomNavV3 .mstNavMenuListTitle { font-size: 1em; color: #000000; }
+.oneMscomNavV3 .mstNavNavItemTabTextLink, .oneMscomNavV3 .mstNavNavItemTabText { font-size: 0.813em; font-weight: 500; color: #000000; }
+.oneMscomNavV3 .mstNavNavItemTabText .selected { font-size: 100%; font-weight: 500; color: #1570a6; }
+.oneMscomNavV3 .mstNavListImg { float: left; padding-left: 20px; padding-top:0px}
+.oneMscomNavV3 .mstNavMenuListImgNoPadding { padding-left: 0px; }
+.oneMscomNavV3 .mstNavNavItemFlyout, .oneMscomNavV3 .selected, .oneMscomNavV3 .mstNavNavFirstItem { background-color: #EEEEEE; }
+.oneMscomNavV3 .mstNavNavItem { float: left; padding-right: 2px; }
+.oneMscomNavV3 .mstNavNavItemMiddle { padding-left: 2px; }
+.oneMscomNavV3 .mstNavNavItem .mstNavNavItemTabText, .oneMscomNavV3 .mstNavNavItem .mstNavNavItemTabTextLink { padding-right: 18px; }
+.oneMscomNavV3 .mstNavNavItemMiddle .mstNavNavItemTabText, .oneMscomNavV3 .mstNavNavItemMiddle .mstNavNavItemTabTextLink { padding-left: 18px; }
+.oneMscomNavV3 .mstNavNavItemFlyout { left: 0px; }
+/*.oneMscomNavV3 .mstNav4ColMiddle { padding-left: 20px;}*/
+.oneMscomNavV3 .mstNav4ColFlyoutList { float: left;width:20% !important; padding-right:5%; }
+.oneMscomNavV3 .mstNavMenuLinks { float: left; }
+/* RTL adjust*/ 
+html[dir="RTL"] .oneMscomNavV3 .mstNavMenuLinks { float: right; }
+html[dir="RTL"] .oneMscomNavV3 .mstNav4ColFlyoutList { float:right; }
+
+.oneMscomNavV3 .mstNavMenuImgs { float: left; }
+.oneMscomNavV3 .mstNavMenuListItem a, .oneMscomNavV3 .mstNavMenuListItem2 a { font-size: 0.813em; color: #1570a6; }
+.oneMscomNavV3 .mstNavMenuListTitle { font-size: 1em; color: #000000; }
+.oneMscomNavV3 .mstNavNavItemTabTextLink, .oneMscomNavV3 .mstNavNavItemTabText { font-size: 0.813em; font-weight: 500; color: #000000; }
+.oneMscomNavV3 .mstNavNavItemTabText .selected { font-size: 100%; font-weight: 500; color: #1570a6; }
+.oneMscomNavV3 .mstNavListImg { float: left; padding-left: 20px; }
+/* RTL adjust*/
+html[dir="RTL"] .oneMscomNavV3 .mstNavListImg { float: right; padding-left:0; padding-right:20px; }
+
+
+.oneMscomNavV3 .mstNavMenuListImgNoPadding { padding-left: 0px; }
+.oneMscomNavV3 .mstNavNavItemFlyout, .oneMscomNavV3 .selected, .oneMscomNavV3 .mstNavNavFirstItem { background-color: #EEEEEE; }
+.mstFooterDestLinkListOdd, .mstFooterDestLinkListEven { float: left; margin-left: 20px; }
+.mstFooterMsLinkItemText { margin-left: 10px; }
+/* RTL adjust*/
+html[dir="RTL"] .mstFooterMsLink, .mstFooterMsLinkItemLink, .mstFooterMsLinkItemText{float:right; margin-left: 20px;}
+html[dir="RTL"] .mstFooterMsLinkItemLink{float:right;}
+html[dir="RTL"] .mstFooterMsLinkItemText{float:right;} 
+html[dir="RTL"] .mstFooterDestLink{float:right;}
+html[dir="RTL"] .mstFooterPopRes{float:right;}
+
+
+
+.mstFooterMsLink, .mstFooterMsLinkItemLink, .mstFooterMsLinkItemText, .mstFooterDestLink, .mstFooterPopRes { float: left; }
+/* RTL adjust*/
+html[dir="RTL"] .mstFooterDestLinkListOdd{float: right;margin-left: -20px;}
+html[dir="RTL"] .mstFooterDestLinkListEven{float: right;margin-left: -20px;}
+/* RTL adjust*/
+html[dir="RTL"] .mstFooterPopRes{float:right;}
+.mstFooterPopRes { margin-left: 20px; }
+.msFooterCorpLinkLi { margin-left: 20px; }
+/* RTL adjust*/
+html[dir="RTL"] .mstFooterLocale { float: right; }
+.mstFooterLocale { float: left; }
+/* RTL adjust*/
+html[dir="RTL"] .mstFooterCorpLink { float: left; }
+/* RTL adjust*/
+html[dir="RTL"] .mstFooterLogo{ float: left; }
+.mstFooterLogo, .mstFooterCorpLink { float: right; }
+/* RTL adjust*/
+html[dir="RTL"] .mstFooterCopyRight { float: left; margin-left: 0px; }
+.mstFooterCopyRight { float: right; margin-left: 20px; }
+.mstFooterMoreCorpLink { float: right; }
+.oneMscomFooterV3, .mstFooterV3Backround { background-color: #EEEEEE; }
+.mstFooterMsLinkListTitle { color: #000000; font-size: 1em; }
+.mstFooterMsLinkItemText { font-size: 1em; }
+.mstFooterMsLinkItemText a { color: #000000; }
+.mstFooterDestLinkListTitle { color: #000000; font-size: 1em; }
+.mstFooterDestLinkListItem { font-size: 0.813em; }
+.mstFooterDestLinkListItem a { color: #0060a6; }
+.mstFooterPopResListTitle { color: #000000; font-size: 1em; }
+.mstFooterPopResListItem { font-size: 0.813em; }
+.mstFooterPopResListItem a { color: #0060a6; }
+.mstFooterCorpLinkCopyright { font-size: .833em; }
+.mstFooterCorpLinkCopyright a { color: #0060a6; }
+.mstFooterCopyRight { color: #000000; font-size: 100%; }
+.mstLcpMenuText { margin-left: 10px; float: left; font-size: .833em; font-weight: normal; color: #000000; }
+/* RTL adjust*/
+html[dir="RTL"] .mstLcpMenuImg{float:right}
+.mstLcpMenuImg { float: left; }
+.mstLcpFlyout { background-color: #EEEEEE; }
+.mstLcpLangSiteText { font-size: 1.825em; color: #000000; }
+.mstLcpClose1 { right: 20px; }
+.mstLcpClose2 { float: right; margin-right: 20px; }
+.mstLcpList { float: left; }
+.mstLcpAllSitesText { font-size: 1.825em; color: #000000; }
+.mstLcpSearch { right: 20px; }
+.mstLcpAllSitesList { float: left; }
+.mstLcpSiteSites li a { font-size: 1em; color: #0060a6; }
+.mstLcpAllSitesLinks li a { font-size: 1em; color: #0060a6; }
+.mstLcpListNotLast { margin-right: 20px; }
+.mstLcpSearchBorder { border: 1px solid #DDDDDD; }
+.mstLcpSearchText { font-size: 0.813em; }
+
+.oneMscomNavV3 .mstNavNavItem { height:35px; }
+.oneMscomNavV3 .mstNavNavItem .mstNavNavItemTabText {padding-left: 18px}
+.oneMscomNavV3{margin-left:-16px !important;}
+
+.oneMscomNavV3 .mstNavMenuImgs.mstNavMenuImgs {
+width: 75% !important;
+}
+
+.oneMscomNavV3 .mstNavListImgBig {
+    width: 300px;
+}
+.oneMscomNavV3 .mstNavMenuLinks {
+width: 20% !important;
+}
+@media screen and (max-width:1200px), only screen and (max-device-width: 1200px) {
+.oneMscomNavV3 .mstNavListImg {
+padding-left: 0px !important;
+padding-top:20px !important;
+}
+}
+
+@media screen and (min-width:691px) {
+    .mstHdrV3 .mstHdr_SecRow { display:block !Important;}
+}
+@media screen and (max-width:690px), only screen and (max-device-width: 690px) {
+.oneMscomNavV3 {margin-left:0 !important;}
+.mstFooterDestLinkListOdd { margin-left: 0; }
+    .oneMscomNavV3 .mstNavMenuLinks {
+    width:100% !important;}
+
+}
+@media (max-width:690px), only screen and (max-device-width: 480px) {
+    /* RTL adjust*/
+    html[dir="RTL"] .mstFooterDestLinkListEven { float: none; margin-left: 0; }
+	.mstFooterDestLinkListOdd, .mstFooterDestLinkListEven { float: none; margin-left: 0; }
+}
+

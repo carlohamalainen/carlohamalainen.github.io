@@ -1,0 +1,17 @@
+\par Length of a list?
+
+\begin{verbatim}
+> let f x m = if null x
+                then m
+                else f (tail x) (m + 1)
+> f [1, 2, 3] 0
+3
+\end{verbatim}
+
+\begin{python}
+[LETREC, ['f'], [[LAMBDA, ['x', 'm'],
+    [IF, [NULL, 'x'],
+         'm',
+         ['f', [CDR, 'x'], [ADD, 'm', 1]]]]],
+  ['f', [LIST, 1, 2, 3], 0]
+\end{python}

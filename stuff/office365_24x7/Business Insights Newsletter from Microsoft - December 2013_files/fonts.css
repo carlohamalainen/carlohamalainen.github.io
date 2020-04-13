@@ -1,0 +1,34 @@
+﻿@charset "UTF-8";
+
+/*ENTERPRISE ICONS: See /global/enterprise/publicsector/renderingassets/css/fonts/icons-reference.html for how-to*/
+@font-face { font-family: "Enterprise Icons"; src: url("/global/en-us/publicsector/renderingassets/css/fonts/enterprise-icons.eot"); src: url("/global/en-us/publicsector/renderingassets/css/fonts/enterprise-icons.eot?#iefix") format("embedded-opentype"), url("/global/en-us/publicsector/renderingassets/css/fonts/enterprise-icons.woff") format("woff"), url("/global/en-us/publicsector/renderingassets/css/fonts/enterprise-icons.ttf") format("truetype"), url("/global/en-us/publicsector/renderingassets/css/fonts/enterprise-icons.svg#enterprise-icons") format("svg"); font-weight: normal; font-style: normal; }
+
+[data-icon]:before { font-family: "Enterprise Icons" !important; content: attr(data-icon); font-style: normal !important; font-weight: normal !important; font-variant: normal !important; text-transform: none !important; speak: none; line-height: 1; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+[class^="icon-"]:before,
+[class*=" icon-"]:before { font-family: "Enterprise Icons" !important; font-style: normal !important; font-weight: normal !important; font-variant: normal !important; text-transform: none !important; speak: none; line-height: 1; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+.icon-downarr:before { content: "b"; }
+.icon-email:before { content: "p"; }
+.icon-facebook:before { content: "c"; }
+.icon-fb:before { content: "q"; }
+.icon-leftarr:before { content: "d"; }
+.icon-lin:before { content: "r"; }
+.icon-linkedin:before { content: "f"; }
+.icon-mail:before { content: "g"; }
+.icon-twit:before { content: "s"; }
+.icon-rightarr:before { content: "h"; }
+.icon-rewind:before { content: "v"; }
+.icon-play:before { content: "O"; }
+.icon-pause:before { content: "u"; }
+.icon-twitter:before { content: "j"; }
+.icon-video:before { content: "n"; }
+.icon-closex:before { content: "k"; }
+.icon-dot:before { content: "a"; }
+.icon-download:before { content: "l"; }
+.icon-leftarrcirc:before { content: "e"; }
+.icon-rightarrcirc:before { content: "i"; }
+.icon-playcirc:before { content: "w"; }
+.icon-videocirc:before { content: "o"; }
+.icon-rightlongarrcirc:before { content: "m"; }
+.icon-leftlongarrcirc:before { content: "t"; }

@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Carlo Hamalainen's Home Page</title>
+
+
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+ <DIV class="content">
+
+<h2>Installing Minion Pro fonts</h2>
+
+<h3>Introduction</h3>
+
+<p> This document describes how to install Adobe's Minion Pro fonts
+on Ubuntu Feisty (7.04), as at 29th August 2007. </p>
+
+<p> Update: minor changes for Ubuntu Gutsy (7.10), 21st October
+2007.</p>
+
+<p> If you have any comments then send me an email at 
+carlo dot hamalainen at gmail dot com.
+
+<p> We will install to /usr/local/share/texmf. Check that this matches the
+definition of TEXMFLOCAL in your installation: </p>
+
+<pre>
+$ kpsexpand '$TEXMFLOCAL'
+/usr/local/share/texmf
+</pre>
+
+<p> It is vital that you install to the right path in
+<tt>/usr/local</tt>. </p>
+
+<h3>Install mnsymbol</h3>
+
+<p> Click on <a
+href="http://www.ctan.org/tex-archive/fonts/mnsymbol/">mnsymbol</a> and 
+download the entire directory as <tt>mnsymbol.zip</tt>. </p>
+
+<pre>
+unzip mnsymbol.zip
+cd mnsymbol/tex
+latex MnSymbol.ins
+mkdir -p /usr/local/share/texmf/tex/latex/MnSymbol/
+mkdir -p /usr/local/share/texmf/fonts/source/public/MnSymbol/
+mkdir -p /usr/local/share/texmf/doc/latex/MnSymbol/
+cp MnSymbol.sty /usr/local/share/texmf/tex/latex/MnSymbol/MnSymbol.sty
+cd ..
+cp source/* /usr/local/share/texmf/fonts/source/public/MnSymbol/
+cp MnSymbol.pdf README /usr/local/share/texmf/doc/latex/MnSymbol/
+mkdir -p /usr/local/share/texmf/fonts/map/dvips/MnSymbol
+mkdir -p /usr/local/share/texmf/fonts/enc/dvips/MnSymbol
+mkdir -p /usr/local/share/texmf/fonts/type1/public/MnSymbol
+mkdir -p /usr/local/share/texmf/fonts/tfm/public/MnSymbol
+cp enc/MnSymbol.map /usr/local/share/texmf/fonts/map/dvips/MnSymbol/
+cp enc/*.enc /usr/local/share/texmf/fonts/enc/dvips/MnSymbol/
+cp pfb/*.pfb /usr/local/share/texmf/fonts/type1/public/MnSymbol/
+cp tfm/* /usr/local/share/texmf/fonts/tfm/public/MnSymbol/
+</pre>
+
+<p> Regenerate the indexes and enable MnSymbol: </p>
+
+<pre>
+mktexlsr
+updmap-sys --enable MixedMap MnSymbol.map
+</pre>
+
+<p> You should be able to compile
+<a href="mnsymbol-test.tex">mnsymbol-test.tex</a> with no errors. </p>
+
+<h3>Install the MinionPro package</h3>
+
+<p> We will need a few files from here:
+<a
+href="http://www.ctan.org/tex-archive/fonts/minionpro/">http://www.ctan.org/tex-archive/fonts/minionpro/</a>.
+</p>
+
+<p> Download <tt>scripts.zip</tt> and unpack it: </p>
+
+<pre>
+mkdir minionpro-scripts
+cd minionpro-scripts
+unzip ../scripts.zip
+</pre>
+
+<p> Copy your OTF fonts into the local directory. </p>
+
+<pre>
+find /youradobefonts/ -iname '*minion*pro*otf' -exec cp -v '{}' otf/ ';'
+</pre>
+
+<p> Hint: Adobe Reader ships with some Minion Pro fonts. </p>
+
+<p> Make sure you have the latest version of lcdf-typetools and then
+convert the fonts: </p>
+
+<pre>
+sudo apt-get install lcdf-typetools
+./convert.sh 
+</pre>
+
+<p> Install the fonts: </p>
+
+<pre>
+mkdir -p /usr/local/share/texmf/fonts/type1/adobe/MinionPro/
+cp pfb/*.pfb /usr/local/share/texmf/fonts/type1/adobe/MinionPro/
+</pre>
+
+<p> Determine which version of the Adobe fonts you have. For example,
+I have the "002.000" family: </p>
+
+<pre>
+$ otfinfo -v ~/Desktop/minionpro-scripts/otf/MinionPro-Regular.otf 
+Version 2.015;PS 002.000;Core 1.0.38;makeotf.lib1.7.9032
+</pre>
+
+<p> You need to download <b>one</b> of the following encoding files:
+</p>
+
+<pre>
+Version | Encoding file
+------------------------
+001.000 | enc-v1.000.zip
+001.001 | enc-v1.001.zip
+002.000 | env-v2.000.zip
+</pre>
+
+<p> The last few steps: </p>
+
+<pre>
+cd /usr/local/share/texmf
+unzip ~/Desktop/metrics-base.zip
+unzip ~/Desktop/metrics-full.zip
+unzip ~/Desktop/enc-X.XXX.zip        (pick your version)
+</pre>
+
+<p> Edit <tt>/etc/texmf/updmap.d/10local.cfg</tt> and add the following
+line: </p>
+
+<pre>
+Map MinionPro.map
+</pre>
+
+<p> Regenerate all indexes: </p>
+
+<pre>
+mktexlsr
+update-updmap
+updmap-sys 
+</pre>
+
+<p> You should see a line like this: </p>
+
+<pre>
+updmap-sys: using map file `/usr/local/share/texmf/fonts/map/dvips/MnSymbol/MnSymbol.map'
+</pre>
+
+<p> You should now be able to compile
+<a href="minionpro-test.tex">minionpro-test.tex</a> with no errors. </p>
+
+<p> You might see this error on large documents: </p>
+
+<pre>
+Font OMS/MnSymbolS/m/n/17.28=MnSymbolS12 at 17.28pt not loaded: Not enough room left.
+</pre>
+
+<p> Edit <tt>/etc/texmf/texmf.d/95NonPath.cnf</tt> and change </p>
+
+<pre>
+font_mem_size = 500000
+</pre>
+
+<p> to </p>
+
+<pre>
+font_mem_size = 5000000
+</pre>
+
+<p> or some other large value. Then run</p>
+
+<pre>
+update-texmf
+</pre>
+
+
+<br>
+<br>
+<br>
+
+<a href="http://validator.w3.org/check?uri=referer">
+<img src="http://www.w3.org/Icons/valid-html401"
+  alt="Valid HTML 4.01 Transitional" height="31" width="88" align="right"></a>
+<br>
+<br>
+
+</div>
+
+</body>
+</html>
+

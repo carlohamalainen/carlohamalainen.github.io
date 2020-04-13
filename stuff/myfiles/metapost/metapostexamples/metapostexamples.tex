@@ -1,0 +1,143 @@
+\documentclass[12pt,a4paper,amstags,fleqn,reqno]{article}
+
+\usepackage{verbatim}
+
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Minion Pro:
+% mathlf, texlf: makes numerals same size.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \usepackage[mathlf,textlf,minionint]{MinionPro} \usepackage[T1]{fontenc} \usepackage{textcomp} \usepackage{amsthm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% If not using Minion Pro, leave this line uncommented:
+\usepackage{amsmath}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This stuff is needed to correctly render the metapost
+% diagrams depending on whether latex or pdflatex was
+% called.
+\usepackage{ifpdf}
+
+\ifpdf
+        \pdfcompresslevel=9
+        \usepackage[pdftex]{graphicx}
+        \usepackage[pdftex,backref]{hyperref}
+        \DeclareGraphicsRule{*}{mps}{*}{}
+\else
+	\usepackage{epsfig}
+        \usepackage{graphicx}
+        \DeclareGraphicsRule{*}{eps}{*}{}
+\fi
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{fancyhdr}
+\pagestyle{fancyplain}
+\lhead{\fancyplain{}{{\today}}}
+\rhead{\fancyplain{}{\thepage}}
+
+\title{Metapost Examples}
+
+\author{Carlo H\"{a}m\"{a}l\"{a}inen}
+
+\begin{document}
+
+\maketitle
+
+See {\tt http://carlo-hamalainen.net/metapost.html} for more information.
+
+\begin{center} \includegraphics{3homCoherence.1} \end{center}
+\begin{center} \includegraphics{3homLocal.1} \end{center}
+\begin{center} \includegraphics{3homLocal.2} \end{center}
+\begin{center} \includegraphics{3homLocal.3} \end{center}
+\begin{center} \includegraphics{3homLocal.4} \end{center}
+\begin{center} \includegraphics{3homLocal.5} \end{center}
+\begin{center} \includegraphics{3homRowCol.1} \end{center}
+\begin{center} \includegraphics{3homw.1} \end{center}
+\begin{center} \includegraphics{alternatingGroup.1} \end{center}
+\begin{center} \includegraphics{bipartiteGraph.1} \end{center}
+\begin{center} \includegraphics{bipartiteGraph.2} \end{center}
+\begin{center} \includegraphics{bipartiteGraph.3} \end{center}
+\begin{center} \includegraphics{bipartiteGraph.4} \end{center}
+\begin{center} \includegraphics{bipartiteGraph.5} \end{center}
+\begin{center} \includegraphics{case1.1} \end{center}
+\begin{center} \includegraphics{case1.2} \end{center}
+\begin{center} \includegraphics{case1.3} \end{center}
+\begin{center} \includegraphics{case1.4} \end{center}
+\begin{center} \includegraphics{case1.5} \end{center}
+\begin{center} \includegraphics{case1.100} \end{center}
+\begin{center} \includegraphics{case2.1} \end{center}
+\begin{center} \includegraphics{case2.2} \end{center}
+\begin{center} \includegraphics{case2.3} \end{center}
+\begin{center} \includegraphics{case2.4} \end{center}
+\begin{center} \includegraphics{case2.5} \end{center}
+\begin{center} \includegraphics{case3.1} \end{center}
+\begin{center} \includegraphics{case3.2} \end{center}
+\begin{center} \includegraphics{case3.3} \end{center}
+\begin{center} \includegraphics{case3.4} \end{center}
+\begin{center} \includegraphics{case3.5} \end{center}
+\begin{center} \includegraphics{case4.1} \end{center}
+\begin{center} \includegraphics{case4.2} \end{center}
+\begin{center} \includegraphics{case4.3} \end{center}
+\begin{center} \includegraphics{cases.1} \end{center}
+\begin{center} \includegraphics{cases.2} \end{center}
+\begin{center} \includegraphics{cases.3} \end{center}
+\begin{center} \includegraphics{cases.4} \end{center}
+\begin{center} \includegraphics{cd.1} \end{center}
+\begin{center} \includegraphics{cd.2} \end{center}
+\begin{center} \includegraphics{darts.1} \end{center}
+\begin{center} \includegraphics{darts.2} \end{center}
+\begin{center} \includegraphics{darts.3} \end{center}
+\begin{center} \includegraphics{drRotationScheme.1} \end{center}
+\begin{center} \includegraphics{drRotationScheme.2} \end{center}
+\begin{center} \includegraphics{exampleTrade.1} \end{center}
+\begin{center} \includegraphics{exampleTrade.2} \end{center}
+\begin{center} \includegraphics{exampleTrade.3} \end{center}
+\begin{center} \includegraphics{exampleTradeOrder6.1} \end{center}
+\begin{center} \includegraphics{fundamentalTriangulation.1} \end{center}
+\begin{center} \includegraphics{glueHypermap.1} \end{center}
+\begin{center} \includegraphics{glueHypermap.2} \end{center}
+\begin{center} \includegraphics{glueHypermap.3} \end{center}
+\begin{center} \includegraphics{glueHypermap.4} \end{center}
+\begin{center} \includegraphics{glueIntercalate.1} \end{center}
+\begin{center} \includegraphics{glueIntercalate.2} \end{center}
+\begin{center} \includegraphics{graphTwoMaps.1} \end{center}
+\begin{center} \includegraphics{graphTwoMaps.2} \end{center}
+\begin{center} \includegraphics{hypermapExample.1} \end{center}
+\begin{center} \includegraphics{hypermapFixedPoint.1} \end{center}
+\begin{center} \includegraphics{hypermapFixedPoint.2} \end{center}
+\begin{center} \includegraphics{hypermapFixedPoint.3} \end{center}
+\begin{center} \includegraphics{hypermapFixedPoint.4} \end{center}
+\begin{center} \includegraphics{hypermapFixedPoint.5} \end{center}
+\begin{center} \includegraphics{hypermapInvolutions.1} \end{center}
+\begin{center} \includegraphics{hypermapInvolutions.2} \end{center}
+\begin{center} \includegraphics{hypermapInvolutions.3} \end{center}
+\begin{center} \includegraphics{joinRule.1} \end{center}
+\begin{center} \includegraphics{joinRule.2} \end{center}
+\begin{center} \includegraphics{joinRule.3} \end{center}
+\begin{center} \includegraphics{joinRule.4} \end{center}
+\begin{center} \includegraphics{joinRule.44} \end{center}
+\begin{center} \includegraphics{joinRule.5} \end{center}
+\begin{center} \includegraphics{joinRule.55} \end{center}
+\begin{center} \includegraphics{joinRule.6} \end{center}
+\begin{center} \includegraphics{joinRule.9} \end{center}
+\begin{center} \includegraphics{oneHexagonThreeTransversals.1} \end{center}
+\begin{center} \includegraphics{rotationScheme.1} \end{center}
+\begin{center} \includegraphics{singleTriangle.1} \end{center}
+\begin{center} \includegraphics{starHypermap.1} \end{center}
+\begin{center} \includegraphics{tau1FP.1} \end{center}
+\begin{center} \includegraphics{tessellations.1} \end{center}
+\begin{center} \includegraphics{threetrans.1} \end{center}
+\begin{center} \includegraphics{tmp.3} \end{center}
+\begin{center} \includegraphics{tmp.4} \end{center}
+\begin{center} \includegraphics{tmp.5} \end{center}
+\begin{center} \includegraphics{tmp.6} \end{center}
+\begin{center} \includegraphics{tmp.7} \end{center}
+\begin{center} \includegraphics{torus.1} \end{center}
+\begin{center} \includegraphics{twoIntersectingCycles.1} \end{center}
+\begin{center} \includegraphics{twoIntersectingCycles.2} \end{center}
+
+\end{document}
+
+

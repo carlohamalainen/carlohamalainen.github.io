@@ -1,0 +1,149 @@
+\begin{Verbatim}[commandchars=@\[\]]
+@PYaE[# -*- coding: utf-8 -*-]
+
+@PYaE[#*****************************************************************************]
+@PYaE[#       Copyright (C) 2009 Carlo Hamalainen <carlo.hamalainen@at[]gmail.com>, ]
+@PYaE[#]
+@PYaE[#  Distributed under the terms of the GNU General Public License (GPL)]
+@PYaE[#]
+@PYaE[#    This code is distributed in the hope that it will be useful,]
+@PYaE[#    but WITHOUT ANY WARRANTY; without even the implied warranty of]
+@PYaE[#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU]
+@PYaE[#    General Public License for more details.]
+@PYaE[#]
+@PYaE[#  The full text of the GPL is available at:]
+@PYaE[#]
+@PYaE[#                  http://www.gnu.org/licenses/]
+@PYaE[#*****************************************************************************]
+
+
+@PYay[import] @PYaV[pylab]
+@PYay[from] @PYaV[scipy] @PYay[import] @PYaj[arange], @PYaj[log], pi, @PYaj[sqrt]
+@PYay[from] @PYaV[scipy.stats] @PYay[import] rv_discrete
+
+@PYay[def] @PYaL[avg](L): @PYay[return] @PYaX[sum](L)@PYbd[/](@PYaw[1.0]@PYbd[*]@PYaX[len](L))
+
+@PYay[def] @PYaL[make_scipy_rv](L):
+    vals @PYbd[=] @lb[]@PYaj[arange](@PYaX[len](L)), L@rb[]
+    @PYay[return] rv_discrete(name@PYbd[=]@PYaB[']@PYaB[custm]@PYaB['], values@PYbd[=]vals)
+
+@PYas["""]
+@PYas[I want to have some number of machines, and the j-th machine has a spike]
+@PYas[in the distribution at the j-th point.]
+@PYas["""]
+
+nr_machines @PYbd[=] @PYaw[10]
+
+machine_distributions @PYbd[=] @lb[]@rb[]
+means @PYbd[=] @lb[]@rb[]
+max_mean @PYbd[=] @PYaA[None]
+
+@PYay[for] j @PYav[in] @PYaX[range](nr_machines):
+    d @PYbd[=] @lb[]@PYaw[1]@rb[] @PYbd[*] nr_machines
+    d@lb[]j@rb[] @PYbd[=] @PYaw[20]
+   
+    @PYaE[# normalise d]
+    d_sum @PYbd[=] @PYaX[float](@PYaX[sum](d))
+    d @PYbd[=] @lb[]@PYaX[float](x@PYbd[/]d_sum) @PYay[for] x @PYav[in] d@rb[]
+
+    machine_distributions@PYbd[.]@PYaj[append](make_scipy_rv(d))
+    means@PYbd[.]@PYaj[append](@PYaX[sum](@lb[]x@PYbd[*]d@lb[]x@rb[]@PYbd[/]nr_machines @PYay[for] x @PYav[in] @PYaX[range](@PYaX[len](d))@rb[]))
+
+max_mean @PYbd[=] @PYaX[max](means)
+       
+@PYay[def] @PYaL[play_machine](k):
+    @PYas["""]
+@PYas[    Play the k-th machine.]
+@PYas[    """]
+    
+    @PYay[return] machine_distributions@lb[]k@rb[]@PYbd[.]rvs()@PYbd[/](@PYaw[1.0]@PYbd[*]nr_machines)
+
+
+@PYay[def] @PYaL[best_mu](): @PYay[return] max_mean
+    
+@PYay[def] @PYaL[mu](k):
+    @PYas["""]
+@PYas[    Expected reward of machine k.]
+@PYas[    """]
+    
+    @PYay[return] means@lb[]k@rb[]    
+
+@PYay[def] @PYaL[run_ucb1](n):
+    @PYas["""]
+@PYas[    Perform n plays using the UCB1 strategy.]
+@PYas[    """]
+          
+    total_nr_plays @PYbd[=] @PYaw[0]
+    nr_plays @PYbd[=] @lb[]@PYaw[0]@rb[] @PYbd[*] nr_machines
+    average_reward @PYbd[=] @lb[]@PYaw[0]@rb[] @PYbd[*] nr_machines
+    
+    @PYay[for] j @PYav[in] @PYaX[range](nr_machines):
+        average_reward@lb[]j@rb[] @PYbd[=] play_machine(j)
+        nr_plays@lb[]j@rb[] @PYbd[+]@PYbd[=] @PYaw[1]
+        
+        total_nr_plays @PYbd[+]@PYbd[=] @PYaw[1]
+    
+    total_reward @PYbd[=] @PYaw[0]
+    
+    @PYay[for] _ @PYav[in] @PYaX[range](n):
+        max_j @PYbd[=] @PYaA[None]
+        max_xj @PYbd[=] @PYaA[None]
+        
+        @PYay[for] j @PYav[in] @PYaX[range](nr_machines):
+            xj @PYbd[=] @PYaX[float](average_reward@lb[]j@rb[] @PYbd[+] \
+                     @PYaj[sqrt](@PYaw[2.0]@PYbd[*]@PYaj[log](total_nr_plays)@PYbd[/]nr_plays@lb[]j@rb[]))
+            
+            @PYay[if] max_j @PYav[is] @PYaA[None]:
+                max_j @PYbd[=] j
+                max_xj @PYbd[=] xj
+            @PYay[elif] xj @PYbd[>] max_xj:                    
+                max_j @PYbd[=] j
+                max_xj @PYbd[=] xj
+    
+        reward @PYbd[=] play_machine(max_j)
+        total_reward @PYbd[+]@PYbd[=] reward
+        
+        average_reward@lb[]max_j@rb[] @PYbd[=] (nr_plays@lb[]j@rb[]@PYbd[*]average_reward@lb[]max_j@rb[] @PYbd[+] reward) \
+                                    @PYbd[/](nr_plays@lb[]j@rb[] @PYbd[+] @PYaw[1])
+        nr_plays@lb[]j@rb[] @PYbd[+]@PYbd[=] @PYaw[1]
+        total_nr_plays @PYbd[+]@PYbd[=] @PYaw[1]
+        
+    @PYaE[# best possible reward, our reward, regret, upper bound on expected regret.]
+    @PYay[return] (total_nr_plays@PYbd[*]best_mu(),
+            total_reward,
+            total_nr_plays@PYbd[*]best_mu() @PYbd[-] total_reward,
+            @PYaw[8]@PYbd[*]@PYaX[sum](@lb[]@PYaX[float](@PYaj[log](total_nr_plays)@PYbd[/](best_mu() @PYbd[-] mu(j))) \
+            @PYay[for] j @PYav[in] @PYaX[range](nr_machines) @PYay[if] mu(j) @PYbd[<] best_mu()@rb[]) \
+                    @PYbd[+] @PYaX[float](@PYaw[1] @PYbd[+] pi@PYbd[*]@PYbd[*]@PYaw[2]@PYbd[/]@PYaw[3]) @PYbd[+] @PYaX[sum](@lb[]best_mu() @PYbd[-] mu(j) \
+                            @PYay[for] j @PYav[in] @PYaX[range](nr_machines)@rb[]))
+
+runs @PYbd[=] @lb[](n, run_ucb1(n)) @PYay[for] n @PYav[in] @lb[]@PYaw[10], @PYaw[20], @PYaw[100], @PYaw[1000], @PYaw[2000]@rb[]@rb[]
+
+@PYaX[xrange] @PYbd[=] @lb[]x@lb[]@PYaw[0]@rb[] @PYay[for] x @PYav[in] runs@rb[]
+
+best_possible_data @PYbd[=] @lb[]x@lb[]@PYaw[1]@rb[]@lb[]@PYaw[0]@rb[] @PYay[for] x @PYav[in] runs@rb[]
+total_reward_data @PYbd[=] @lb[]x@lb[]@PYaw[1]@rb[]@lb[]@PYaw[1]@rb[] @PYay[for] x @PYav[in] runs@rb[]
+regret_data @PYbd[=] @lb[]x@lb[]@PYaw[1]@rb[]@lb[]@PYaw[2]@rb[] @PYay[for] x @PYav[in] runs@rb[]
+regret_bound_data @PYbd[=] @lb[]x@lb[]@PYaw[1]@rb[]@lb[]@PYaw[3]@rb[] @PYay[for] x @PYav[in] runs@rb[]
+
+pylab@PYbd[.]plot(@PYaX[xrange], best_possible_data, @PYaB[']@PYaB[-o]@PYaB['], \
+           @PYaX[xrange], total_reward_data, @PYaB[']@PYaB[-^]@PYaB['])
+pylab@PYbd[.]xlabel(@PYaB[']@PYaB[number of plays]@PYaB['])
+pylab@PYbd[.]ylabel(@PYaB[']@PYaB[reward]@PYaB['])
+pylab@PYbd[.]title(@PYaB[']@PYaB[UCB1: best vs actual reward]@PYaB['])
+pylab@PYbd[.]legend( (@PYaB["]@PYaB[best possible reward]@PYaB["], @PYaB["]@PYaB[simulated reward]@PYaB["]), loc@PYbd[=]@PYaB[']@PYaB[upper left]@PYaB['])
+
+pylab@PYbd[.]grid(@PYaA[True])
+pylab@PYbd[.]savefig(@PYaB["]@PYaB[best_and_total_reward.pdf]@PYaB["])
+pylab@PYbd[.]close()
+
+pylab@PYbd[.]plot(@PYaX[xrange], regret_data, @PYaB[']@PYaB[-o]@PYaB['], \
+           @PYaX[xrange], regret_bound_data, @PYaB[']@PYaB[-^]@PYaB['])
+pylab@PYbd[.]xlabel(@PYaB[']@PYaB[number of plays]@PYaB['])
+pylab@PYbd[.]ylabel(@PYaB[']@PYaB[regret]@PYaB['])
+pylab@PYbd[.]title(@PYaB[']@PYaB[UCB1: regret and upper bound]@PYaB['])
+pylab@PYbd[.]legend( (@PYaB["]@PYaB[regret]@PYaB["], @PYaB["]@PYaB[bound on regret]@PYaB["]), loc@PYbd[=]@PYaB[']@PYaB[upper left]@PYaB['])
+
+pylab@PYbd[.]grid(@PYaA[True])
+pylab@PYbd[.]savefig(@PYaB["]@PYaB[regret_and_bound.pdf]@PYaB["])
+\end{Verbatim}

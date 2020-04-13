@@ -1,0 +1,28 @@
+﻿.mstHdr_MenuItemSiteIdentity .epgPSHeader { display: block; position: relative; padding: 15px; left: -15px; bottom: -5px; box-sizing: border-box;  -webkit-box-sizing:border-box;border:1px solid #fff; border-bottom:0;}
+/* RTL adjust*/
+html[dir="RTL"] .mstHdr_MenuItemSiteIdentity .epgPSHeader { display: block; position: relative; left:0; right:-15px; bottom: -5px; box-sizing: border-box; padding:15px;}
+
+.mstHdr_MenuItemSiteIdentity .epgPSHeader.selected { border-top: 1px solid #e2e2e2; border-left: 1px solid #e2e2e2; border-right: 1px solid #e2e2e2; left: -16px; }
+.epgPSHeader .currentSite { padding-right: 6px; }
+/* RTL adjust*/
+html[dir="RTL"] .epgPSHeader .currentSite { padding-right:0; padding-left:6px; }
+
+.epgPSHeader .currentSite, .epgPSHeader .dropdownCTA { display: inline-block; font-size: 20px; }
+.epgPSHeader .dropdownCTA { cursor: pointer; }
+.epgPSHeader .headerFlyout { position: absolute; z-index: 1001; display: none; background-color: white; padding: 5px 15px 15px 15px; left: -1px; top:50px; box-sizing: border-box; -webkit-box-sizing:border-box; border-left: 1px solid #e2e2e2; border-right: 1px solid #e2e2e2; border-bottom: 1px solid #e2e2e2; }
+.epgPSHeader .headerFlyout a { font-size: 18px !important; }
+.epgPSHeader .headerFlyout li { margin-top: 18px; white-space: nowrap;}
+.epgPSHeader .headerFlyout li > * { display: inline-block; }
+.epgPSHeader .headerFlyout li span { width: 5px; height: 17px; margin-right: 8px; vertical-align: bottom; }
+/* RTL adjust*/
+html[dir="RTL"] .epgPSHeader .headerFlyout li span { margin-left: 8px;}
+
+.epgPSHeader .headerFlyout li span.cityNext { background-color: #00bcf2; }
+.epgPSHeader .headerFlyout li span.education { background-color: #68217a; }
+.epgPSHeader .headerFlyout li span.enterprise { background-color: #0072c6; }
+.epgPSHeader .headerFlyout li span.government { background-color: #002060; }
+.epgPSHeader .headerFlyout li span.industry { background-color: #008272; }
+.epgPSHeader .headerFlyout li span.health { background-color: #4668c5; }
+.epgPSHeader .headerFlyout li span.cloud { background-color: #7FBD42; }
+.mstHdr_MenuItemSiteIdentity.selected .epgPSHeader { }
+.epgPSHeader .dropdownCTA:before { font-size: 24px; position: relative; top: 2px; }
