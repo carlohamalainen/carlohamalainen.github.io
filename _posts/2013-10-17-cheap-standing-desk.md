@@ -24,7 +24,7 @@ Is sitting all day in front of a computer ok as long as you exercise for an hour
 
 Standing desks are trendy at the moment but quite expensive, unless you find some wooden crates that are just the right size: 
 
-<img border="0" src="https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/medium/2013-10-15%2B%2B10-47-17.jpg?w=1100&ssl=1" alt="[photo]" data-recalc-dims="1" /> 
+<img border="0" src="/s3/oldblog/blogdata/medium/2013-10-15%2B%2B10-47-17.jpg?w=1100&ssl=1" alt="[photo]" data-recalc-dims="1" /> 
 
 I'd like to see research quantifying the benefit of using a standing desk. Do I need to work at it all day? In 2 hour blocks with 30 minute sitting blocks? 
 
@@ -32,7 +32,7 @@ The Microsoft Natural keyboard is the best keyboard that I've ever used, and now
 
 One thing about the Microsoft Natural keyboard is that it's huge, and using a mouse right-handed would not be ergonomically sensible. So I got a Logitech Marble trackball which can be used with the left hand. I find that this setup works perfectly. 
 
-<img border="0" src="https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/medium/2013-10-15%2B%2B10-47-26.jpg?w=1100&ssl=1" alt="[photo]" data-recalc-dims="1" /> 
+<img border="0" src="/s3/oldblog/blogdata/medium/2013-10-15%2B%2B10-47-26.jpg?w=1100&ssl=1" alt="[photo]" data-recalc-dims="1" /> 
 
 To swap the left and right buttons and make the small-right button do middle click (important for X Windows), use this xmodmap command: 
 

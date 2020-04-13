@@ -20,7 +20,7 @@ format: image
 
 My favourite package for drawing diagrams is [MetaPost](http://en.wikipedia.org/wiki/MetaPost). Here's an example, taken from my PhD thesis:
 
-<img class="displayed" src="https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/stuff/myfiles/metapostrules.png?w=1100&ssl=1" alt="Metapost diagram" data-recalc-dims="1" /> 
+<img class="displayed" src="/stuff/myfiles/metapostrules.png?w=1100&ssl=1" alt="Metapost diagram" data-recalc-dims="1" /> 
 
 The best page for examples is the one by [(La)TeX Navigator](http://tex.loria.fr/prod-graph/zoonekynd/metapost/metapost.html).
 

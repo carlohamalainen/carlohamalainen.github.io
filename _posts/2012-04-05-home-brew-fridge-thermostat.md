@@ -20,11 +20,11 @@ I picked up a cheap thermostat [on eBay](http://myworld.ebay.com.au/aus_best_bar
 
 You can run the thermostat wire inside the door on the hinged side so there is no need to modify the fridge at all. I set the thermostat to 23C and the temperature sticker on the side of the tub stayed at about 24C throughout the brewing process. (By default it shows the current temp.)
 
-<img border="0" src="https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/medium/2012-03-17%2B%2B09-25-33.jpg?w=1100&ssl=1" alt="[photo]" data-recalc-dims="1" /> 
+<img border="0" src="/s3/oldblog/blogdata/medium/2012-03-17%2B%2B09-25-33.jpg?w=1100&ssl=1" alt="[photo]" data-recalc-dims="1" /> 
 
 
 
-<img border="0" src="https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/medium/2012-03-17%2B%2B09-25-42.jpg?w=1100&ssl=1" alt="[photo]" data-recalc-dims="1" /> 
+<img border="0" src="/s3/oldblog/blogdata/medium/2012-03-17%2B%2B09-25-42.jpg?w=1100&ssl=1" alt="[photo]" data-recalc-dims="1" /> 
 
 
 

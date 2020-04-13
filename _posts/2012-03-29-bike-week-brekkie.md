@@ -18,37 +18,37 @@ I went to the [Bicycle Queensland / Scody Ride to Work](http://bikeweek.bq.org.a
 
 It was drizzling but I didn't mind... 
 
-<img border="0" src="https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/medium/2012-03-14%2B%2B07-06-40.jpg?w=1100&ssl=1" alt="[photo]" data-recalc-dims="1" /> 
+<img border="0" src="/s3/oldblog/blogdata/medium/2012-03-14%2B%2B07-06-40.jpg?w=1100&ssl=1" alt="[photo]" data-recalc-dims="1" /> 
 
 
 
-<img border="0" src="https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/medium/2012-03-14%2B%2B07-15-06.jpg?w=1100&ssl=1" alt="[photo]" data-recalc-dims="1" /> 
+<img border="0" src="/s3/oldblog/blogdata/medium/2012-03-14%2B%2B07-15-06.jpg?w=1100&ssl=1" alt="[photo]" data-recalc-dims="1" /> 
 
 
 
-<img border="0" src="https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/medium/2012-03-14%2B%2B07-15-13.jpg?w=1100&ssl=1" alt="[photo]" data-recalc-dims="1" /> 
+<img border="0" src="/s3/oldblog/blogdata/medium/2012-03-14%2B%2B07-15-13.jpg?w=1100&ssl=1" alt="[photo]" data-recalc-dims="1" /> 
 
 
 
 Heaps of people turned up. My mate Tony won a bike light in the raffle. I was pleased with the free (healthy!) breakfast.
 
-<img border="0" src="https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/medium/2012-03-14%2B%2B07-26-11.jpg?w=1100&ssl=1" alt="[photo]" data-recalc-dims="1" /> 
+<img border="0" src="/s3/oldblog/blogdata/medium/2012-03-14%2B%2B07-26-11.jpg?w=1100&ssl=1" alt="[photo]" data-recalc-dims="1" /> 
 
 
 
 Naturally there were some interesting bikes around. One guy had a compass on his handlebars:
 
-<img border="0" src="https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/medium/2012-03-14%2B%2B07-46-48.jpg?w=1100&ssl=1" alt="[photo]" data-recalc-dims="1" /> 
+<img border="0" src="/s3/oldblog/blogdata/medium/2012-03-14%2B%2B07-46-48.jpg?w=1100&ssl=1" alt="[photo]" data-recalc-dims="1" /> 
 
 
 
 Must be fun to ride in a headwind. Or side-wind.
 
-<img border="0" src="https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/medium/2012-03-14%2B%2B07-47-41.jpg?w=1100&ssl=1" alt="[photo]" data-recalc-dims="1" /> 
+<img border="0" src="/s3/oldblog/blogdata/medium/2012-03-14%2B%2B07-47-41.jpg?w=1100&ssl=1" alt="[photo]" data-recalc-dims="1" /> 
 
 
 
-<img border="0" src="https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/medium/2012-03-14%2B%2B08-35-21.jpg?w=1100&ssl=1" alt="[photo]" data-recalc-dims="1" /> 
+<img border="0" src="/s3/oldblog/blogdata/medium/2012-03-14%2B%2B08-35-21.jpg?w=1100&ssl=1" alt="[photo]" data-recalc-dims="1" /> 
 
 
 

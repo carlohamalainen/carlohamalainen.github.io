@@ -18,4 +18,4 @@ Top: original (from 2007!) rear brake pads on my Avanti Blade flatbar road bike.
 
 Bottom: new Kool Stop salmon pads. They're huge!
 
-<img border="0" src="https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/medium/2012-03-18%2B%2B07-59-30.jpg?w=1100&ssl=1" alt="[photo]" data-recalc-dims="1" />
+<img border="0" src="/s3/oldblog/blogdata/medium/2012-03-18%2B%2B07-59-30.jpg?w=1100&ssl=1" alt="[photo]" data-recalc-dims="1" />
