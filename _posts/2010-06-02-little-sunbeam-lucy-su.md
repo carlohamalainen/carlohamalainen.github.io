@@ -16,4 +16,4 @@ format: image
 ---
 I can't believe that Little Sunbeam by Lucy Su is out of print. My son absolutely loves it.
 
-<img src="https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/x-2010-06/little_sunbeam.jpg?w=1100&ssl=1" data-recalc-dims="1" /> .
+<img src="/s3/oldblog/blogdata/x-2010-06/little_sunbeam.jpg?w=1100&ssl=1" data-recalc-dims="1" /> .

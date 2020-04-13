@@ -23,7 +23,7 @@ bird's arrival time and prelaying period to climate change. The Octave code is h
 
 The final plots look like this: 
 
-<img src="https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/x-2014-02/single-solution-two-trait-model.png?w=1100&ssl=1" data-recalc-dims="1" /> 
+<img src="/s3/oldblog/blogdata/x-2014-02/single-solution-two-trait-model.png?w=1100&ssl=1" data-recalc-dims="1" /> 
 
 A natural question is: how does the shape of the arrival time change as the main model parameter is varied? A nice way to visualise this is using [ipywidgets](https://github.com/jakevdp/ipywidgets) and [nbviewer](https://github.com/ipython/nbviewer). Here is an ipython notebook with a slider for the main model parameter: 
 

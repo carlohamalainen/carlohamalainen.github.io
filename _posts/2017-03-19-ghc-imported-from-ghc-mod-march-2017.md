@@ -68,4 +68,4 @@ base-4.8.2.0:GHC.Show.show Prelude https://hackage.haskell.org/package/base-4.8.
 
 From Vim/Neovim, navigate to a symbol and hit F4 which will open the Haddock URL in your browser, or F5 to echo the command-line output. 
 
-<img src="https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/x-2016-09/ghc-imported-from-url.png?w=600&ssl=1" data-recalc-dims="1" />
+<img src="/s3/oldblog/blogdata/x-2016-09/ghc-imported-from-url.png" data-recalc-dims="1" />

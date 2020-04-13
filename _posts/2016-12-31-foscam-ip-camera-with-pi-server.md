@@ -16,7 +16,7 @@ format: image
 ---
 Over the xmas holidays I set up a security camera for my parents. I used a [Foscam FI9805E IP camera](http://www.foscamaustralia.com.au/Foscam-POE-FI9805E-30M-H264-720P-HD-Wireless-IP-Camera-Outdoor-Silver-Infrared-Cut-Filter-2yr-Warranty) with a Raspberry Pi (model 3) as the server. An old 1Tb USB hard drive provides ample storage on the Pi. Here is the layout:
 
-<img src="https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/medium/2016-12-18%2B%2B19-25-40.jpg?w=1100&ssl=1" alt="[photo]" border="0" data-recalc-dims="1" /> 
+<img src="/s3/oldblog/blogdata/medium/2016-12-18%2B%2B19-25-40.jpg?w=1100&ssl=1" alt="[photo]" border="0" data-recalc-dims="1" /> 
 
 The camera supports power over ethernet but it comes with an AC adaptor so you can use a normal ethernet setup as I have done.
 
@@ -32,15 +32,15 @@ These are the bits that I bought:
 
 ## External installation
 
-<img src="https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/medium/2016-12-20%2B%2B12-00-28.jpg?w=1100&ssl=1" alt="[photo]" border="0" data-recalc-dims="1" /> 
+<img src="/s3/oldblog/blogdata/medium/2016-12-20%2B%2B12-00-28.jpg?w=1100&ssl=1" alt="[photo]" border="0" data-recalc-dims="1" /> 
 
 I used some [Sugru](https://sugru.com/) to keep the main cable straight against the roller-door track:
 
-<img src="https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/medium/2016-12-20%2B%2B12-01-48.jpg?w=1100&ssl=1" alt="[photo]" border="0" data-recalc-dims="1" /> 
+<img src="/s3/oldblog/blogdata/medium/2016-12-20%2B%2B12-01-48.jpg?w=1100&ssl=1" alt="[photo]" border="0" data-recalc-dims="1" /> 
 
 Due to the garage being hot I mounted an old peg basket using picture frame hooks. Free flow of air is good.
 
-<img src="https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/medium/2016-12-20%2B%2B12-00-47.jpg?w=1100&ssl=1" alt="[photo]" border="0" data-recalc-dims="1" /> 
+<img src="/s3/oldblog/blogdata/medium/2016-12-20%2B%2B12-00-47.jpg?w=1100&ssl=1" alt="[photo]" border="0" data-recalc-dims="1" /> 
 
 &nbsp;
 
@@ -91,7 +91,7 @@ For maintenance I have ssh access to the Pi from outside, with [rate limited ssh
 
 The Pi logs its CPU temperature to my [Postgresql structured logging server](https://carlo-hamalainen.net/blog/2016/4/27/structured-logging) and a daily email report plots the temperatures for me:
 
-<img src="https://s3.amazonaws.com/carlo-hamalainen.net/blogdata/x-2016-12/calampi_temps.png?w=500&ssl=1" data-recalc-dims="1" /> 
+<img src="/s3/oldblog/blogdata/x-2016-12/calampi_temps.png?w=500&ssl=1" data-recalc-dims="1" /> 
 
 For real-time monitoring (5 minute intervals) I use a free account on [UptimeRobot](https://uptimerobot.com).
 

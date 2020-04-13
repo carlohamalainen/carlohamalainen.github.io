@@ -16,9 +16,9 @@ format: image
 ---
 I saw this in a gallery in Canberra a few years ago. 
 
-[<img src="https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/stuff/perceval_-_boy_with_cat_2_-_painting.jpg?w=600&ssl=1"  data-recalc-dims="1" />](https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/stuff/perceval_-_boy_with_cat_2_-_painting.jpg?ssl=1) 
+[<img src="/stuff/perceval_-_boy_with_cat_2_-_painting.jpg?w=600&ssl=1"  data-recalc-dims="1" />](/stuff/perceval_-_boy_with_cat_2_-_painting.jpg?ssl=1) 
 
-[<img src="https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/stuff/perceval_-_boy_with_cat_2_-_caption.jpg?w=600&ssl=1"  data-recalc-dims="1" />](https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/stuff/perceval_-_boy_with_cat_2_-_caption.jpg?ssl=1) 
+[<img src="/stuff/perceval_-_boy_with_cat_2_-_caption.jpg?w=600&ssl=1"  data-recalc-dims="1" />](/stuff/perceval_-_boy_with_cat_2_-_caption.jpg?ssl=1) 
 
 
 

@@ -100,11 +100,11 @@ Power it up. It should respond to ping,and ssh. The default root password is too
 
 I have an old laptop hard drive attached to my WL-500gP using an IDE to USB cable:
 
-<img src="https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/medium/2009-02-21%2B%2B19-55-48.jpg?w=1100&ssl=1" border="0" alt="[photo]" data-recalc-dims="1" /> </img>
+<img src="/s3/oldblog/blogdata/medium/2009-02-21++19-55-48.jpg" border="0" alt="[photo]" data-recalc-dims="1" />
 
 Nice little silent PC:
 
-<img src="https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/medium/2009-02-21%2B%2B19-56-26.jpg?w=1100&ssl=1" border="0" alt="[photo]" data-recalc-dims="1" /> </img>
+<img src="/s3/oldblog/blogdata/medium/2009-02-21++19-56-26.jpg" border="0" alt="[photo]" data-recalc-dims="1" />
 
 Some system info:
 
