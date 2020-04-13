@@ -14,9 +14,7 @@ categories:
   - Uncategorized
 format: image
 ---
-<img border="0" src="https://i0.wp.com/s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/medium/2009-03-08%2B%2B18-27-14.jpg?w=1100&#038;ssl=1" alt="[photo]" data-recalc-dims="1" />
-
-
+<img border="0" src="https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/medium/2009-03-08%2B%2B18-27-14.jpg?w=1100&ssl=1" alt="[photo]" data-recalc-dims="1" />
 
 **Archived Comments**
 

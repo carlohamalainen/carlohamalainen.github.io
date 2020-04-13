@@ -16,11 +16,7 @@ format: image
 ---
 Here's an interesting video by the Nestle CEO, talking about access to water: 
 
-<div class="jetpack-video-wrapper">
-  <span class="embed-youtube" style="text-align:center; display: block;"></span>
-</div>
-
-In case the Youtube video doesn't work, here's a local mirror: </p> 
+(Lost the link in a blog migration)
 
 Transcript of the subtitles from 2:01 to 3:34 (thanks to AP): 
 
@@ -77,7 +73,7 @@ Author: andrej
 
 There's some dodgy thinking there.. 
 
-Firstly, even if you take the questionable position that water is a foodstuff when we ingest it, this disregards all the other necessary personal uses of water. Personal washing, clothes washing, watering of plants, toilet systems, heating, cooling, as a solvent, in medicines, etc etc. It's so sneaky to try to jam water into the category "foodstuffs" and then to argue that it should be priced in the same way as other items in that category. 
+1. Firstly, even if you take the questionable position that water is a foodstuff when we ingest it, this disregards all the other necessary personal uses of water. Personal washing, clothes washing, watering of plants, toilet systems, heating, cooling, as a solvent, in medicines, etc etc. It's so sneaky to try to jam water into the category "foodstuffs" and then to argue that it should be priced in the same way as other items in that category. 
 
 2. Labelling the view that water is a human right as "extreme" is also a disingenuous ploy. It artificially sets up a "scale" of positions and then tries to place two positions (human right vs market-valued foodstuff) on that scale. Calling one of the positions 'extreme' is a completely unobjective value judgement. Even if such a scale made sense, one could easily construct far more extreme views (e.g. every person should have as much water as needed to for totally frivolous purposes).
 

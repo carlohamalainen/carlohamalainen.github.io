@@ -16,7 +16,8 @@ format: image
 ---
 On Debian squeeze, one needs some OpenGL libraries to install haskell-platform-2012.4.0.0: 
 
-<pre>✗ 09:42:08 carlo@r500 ~/opt/haskell-platform-2012.4.0.0 $ ./configure --prefix=/home/carlo/opt/haskell-platform-2012.4.0.0_build
+```
+✗ 09:42:08 carlo@r500 ~/opt/haskell-platform-2012.4.0.0 $ ./configure --prefix=/home/carlo/opt/haskell-platform-2012.4.0.0_build
 
 ...
 
@@ -28,15 +29,16 @@ checking GL/gl.h usability... no
 checking GL/gl.h presence... no
 checking for GL/gl.h... no
 configure: error: The OpenGL C library is required
-</pre>
+```
 
 Solution: 
 
-<pre>sudo apt-get install libgl1-mesa-dev                    
+```
+sudo apt-get install libgl1-mesa-dev                    
                      libglc-dev                         
                      freeglut3-dev                      
                      libedit-dev                        
                      libglw1-mesa libglw1-mesa-dev
-</pre>
+```
 
 Credit: <http://nathanwiegand.com/blog/2009/07/haskell-platform-on-ubuntu.html>

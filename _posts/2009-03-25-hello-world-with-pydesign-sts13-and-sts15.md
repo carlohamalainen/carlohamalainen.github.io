@@ -16,7 +16,8 @@ format: image
 ---
 I wanted a listing of the blocks of the 2 nonisomorphic STS (Steiner Triple System) on 13 points and the 80 nonisomorphic STS on 15 points. Over at [designtheory.org](http://designtheory.org) there is a [database of t-designs](http://designtheory.org/database/t-designs/). An STS(13) corresponds to a t-design t=2, v=13, b=26, r=6, k=3, L=1 and an STS(15) corresponds to a t-design t=2, v=15, b=35, r=7, k=3, L1. Here is some code that uses [pydesign](http://designtheory.org/software/pydesign/) to read the blocks from DTRS external representation files:
 
-<pre>from pydesign import ext_rep
+{% highlight python %}
+from pydesign import ext_rep
 from pydesign import block_design
 
 STS = {}
@@ -41,9 +42,9 @@ assert len(STS[13]) == 2
 assert len(STS[15]) == 80
 
 print "An STS(13):", STS[13][0]
-</pre>
+{% endhighlight %}
 
-Here's the source: [STS\_13\_15.py](http://carlo-hamalainen.net/code/STS_13_15.py).
+Here's the source: [STS_13_15.py](http://carlo-hamalainen.net/code/STS_13_15.py).
 
 **Archived Comments**
 

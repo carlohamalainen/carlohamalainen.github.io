@@ -14,4 +14,4 @@ categories:
   - Uncategorized
 format: image
 ---
-Just putting up a PDF of an interesting article: [Kurt M. Cuffey, Palaeoclimate: Into an ice age, Nature 431, 133-134 (9 September 2004)](https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/stuff/Cuffey%20-%20Into%20an%20ice%20age.pdf).
+Just putting up a PDF of an interesting article: [Kurt M. Cuffey, Palaeoclimate: Into an ice age, Nature 431, 133-134 (9 September 2004)](/stuff/Cuffey%20-%20Into%20an%20ice%20age.pdf).

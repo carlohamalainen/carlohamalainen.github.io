@@ -24,7 +24,7 @@ On familiarity:
 
 > "If you want everything to be familiar you will never learn anything new because it cannot be significantly different from what you already know and not drift away from the familiarity." 
 
-Writing my blog system using Yesod definitely pushed me beyond what was familiar. A surprisingly simple problem, adding ReCAPTCHA verification for comments, gave me a concrete reason to dig into the details for [applicative forms in Yesod](/blog/2013/7/24/note-on-applicative-forms-in-yesod). 
+Writing my blog system using Yesod definitely pushed me beyond what was familiar. A surprisingly simple problem, adding ReCAPTCHA verification for comments, gave me a concrete reason to dig into the details for [applicative forms in Yesod](/2013/07/24/note-on-applicative-forms-in-yesod). 
 
 On ego: 
 
@@ -54,71 +54,31 @@ For me, and I may be reading something into this that Rich did not intend, Haske
 
 Anyway, back to my blog system. The interface is all on the command line, because I like to live in a GNU Screen session and use vim whenever possible. For example, to add a new post, I type 
 
-<pre>$ blog-utils --add 'title of the post'
-</pre>
+    $ blog-utils --add 'title of the post'
 
 and vim is opened on a temporary file. When I save and quit, the post is added to the system, but is invisible: 
 
-<pre>"/tmp/blah.html" 40L, 1533C written
-Key {unKey = PersistInt64 104}
+    "/tmp/blah.html" 40L, 1533C written
+    Key {unKey = PersistInt64 104}
 
-$ blog-utils  --list | grep 'New Yesod'
-104 HIDDEN 2013/8/8/new-yesod-blog  'New Yesod blog' 
+    $ blog-utils  --list | grep 'New Yesod'
+    104 HIDDEN 2013/8/8/new-yesod-blog  'New Yesod blog' 
 
-<p>
-  I've ditched my old WordPress blog i
-  </pre>
-  
-  
-  <p>
-    To set it to be visible: 
-  </p>
-  
-  
-  <pre>
-$ blog-utils --set-post-visible 104
-</pre>
-  
-  
-  <p>
-    Easy 🙂 
-  </p>
-  
-  
-  <p>
-    One niggly issue was that I had to set up a proxy from Apache to Nginx. This is not the usual direction, but I have a number of sites running on Apache and it seemed the path of least resistance. So for Debian Squeeze, here ar ethe magic lines (nginx runs on port 8080 which is not visible to the outside world): 
-  </p>
-  
-  
-  <pre>
-LoadModule  proxy_module         /usr/lib/apache2/modules/mod_proxy.so
-LoadModule  proxy_http_module    /usr/lib/apache2/modules/mod_proxy_http.so
-LoadModule  headers_module       /usr/lib/apache2/modules/mod_headers.so
-LoadModule  deflate_module       /usr/lib/apache2/modules/mod_deflate.so
+To set it to be visible: 
 
-ProxyPass /blog http://carlo-hamalainen.net:8080/blog
-ProxyPassReverse /blog http://carlo-hamalainen.net:8080/blog
+    $ blog-utils --set-post-visible 104
+  
+Easy 🙂 
 
-ProxyPass /static http://carlo-hamalainen.net:8080/static
-ProxyPassReverse /static http://carlo-hamalainen.net:8080/static
-</pre>
+One niggly issue was that I had to set up a proxy from Apache to Nginx. This is not the usual direction, but I have a number of sites running on Apache and it seemed the path of least resistance. So for Debian Squeeze, here ar ethe magic lines (nginx runs on port 8080 which is not visible to the outside world):
   
-  
-  <p>
-    <b>Archived Comments</b>
-  </p>
-  
-  
-  <p>
-    Date: 2013-08-08 22:20:32.798384 UTC
-  </p>
-  
-  
-  <p>
-    Author: Nadiah
-  </p>
-  
-  
-  <p>
-    Happy to have reading your weblog, very informative. I’m wondering why the opposite specialists of this sector do not understand this. You must continue your writing! You can <a href="http://bestpen1senlargement.com.au/">have a satisfying love </a>life be certain blast me an e-mail if interested.
-  </p>
+    LoadModule  proxy_module         /usr/lib/apache2/modules/mod_proxy.so
+    LoadModule  proxy_http_module    /usr/lib/apache2/modules/mod_proxy_http.so
+    LoadModule  headers_module       /usr/lib/apache2/modules/mod_headers.so
+    LoadModule  deflate_module       /usr/lib/apache2/modules/mod_deflate.so
+
+    ProxyPass /blog http://carlo-hamalainen.net:8080/blog
+    ProxyPassReverse /blog http://carlo-hamalainen.net:8080/blog
+
+    ProxyPass /static http://carlo-hamalainen.net:8080/static
+    ProxyPassReverse /static http://carlo-hamalainen.net:8080/static

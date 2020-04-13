@@ -15,7 +15,8 @@ I plugged in a D-Link DUB-1312 to my laptop running Ubuntu Zesty but Network Man
 
 The fix, found [here](https://askubuntu.com/questions/882806/ethernet-device-not-managed), is to remove the contents of one file. Better to save the original file and touch an empty one:
 
-<pre>$ sudo mv    /usr/lib/NetworkManager/conf.d/10-globally-managed-devices.conf{,_ORIGINAL}
+```
+$ sudo mv    /usr/lib/NetworkManager/conf.d/10-globally-managed-devices.conf{,_ORIGINAL}
 $ sudo touch /usr/lib/NetworkManager/conf.d/10-globally-managed-devices.conf
 </pre>
 
@@ -52,4 +53,4 @@ $ sudo hwinfo --netcard
     Driver Activation Cmd: "modprobe ax88179_178a"
   Config Status: cfg=new, avail=yes, need=no, active=unknown
   Attached to: #33 (Hub)
-</pre>
+```

@@ -14,4 +14,4 @@ categories:
   - Uncategorized
 format: image
 ---
-After reading [Why we make mistakes](http://www.amazon.com/Why-We-Make-Mistakes-Without/dp/0767928059) I wanted to read more about the calibration of bridge players. The research article is not available without a subscription, so here's a PDF: [Gideon Keren: Facing uncertainty in the game of bridge: A calibration study (1987)](https://s3.amazonaws.com/oldblog/stuff/Keren - Facing uncertainty in the game of bridge: a calibration study (1987).pdf).
+After reading [Why we make mistakes](http://www.amazon.com/Why-We-Make-Mistakes-Without/dp/0767928059) I wanted to read more about the calibration of bridge players. The research article is not available without a subscription, so here's a PDF: [Gideon Keren: Facing uncertainty in the game of bridge: A calibration study (1987)](/stuff/Keren - Facing uncertainty in the game of bridge: a calibration study (1987).pdf).

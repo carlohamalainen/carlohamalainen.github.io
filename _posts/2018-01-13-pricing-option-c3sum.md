@@ -94,7 +94,7 @@ For a concrete example, let's use the [daily rainfall data for Changi](http://ww
 Here are the 3-sums:
 
 <center>
-  <br /> <img class="alignnone size-medium wp-image-1098" src="https://i0.wp.com/carlo-hamalainen.net/wp-content/uploads/2018/01/c3sums.png?w=500&#038;ssl=1" alt="" data-recalc-dims="1" /><br />
+  <br /> <img class="alignnone size-medium wp-image-1098" src="https://carlo-hamalainen.net/wp-content/uploads/2018/01/c3sums.png?w=500&ssl=1" alt="" data-recalc-dims="1" /><br />
 </center>
 
 For cutoffs from 100 to 300, here are the number of extreme events per year:
@@ -172,19 +172,19 @@ The burn is $$\texttt{max}(w_i - 180, 0)$$, indicating the payout that the selle
 The yearly burn is $$\sum_i{\texttt{max}(w_i-180,0)}$$ where the $$w_i$$ are in a particular calendar year. Plotting the yearly burn:
 
 <center>
-  <br /> <img class="alignnone" src="https://i2.wp.com/raw.githubusercontent.com/carlohamalainen/maxc3sum/master/yearly_burn.png?w=1100&#038;ssl=1" alt="" data-recalc-dims="1" /><br />
+  <br /> <img class="alignnone" src="https://raw.githubusercontent.com/carlohamalainen/maxc3sum/master/yearly_burn.png?w=1100&ssl=1" alt="" data-recalc-dims="1" /><br />
 </center>
 
 The histogram of burn values shows that a value around $$80$$ is the most frequent total yearly burn:
 
 <center>
-  <br /> <img class="alignnone" src="https://i2.wp.com/raw.githubusercontent.com/carlohamalainen/maxc3sum/master/yearly_burn_histogram.png?w=500&#038;ssl=1" alt="" data-recalc-dims="1" /><br />
+  <br /> <img class="alignnone" src="https://raw.githubusercontent.com/carlohamalainen/maxc3sum/master/yearly_burn_histogram.png?w=500&ssl=1" alt="" data-recalc-dims="1" /><br />
 </center>
 
 Cumulative histogram of the yearly burn: 
 
 <center>
-  <br /> <img class="alignnone" src="https://i1.wp.com/raw.githubusercontent.com/carlohamalainen/maxc3sum/master/yearly_burn_cumulative.png?w=500&#038;ssl=1" alt="" data-recalc-dims="1" /><br />
+  <br /> <img class="alignnone" src="https://raw.githubusercontent.com/carlohamalainen/maxc3sum/master/yearly_burn_cumulative.png?w=500&ssl=1" alt="" data-recalc-dims="1" /><br />
 </center>
 
 From the yearly burn we can compute the expected loss over various periods:

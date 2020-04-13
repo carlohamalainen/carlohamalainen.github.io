@@ -1,20 +1,13 @@
 ---
-id: 728
 title: Honesty in science
 date: 2009-08-22T00:00:00+00:00
 author: Carlo Hamalainen
 layout: post
 guid: http://carlo-hamalainen.net/2009/08/22/honesty-in-science/
 permalink: /2009/08/22/honesty-in-science/
-restapi_import_id:
-  - 596a05ef0330b
-original_post_id:
-  - "16"
-categories:
-  - Uncategorized
-format: image
 ---
-In my day job I work on mathematics (discrete mathematics, mainly to do with latin squares). My [research output](http://carlo-hamalainen.net/blog/?page_id=61) is modest. It is by no means ground-breaking stuff. I doubt that I'll ever win the Clay maths prize for solving the Riemann hypothesis, nor will I ever win the Fields medal.
+
+In my day job I work on mathematics (discrete mathematics, mainly to do with latin squares). My research output is modest. It is by no means ground-breaking stuff. I doubt that I'll ever win the Clay maths prize for solving the Riemann hypothesis, nor will I ever win the Fields medal.
 
 I can, however, take credit that I have always focussed on the mathematics itself. I've stated my claims as clearly as possible, provided source code to support computational claims, and made as much of my work freely available on reliable sites (mainly on the [arXiv](http://arxiv.org)). What you see is what you get. On a daily basis I throw away a lot of what I do. That's the nature of mathematics and science.
 
@@ -30,11 +23,11 @@ The term "importance sampling" is very well known in the statistics community. I
 
 One standard application of importance sampling is to estimate an integral numerically. For a simple example, you might want to estimate the area under the curve in this picture:
 
-<img src="https://i0.wp.com/carlo-hamalainen.net/stuff/curve_for_integral.png?w=1100" data-recalc-dims="1" /> 
+<img src="/stuff/curve_for_integral.png?w=1100" /> 
 
 The main benefit of importance sampling is that your estimates will be "close together" (mathematically, their standard deviation will be smaller than a uniform sampling Monte Carlo approach). The red dots in the following plot are the absolute errors from a uniform sampling estimator of the value of the integral, while the green dots are the absolute errors from an importance sampling estimator:
 
-<img src="https://i1.wp.com/s3.amazonaws.com/carlo-hamalainen.net/oldblog/stuff/integral_errors_g.png?w=1100&#038;ssl=1" data-recalc-dims="1" /> 
+<img src="https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/stuff/integral_errors_g.png?w=1100&ssl=1" data-recalc-dims="1" /> 
 
 More precisely, the standard deviation of the errors of the uniform and importance sampling estimates is 0.0193 and 0.0001, respectively. The code is available as a [Sage](http://sagemath.org) worksheet: [Importance_sampling.sws](https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/stuff/Importance_sampling.sws).
 

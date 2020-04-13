@@ -18,7 +18,7 @@ Edit (2008-11-09): Robert Bradshaw posted a patch to my code and the Cython impl
 
 In a comment on a [recent post](http://carlo-hamalainen.net/blog/2007/12/18/speeding-up-code-using-cython/), Robert Samal asked how Cython compares to C++. The graph below shows a comparison of a greedy critical set solver written in Cython and C++ (both use a brute force, naive, non-randomised implementation of a depth first search): 
 
-![](/blog/myfiles/cython-vs-cpp.png) 
+![](/stuff/myfiles/cython-vs-cpp.png) 
 
 So things look good until n = 10. In defence of Cython, I must point out that my implementation was a first attempt and I am by no means an expert on writing good Cython code. Also, the Cython code is probably fast enough -- in my experience, solving problems (computationally) for latin squares of order 10 is futile, so the code is more convenient for testing out small ideas.
 
@@ -48,20 +48,22 @@ Author: Alexandre Delattre
 
 Hi,
 
-After looking quickly into the code, I'm pretty sure some overhead is caused by the \_\_getitem\_\_ and \_\_setitem\_\_ methods, you use to override the [] operator.
+After looking quickly into the code, I'm pretty sure some overhead is caused by the ``__getitem__`` and ``__setitem__`` methods, you use to override the [] operator.
 
-When calling L\[i, j\] (or L[i, j] = x), those special methods are resolved at runtime and hence involve additional python mechanism. While they make the code readable, you lose the interest of "cdef" methods which are called much faster.
+When calling ``L[i, j]`` (or ``L[i, j] = x``), those special methods are resolved at runtime and hence involve additional python mechanism. While they make the code readable, you lose the interest of "cdef" methods which are called much faster.
 
-IMO, a good compromise would be to put the code in \_\_getitem\_\_ into a regular 'cdef getitem()' method, then make \_\_getitem\_\_ as a wrapper of the regular method:
+IMO, a good compromise would be to put the code in ``__getitem__`` into a regular 'cdef getitem()' method, then make ``__getitem__`` as a wrapper of the regular method:
 
-def \_\_getitem\_\_(self, rc):  
-i, j = rc  
-return self.getitem(i, j)
+{% highlight python %}
+    def __getitem__(self, rc):  
+    i, j = rc  
+    return self.getitem(i, j)
 
-cdef int getitem(int i, int j):  
-... # Put your code here
+    cdef int getitem(int i, int j):  
+    ... # Put your code here
+{% endhighlight %}
 
-and replace the L[i, j] by L.getitem(i, j) in your cython code.
+and replace the ``L[i, j]`` by ``L.getitem(i, j)`` in your cython code.
 
 Also put "void" return type on cdef method that returns nothing could help a bit.
 
@@ -71,7 +73,7 @@ Date: 2008-11-08 15:12:21 UTC
 
 Author: Robert Bradshaw
 
-This graph looked pretty depressing, so I made some optimizations to your code (basically the ones suggested above, and a couple of other glaring things that stood out). The algorithm is still completely the same, and I didn't do any code re-factoring other than \_\_getitem\_\_/\_\_setitem\_\_, just mostly typing things here and there. It's now faster than c++ on my machine for the whole range graphed above (and much faster for small inputs).
+This graph looked pretty depressing, so I made some optimizations to your code (basically the ones suggested above, and a couple of other glaring things that stood out). The algorithm is still completely the same, and I didn't do any code re-factoring other than ``__getitem__``/``__setitem__``, just mostly typing things here and there. It's now faster than c++ on my machine for the whole range graphed above (and much faster for small inputs).
 
 Code and diff up at <a href="http://sage.math.washington.edu/home/robertwb/cython-latin/" rel="nofollow">http://sage.math.washington.edu/home/robertwb/cython-latin/</a>
 

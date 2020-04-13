@@ -16,80 +16,92 @@ format: image
 ---
 As of January 2013 I was not able to find Debian packages for wxWidgets 2.9, which is required by 0.90.0.1, so we'll install directly from source. First grab some dependencies: 
 
-<pre>sudo apt-get install build-essential libgl1-mesa-dev libglu1-mesa-dev freeglut3-dev
-</pre>
+```
+sudo apt-get install build-essential libgl1-mesa-dev libglu1-mesa-dev freeglut3-dev
+```
 
 Download 2.9.4 from <http://www.wxwidgets.org/downloads/>. Then: 
 
-<pre>tar jxf wxWidgets-2.9.4.tar.bz2
+```
+tar jxf wxWidgets-2.9.4.tar.bz2
 cd wxWidgets-2.9.4
 ./configure --open-gl
 make -j 10
 sudo make install
-</pre>
+```
 
 This installs to /usr/local. Make sure that wx-config reports the correct libs, e.g. 
 
-<pre>$ wx-config  --libs
+```
+$ wx-config  --libs
 -L/usr/local/lib -pthread   -lwx_gtk2u_xrc-2.9 -lwx_gtk2u_html-2.9 -lwx_gtk2u_qa-2.9 -lwx_gtk2u_adv-2.9 -lwx_gtk2u_core-2.9 -lwx_baseu_xml-2.9 -lwx_baseu_net-2.9 -lwx_baseu-2.9
-</pre>
+```
 
 Now try to install using cabal: 
 
-<pre>cabal update
+```
+cabal update
 cabal install wx
-</pre>
+```
 
 If the build fails with
 
-<pre>/usr/local/include/wx-2.9/wx/gtk/bitmap.h:64:24: error:   initializing argument 1 of ‘wxBitmap& wxBitmap::operator=(const wxBitmap&)’
-</pre>
+```
+/usr/local/include/wx-2.9/wx/gtk/bitmap.h:64:24: error:   initializing argument 1 of ‘wxBitmap& wxBitmap::operator=(const wxBitmap&)’
+```
 
 then we need to patch a C++ file in wxc (credit for this is due to Mads Lindstrøm on [comp.lang.haskell.wxhaskell.general](http://comments.gmane.org/gmane.comp.lang.haskell.wxhaskell.general/1277)). 
 
-<pre>cd ~/.cabal/packages/hackage.haskell.org/wxc/0.90.0.4
+```
+cd ~/.cabal/packages/hackage.haskell.org/wxc/0.90.0.4
 tar jxf wxc-0.90.0.4.tar.gz
-</pre>
+```
 
 Now edit wxc-0.90.0.4/src/cpp/eljpen.cpp and change line 159 from 
 
-<pre>* _ref = NULL;
-</pre>
+```
+* _ref = NULL;
+```
 
 to
 
-<pre>_ref = NULL;
-</pre>
+```
+_ref = NULL;
+```
 
 Then repackage: 
 
-<pre>tar zcvf wxc-0.90.0.4.tar.gz wxc-0.90.0.4
+```
+tar zcvf wxc-0.90.0.4.tar.gz wxc-0.90.0.4
 rm -fr wxc-0.90.0.4
-</pre>
+```
 
 Beware that the patch to wxc is under cabal's control, so it could be lost if wxc is upgraded, etc. Finally, try to install again using: 
 
-<pre>cabal install wx
-</pre>
+```
+cabal install wx
+```
 
 Finally, make sure that the [hello world](http://www.haskell.org/haskellwiki/WxHaskell/Quick_start#Hello_world_in_wxHaskell) example works: 
 
-<pre>module Main where
+{% highlight haskell %}
+module Main where
 import Graphics.UI.WX
 
-main :: IO ()
+main :: IO ()
 main = start hello
 
-hello :: IO ()
+hello :: IO ()
 hello = do
-    f    <- frame    [text := "Hello!"]
-    quit <- button f [text := "Quit", on command := close f]
-    set f [layout := widget quit]
-</pre>
+    f    <- frame    [text := "Hello!"]
+    quit <- button f [text := "Quit", on command := close f]
+    set f [layout := widget quit]
+{% endhighlight %}
 
 Note: if cabal install wx fails with
 
-<pre>src/cpp/glcanvas.cpp:43:60: error: ‘wxGLContext’ has not been declared
+```
+src/cpp/glcanvas.cpp:43:60: error: ‘wxGLContext’ has not been declared
 src/cpp/glcanvas.cpp:102:1: error: ‘wxGLContext’ does not name a type
 src/cpp/glcanvas.cpp:109:1: error: ‘wxGLContext’ does not name a type
 src/cpp/glcanvas.cpp:116:1: error: ‘wxGLContext’ was not declared in this scope
@@ -98,7 +110,7 @@ src/cpp/glcanvas.cpp:116:1: error: expected primary-expression before ‘void’
 src/cpp/glcanvas.cpp:116:1: error: expression list treated as compound expression in initializer [-fpermissive]
 src/cpp/glcanvas.cpp:117:1: error: expected ‘,’ or ‘;’ before ‘{’ token
 cabal: Error: some packages failed to install:
-</pre>
+```
 
 then your system is missing OpenGL libraries (this is not a bug in wx). Double-check the configure output of wxWidgets. 
 

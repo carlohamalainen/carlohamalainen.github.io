@@ -16,15 +16,13 @@ format: image
 ---
 About 10 hours for a USB2 external drive: 
 
-<pre>root@bobcat:~# time dd if=/dev/zero of=/dev/disk/by-id/usb-TOSHIBA_MK1059GSM_0FA6FFFFFFFF-0:0-part1 bs=4M
+    root@bobcat:~# time dd if=/dev/zero of=/dev/disk/by-id/usb-TOSHIBA_MK1059GSM_0FA6FFFFFFFF-0:0-part1 bs=4M
 
-dd: writing `/dev/disk/by-id/usb-TOSHIBA_MK1059GSM_0FA6FFFFFFFF-0:0-part1': No space left on device
-238467+0 records in
-238466+0 records out
-1000202241024 bytes (1.0 TB) copied, 37410.6 s, 26.7 MB/s
+    dd: writing `/dev/disk/by-id/usb-TOSHIBA_MK1059GSM_0FA6FFFFFFFF-0:0-part1': No space left on device
+    238467+0 records in
+    238466+0 records out
+    1000202241024 bytes (1.0 TB) copied, 37410.6 s, 26.7 MB/s
 
-real    623m30.583s
-user    0m3.416s
-sys     77m19.798s
-
-</pre>
+    real    623m30.583s
+    user    0m3.416s
+    sys     77m19.798s

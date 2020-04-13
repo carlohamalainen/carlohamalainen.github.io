@@ -22,7 +22,8 @@ In the past I have used SSHDroid to ssh into my phone. But recently the app seem
 
 Here's what I see when logged in to my phone: 
 
-<pre>root@localhost:~# uptime
+```
+root@localhost:~# uptime
  16:53:39 up  4:40,  1 user,  load average: 5.94, 11.37, 6.61
 
 root@localhost:~# uname -a
@@ -84,4 +85,4 @@ Chip revision   : 0011
 Hardware    : SMDK4x12
 Revision    : 000c
 Serial      : 230fbf574df75916
-</pre>
+```

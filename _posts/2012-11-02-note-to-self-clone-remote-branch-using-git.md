@@ -14,9 +14,10 @@ categories:
   - Uncategorized
 format: image
 ---
-By default "git branch" doesn't show the remote branches for a cloned repo, so use "git branch -a" to see all of them and then make a local branch with a suitable name:
+By default ``git branch`` doesn't show the remote branches for a cloned repo, so use ``git branch -a`` to see all of them and then make a local branch with a suitable name:
 
-<pre>$ git clone git@github.com:CVL-dev/cvl-fabric-launcher.git
+```
+$ git clone git@github.com:CVL-dev/cvl-fabric-launcher.git
 Cloning into 'cvl-fabric-launcher'...
 X11 forwarding request failed on channel 0
 remote: Counting objects: 1527, done.
@@ -37,6 +38,6 @@ $ git branch -a
 $ git checkout -b detailed_logging remotes/origin/detailed_logging
 Branch detailed_logging set up to track remote branch detailed_logging from origin.
 Switched to a new branch 'detailed_logging'
-</pre>
+```
 
 Credit: <http://stackoverflow.com/questions/67699/how-do-i-clone-all-remote-branches-with-git>.

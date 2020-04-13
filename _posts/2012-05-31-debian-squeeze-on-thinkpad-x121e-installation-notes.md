@@ -20,9 +20,10 @@ Here are some notes on installing [Debian Squeeze](http://wiki.debian.org/Debian
 
 The ethernet card is not detected by the Debian installer, so at the first opportunity flip to a console, load the atl1c driver, and echo this magic string:
 
-<pre>modprobe atl1c
+```
+modprobe atl1c
 echo "1969 1083" > /sys/bus/pci/drivers/atl1c/new_id
-</pre>
+```
 
 (credit: <http://wiki.debian.org/InstallingDebianOn/Thinkpad/X121e-30515YG>) 
 
@@ -30,26 +31,30 @@ echo "1969 1083" > /sys/bus/pci/drivers/atl1c/new_id
 
 The installation process runs ok but on rebooting the screen resolution in xorg was 1024x768 instead of 1366x768 so everything looked weird and squashed. Upgrading to a 3.2 kernel fixes the problem. Add this line to /etc/apt/sources.list:
 
-<pre>deb http://backports.debian.org/debian-backports squeeze-backports main
-</pre>
+```
+deb http://backports.debian.org/debian-backports squeeze-backports main
+```
 
 then install the new kernel: 
 
-<pre>sudo apt-get update
+```
+sudo apt-get update
 sudo apt-get install -t squeeze-backports  linux-image-3.2.0-0.bpo.2-amd64  # (previously said: linux-image-2.6.39-bpo.2-amd64 which is wrong)
-</pre>
+```
 
 After rebooting into the new kernel the resolution should be ok. If graphics are slow (e.g. moving an xterm flickers) then also grab the backported xorg packages:
 
-<pre>sudo apt-get install -t squeeze-backports xorg xserver-xorg xserver-xorg-core 
+```
+sudo apt-get install -t squeeze-backports xorg xserver-xorg xserver-xorg-core 
 xserver-xorg-input-all xserver-xorg-video-all
-</pre>
+```
 
 ## Broadcom wifi driver 
 
 Getting the Broadcom wifi driver to work with the 3.2 kernel was not completely straightforward. The [Debian Wiki](http://wiki.debian.org/InstallingDebianOn/Thinkpad/X121e-30515YG) says to install the broadcom-sta-source model and then compile it with module-assist:
 
-<pre>sudo apt-get install broadcom-sta-source
+```
+sudo apt-get install broadcom-sta-source
 sudo apt-get install module-assistant
 sudo m-a prepare
 
@@ -61,31 +66,35 @@ Reading state information... Done
 E: Unable to locate package kernel-headers-3.2.0-0.bpo.2-amd64
 E: Couldn't find any package by regex 'kernel-headers-3.2.0-0.bpo.2-amd64'
 
-</pre>
+```
 
 This fails because the backported kernel header package is not called kernel-headers-3.2.0-0.bpo.2-amd64; it is actually linux-headers-3.2.0-0.bpo.2-amd64. Fortunately we can install the headers ourselves: 
 
-<pre>sudo apt-get install -t squeeze linux-headers-3.2.0-0.bpo.2-amd64
-</pre>
+```
+sudo apt-get install -t squeeze linux-headers-3.2.0-0.bpo.2-amd64
+```
 
 Now try the module-assist again:
 
-<pre>sudo m-a update
+```
+sudo m-a update
 sudo m-a a-i broadcom-sta
-</pre>
+```
 
 However we are compiling against the 3.2 kernel, and the broadcom-sta package in Squeeze is not new enough. It failed with an error about C pointers (sorry, forgot to save the details). However, [happysumo on Whirlpool](http://forums.whirlpool.net.au/archive/1853313) had a similar issue and suggested temporarily updating to the testing distribution. So edit /etc/apt/sources.list and change squeeze to testing, then
 
-<pre>sudo apt-get update
+```
+sudo apt-get update
 sudo apt-get install broadcom-sta-source
 sudo m-a update
 sudo m-a a-i broadcom-sta
-</pre>
+```
 
 This successfully built the module. Then edit /etc/apt/sources.list again and change testing back to squeeze and do an update:
 
-<pre>sudo apt-get update
-</pre>
+```
+sudo apt-get update
+```
 
 After a reboot the built-in ethernet and wifi both worked. 
 
@@ -97,17 +106,19 @@ The version of VirtualBox in Squeeze is not new enough to compile against a 3.2 
 
 I think it's strange that there is no Insert key on the X121e. According to [this post](http://www.msfn.org/board/topic/153124-thinkpad-x121e-annoyances/) there are some key combos to get the missing keys:
 
-<pre>Fn + I = Insert
+```
+Fn + I = Insert
 Fn + P = Pause
 Fn + B = Break
 Fn + S = Scroll Lock
-</pre>
+```
 
 ## System info 
 
 Output of "lspci -v": 
 
-<pre>00:00.0 Host bridge: Intel Corporation Sandy Bridge DRAM Controller (rev 09)
+```
+00:00.0 Host bridge: Intel Corporation Sandy Bridge DRAM Controller (rev 09)
 	Subsystem: Lenovo Device 21ed
 	Flags: bus master, fast devsel, latency 0
 	Capabilities: [e0] Vendor Specific Information: Len=0c 
@@ -267,9 +278,10 @@ Output of "lspci -v":
 	Capabilities: [180] Device Serial Number ff-0f-c2-94-04-7d-7b-ff
 	Kernel driver in use: atl1c
 
-</pre>
+```
 
-<pre>cat /proc/cpuinfo:
+```
+cat /proc/cpuinfo:
 
 processor	: 0
 vendor_id	: GenuineIntel
@@ -374,8 +386,7 @@ clflush size	: 64
 cache_alignment	: 64
 address sizes	: 36 bits physical, 48 bits virtual
 power management:
-
-</pre>
+```
 
 **Archived Comments**
 

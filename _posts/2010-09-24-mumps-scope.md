@@ -20,65 +20,55 @@ Rob at <a>M/Gateway Developments</a> pointed out that I was referring to procedu
 
 Here is **PROCEDURE1.mac**:
 
-<pre>PROCEDURE1
-	Write "Here we are in PROCEDURE1", !
-	Set LocalVariable=0
-	Write "We LocalVariable = ", LocalVariable, !
+    PROCEDURE1
+        Write "Here we are in PROCEDURE1", !
+        Set LocalVariable=0
+        Write "We LocalVariable = ", LocalVariable, !
 
-	Write "Calling PROCEDURE2...", !
-	Do ^PROCEDURE2
-	Write "Now we LocalVariable = ", LocalVariable, !
-</pre>
-
-
+        Write "Calling PROCEDURE2...", !
+        Do ^PROCEDURE2
+        Write "Now we LocalVariable = ", LocalVariable, !
 
 Here is **PROCEDURE2.mac**:
 
-<pre>PROCEDURE2
-	Set LocalVariable=666
-</pre>
-
-
+    PROCEDURE2
+        Set LocalVariable=666
 
 Now run it in a fresh terminal:
 
-<pre>USER>Do ^PROCEDURE1
-Here we are in PROCEDURE1
-We LocalVariable = 0
-Calling PROCEDURE2...
-Now we LocalVariable = 666
+    USER>Do ^PROCEDURE1
+    Here we are in PROCEDURE1
+    We LocalVariable = 0
+    Calling PROCEDURE2...
+    Now we LocalVariable = 666
 
-USER>
-</pre>
-
-
+    USER>
 
 So by default, what look like local variables actually travel along the calling chain because Mumps uses dynamic scope.
 
 Rob replied with this example:
 
-<pre>procedure1
- new LocalVariable,newVar
- Write "Here we are in function1", !
- Set LocalVariable=0
- Write "We LocalVariable = "_LocalVariable, !
- Write "Calling function2...", !
- set newVar=$$function2()
- Write "LocalVariable is still = "_ LocalVariable, !
- Write "newVar="_newVar
- QUIT
+    procedure1
+     new LocalVariable,newVar
+     Write "Here we are in function1", !
+     Set LocalVariable=0
+     Write "We LocalVariable = "_LocalVariable, !
+     Write "Calling function2...", !
+     set newVar=$$function2()
+     Write "LocalVariable is still = "_ LocalVariable, !
+     Write "newVar="_newVar
+     QUIT
 
-function2()
- new LocalVariable
- set LocalVariable=666
- Write "In function2 with LocalVariable="_LocalVariable
- set LocalVariable=$$function3()
- Write "Now LocalVariable has been updated to "_LocalVariable
- QUIT LocalVariable
+    function2()
+     new LocalVariable
+     set LocalVariable=666
+     Write "In function2 with LocalVariable="_LocalVariable
+     set LocalVariable=$$function3()
+     Write "Now LocalVariable has been updated to "_LocalVariable
+     QUIT LocalVariable
 
-function3()
- QUIT 777
-</pre>
+    function3()
+     QUIT 777
 
 ... and wrote:
 
@@ -98,7 +88,7 @@ Date: 2010-09-30 12:16:46 UTC
 
 Author: Rob
 
-Yes you are correct -- you \*could\* use a procedure and, if you do, you should always control the scope of the variables it uses with the new command.
+Yes you are correct -- you *could* use a procedure and, if you do, you should always control the scope of the variables it uses with the new command.
 
 However, a lot of legacy Mumps developers don't really appreciate the difference between functions and procedures and there's a tendency for such people to use procedures when functions are more appropriate.
 

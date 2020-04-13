@@ -16,9 +16,5 @@ format: image
 ---
 I enjoyed this video on the Y combinator: 
 
-<div class="jetpack-video-wrapper">
-  <div class="embed-vimeo" style="text-align: center;">
-  </div>
-</div>
-
-[Jim Weirich: Adventures in Functional Programming](http://vimeo.com/45140590) from [Neo (UK)](http://vimeo.com/edgecaseuk) on [Vimeo](https://vimeo.com).</p>
+<iframe src="https://player.vimeo.com/video/45140590" width="640" height="512" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+<p><a href="https://vimeo.com/45140590">Jim Weirich: Adventures in Functional Programming</a> from <a href="https://vimeo.com/edgecaseuk">Cultivate</a> on <a href="https://vimeo.com">Vimeo</a>.</p>

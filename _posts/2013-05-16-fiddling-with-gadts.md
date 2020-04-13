@@ -14,21 +14,65 @@ categories:
   - Uncategorized
 format: image
 ---
-<https://gist.github.com/carlohamalainen/5589736.js>
+
+{% highlight haskell %}
+-- Easiest way to run this with ghci:
+--
+-- ghci -XDataKinds -XGADTs -XEmptyDataDecls -XKindSignatures -XScopedTypeVariables -XTemplateHaskell
+
+-- Natural numbers, e.g.
+-- 0 == Z
+-- 1 == S Z
+-- 2 == S (S Z)
+-- 3 == S (S (S Z))
+-- etc
+
+data Nat = Z | S Nat
+
+-- My GADT with two constructors. One would normally
+-- write
+-- 
+-- data T n = T0 ... | Tm ...
+--
+-- but here we want to specify the *types* of the constructors.
+
+data T n where
+    T0 :: T Z
+    Tm :: T n -> T (S n)
+
+-- Calculate the 'n' component, recursing on the definition of Tm.
+depth :: T n -> Int
+depth T0 = 0
+depth (Tm a) = 1 + (depth a)
+
+-- Takes two parameters of type T n, so they must be
+-- of the same depth.
+twoOfSameDepth :: T n -> T n -> Int
+twoOfSameDepth x _ = depth x
+
+-- Takes two parameters T n and T m, and enforces
+-- that S n ~ m, in other words the second parameter
+-- is one plus the first parameter.
+secondIsPlusOne :: forall n m. (S n ~ m) => T n -> T m -> Bool
+secondIsPlusOne _ _ = True
+{% endhighlight %}
 
 Check the depth of the structure: 
 
-<pre>*Main> depth T0
+```
+*Main> depth T0
 0
 *Main> depth (Tm T0)
 1
 *Main> depth (Tm (Tm (Tm (Tm T0))))
 4
-</pre>
+```
+
 
 The function twoOfSameDepth expects both parameters to be of the same depth. If not, you get a type error. 
 
-<pre>*Main> :t twoOfSameDepth T0 T0
+```
+*Main> :t twoOfSameDepth T0 T0
 twoOfSameDepth T0 T0 :: Int
 *Main> :t twoOfSameDepth T0 (Tm T0)
 
@@ -38,11 +82,13 @@ twoOfSameDepth T0 T0 :: Int
       Actual type: T (S n0)
     In the return type of a call of `Tm'
     In the second argument of `twoOfSameDepth', namely `(Tm T0)'
-</pre>
+```
+
 
 The function secondIsPlusOne expects the second parameter to be of depth one more than the first parameter: 
 
-<pre>*Main> :t secondIsPlusOne T0 (Tm T0)
+```
+*Main> :t secondIsPlusOne T0 (Tm T0)
 secondIsPlusOne T0 (Tm T0) :: Bool
 *Main> :t secondIsPlusOne T0 (Tm (Tm T0))
 
@@ -53,6 +99,7 @@ secondIsPlusOne T0 (Tm T0) :: Bool
     In the return type of a call of `Tm'
     In the first argument of `Tm', namely `(Tm T0)'
 *Main>
-</pre>
+```
+
 
 In [Matt's LambdaJam talk/jam](http://matthew.brecknell.net/post/btree-gadt/) you can see how this idea can be used to help with implementing a b-tree data structure.

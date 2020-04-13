@@ -32,7 +32,8 @@ The slider is implemented in [bokehslider.py](https://github.com/carlohamalainen
 
 Here's the relevant Nginx config settings: 
 
-<pre>server {
+```
+server {
 
     # listen, root, other top level config...
 
@@ -53,44 +54,47 @@ Here's the relevant Nginx config settings:
     # rest of the config...
 
 }
-</pre>
+```
 
 In terms of coding, the Bokeh model is a bit different to the usual plotting procedure in that you set up  
 data sources, e.g. 
 
-<pre>obj.line_source  = ColumnDataSource(data=dict(
+{% highlight python %}
+obj.line_source  = ColumnDataSource(data=dict(
                                             x_cV=[],
                                             arrival_date=[],
                                             laying_date=[],
                                             hatching_date=[],))
-</pre>
+{% endhighlight %}
 
 and then plot commands use that data source. You don't pass NumPy arrays in directly: 
 
-<pre>plot = figure(plot_height=400, plot_width=400,
+{% highlight python %}
+plot = figure(plot_height=400, plot_width=400,
               tools=toolset, x_range=[130, 180], y_range=[110, 180])
 
 plot.line('x_cV', 'x_cV',          source=obj.line_source, line_width=4, color='black')
 plot.line('x_cV', 'arrival_date',  source=obj.line_source, line_width=4, color='purple', legend='Arrival time')
 plot.line('x_cV', 'laying_date',   source=obj.line_source, line_width=4, color='red',    legend='Laying time')
 plot.line('x_cV', 'hatching_date', source=obj.line_source, line_width=4, color='green',  legend='Hatching date')
-</pre>
+{% endhighlight %}
 
-Then, the input\_change method calls my update\_data method which actually updates the data sources. It doesn't have to explicitly make a call to redraw the plot. 
+Then, the ``input_change`` method calls my ``update_data`` method which actually updates the data sources. It doesn't have to explicitly make a call to redraw the plot. 
 
-<pre>def update_data(self):
+{% highlight python %}
+def update_data(self):
     u_q = self.u_q_slider.value
 
     self.line_source.data  = get_line_data_for_bokeh(float(u_q))
-</pre>
+{% endhighlight %}
 
 ## Links 
 
 <https://github.com/carlohamalainen/phenology-two-trait-migratory-bird/tree/bokeh-slider> 
 
-[http://bokeh.pydata.org/en/latest/docs/server\_gallery/sliders\_server.html](http://bokeh.pydata.org/en/latest/docs/server_gallery/sliders_server.html) 
+[http://bokeh.pydata.org/en/latest/docs/server_gallery/sliders_server.html](http://bokeh.pydata.org/en/latest/docs/server_gallery/sliders_server.html) 
 
-[https://www.reddit.com/r/IPython/comments/3bgg7t/ipython\_widgets\_in\_a\_static\_html\_file](https://www.reddit.com/r/IPython/comments/3bgg7t/ipython_widgets_in_a_static_html_file) 
+[https://www.reddit.com/r/IPython/comments/3bgg7t/ipython_widgets_in_a_static_html_file](https://www.reddit.com/r/IPython/comments/3bgg7t/ipython_widgets_in_a_static_html_file) 
 
 <https://github.com/ipython/ipywidgets/issues/16> 
 
@@ -106,13 +110,15 @@ The slider described above doesn't work with the latest version of Bokeh, so her
 
 Launching is slightly different (see [this script](https://github.com/carlohamalainen/phenology-two-trait-migratory-bird/blob/bokeh-slider/run_bokeh_server-2017.sh)): 
 
-<pre>bokeh serve bokehslider2017.py --host=carlo-hamalainen.net:443 --prefix=bokehslider 
+```
+bokeh serve bokehslider2017.py --host=carlo-hamalainen.net:443 --prefix=bokehslider 
                                --use-xheaders --port=5100 --allow-websocket-origin=carlo-hamalainen.net
-</pre>
+```
 
 Happily for me this now plays nicely with my https nginx config: 
 
-<pre>location /bokehslider {
+```
+location /bokehslider {
             proxy_pass http://127.0.0.1:5100;
             proxy_set_header Upgrade $http_upgrade;
             proxy_set_header Connection "upgrade";
@@ -122,6 +128,6 @@ Happily for me this now plays nicely with my https nginx config:
             proxy_set_header Host $host:$server_port;
             proxy_buffering off;
         }
-</pre>
+```
 
 And there is no need to open up port 5006 as I said before.

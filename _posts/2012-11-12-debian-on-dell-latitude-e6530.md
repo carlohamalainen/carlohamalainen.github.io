@@ -14,16 +14,17 @@ categories:
   - Uncategorized
 format: image
 ---
-[Update 2012-12-13: my 3.6.9 kernel config is [here](https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/stuff/config-3.6.9-debian-on-dell-latitude-E6530).]
 
-Ubuntu is getting a bit [weird](http://help.ubuntu-it.org/12.04/desktop/power-hibernate.html) these days so I decided to go back to Debian on my work laptop, a Dell Latitude E6530 with the NVIDIA NVS 5200M graphics card. Full output of "lspci -v" is at the end of this post. 
+**Update 2012-12-13:** my 3.6.9 kernel config is [here](/stuff/config-3.6.9-debian-on-dell-latitude-E6530).
+
+Ubuntu is getting a bit [weird](http://help.ubuntu-it.org/12.04/desktop/power-hibernate.html) these days so I decided to go back to Debian on my work laptop, a Dell Latitude E6530 with the NVIDIA NVS 5200M graphics card. Full output of ``lspci -v`` is at the end of this post. 
 
 Notes: 
 
   * The sound card is not recognised by a 2.6.x kernel.
   * The 3.x kernel in squeeze-backports had issues.
   * The standard 3.x kernel in testing would not boot (kernel panic).
-  * I copied a working kernel config from an Ubuntu 12.04 install, and disabled the nouveau module completely to avoid any clashes with the proprietary NVIDIA driver. My kernel config is [here](https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/stuff/config-3.2.33-debian-on-dell-latitude-E6530).
+  * I copied a working kernel config from an Ubuntu 12.04 install, and disabled the nouveau module completely to avoid any clashes with the proprietary NVIDIA driver. My kernel config is [here](/stuff/config-3.2.33-debian-on-dell-latitude-E6530).
 
 The installation process: 
 
@@ -33,7 +34,8 @@ The installation process:
 
 3. Install a 3.2.x kernel from source:
 
-<pre>apt-get install gcc build-essential make
+```
+apt-get install gcc build-essential make
 
 cd /usr/src
 
@@ -41,25 +43,27 @@ wget http://www.kernel.org/pub/linux/kernel/v3.0/linux-3.2.33.tar.bz2
 tar jxf linux-3.2.33.tar.bz2
 cd linux-3.2.33
 
-wget https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/stuff/config-3.2.33-debian-on-dell-latitude-E6530 -O .config
+wget https://carlo-hamalainen.net/stuff/config-3.2.33-debian-on-dell-latitude-E6530 -O .config
 make oldconfig
 make-kpkg --rootcmd fakeroot --config menuconfig --initrd --us --uc -j 9 kernel_image
 
 dpkg -i ../linux-image-3.2.33*deb
-</pre></p> 
+```
 
 4. Reboot, and then install the latest NVIDIA drivers (I used NVIDIA-Linux-x86_64-304.64.run).
 
 5. Install a graphical desktop environment:
 
-<pre>apt-get install gnome-desktop-environment # or whatever you like, e.g. xmonad, KDE, etc.
-</pre>
+    ```
+    apt-get install gnome-desktop-environment # or whatever you like, e.g. xmonad, KDE, etc.
+    ```
 
 6. Reboot.
 
 Output of lspci -v:
 
-<pre>00:00.0 Host bridge: Intel Corporation 3rd Gen Core processor DRAM Controller (rev 09)
+```
+00:00.0 Host bridge: Intel Corporation 3rd Gen Core processor DRAM Controller (rev 09)
 	Subsystem: Dell Device 0535
 	Flags: bus master, fast devsel, latency 0
 	Capabilities: 
@@ -195,7 +199,7 @@ Output of lspci -v:
 	Memory at f7500000 (64-bit, non-prefetchable) [size=8K]
 	Capabilities: 
 	Kernel driver in use: iwlwifi
-</pre>
+```
 
 **Archived Comments**
 
@@ -254,5 +258,7 @@ Date: 2012-11-28 00:40:25 UTC
 Author: JB
 
 Ok, from this link (<a href="https://bugs.launchpad.net/ubuntu/+source/linux/+bug/773710" rel="nofollow">https://bugs.launchpad.net/ubuntu/+source/linux/+bug/773710</a>) is learned that I had to add the line:  
-Option "RegistryDwords" "EnableBrightnessControl=1"  
+
+    Option "RegistryDwords" "EnableBrightnessControl=1"  
+
 to my /etc/X11/xorg.conf, in the section corresponding to Screen0 for this NVidia card. It works now! 🙂

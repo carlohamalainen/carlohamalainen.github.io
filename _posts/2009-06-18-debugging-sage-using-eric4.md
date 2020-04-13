@@ -18,34 +18,35 @@ This is just a short note on how to use the Eric4 program to debug a Sage script
 
 On Ubuntu 9.04, install Eric4:
 
-<pre>sudo apt-get install eric</pre>
+    sudo apt-get install eric
 
 Save the following to a file:
 
-<pre>#!/bin/bash
-x=`pwd`
-export SAGE_ROOT=/path_to_your_sage_installation
-cd $SAGE_ROOT
-source local/bin/sage-env
-cd $x
-sage-python ${*}</pre>
+    #!/bin/bash
+    x=`pwd`
+    export SAGE_ROOT=/path_to_your_sage_installation
+    cd $SAGE_ROOT
+    source local/bin/sage-env
+    cd $x
+    sage-python ${*}
 
 Start Eric4 and go to Settings, Preferences, Debugger/Python, and set the Custom Python Interpreter to the file that you just saved.
 
 Using File, Open you can debug a Python file that uses the Sage libraries, e.g.:
 
-<pre>from sage.all import *
+{% highlight python %}
+from sage.all import *
 r=MPolynomialRing(GF(127),2,'x')
-print r.gens()</pre>
+print r.gens()
+{% endhighlight %}
 
 To set a breakpoint in the Sage library itself use the ? sign to find out where a file is located. For example
 
-<pre>sage: PolynomialRing?</pre>
+    sage: PolynomialRing?
 
-shows us that PolynomialRing comes from
+shows us that ``PolynomialRing`` comes from
 
-<pre>$SAGE_ROOT/local/lib/python2.5/site-packages/sage/rings/polynomial/polynomial_ring_constructor.py
-</pre>
+    $SAGE_ROOT/local/lib/python2.5/site-packages/sage/rings/polynomial/polynomial_ring_constructor.py
 
 If you open that file (File, Open) you can set breakpoints and so on.
 

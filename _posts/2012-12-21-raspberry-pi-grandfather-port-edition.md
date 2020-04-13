@@ -16,20 +16,12 @@ format: image
 ---
 Raspberry Pi (512Mb model) in a Penfolds Grandfather Port case with a 4 port USB hub, 1Tb USB hard drive, and custom-cut air-vents: 
 
-<img border="0" src="https://i2.wp.com/s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/medium/2012-12-21%2B%2B06-55-38.jpg?w=1100&#038;ssl=1" alt="[photo]" data-recalc-dims="1" /> 
+<img border="0" src="https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/medium/2012-12-21%2B%2B06-55-38.jpg?w=1100&ssl=1" alt="[photo]" data-recalc-dims="1" /> 
 
+<img border="0" src="https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/medium/2012-12-21%2B%2B06-55-45.jpg?w=1100&ssl=1" alt="[photo]" data-recalc-dims="1" /> 
 
+<img border="0" src="https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/medium/2012-12-21%2B%2B06-55-52.jpg?w=1100&ssl=1" alt="[photo]" data-recalc-dims="1" /> 
 
-<img border="0" src="https://i2.wp.com/s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/medium/2012-12-21%2B%2B06-55-45.jpg?w=1100&#038;ssl=1" alt="[photo]" data-recalc-dims="1" /> 
+<img border="0" src="https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/medium/2012-12-21%2B%2B06-55-56.jpg?w=1100&ssl=1" alt="[photo]" data-recalc-dims="1" /> 
 
-
-
-<img border="0" src="https://i0.wp.com/s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/medium/2012-12-21%2B%2B06-55-52.jpg?w=1100&#038;ssl=1" alt="[photo]" data-recalc-dims="1" /> 
-
-
-
-<img border="0" src="https://i2.wp.com/s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/medium/2012-12-21%2B%2B06-55-56.jpg?w=1100&#038;ssl=1" alt="[photo]" data-recalc-dims="1" /> 
-
-
-
-<img border="0" src="https://i2.wp.com/s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/medium/2012-12-21%2B%2B06-56-10.jpg?w=1100&#038;ssl=1" alt="[photo]" data-recalc-dims="1" />
+<img border="0" src="https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/medium/2012-12-21%2B%2B06-56-10.jpg?w=1100&ssl=1" alt="[photo]" data-recalc-dims="1" />

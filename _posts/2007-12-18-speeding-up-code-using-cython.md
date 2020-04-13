@@ -16,7 +16,7 @@ format: image
 ---
 The graph below compares a brute-force depth first search in Sage/Python (red line) to an implementation of the same algorithm in Cython (blue line). Vertical axis is run time in seconds, horizontal axis is number of latin square completions generated:
 
-![](myfiles/py_v_pyrex.png) 
+![](/stuff/myfiles/py_v_pyrex.png) 
 
 Cython does pretty well, and [the code](http://carlo-hamalainen.net/sage/latin-1.0/) is far more readable than the earlier C++ version that I wrote.
 

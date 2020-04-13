@@ -14,20 +14,22 @@ categories:
   - Uncategorized
 format: image
 ---
-When installing pyinterval on my Debian Wheezy system via pip install pyinterval I hit this:
+When installing ``pyinterval`` on my Debian Wheezy system via ``pip install pyinterval`` I hit this:
 
-<pre>/usr/bin/ld: /usr/local/lib/libcrlibm.a(crlibm_private.o): relocation R_X86_64_32 against `.rodata.str1.8' can not be used when making a shared object; recompile with -fPIC
+```
+/usr/bin/ld: /usr/local/lib/libcrlibm.a(crlibm_private.o): relocation R_X86_64_32 against `.rodata.str1.8' can not be used when making a shared object; recompile with -fPIC
 
 /usr/local/lib/libcrlibm.a: could not read symbols: Bad value
 
 collect2: error: ld returned 1 exit status
 
 error: command 'gcc' failed with exit status 1
-</pre>
+```
 
 The solution is to install crlibm with the -fPIC flag:
 
-<pre>tar zxf crlibm-1.0beta4.tar.gz
+```
+tar zxf crlibm-1.0beta4.tar.gz
 cd crlibm-1.0beta4
 
 export CPPFLAGS=-fPIC
@@ -36,11 +38,12 @@ make
 sudo make install
 
 sudo pip install pyinterval
-</pre>
+```
 
 Then you should be able to run Rump's example (see Stefano Taschini's SciPy 2008 paper on pyinterval): 
 
-<pre>carlo@x1 ~ $ python
+```
+carlo@x1 ~ $ python
 Python 2.7.3 (default, Jan  2 2013, 13:56:14)
 [GCC 4.7.2] on linux2
 Type "help", "copyright", "credits" or "license" for more information.
@@ -54,4 +57,4 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>> f(interval(77617.0), interval(33096.0))
 interval([-3.541774862152234e+21, 3.5417748621522344e+21])
 >>>
-</pre>
+```

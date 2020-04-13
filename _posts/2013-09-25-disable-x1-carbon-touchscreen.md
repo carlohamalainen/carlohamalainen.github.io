@@ -16,18 +16,20 @@ format: image
 ---
 My Lenovo X1 Carbon has a touchscreen but I rarely use it. Sometimes on waking from suspend it generates spurious clicks that do things on my desktop like creating new folders. To disable the touchscreen completely, edit /etc/X11/xorg.conf.d/disable-touchscreen.conf as follows:
 
-<pre>Section "InputClass"
+```
+Section "InputClass"
     Identifier      "Annoying Touch Screen"
     Driver          "egalax"
     MatchProduct    "eGalax Inc. eGalaxTouch EXC7903-66v03_T1"
 
     Option          "DeviceEnabled" "0"
 EndSection
-</pre>
+```
 
 To work out the product name, use xinput: 
 
-<pre>$ xinput
+```
+$ xinput
 ⎡ Virtual core pointer                      id=2    [master pointer  (3)]
 ⎜   ↳ Virtual core XTEST pointer                id=4    [slave  pointer  (2)]
 ⎜   ↳ eGalax Inc. eGalaxTouch EXC7903-66v03_T1  id=9    [slave  pointer  (2)]
@@ -41,11 +43,10 @@ To work out the product name, use xinput:
     ↳ Integrated Camera                         id=10   [slave  keyboard (3)]
     ↳ AT Translated Set 2 keyboard              id=11   [slave  keyboard (3)]
     ↳ ThinkPad Extra Buttons                    id=14   [slave  keyboard (3)]
-</pre>
+```
 
 If you want to disable the touchscreen temporarily, instead of the Xorg tweak try this command: 
 
-<pre>xinput --set-prop 'eGalax Inc. eGalaxTouch EXC7903-66v03_T1' 'Device Enabled' 0
-</pre>
+    xinput --set-prop 'eGalax Inc. eGalaxTouch EXC7903-66v03_T1' 'Device Enabled' 0
 
 Thanks to Ian on the [CLUG mailing list](https://lists.samba.org/archive/linux/2013-September/032506.html) for help with the Xorg configuration.

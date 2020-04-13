@@ -18,9 +18,9 @@ I recently discovered that OpenSSH has a built in SOCKS proxy. This is really ha
 
 From my home computer I can do:
 
-$ ssh -ND 9999 carlo@my-uni-computer
+    $ ssh -ND 9999 carlo@my-uni-computer
 
-(after logging in no shell is given due to the -N option)
+(after logging in no shell is given due to the ``-N`` option)
 
 Then in Firefox I set the proxy to use SOCKS host localhost at port 9999. That's it. Firefox plugins like [FoxyProxy](https://addons.mozilla.org/en-US/firefox/addon/2464) or [SwitchProxy](https://addons.mozilla.org/en-US/firefox/addon/125) make switching the proxy setting quick and easy.
 

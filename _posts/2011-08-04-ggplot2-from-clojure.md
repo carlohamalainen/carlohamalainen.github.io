@@ -14,14 +14,13 @@ categories:
   - Uncategorized
 format: image
 ---
-Just a quick note on how to call ggplot2 from Clojure. Install the [rincanter](https://github.com/jolby/rincanter) package. A tip: if you don't know what R_HOME is for your system, try this at the R prompt:
+Just a quick note on how to call ggplot2 from Clojure. Install the [rincanter](https://github.com/jolby/rincanter) package. A tip: if you don't know what ``R_HOME`` is for your system, try this at the R prompt:
 
-<pre>> R.home(component="home")
-[1] "/usr/lib64/R"
->
-</pre>
+    > R.home(component="home")
+    [1] "/usr/lib64/R"
+    >
 
-So I did export R_HOME=/usr/lib64/R and then rincanter was happy.
+So I did ``export R_HOME=/usr/lib64/R`` and then rincanter was happy.
 
 When calling qplot, do not use r-eval because this tries to convert the entire plot into a Clojure object, resulting in unmanageable output. Use r-eval-raw instead.
 

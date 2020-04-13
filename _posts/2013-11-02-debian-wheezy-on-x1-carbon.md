@@ -14,14 +14,14 @@ categories:
   - Uncategorized
 format: image
 ---
-This would be a chef/puppet recipe if I had to do this kind of installation  
-more frequently. 
+This would be a chef/puppet recipe if I had to do this kind of installation  more frequently. 
 
 Kernel configuration: <https://github.com/carlohamalainen/dotfiles/blob/master/config-3.11.6-for-x1-carbon> 
 
 Installation notes: <https://github.com/carlohamalainen/dotfiles/blob/master/x1-carbon-debian-wheezy-install.txt>. The copy on github will be the latest, not this blog post. 
 
-<pre># Notes for building Debian Wheezy from scratch
+```
+# Notes for building Debian Wheezy from scratch
 # on my Lenovo Carbon X1 ultrabook.
 
 # Put a copy of the iwlwifi package on a USB stick
@@ -195,4 +195,4 @@ sudo rm -fr build && sudo python setup.py install
 wget https://raw.github.com/pypa/pip/master/contrib/get-pip.py
 sudo python get-pip.py
 sudo pip install youtube-dl
-</pre>
+```

@@ -20,21 +20,18 @@ Here is a patch: [gambit-0.2007.12.04-ubuntu-9.04-patch](http://carlo-hamalainen
 
 Unpack a fresh copy of Gambit:
 
-<pre>tar zxf gambit-0.2007.12.04.tar.gz
-</pre>
+    tar zxf gambit-0.2007.12.04.tar.gz
 
 Save the patch in the same directory; apply the patch:
 
-<pre>cd gambit-0.2007.12.04
-patch -p1 < ../gambit-0.2007.12.04-ubuntu-9.04-patch
-</pre>
+    cd gambit-0.2007.12.04
+    patch -p1 < ../gambit-0.2007.12.04-ubuntu-9.04-patch
 
 Now configure and make as usual:
 
-<pre>./configure
-make
-make install
-</pre>
+    ./configure
+    make
+    make install
 
 **Archived Comments**
 

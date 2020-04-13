@@ -16,7 +16,8 @@ format: image
 ---
 Applicative forms in [Yesod](http://www.yesodweb.com/book/forms) are nifty but they don't let you customise layout, CSS, and so on. I had this form for comments on [my blog](https://github.com/carlohamalainen/cli-yesod-blog): 
 
-<pre>commentFormOLD :: EntryId -> Form Comment
+{% highlight haskell %}
+commentFormOLD :: EntryId -> Form Comment
 commentFormOLD entryId = renderDivs $ Comment
      pure entryId
      lift (liftIO getCurrentTime)
@@ -25,31 +26,25 @@ commentFormOLD entryId = renderDivs $ Comment
      aopt urlField (fieldSettingsLabel MsgCommentUrl) Nothing
      areq htmlField (fieldSettingsLabel MsgCommentText) Nothing
      pure False <* recaptchaAForm
-</pre>
+{% endhighlight %}
 
-I wanted to tweak the layout so I had to convert it to a monadic form. The only quirk was that the second part of the return value of recaptchaMForm is of type [FieldView site], not FieldView site. It looks like the first element of the list does the job for rendering the [Yesod-ReCAPTCHA](http://hackage.haskell.org/package/yesod-recaptcha-1.4/docs/Yesod-ReCAPTCHA.html) widget. So we set 
+I wanted to tweak the layout so I had to convert it to a monadic form. The only quirk was that the second part of the return value of ``recaptchaMForm`` is of type ``[FieldView site]``, not ``FieldView site``. It looks like the first element of the list does the job for rendering the [Yesod-ReCAPTCHA](http://hackage.haskell.org/package/yesod-recaptcha-1.4/docs/Yesod-ReCAPTCHA.html) widget. So we set 
 
-<pre>let recapView0 = recapView DL.!! 0
-</pre>
+{% highlight haskell %}
+let recapView0 = recapView DL.!! 0
+{% endhighlight %}
 
 and then write 
 
-<pre><p>
-  ^{fvInput recapView0}
-  </pre>
+```
+^{fvInput recapView0}
+```  
   
+in the whamlet. 
   
-  <p>
-    in the whamlet. 
-  </p>
+Here's the full function. Note the ``fvId`` bits where we can specify the width and height. Also, to the form as a parameter to ``generateFormPost``, we must have a parameter of type ``Html``. So we put the ``EntryId`` at the front so that we can use <a href="https://en.wikipedia.org/wiki/Currying">Currying</a>.
   
-  
-  <p>
-    Here's the full function. Note the fvId bits where we can specify the width and height. Also, to the form as a parameter to generateFormPost, we must have a parameter of type Html. So we put the EntryId at the front so that we can use <a href="https://en.wikipedia.org/wiki/Currying">Currying</a>. 
-  </p>
-  
-  
-  <pre>
+```
 commentForm :: EntryId -> Html -> MForm Handler (FormResult Comment, Widget)
 commentForm entryId extra = do
     (nameRes, nameView)     <- mreq textField  (fieldSettingsLabel MsgCommentName)  Nothing
@@ -64,13 +59,13 @@ commentForm entryId extra = do
     now <- liftIO getCurrentTime
 
     let c = Comment
-               pure entryId
-               pure now
-               nameRes
-               emailRes
-               urlRes
-               textRes
-               pure False <* recapRes
+              <$> pure entryId
+              <*> pure now
+              <*> nameRes
+              <*> emailRes
+              <*> urlRes
+              <*> textRes
+              <*> pure False <* recapRes
 
     let widget = do
             toWidget
@@ -91,48 +86,27 @@ commentForm entryId extra = do
                 |]
             [whamlet|
                 #{extra}
-                
-
-<p>
-  Name                 #
-                  
-  
-  <p>
-    ^{fvInput nameView}
-                    
-    
-    <p>
-      Email (not shown)  #
-                      
-      
-      <p>
-        ^{fvInput emailView}
-                        
-        
-        <p>
-          URL (optional)     #
-                          
-          
-          <p>
-            ^{fvInput urlView}
-                            
-            
-            <p>
-              Comment            #
-                              
-              
-              <p>
-                ^{fvInput textView}
-                                
-                
                 <p>
-                  ^{fvInput recapView0}
-                              |]
-                  
-                      return (c, widget)
-                  </pre>
-                  
-                  
-                  <p>
-                    The diff starting from line 71 shows the change in Handler/Home.hs: <a href="https://github.com/carlohamalainen/cli-yesod-blog/commit/ce76215f72cbcf748bef89bfa3b09a077ceb9ab9#diff-1d7a37a0e3408faaa1abf31093eb8a50L71">ce76215f72cbcf748bef89bfa3b09a077ceb9ab9#diff-1d7a37a0e3408faaa1abf31093eb8a50L71</a>. 
-                  </p>
+                    Name                 #
+                <p>
+                    ^{fvInput nameView}
+                <p>
+                    \ Email (not shown)  #
+                <p>
+                    ^{fvInput emailView}
+                <p>
+                    \ URL (optional)     #
+                <p>
+                    ^{fvInput urlView}
+                <p>
+                    \ Comment            #
+                <p>
+                    ^{fvInput textView}
+                <p>
+                    ^{fvInput recapView0}
+            |]
+
+    return (c, widget)
+```
+
+The diff starting from line 71 shows the change in Handler/Home.hs: <a href="https://github.com/carlohamalainen/cli-yesod-blog/commit/ce76215f72cbcf748bef89bfa3b09a077ceb9ab9#diff-1d7a37a0e3408faaa1abf31093eb8a50L71">ce76215f72cbcf748bef89bfa3b09a077ceb9ab9#diff-1d7a37a0e3408faaa1abf31093eb8a50L71</a>.

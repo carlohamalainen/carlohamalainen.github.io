@@ -16,10 +16,9 @@ format: image
 ---
 For some reason [xfce4-xfapplet-plugin](http://goodies.xfce.org/projects/panel-plugins/xfce4-xfapplet-plugin) has been dropped from recent Centos/Fedora releases, as the spec file for xfce4-panel proclaims: 
 
-<pre># xfce4-xfapplet-plugin isn't in F15
-Provides:       xfce4-xfapplet-plugin%{?_isa} = 0.1.0-11
-Obsoletes:      xfce4-xfapplet-plugin <= 0.1.0-10.fc15
-</pre>
+    # xfce4-xfapplet-plugin isn't in F15
+    Provides:       xfce4-xfapplet-plugin%{?_isa} = 0.1.0-11
+    Obsoletes:      xfce4-xfapplet-plugin <= 0.1.0-10.fc15
 
 This makes it basically impossible for anyone to use a Gnome2 applet on Xfce4. As a temporary work-around I have built an RPM of xfapplet-plugin on Centos 6.3 with the release number of 0.1.0-15, which gets around the Provides/Obsoletes lines: 
 

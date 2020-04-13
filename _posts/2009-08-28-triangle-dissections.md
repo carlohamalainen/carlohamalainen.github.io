@@ -16,7 +16,7 @@ format: image
 ---
 Some of [my research](http://arxiv.org/abs/0907.1789) is on dissections of triangles into equilateral triangles. Here's an example:
 
-<img src="https://i2.wp.com/s3.amazonaws.com/carlo-hamalainen.net/oldblog/stuff/dissection.png?w=1100&#038;ssl=1" data-recalc-dims="1" /> 
+<img src="/stuff/dissection.png?w=1100&ssl=1" data-recalc-dims="1" /> 
 
 So the outer equilateral triangle is cut up into smaller equilateral triangles, and no triangles overlap except along a common edge or point.
 
@@ -24,14 +24,14 @@ One of the earliest references on triangle dissections is this paper: [The Disse
 
 A _perfect dissection_ has no two triangles of the same size in the same orientation (up or down). Tutte conjectured that the smallest perfect dissection has size 15, and some recent [enumeration work](http://bitbucket.org/carlohamalainen/dissections/) shows this to be the case (a paper will come out soon with these results). Here are the two perfect dissections of size 15, and perfect dissections of size 16 and 17:
 
-<img src="https://i1.wp.com/s3.amazonaws.com/carlo-hamalainen.net/oldblog/stuff/perfect_dissection_size15_595_r5_c3.png?w=1100&#038;ssl=1" data-recalc-dims="1" /><img src="https://i0.wp.com/s3.amazonaws.com/carlo-hamalainen.net/oldblog/stuff/perfect_dissection_size15_595_r5_c4.png?w=1100&#038;ssl=1" data-recalc-dims="1" /> 
+<img src="/stuff/perfect_dissection_size15_595_r5_c3.png?w=1100&ssl=1" data-recalc-dims="1" /><img src="/stuff/perfect_dissection_size15_595_r5_c4.png?w=1100&ssl=1" data-recalc-dims="1" /> 
 
-<img src="https://i1.wp.com/s3.amazonaws.com/carlo-hamalainen.net/oldblog/stuff/perfect_dissection_size16_3073_r2_c3.png?w=1100&#038;ssl=1" data-recalc-dims="1" /><img src="https://i2.wp.com/s3.amazonaws.com/carlo-hamalainen.net/oldblog/stuff/perfect_dissection_size16_3073_r2_c5.png?w=1100&#038;ssl=1" data-recalc-dims="1" /> 
+<img src="/stuff/perfect_dissection_size16_3073_r2_c3.png?w=1100&ssl=1" data-recalc-dims="1" /><img src="/stuff/perfect_dissection_size16_3073_r2_c5.png?w=1100&ssl=1" data-recalc-dims="1" /> 
 
-<img src="https://i2.wp.com/s3.amazonaws.com/carlo-hamalainen.net/oldblog/stuff/perfect_dissection_size17_12169_r1_c6.png?w=1100&#038;ssl=1" data-recalc-dims="1" /><img src="https://i0.wp.com/s3.amazonaws.com/carlo-hamalainen.net/oldblog/stuff/perfect_dissection_size17_12169_r5_c6.png?w=1100&#038;ssl=1" data-recalc-dims="1" /> 
+<img src="/stuff/perfect_dissection_size17_12169_r1_c6.png?w=1100&ssl=1" data-recalc-dims="1" /><img src="/stuff/perfect_dissection_size17_12169_r5_c6.png?w=1100&ssl=1" data-recalc-dims="1" /> 
 
-<img src="https://i0.wp.com/s3.amazonaws.com/carlo-hamalainen.net/oldblog/stuff/perfect_dissection_size17_3091_r2_c4.png?w=1100&#038;ssl=1" data-recalc-dims="1" /><img src="https://i2.wp.com/s3.amazonaws.com/carlo-hamalainen.net/oldblog/stuff/perfect_dissection_size17_3091_r3_c0.png?w=1100&#038;ssl=1" data-recalc-dims="1" /> 
+<img src="/stuff/perfect_dissection_size17_3091_r2_c4.png?w=1100&ssl=1" data-recalc-dims="1" /><img src="/stuff/perfect_dissection_size17_3091_r3_c0.png?w=1100&ssl=1" data-recalc-dims="1" /> 
 
-<img src="https://i1.wp.com/s3.amazonaws.com/carlo-hamalainen.net/oldblog/stuff/perfect_dissection_size17_3095_r0_c2.png?w=1100&#038;ssl=1" data-recalc-dims="1" /><img src="https://i2.wp.com/s3.amazonaws.com/carlo-hamalainen.net/oldblog/stuff/perfect_dissection_size17_3095_r1_c3.png?w=1100&#038;ssl=1" data-recalc-dims="1" /> 
+<img src="/stuff/perfect_dissection_size17_3095_r0_c2.png?w=1100&ssl=1" data-recalc-dims="1" /><img src="/stuff/perfect_dissection_size17_3095_r1_c3.png?w=1100&ssl=1" data-recalc-dims="1" /> 
 
 Those graphics are produced using [PyX](http://pyx.sourceforge.net/) and [Sage](http://sagemath.org). Full PDFs are available [here](http://bitbucket.org/carlohamalainen/dissections/get/tip.zip).

@@ -43,12 +43,9 @@ Cook until the base is just slightly golden.
 
 An example:
 
-<img border="0" src="https://i0.wp.com/s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/medium/2008-07-05%2B%2B20-15-06.jpg?w=1100&#038;ssl=1" alt="[photo]" data-recalc-dims="1" /> 
+<img border="0" src="https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/medium/2008-07-05%2B%2B20-15-06.jpg?w=1100&ssl=1" alt="[photo]" /> 
 
+<img border="0" src="https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/medium/2008-07-05%2B%2B20-58-44.jpg?w=1100&ssl=1" alt="[photo]" /> 
 
+<img border="0" src="https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/medium/2008-07-05%2B%2B21-00-28.jpg?w=1100&ssl=1" alt="[photo]" />
 
-<img border="0" src="https://i2.wp.com/s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/medium/2008-07-05%2B%2B20-58-44.jpg?w=1100&#038;ssl=1" alt="[photo]" data-recalc-dims="1" /> 
-
-
-
-<img border="0" src="https://i0.wp.com/s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/medium/2008-07-05%2B%2B21-00-28.jpg?w=1100&#038;ssl=1" alt="[photo]" data-recalc-dims="1" />

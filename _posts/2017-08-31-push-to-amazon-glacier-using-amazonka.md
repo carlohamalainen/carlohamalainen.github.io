@@ -15,7 +15,7 @@ Here is a small Haskell package for pushing files to Amazon Glacier: <https://gi
 
 One thing that I couldn't find in amazonka was a way to calculate the tree hash of a file. The Glacier API needs this for each part that is uploaded as well as the whole file. Amazon explains how to calculate the tree hash in their [Glacier docs](http://docs.aws.amazon.com/amazonglacier/latest/dev/checksum-calculations.html) and provides sample code in Java and C++. Since the algorithm is recursive, it is quite short in Haskell:
 
-<pre><code class="language-haskell">
+{% highlight haskell %}
 oneMb :: Int64
 oneMb = 1024*1024
 
@@ -38,26 +38,26 @@ treeHash s = treeHash' $ map sha256 $ oneMbChunks s
 
     sha256 :: BS.ByteString -> BS.ByteString
     sha256 = cs . SHA256.hashlazy
-</code></pre>
+{% endhighlight %}
 
 To push a large file to Glacier we do three things: initiate the multipart upload, upload each part (say, 100Mb chunks), and then finalize the upload.
 
 ## Initiate the multipart upload
 
-We do this to get an `uploadId` which is then used for each of the multipart uploads. We use [initiateMultipartUpload](https://hackage.haskell.org/package/amazonka-glacier-1.4.5/docs/Network-AWS-Glacier-InitiateMultipartUpload.html#v:initiateMultipartUpload), and need to set the part size.
+We do this to get an ``uploadId`` which is then used for each of the multipart uploads. We use [initiateMultipartUpload](https://hackage.haskell.org/package/amazonka-glacier-1.4.5/docs/Network-AWS-Glacier-InitiateMultipartUpload.html#v:initiateMultipartUpload), and need to set the part size.
 
-    
+{% highlight haskell %}    
     initiateMulti env vault _partSize = send' env mpu
       where
         mpu = initiateMultipartUpload accountId vault
                 & imuPartSize .~ (Just $ cs $ show _partSize)
-    
+{% endhighlight %}
 
 ## Upload the parts
 
-With the response from initiating the multipart upload (the `mu` parameter in `uploadOnePart`) we can push a single part using [uploadMultipartPart](https://hackage.haskell.org/package/amazonka-glacier-1.4.5/docs/Network-AWS-Glacier-UploadMultipartPart.html#v:uploadMultipartPart). Here we have to also set the checksum and content range:
+With the response from initiating the multipart upload (the ``mu`` parameter in ``uploadOnePart``) we can push a single part using [uploadMultipartPart](https://hackage.haskell.org/package/amazonka-glacier-1.4.5/docs/Network-AWS-Glacier-UploadMultipartPart.html#v:uploadMultipartPart). Here we have to also set the checksum and content range:
 
-    
+{% highlight haskell %}    
     uploadOnePart env vault mu p = do
         let Part{..} = p
     
@@ -77,13 +77,13 @@ With the response from initiating the multipart upload (the `mu` parameter in `u
     
         contentRange :: Int64 -> Int64 -> Text
         contentRange x y = "bytes " `append` cs (show x) `append` accountId `append` cs (show y) `append` "/*"
-    
+{% endhighlight %}    
 
 ## Complete the multipart upload
 
 Completing the multipart upload lets Glacier know that it should start its job of assembling all the parts into a full archive. We have to set the archive size and the tree hash of the entire file.
 
-    
+{% highlight haskell %}    
     completeMulti env vault mp mu = do
         uploadId <- case mu ^. imursUploadId of
                         Nothing     -> throw MissingUploadID
@@ -94,19 +94,19 @@ Completing the multipart upload lets Glacier know that it should start its job o
                     & cmuChecksum    .~ (Just $ cs $ mp ^. multipartFullHash)
     
         send' env cmu
-    
+{% endhighlight %}    
 
 ## Notes
 
 In each of these functions I used a helper for sending the request:
 
-    
+{% highlight haskell %}    
     send' env x = liftIO $ runResourceT . runAWST env $ send x
-    
+{% endhighlight %}    
 
-I run the main block of work in a `KatipContextT` since I am using [katip](https://hackage.haskell.org/package/katip) for structured logging. Adding new key-value info to the log context is accomplished using [katipAddContext](https://hackage.haskell.org/package/katip-0.5.0.0/docs/Katip.html#v:katipAddContext).
+I run the main block of work in a ``KatipContextT`` since I am using [katip](https://hackage.haskell.org/package/katip) for structured logging. Adding new key-value info to the log context is accomplished using [katipAddContext](https://hackage.haskell.org/package/katip-0.5.0.0/docs/Katip.html#v:katipAddContext).
 
-    
+{% highlight haskell %}    
     go vault' path = do
         $(logTM) InfoS "Startup."
     
@@ -167,11 +167,11 @@ I run the main block of work in a `KatipContextT` since I am using [katip](https
               txt = toText $ show e
             in katipAddContext (sl "SerializeError" txt) $
                 $(logTM) ErrorS msg
-    
+{% endhighlight %}    
 
-I found it handy to write this little helper function to turn each header from an amazonka `ServiceError` into a Katip context key/value pair:
+I found it handy to write this little helper function to turn each header from an amazonka ``ServiceError`` into a Katip context key/value pair:
 
-    
+{% highlight haskell %}
     headersAsContext :: KatipContext m => [Header] -> m a -> m a
     headersAsContext hs = foldl (.) id $ map headerToContext hs
       where
@@ -179,24 +179,26 @@ I found it handy to write this little helper function to turn each header from a
         headerToContext (h, x) = let h' = cs $ CI.original h :: Text
                                      x' = cs x               :: Text
                                    in katipAddContext (sl h' x')
-    
+{% endhighlight %}    
 
 Katip can write to ElasticSearch using [katip-elasticsearch](https://hackage.haskell.org/package/katip-elasticsearch). Then you'd be able to search for errors on specific header fields, etc.
 
 ## Sample run
 
-<pre>glacier-push-exe basement myfile
+```
+glacier-push-exe basement myfile
 [2017-08-30 12:44:47][glacier-push.main][Info][x4][1724][ThreadId 7][main:Main app/Main.hs:300:7] Startup.
 [2017-08-30 12:44:50][glacier-push.main][Info][x4][1724][ThreadId 7][location:/998720554704/vaults/basement/multipart-uploads/vZMCGNsLGhfTJ_hJ-CJ_OF_juCAY1IaZDl_A3YqOZXnuQRH_AtPiMaUE-K1JDew-ZwiIuDZgR3QbjsJIEfWtGeMNeKDs][partEnd:134217727][partStart:0][uploadId:vZMCGNsLGhfTJ_hJ-CJ_OF_juCAY1IaZDl_A3YqOZXnuQRH_AtPiMaUE-K1JDew-ZwiIuDZgR3QbjsJIEfWtGeMNeKDs][main:Main app/Main.hs:213:15] Uploading part.
 [2017-08-30 12:45:45][glacier-push.main][Info][x4][1724][ThreadId 7][location:/998720554704/vaults/basement/multipart-uploads/vZMCGNsLGhfTJ_hJ-CJ_OF_juCAY1IaZDl_A3YqOZXnuQRH_AtPiMaUE-K1JDew-ZwiIuDZgR3QbjsJIEfWtGeMNeKDs][partEnd:268435455][partStart:134217728][uploadId:vZMCGNsLGhfTJ_hJ-CJ_OF_juCAY1IaZDl_A3YqOZXnuQRH_AtPiMaUE-K1JDew-ZwiIuDZgR3QbjsJIEfWtGeMNeKDs][main:Main app/Main.hs:213:15] Uploading part.
 [2017-08-30 12:46:37][glacier-push.main][Info][x4][1724][ThreadId 7][location:/998720554704/vaults/basement/multipart-uploads/vZMCGNsLGhfTJ_hJ-CJ_OF_juCAY1IaZDl_A3YqOZXnuQRH_AtPiMaUE-K1JDew-ZwiIuDZgR3QbjsJIEfWtGeMNeKDs][partEnd:293601279][partStart:268435456][uploadId:vZMCGNsLGhfTJ_hJ-CJ_OF_juCAY1IaZDl_A3YqOZXnuQRH_AtPiMaUE-K1JDew-ZwiIuDZgR3QbjsJIEfWtGeMNeKDs][main:Main app/Main.hs:213:15] Uploading part.
 [2017-08-30 12:46:55][glacier-push.main][Info][x4][1724][ThreadId 7][main:Main app/Main.hs:320:22] All parts uploaded successfully, now completing the multipart upload.
 [2017-08-30 12:46:57][glacier-push.main][Info][x4][1724][ThreadId 7][archiveId:bImG6jM0eQGNC7kIJTsC_wtcAXdPDUtJ-NyfstrkxeyTtXC_iEgkvenH-h_eQH-LYbhVKWJM7WuZlb7OHKtgKJNEpOtVaqxEhlNRTHphUtLCurcHAQDHKkiTnIXTpFxgPgvP9Q0axA][checksum:4f08645d8f3705dc222eef7547591c400362806abb7a6298b9267ebf2be7d901][location:/998720554704/vaults/basement/archives/bImG6jM0eQGNC7kIJTsC_wtcAXdPDUtJ-NyfstrkxeyTtXC_iEgkvenH-h_eQH-LYbhVKWJM7WuZlb7OHKtgKJNEpOtVaqxEhlNRTHphUtLCurcHAQDHKkiTnIXTpFxgPgvP9Q0axA][uploadId:vZMCGNsLGhfTJ_hJ-CJ_OF_juCAY1IaZDl_A3YqOZXnuQRH_AtPiMaUE-K1JDew-ZwiIuDZgR3QbjsJIEfWtGeMNeKDs][main:Main app/Main.hs:326:37] Done
-</pre>
+```
 
 The lines are pretty long (as they are intended for consumption into ElasticSearch, not human parsing) so here is one with line breaks:
 
-<pre>[2017-08-30 12:45:45]
+```
+[2017-08-30 12:45:45]
  [glacier-push.main]
  [Info]
  [x4]
@@ -207,16 +209,19 @@ The lines are pretty long (as they are intended for consumption into ElasticSear
  [partStart:134217728]
  [uploadId:vZMCGNsLGhfTJ_hJ-CJ_OF_juCAY1IaZDl_A3YqOZXnuQRH_AtPiMaUE-K1JDew-ZwiIuDZgR3QbjsJIEfWtGeMNeKDs]
  [main:Main app/Main.hs:213:15] Uploading part.
-</pre>
+```
+
 
 ## Checking out and compiling
 
 Use [Stack](https://docs.haskellstack.org/en/stable/README). Then:
 
-<pre>$ git clone https://github.com/carlohamalainen/glacier-push.git
+```
+$ git clone https://github.com/carlohamalainen/glacier-push.git
 $ cd glacier-push
 $ stack build
-</pre>
+```
+
 
 To browse the source on github, have a look at:
 

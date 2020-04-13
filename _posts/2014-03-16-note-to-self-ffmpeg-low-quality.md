@@ -16,7 +16,8 @@ format: image
 ---
 Sometimes high quality video files (e.g. mkv) don't play on my HP Mini Netbook, so here is an ffmpeg command to rescale the video to lower quality: 
 
-<pre>opts='-qscale 5 -r 25 -ar 44100 -ab 96 -s 500x374'
+```
+opts='-qscale 5 -r 25 -ar 44100 -ab 96 -s 500x374'
 
 ffmpeg -y -i infile.mkv ${opts} outfile.mp4
-</pre>
+```

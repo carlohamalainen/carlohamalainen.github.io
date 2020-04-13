@@ -16,32 +16,30 @@ format: image
 ---
 To backup email from a gmail account, first install mpop:
 
-sudo apt-get install mpop
+    sudo apt-get install mpop
 
-Edit your ~/.mpoprc file:
+Edit your ``~/.mpoprc`` file:
 
-<pre># defaults
-defaults
-tls on
+    # defaults
+    defaults
+    tls on
 
-# gmail
-account gmail
-host pop.gmail.com
-user myaccount
-password myaccountpassword
-keep on
-only_new off
-tls_starttls off
-delivery mbox ~/Backup/myaccount@gmail.mbox
+    # gmail
+    account gmail
+    host pop.gmail.com
+    user myaccount
+    password myaccountpassword
+    keep on
+    only_new off
+    tls_starttls off
+    delivery mbox ~/Backup/myaccount@gmail.mbox
 
-# Set a default account
-account default : gmail
-</pre>
+    # Set a default account
+    account default : gmail
 
 To grab some emails:
 
-<pre>mpop --tls-certcheck=off
-</pre>
+    mpop --tls-certcheck=off
 
 Original info from [this post](http://vafer.org/blog/20070103073735).
 

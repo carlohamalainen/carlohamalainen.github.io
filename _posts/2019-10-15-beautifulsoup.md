@@ -12,11 +12,7 @@ Electricity prices from Tocom: <a href="https://www.tocom.or.jp/market/kobetu/ea
 
 The page has three blocks (Current, Night, and Day sessions). Each block is under a ``h3``, with the first table providing the session name and date, and the second table provides the prices. The first table is a bare table consisting of table rows, while the second table has a <code>thead</code> element.
 
-
-
-<figure class="wp-block-image size-large"><img src="https://i2.wp.com/carlo-hamalainen.net/wp-content/uploads/2019/10/current_trading-1.png?fit=1024%2C257&amp;ssl=1" alt="" class="wp-image-1397" srcset="https://i1.wp.com/carlo-hamalainen.net/wp-content/uploads/2019/10/current_trading-1.png?w=1130&amp;ssl=1 1130w, https://i1.wp.com/carlo-hamalainen.net/wp-content/uploads/2019/10/current_trading-1.png?resize=300%2C75&amp;ssl=1 300w, https://i1.wp.com/carlo-hamalainen.net/wp-content/uploads/2019/10/current_trading-1.png?resize=768%2C193&amp;ssl=1 768w, https://i1.wp.com/carlo-hamalainen.net/wp-content/uploads/2019/10/current_trading-1.png?resize=1024%2C257&amp;ssl=1 1024w, https://i1.wp.com/carlo-hamalainen.net/wp-content/uploads/2019/10/current_trading-1.png?resize=1100%2C276&amp;ssl=1 1100w" sizes="(max-width: 1100px) 100vw, 1100px" /></figure>
-
-
+<img src="/wp-old/uploads/2019/10/current_trading-1.png" alt="" sizes="(max-width: 1100px) 100vw, 1100px" />
 
 To parse the entire page, we loop through each  <code>h3</code> and use <a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/#find-next-siblings-and-find-next-sibling">find_next_sibling</a> to get the two tables.
 

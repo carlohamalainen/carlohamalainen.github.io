@@ -16,7 +16,8 @@ format: image
 ---
 On Debian Jessie my Skype audio had a horrible crackle and the microphone on my USB headset seemed to be at a very low level (barely audible on the test call). This fixed all of the audio problems: 
 
-<pre>PULSE_LATENCY_MSEC=30 skype
-</pre>
+```
+PULSE_LATENCY_MSEC=30 skype
+```
 
 Credit: <https://bbs.archlinux.org/viewtopic.php?pid=1288881>.

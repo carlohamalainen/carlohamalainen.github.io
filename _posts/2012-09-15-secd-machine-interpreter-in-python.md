@@ -16,11 +16,10 @@ format: image
 ---
 I wrote a Python interpreter for the SECD abstract machine, following the presentation in [Kogge's book](http://carlo-hamalainen.net/blog/2012/08/15/kogges-the-architecture-of-symbolic-computers-1991/). The [pydot](http://code.google.com/p/pydot/) library was convenient for visualising the graph in memory corresponding to data and code. For example this short program: 
 
-<pre>[LDC, [3, 4], LDF, [LD, [1, 2], LD, [1, 1], ADD, RTN], AP, WRITEI, STOP,]
-</pre>
+    [LDC, [3, 4], LDF, [LD, [1, 2], LD, [1, 1], ADD, RTN], AP, WRITEI, STOP,]
 
 looks like this (click for enlarged image): 
 
-[<img src="https://i1.wp.com/github.com/carlohamalainen/pysecd/raw/master/program_in_memory.png?w=640&#038;ssl=1"  data-recalc-dims="1" />](https://i1.wp.com/github.com/carlohamalainen/pysecd/raw/master/program_in_memory.png?ssl=1)
+[<img src="https://github.com/carlohamalainen/pysecd/raw/master/program_in_memory.png?w=640&ssl=1"  data-recalc-dims="1" />](https://github.com/carlohamalainen/pysecd/raw/master/program_in_memory.png?ssl=1)
 
 Source code is available on github: <https://github.com/carlohamalainen/pysecd>

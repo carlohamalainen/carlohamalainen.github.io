@@ -14,17 +14,17 @@ categories:
   - Uncategorized
 format: image
 ---
-Update 2013-01-06: [English instructions for the thermostat](https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/stuff/BY-LOX_15A_instructions_english.jpg). 
+Update 2013-01-06: [English instructions for the thermostat](/stuff/BY-LOX_15A_instructions_english.jpg). 
 
 I picked up a cheap thermostat [on eBay](http://myworld.ebay.com.au/aus_best_bargain/?_trksid=p4340.l2559) for controlling the temperature in my brewing fridge. The model number is [BY-LOX 15A](https://duckduckgo.com/?q=BY-LOX+15A). 
 
 You can run the thermostat wire inside the door on the hinged side so there is no need to modify the fridge at all. I set the thermostat to 23C and the temperature sticker on the side of the tub stayed at about 24C throughout the brewing process. (By default it shows the current temp.)
 
-<img border="0" src="https://i1.wp.com/s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/medium/2012-03-17%2B%2B09-25-33.jpg?w=1100&#038;ssl=1" alt="[photo]" data-recalc-dims="1" /> 
+<img border="0" src="https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/medium/2012-03-17%2B%2B09-25-33.jpg?w=1100&ssl=1" alt="[photo]" data-recalc-dims="1" /> 
 
 
 
-<img border="0" src="https://i2.wp.com/s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/medium/2012-03-17%2B%2B09-25-42.jpg?w=1100&#038;ssl=1" alt="[photo]" data-recalc-dims="1" /> 
+<img border="0" src="https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/medium/2012-03-17%2B%2B09-25-42.jpg?w=1100&ssl=1" alt="[photo]" data-recalc-dims="1" /> 
 
 
 

@@ -16,15 +16,16 @@ format: image
 ---
 I saw this in a gallery in Canberra a few years ago. 
 
-[<img src="https://i2.wp.com/s3.amazonaws.com/carlo-hamalainen.net/oldblog/stuff/perceval_-_boy_with_cat_2_-_painting.jpg?w=600&#038;ssl=1"  data-recalc-dims="1" />](https://i2.wp.com/s3.amazonaws.com/carlo-hamalainen.net/oldblog/stuff/perceval_-_boy_with_cat_2_-_painting.jpg?ssl=1) 
+[<img src="https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/stuff/perceval_-_boy_with_cat_2_-_painting.jpg?w=600&ssl=1"  data-recalc-dims="1" />](https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/stuff/perceval_-_boy_with_cat_2_-_painting.jpg?ssl=1) 
 
-[<img src="https://i1.wp.com/s3.amazonaws.com/carlo-hamalainen.net/oldblog/stuff/perceval_-_boy_with_cat_2_-_caption.jpg?w=600&#038;ssl=1"  data-recalc-dims="1" />](https://i1.wp.com/s3.amazonaws.com/carlo-hamalainen.net/oldblog/stuff/perceval_-_boy_with_cat_2_-_caption.jpg?ssl=1) 
+[<img src="https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/stuff/perceval_-_boy_with_cat_2_-_caption.jpg?w=600&ssl=1"  data-recalc-dims="1" />](https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/stuff/perceval_-_boy_with_cat_2_-_caption.jpg?ssl=1) 
 
 
 
 The text under the painting: 
 
-<pre>John PERCEVAL
+```
+John PERCEVAL
 born Australia 1923 died Australia 2000
 England 1963-65
 
@@ -45,4 +46,4 @@ Depression, crossing the bridge into adulthood in
 wartime Melbourne when discussions raged about
 human beings' capacity not only to destroy others but
 also to self-destruct in the process.
-</pre>
+```

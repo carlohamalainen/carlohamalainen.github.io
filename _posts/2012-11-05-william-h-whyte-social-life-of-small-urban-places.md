@@ -14,12 +14,7 @@ categories:
   - Uncategorized
 format: image
 ---
-An excellent video from the 80s on urban spaces: 
-
-<div class="jetpack-video-wrapper">
-  <div class="embed-vimeo" style="text-align: center;">
-  </div>
-</div>
+An excellent video from the 80s on urban spaces. 
 
 [William H. Whyte -- Social Life of Small Urban Places](http://vimeo.com/21556697) from [Robin van Emden](http://vimeo.com/robinvanemden) on [Vimeo](http://vimeo.com).</p> 
 
@@ -28,3 +23,9 @@ An excellent video from the 80s on urban spaces:
 The vimeo link seems to be down, so here's a copy on archive.org: <https://archive.org/details/SmallUrbanSpaces>. 
 
 See also: [Crabgrass Frontier vs Regurgitator’s Superstraight](http://carlo-hamalainen.net/blog/2011/10/07/crabgrass-frontier-vs-regurgitators-superstraight/).
+
+ **April 2020**
+
+All the links have gone. I think this is a copy?
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/rW5KVb26Zt4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

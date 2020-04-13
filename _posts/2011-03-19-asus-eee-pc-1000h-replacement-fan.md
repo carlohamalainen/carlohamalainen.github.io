@@ -16,7 +16,7 @@ format: image
 ---
 I use an Asus EEE PC 1000H as a home file server. After being on 24/7 for a while the fan started getting noisy, so I ordered a replacement from [91deals](http://myworld.ebay.com/91deals/) on eBay. The fan was listed as "Asus Eee PC 1000 1000HA 1000HE CPU Fan BSB04505HA".
 
-<img src="https://i0.wp.com/s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/x-2011-03/eeepc_fan.jpg?w=640&#038;ssl=1"  data-recalc-dims="1" /> 
+<img src="https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/x-2011-03/eeepc_fan.jpg?w=640&ssl=1"  data-recalc-dims="1" /> 
 
 Opening up the 1000H was a bit tricky due to some hidden clips, but [this guide for the 1000HA](http://eeepc1005.blogspot.com/2009/09/upgrade-time.html) had all the details.
 

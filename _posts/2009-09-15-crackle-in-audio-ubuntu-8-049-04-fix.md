@@ -16,24 +16,21 @@ format: image
 ---
 The left audio channel on my work computer crackled badly. Ubuntu 8.04. Soundcard info from lspci:
 
-<pre>00:1b.0 Audio device: Intel Corporation 82801G (ICH7 Family) High Definition Audio Controller (rev 01)
-</pre>
+    00:1b.0 Audio device: Intel Corporation 82801G (ICH7 Family) High Definition Audio Controller (rev 01)
 
-Remove snd\_hda\_intel:
+Remove ``snd_hda_intel``:
 
-<pre>$ sudo modprobe -r snd_hda_intel
-FATAL: Module snd_hda_intel is in use.
+    $ sudo modprobe -r snd_hda_intel
+    FATAL: Module snd_hda_intel is in use.
 
-$ sudo lsof /dev/snd/* | grep mixer
-COMMAND    PID  USER   FD   TYPE DEVICE SIZE  NODE NAME
-mixer_app 9593 carlo   20u   CHR  116,0      11357 /dev/snd/controlC0
+    $ sudo lsof /dev/snd/* | grep mixer
+    COMMAND    PID  USER   FD   TYPE DEVICE SIZE  NODE NAME
+    mixer_app 9593 carlo   20u   CHR  116,0      11357 /dev/snd/controlC0
 
-$ kill -9 (pid of mixer_app)
-</pre>
+    $ kill -9 (pid of mixer_app)
 
-The fix: load with position_fix and model parameters.
+The fix: load with ``position_fix`` and ``model`` parameters.
 
-<pre>$ sudo modprobe snd-hda-intel position_fix=1 model=3stack
-</pre>
+    $ sudo modprobe snd-hda-intel position_fix=1 model=3stack
 
 Then use alsamixer to turn up and unmute main/pcm/etc.

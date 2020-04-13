@@ -26,27 +26,19 @@ With that bit of advice the job isn't too tricky. You definitely need some good 
 
 Here's the X61 in pieces. The LCD is underneath the tea towel:
 
-<img border="0" src="https://i0.wp.com/s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/medium/2011-06-04%2B%2B21-15-17.jpg?w=1100&#038;ssl=1" alt="[photo]" data-recalc-dims="1" /> 
-
-
+<img border="0" src="https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/medium/2011-06-04%2B%2B21-15-17.jpg?w=1100&ssl=1" alt="[photo]" data-recalc-dims="1" /> 
 
 It's worth keeping track of the screws that you remove, in order:
 
-<img border="0" src="https://i0.wp.com/s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/medium/2011-06-04%2B%2B21-15-35.jpg?w=1100&#038;ssl=1" alt="[photo]" data-recalc-dims="1" /> 
-
-
+<img border="0" src="https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/medium/2011-06-04%2B%2B21-15-35.jpg?w=1100&ssl=1" alt="[photo]" data-recalc-dims="1" /> 
 
 You have to take the whole thing apart because the screws that hold the fan assembly in place are on the bottom.
 
-<img border="0" src="https://i2.wp.com/s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/medium/2011-06-04%2B%2B21-16-02.jpg?w=1100&#038;ssl=1" alt="[photo]" data-recalc-dims="1" /> 
-
-
+<img border="0" src="https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/medium/2011-06-04%2B%2B21-16-02.jpg?w=1100&ssl=1" alt="[photo]" data-recalc-dims="1" /> 
 
 The three main screws that hold on the fan assembly are quite tight, so I ended up using a vice-grip to loosen them:
 
-<img border="0" src="https://i0.wp.com/s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/medium/2011-06-04%2B%2B21-22-34.jpg?w=1100&#038;ssl=1" alt="[photo]" data-recalc-dims="1" /> 
-
-
+<img border="0" src="https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/medium/2011-06-04%2B%2B21-22-34.jpg?w=1100&ssl=1" alt="[photo]" data-recalc-dims="1" /> 
 
 **Archived Comments**
 

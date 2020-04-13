@@ -16,7 +16,8 @@ format: image
 ---
 For some time I've used this little utility to run a command with parameters and return stdout if the command exited successfully, or stdout and stderr if there was an error: 
 
-<pre>readRestOfHandle :: Handle -> IO String
+{% highlight haskell %}
+readRestOfHandle :: Handle -> IO String
 readRestOfHandle h = do
     ineof  [String] -> IO (Either String String)
 runShellCommand cmd args = do
@@ -27,19 +28,21 @@ runShellCommand cmd args = do
 
     exitCode  return $ Right stdOut
                      _           -> return $ Left $ stdOut ++ "nnn" ++ stdErr
-</pre>
+{% endhighlight %}
 
 Unfortunately this code is prone to deadlocking -- I had this happen on a call to [dcm2mnc](http://www.bic.mni.mcgill.ca/~mferre/fmri/dcm2mnc_help.html). It ran dcm2mnc and then hung. 
 
 The fix was to use [process-streaming](http://hackage.haskell.org/package/process-streaming) which provides a wrapper for createProcess:
 
-<pre>simpleSafeExecute :: PipingPolicy String a -> CreateProcess -> IO (Either String a)
-</pre>
+{% highlight haskell %}
+simpleSafeExecute :: PipingPolicy String a -> CreateProcess -> IO (Either String a)
+{% endhighlight %}
 
 And it's straightforward to use it to get the stdout and stderr separately: 
 
-<pre>x <- simpleSafeExecute (pipeoe $ separated (surely B.toLazyM) (surely B.toLazyM)) (proc cmd args)
-</pre>
+{% highlight haskell %}
+x <- simpleSafeExecute (pipeoe $ separated (surely B.toLazyM) (surely B.toLazyM)) (proc cmd args)
+{% endhighlight %}
 
 Here's my commit where I switched to process-streaming: <https://github.com/carlohamalainen/mytardis-rest/commit/7a97d2482abc7e5726ed003a480fc9a27ead7403>. 
 

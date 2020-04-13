@@ -16,7 +16,8 @@ format: image
 ---
 I've been running my own mail host for a while now on an Amazon EC2 instance and haven't had any problems, but recently some mail bounced from a user whose organisation has hosted email with Microsoft Office365. Here's the bounce: 
 
-<pre>-------- Original Message --------
+```
+-------- Original Message --------
 Subject: Undelivered Mail Returned to Sender
 Date: Thu, 10 Apr 2014 14:41:24 +0000 (UTC)
 From: MAILER-DAEMON@example.com (Mail Delivery System)
@@ -38,11 +39,12 @@ The mail system
 said: 550 5.7.1 Service unavailable; Client host [yyy.yy.yy.yy] blocked
 using Blocklist 1; To request removal from this list please forward this
 message to delist@messaging.microsoft.com (in reply to RCPT TO command)
-</pre>
+```
 
 I thought that this was pretty weird given that my host passed all the tests on MX Toolbox's [blacklist checker](http://mxtoolbox.com/blacklists.aspx). I fired off an email to Microsoft customer support saying "this is weird, remove my host from your blacklist" and after a few days I got this response: 
 
-<pre>-------- Original Message --------
+```
+-------- Original Message --------
 Subject:    RE: SRX1242320246ID - Fwd: Undelivered Mail Returned to Sender
 Date:   Mon, 14 Apr 2014 19:06:25 +0000
 From:   Microsoft Customer Support
@@ -69,7 +71,7 @@ respond to this email.
 
 Thank you again for contacting Microsoft Online Services technical
 support and giving us the opportunity to serve you.
-</pre>
+```
 
 After that everything seemed to be ok. 
 

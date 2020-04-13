@@ -16,12 +16,11 @@ format: image
 ---
 To fix the strangely large Firefox fonts in Ubuntu Karmic:
 
-<pre>sudo rm /etc/fonts/conf.d/10-hinting-slight.conf
-sudo rm /etc/fonts/conf.d/10-no-sub-pixel.conf
-sudo ln -s /etc/fonts/conf.available/10-hinting-medium.conf /etc/fonts/conf.d/.
-sudo ln -s /etc/fonts/conf.available/10-sub-pixel-rgb.conf /etc/fonts/conf.d/.
-sudo dpkg-reconfigure fontconfig
-</pre>
+    sudo rm /etc/fonts/conf.d/10-hinting-slight.conf
+    sudo rm /etc/fonts/conf.d/10-no-sub-pixel.conf
+    sudo ln -s /etc/fonts/conf.available/10-hinting-medium.conf /etc/fonts/conf.d/.
+    sudo ln -s /etc/fonts/conf.available/10-sub-pixel-rgb.conf /etc/fonts/conf.d/.
+    sudo dpkg-reconfigure fontconfig
 
 Thanks to [this post](http://ubuntuforums.org/showpost.php?p=6986051&postcount=7) on the Ubuntu forums.
 

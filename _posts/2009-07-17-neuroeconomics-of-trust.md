@@ -14,7 +14,7 @@ categories:
   - Uncategorized
 format: image
 ---
-An interesting paper by Paul J. Zak: <http://ideas.repec.org/p/wpa/wuwpex/0507004.html> ([local copy](https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/stuff/neuroeconomics-of-trust-0507004.pdf)).
+An interesting paper by Paul J. Zak: <http://ideas.repec.org/p/wpa/wuwpex/0507004.html> ([local copy](/stuff/neuroeconomics-of-trust-0507004.pdf)).
 
 Some quotes:
 

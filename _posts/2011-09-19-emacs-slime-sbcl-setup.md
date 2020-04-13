@@ -16,21 +16,19 @@ format: image
 ---
 Recently I tried to set up Emacs, SLIME, and SBCL, all compiled from source. The instructions that I [usually refer to](http://functionalrants.wordpress.com/2008/09/06/how-to-set-up-emacs-slime-sbcl-under-gnulinux/) say that you just need this in your .emacs to get SLIME working:
 
-<pre>;; Set up the Common Lisp environment
-(add-to-list 'load-path "/usr/share/common-lisp/source/slime/")
-(setq inferior-lisp-program "/usr/bin/sbcl")
-(require 'slime)
-(slime-setup)
-</pre>
+    ;; Set up the Common Lisp environment
+    (add-to-list 'load-path "/usr/share/common-lisp/source/slime/")
+    (setq inferior-lisp-program "/usr/bin/sbcl")
+    (require 'slime)
+    (slime-setup)
 
 This doesn't quite do it for the latest CVS version of SLIME. For example after typing "(defun " nothing sensible showed up in the minibuffer at the bottom of the emacs window. By looking at the latest Ubuntu distribution's slime init file, I found that this is also needed:
 
-<pre>(eval-after-load "slime"
-  '(progn
-    (slime-setup '(slime-fancy slime-asdf slime-banner))
-    (setq slime-complete-symbol*-fancy t)
-    (setq slime-complete-symbol-function 'slime-fuzzy-complete-symbol)))
-</pre>
+    (eval-after-load "slime"
+      '(progn
+        (slime-setup '(slime-fancy slime-asdf slime-banner))
+        (setq slime-complete-symbol*-fancy t)
+        (setq slime-complete-symbol-function 'slime-fuzzy-complete-symbol)))
 
 My full .emacs file is on GitHub: <https://github.com/carlohamalainen/dotfiles/blob/master/.emacs>.
 

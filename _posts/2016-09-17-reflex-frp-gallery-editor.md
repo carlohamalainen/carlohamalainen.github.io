@@ -14,208 +14,252 @@ categories:
   - Uncategorized
 format: image
 ---
-When I post a series of photos to a personal blog I find myself editing HTML in Vim and switching back and forth to a browser to see if I have written comments in the right places and ordered the photos correctly. I could use a HTML editor to do this, but why not try FRP with Haskell? 🙂 Apparently I sort of use FRP [at work](https://www.reddit.com/r/haskell/comments/41icy5/haskell_developer_roles_at_standard_chartered/cz37u9f) so trying out [Reflex](https://github.com/reflex-frp/reflex-platform) wasn’t too much of a leap.
 
-This post is adapted from the [todo list](https://github.com/reflex-frp/reflex-examples/tree/master/BasicTodo) and [drag ‘n’ drop](https://github.com/reflex-frp/reflex-examples/tree/master/drag-and-drop) examples in [this Reflex repo](https://github.com/reflex-frp/reflex-examples). 
 
-Let’s start with the types. My basic blob of data is an image (a URL), a comment about the image, and a flag to indicate if the image should appear in the final output: 
+When I post a series of photos to a personal blog I find myself editing HTML in Vim and switching back and forth to a browser to see if I have written comments in the right places and ordered the photos correctly. I could use a HTML editor to do this, but why not try FRP with Haskell? :) Apparently I sort of use FRP <a href="https://www.reddit.com/r/haskell/comments/41icy5/haskell_developer_roles_at_standard_chartered/cz37u9f">at work</a> so trying out <a href="https://github.com/reflex-frp/reflex-platform">Reflex</a> wasn't too much of a leap. 
 
-<pre>> data Image = Image
->     { imageFileName :: T.Text   -- ^ e.g. "file:///tmp/cat.jpg"
->     , imageVisible  :: Bool     -- ^ Output in HTML render?
->     , imageRemark   :: T.Text   -- ^ Comment that goes before the image.
->     }
->     deriving (Eq, Ord, Show)
-</pre>
+This post is adapted from the <a href="https://github.com/reflex-frp/reflex-examples/tree/master/BasicTodo">todo list</a> and <a href="https://github.com/reflex-frp/reflex-examples/tree/master/drag-and-drop">drag 'n' drop</a> examples in <a href="https://github.com/reflex-frp/reflex-examples">this Reflex repo</a>. 
 
-The images have to be rendered in a particular order, so we’ll use a Map 
+Let's start with the types. My basic blob of data is an image (a URL), a comment about the image, and
+a flag to indicate if the image should appear in the final output: 
 
-<pre>> Map Int a
-</pre>
+{% highlight haskell %}
+data Image = Image
+    { imageFileName :: T.Text   -- ^ e.g. "file:///tmp/cat.jpg"
+    , imageVisible  :: Bool     -- ^ Output in HTML render?
+    , imageRemark   :: T.Text   -- ^ Comment that goes before the image.
+    }
+    deriving (Eq, Ord, Show)
+{% endhighlight %}
 
-where the integer keys provide the ordering and a is some type. 
+The images have to be rendered in a particular order, so we'll use a ``Map`` 
 
-To toggle visibility in the final rendering, we flip imageVisible: 
+{% highlight haskell %}
+Map Int a
+{% endhighlight %}
 
-<pre>> toggleVisibility :: Int -> Map Int Image -> Map Int Image
-> toggleVisibility k m = M.adjust f k m
->   where
->     f (Image x b c) = Image x (not b) c
-</pre>
+where the integer keys provide the ordering and ``a`` is some type. 
+
+To toggle visibility in the final rendering, we flip ``imageVisible``: 
+
+{% highlight haskell %}
+toggleVisibility :: Int -> Map Int Image -> Map Int Image
+toggleVisibility k m = M.adjust f k m
+  where
+    f (Image x b c) = Image x (not b) c
+{% endhighlight %}
 
 We can set the description for an image: 
 
-<pre>> setDesc :: (Int, T.Text) -> Map Int Image -> Map Int Image
-> setDesc (k, c) m = M.adjust f k m
->   where
->     f (Image x b _) = Image x b c
-</pre>
+{% highlight haskell %}
+setDesc :: (Int, T.Text) -> Map Int Image -> Map Int Image
+setDesc (k, c) m = M.adjust f k m
+  where
+    f (Image x b _) = Image x b c
+{% endhighlight %}
 
-We can move the kth image up: 
+We can move the ``k``th image up: 
 
-<pre>> moveUp :: Int -> Map Int Image -> Map Int Image
-> moveUp 0 m = m
-> moveUp k m
->   = let xs = M.elems m in
->     M.fromList $ zip [0..] $ take (k-1) xs ++ [xs !! k, xs !! (k-1)] ++ drop (k+1) xs
->     -- ^^^ Assumes contiguous keys!
-</pre>
+{% highlight haskell %}
+moveUp :: Int -> Map Int Image -> Map Int Image
+moveUp 0 m = m
+moveUp k m
+  = let xs = M.elems m in
+    M.fromList $ zip [0..] $ take (k-1) xs ++ [xs !! k, xs !! (k-1)] ++ drop (k+1) xs
+    -- ^^^ Assumes contiguous keys!
+{% endhighlight %}
 
 and down: 
 
-<pre>> moveDown :: Int -> Map Int Image -> Map Int Image
-> moveDown k m
->   | k == fst (M.findMax m) = m
->   | otherwise = let xs = M.elems m in
->       M.fromList $ zip [0..] $ take k xs ++ [xs !! (k+1), xs !! k] ++ drop (k+2) xs
-</pre>
+{% highlight haskell %}
+moveDown :: Int -> Map Int Image -> Map Int Image
+moveDown k m
+  | k == fst (M.findMax m) = m
+  | otherwise = let xs = M.elems m in
+      M.fromList $ zip [0..] $ take k xs ++ [xs !! (k+1), xs !! k] ++ drop (k+2) xs
+{% endhighlight %}
 
-It’s not efficient to completely rebuild the map by converting it to a list and back again, but this’ll do for now. 
+It's not efficient to completely rebuild the map by converting
+it to a list and back again, but this'll do for now. 
 
-In terms of the user interface there are a few events to consider: 
+In terms of the user interface there are a few events to
+consider: 
 
-  * user toggles visibility of the kth image; 
-  * user moves the kth image up; 
-  * user moves the kth image down; and 
-  * user changes the comment text for the kth image. 
+* user toggles visibility of the ``k``th image;
+* user moves the ``k``th image up;
+* user moves the ``k``th image down; and
+* user changes the comment text for the ``k``th image.
 
-We’ll put these four events into our own type. The first three are of type Event t Int where the Int is the key for the image in question. The last one has type Event t (Int, T.Text) since we need the key and the text that was entered into the textbox. In Reflex, the event type is [Event](https://hackage.haskell.org/package/reflex-0.4.0/docs/Reflex-Class.html#t:Event).
+We'll put these four events into our own type. The first three are of
+type ``Event t Int`` where the ``Int`` is the key for the
+image in question. The last one has type ``Event t (Int, T.Text)``
+since we need the key and the text that was entered into the textbox.
+In Reflex, the event type is <a href="https://hackage.haskell.org/package/reflex-0.4.0/docs/Reflex-Class.html#t:Event">Event</a>. 
 
-<pre>> data ImageEvent t = ImageEvent
->     { evToggle  :: Event t Int
->     , evUp      :: Event t Int
->     , evDown    :: Event t Int
->     , evKey     :: Event t (Int, T.Text)
->     }
-</pre>
+{% highlight haskell %}
+data ImageEvent t = ImageEvent
+    { evToggle  :: Event t Int
+    , evUp      :: Event t Int
+    , evDown    :: Event t Int
+    , evKey     :: Event t (Int, T.Text)
+    }
+{% endhighlight %}
 
-Next, imageW creates an unnumbered list of images, consisting of a text field indicating if the image will be visible; a text box for writing a comment; buttons to toggle visibility and move the image up and down; and finally the image itself.
+Next, ``imageW`` creates an unnumbered list of images, consisting of
+a text field indicating if the image will be visible; a text box for writing a comment;
+buttons to toggle visibility and move the image up and down; and finally the image itself. 
 
-<pre>> imageW
->     :: forall m t. (MonadWidget t m)
->     => Dynamic t (Map Int Image)
->     -> m (Dynamic t (Map Int (ImageEvent t)))
-> imageW xs = elClass "ul" "list" $ listWithKey xs $ k x -> elClass "li" "element" $ do
->     dynText $ fmap (T.pack . show . imageVisible) x
->     el "br" $ return ()
->
->     let xEvent = imageRemark  uniqDyn x
->
->     ti 
->     tEvent <- updated  return (zipDynWith (,) (constDyn k) (_textInput_value ti))
->
->     el "br" $ return ()
->
->     (visibleEvent, moveUpEvent, moveDownEvent)                                                      visibleEvent  <- (fmap $ const k)  button "visible"
->                                                     moveUpEvent   <- (fmap $ const k)  button "up"
->                                                     moveDownEvent <- (fmap $ const k)  button "down"
->                                                     return (visibleEvent, moveUpEvent, moveDownEvent)
->
->     elClass "p" "the image" $ elDynAttr "img" (fmap f x) (return ())
->
->     return $ ImageEvent visibleEvent moveUpEvent moveDownEvent tEvent
->
->   where
->
->     f :: Image -> Map T.Text T.Text
->     f i = M.fromList
->             [ ("src",   imageFileName i)
->             , ("width", "500")
->             ]
->
->     textBoxAttrs :: TextInputConfig t
->     textBoxAttrs = def { _textInputConfig_attributes = constDyn $ M.fromList [("size", "100")] }
-</pre>
+{% highlight haskell %}
+imageW
+    :: forall m t. (MonadWidget t m)
+    => Dynamic t (Map Int Image)
+    -> m (Dynamic t (Map Int (ImageEvent t)))
+imageW xs = elClass "ul" "list" $ listWithKey xs $ \k x -> elClass "li" "element" $ do
+    dynText $ fmap (T.pack . show . imageVisible) x
+    el "br" $ return ()
 
-To process the dynamic map we use [listWithKey](https://hackage.haskell.org/package/reflex-dom-0.3/docs/Reflex-Dom-Widget-Basic.html#v:listWithKey):
+    let xEvent = imageRemark <$> uniqDyn x
 
-<pre>> listWithKey
->   :: forall t k v m a. (Ord k, MonadWidget t m)
->   => Dynamic t (Map k v)
->   -> (k -> Dynamic t v -> m a)
->   -> m (Dynamic t (Map k a))
-</pre>
+    ti <- textInput $ textBoxAttrs & setValue .~ (updated xEvent)
+
+    tEvent <- updated <$> return (zipDynWith (,) (constDyn k) (_textInput_value ti))
+
+    el "br" $ return ()
+
+    (visibleEvent, moveUpEvent, moveDownEvent) <- elClass "div" "my buttons" $ do
+                                                    visibleEvent  <- (fmap $ const k) <$> button "visible"
+                                                    moveUpEvent   <- (fmap $ const k) <$> button "up"
+                                                    moveDownEvent <- (fmap $ const k) <$> button "down"
+                                                    return (visibleEvent, moveUpEvent, moveDownEvent)
+
+    elClass "p" "the image" $ elDynAttr "img" (fmap f x) (return ())
+
+    return $ ImageEvent visibleEvent moveUpEvent moveDownEvent tEvent
+
+  where
+
+    f :: Image -> Map T.Text T.Text
+    f i = M.fromList
+            [ ("src",   imageFileName i)
+            , ("width", "500")
+            ]
+
+    textBoxAttrs :: TextInputConfig t
+    textBoxAttrs = def { _textInputConfig_attributes = constDyn $ M.fromList [("size", "100")] }
+{% endhighlight %}
+
+To process the dynamic map
+we use <a href="https://hackage.haskell.org/package/reflex-dom-0.3/docs/Reflex-Dom-Widget-Basic.html#v:listWithKey">listWithKey</a>:
+
+{% highlight haskell %}
+listWithKey
+  :: forall t k v m a. (Ord k, MonadWidget t m)
+  => Dynamic t (Map k v)
+  -> (k -> Dynamic t v -> m a)
+  -> m (Dynamic t (Map k a))
+{% endhighlight %}
 
 Specialised to our usage, the type is: 
 
-<pre>> listWithKey
->   :: forall t m. (MonadWidget t m)
->   => Dynamic t (Map Int Image)
->   -> (Int -> Dynamic t Image -> m (ImageEvent t))
->   -> m (Dynamic t (Map Int (ImageEvent t)))
-</pre>
+{% highlight haskell %}
+listWithKey
+  :: forall t m. (MonadWidget t m)
+  => Dynamic t (Map Int Image)
+  -> (Int -> Dynamic t Image -> m (ImageEvent t))
+  -> m (Dynamic t (Map Int (ImageEvent t)))
+{% endhighlight %}
 
-It’s like mapping over the elements of the dynamic input: 
+It's like mapping over the elements of the dynamic input: 
 
-<pre>> listWithKey xs $ k x -> ...
-</pre>
+{% highlight haskell %}
+listWithKey xs $ \k x -> ...
+{% endhighlight %}
 
-We use [elClass](https://hackage.haskell.org/package/reflex-dom-0.3/docs/Reflex-Dom-Widget-Basic.html#v:elClass) to produce the elements on the page. For example the text attribute showing if the image is visible or not can be rendered using [dynText](https://hackage.haskell.org/package/reflex-dom-0.3/docs/Reflex-Dom-Widget-Basic.html#v:dynText):
+We use <a href="https://hackage.haskell.org/package/reflex-dom-0.3/docs/Reflex-Dom-Widget-Basic.html#v:elClass">elClass</a> to
+produce the elements on the page. For example the text attribute showing if the image is visible or not can be rendered
+using <a href="https://hackage.haskell.org/package/reflex-dom-0.3/docs/Reflex-Dom-Widget-Basic.html#v:dynText">dynText</a>: 
 
-<pre>>     dynText $ fmap (T.pack . show . imageVisible) x
-</pre>
+{% highlight haskell %}
+    dynText $ fmap (T.pack . show . imageVisible) x
+{% endhighlight %}
 
-We have an fmap since x :: Dynamic t Image and [Dynamic](https://hackage.haskell.org/package/reflex-0.4.0/docs/Reflex-Dynamic.html#t:Dynamic) has a Functor instance.
+We have an ``fmap`` since ``x :: Dynamic t Image`` and <a href="https://hackage.haskell.org/package/reflex-0.4.0/docs/Reflex-Dynamic.html#t:Dynamic">Dynamic</a>
+has a ``Functor`` instance. 
 
-The image list and all the events are wrapped up in imageListW. Here’s the main part: 
+The image list and all the events are wrapped up in ``imageListW``. Here's the main part: 
 
-<pre>> imageListW
->     :: forall t m. MonadWidget t m
->     => Dynamic t T.Text
->     -> m ()
-> imageListW dynDrop = do
->     let eventDrop = fmap const $ updated $ fmap parseDrop dynDrop :: Event t (MM Image -> MM Image)
->
->     rec xs              [ eventDrop
->             , switch . current $ toggles
->             , switch . current $ ups
->             , switch . current $ downs
->             , switch . current $ keys
->             ]
->
->         bs 
->         let toggles :: Dynamic t (Event t (M.Map Int Image -> M.Map Int Image))
->             ups     :: Dynamic t (Event t (M.Map Int Image -> M.Map Int Image))
->             downs   :: Dynamic t (Event t (M.Map Int Image -> M.Map Int Image))
->             keys    :: Dynamic t (Event t (M.Map Int Image -> M.Map Int Image))
->
->             toggles = (mergeWith (.) . map (fmap $ toggleVisibility) . map evToggle . M.elems)  bs
->             ups     = (mergeWith (.) . map (fmap $ moveUp)           . map evUp     . M.elems)  bs
->             downs   = (mergeWith (.) . map (fmap $ moveDown)         . map evDown   . M.elems)  bs
->             keys    = (mergeWith (.) . map (fmap $ setDesc)          . map evKey    . M.elems)  bs
->
->     ta                          { _textAreaConfig_setValue   = (T.concat . map rawHTML . M.elems)  updated xs
->                         , _textAreaConfig_attributes = taAttrs
->                         }
->
->     return ()
-</pre>
+{% highlight haskell %}
+imageListW
+    :: forall t m. MonadWidget t m
+    => Dynamic t T.Text
+    -> m ()
+imageListW dynDrop = do
+    let eventDrop = fmap const $ updated $ fmap parseDrop dynDrop :: Event t (MM Image -> MM Image)
 
-Notice that toggles is used before it is defined! This is made possible by using the [recursive do](https://wiki.haskell.org/MonadFix) extension which provides the ability to do _value_ recursion.
+    rec xs <- foldDyn ($) emptyMap $ mergeWith (.)
+            [ eventDrop
+            , switch . current $ toggles
+            , switch . current $ ups
+            , switch . current $ downs
+            , switch . current $ keys
+            ]
 
-The key bit is the use of [mergeWith](https://hackage.haskell.org/package/reflex-0.4.0/docs/Reflex-Class.html#v:mergeWith) that combines all of the events. 
+        bs <- imageW xs
 
-<pre>> mergeWith :: Reflex t => (a -> a -> a) -> [Event t a] -> Event t a
-</pre>
+        let toggles :: Dynamic t (Event t (M.Map Int Image -> M.Map Int Image))
+            ups     :: Dynamic t (Event t (M.Map Int Image -> M.Map Int Image))
+            downs   :: Dynamic t (Event t (M.Map Int Image -> M.Map Int Image))
+            keys    :: Dynamic t (Event t (M.Map Int Image -> M.Map Int Image))
 
-Here, mergeWith (.) will left-fold simultaneous events.
+            toggles = (mergeWith (.) . map (fmap $ toggleVisibility) . map evToggle . M.elems) <$> bs
+            ups     = (mergeWith (.) . map (fmap $ moveUp)           . map evUp     . M.elems) <$> bs
+            downs   = (mergeWith (.) . map (fmap $ moveDown)         . map evDown   . M.elems) <$> bs
+            keys    = (mergeWith (.) . map (fmap $ setDesc)          . map evKey    . M.elems) <$> bs
 
-<pre>>     rec xs              [ eventDrop
->             , switch . current $ toggles
->             , switch . current $ ups
->             , switch . current $ downs
->             , switch . current $ keys
->             ]
-</pre>
+    ta <- textArea $ (def :: TextAreaConfig t)
+                        { _textAreaConfig_setValue   = (T.concat . map rawHTML . M.elems) <$> updated xs
+                        , _textAreaConfig_attributes = taAttrs
+                        }
 
-The toggles has type 
+    return ()
+{% endhighlight %}
 
-<pre>> Dynamic t (Event t (M.Map Int Image -> M.Map Int Image))
-</pre>
+Notice that ``toggles`` is used before it is defined! This is made possible by
+using the <a href="https://wiki.haskell.org/MonadFix">recursive do</a> extension which provides
+the ability to do _value_ recursion. 
 
-so we use [switch](https://hackage.haskell.org/package/reflex-0.4.0/docs/Reflex-Class.html#v:switch) and [current](https://hackage.haskell.org/package/reflex-0.4.0/docs/Reflex-Dynamic.html#v:current) to get to an Event type:
+The key bit is the use
+of <a href="https://hackage.haskell.org/package/reflex-0.4.0/docs/Reflex-Class.html#v:mergeWith">mergeWith</a>
+that combines all of the events. 
 
-<pre>ghci> :t switch
+{% highlight haskell %}
+mergeWith :: Reflex t => (a -> a -> a) -> [Event t a] -> Event t a
+{% endhighlight %}
+
+Here, ``mergeWidth (.)`` will left-fold simultaneous events. 
+
+{% highlight haskell %}
+    rec xs <- foldDyn ($) emptyMap $ mergeWith (.)
+            [ eventDrop
+            , switch . current $ toggles
+            , switch . current $ ups
+            , switch . current $ downs
+            , switch . current $ keys
+            ]
+{% endhighlight %}
+
+The ``toggles`` has type 
+
+{% highlight haskell %}
+Dynamic t (Event t (M.Map Int Image -> M.Map Int Image))
+{% endhighlight %}
+
+so we use <a href="https://hackage.haskell.org/package/reflex-0.4.0/docs/Reflex-Class.html#v:switch">switch</a>
+and <a href="https://hackage.haskell.org/package/reflex-0.4.0/docs/Reflex-Dynamic.html#v:current">current</a>
+to get to an ``Event`` type: 
+
+```
+ghci> :t switch
 switch :: Reflex t => Behavior t (Event t a) -> Event t a
 
 ghci> :t current
@@ -223,16 +267,20 @@ current :: Reflex t => Dynamic t a -> Behavior t a
 
 ghci> :t switch . current
 switch . current :: Reflex t => Dynamic t (Event t a) -> Event t a
-</pre>
+```
 
-This merge is also where we bring in the drag ‘n’ drop event via eventDrop which is how we get a list of images into the dynamic map.
+This merge is also where we bring in the drag 'n' drop event via ``eventDrop`` which is how we get
+a list of images into the dynamic map. 
 
-**Try it out** 
+### Try it out
 
-To try it out without setting up Reflex, grab [gallery_editor.zip](https://github.com/carlohamalainen/playground/raw/master/haskell/reflex/gallery_editor.zip), unzip it, and open gallery_editor/gallery.jsexe/index.html in your browser. Drag some images onto the top area of the page using your file manager. Tested on Ubuntu 16.
+To try it out without setting up Reflex, grab <a href="https://github.com/carlohamalainen/playground/raw/master/haskell/reflex/gallery_editor.zip">gallery_editor.zip</a>, unzip it, and open ``gallery_editor/gallery.jsexe/index.html`` in your browser. Drag some images onto the top area of the page using your file manager. Tested on Ubuntu 16. 
 
-Or, grab the source from [Github](https://github.com/carlohamalainen/playground/tree/master/haskell/reflex). 
+Or, grab the source from <a href="https://github.com/carlohamalainen/playground/tree/master/haskell/reflex">Github</a>. 
 
-<img src="https://i1.wp.com/raw.githubusercontent.com/carlohamalainen/playground/master/haskell/reflex/dropped01.png?w=600&#038;ssl=1"  data-recalc-dims="1" /> 
+<p><img src="https://raw.githubusercontent.com/carlohamalainen/playground/master/haskell/reflex/dropped01.png" width=600> 
+<p><img src="https://raw.githubusercontent.com/carlohamalainen/playground/master/haskell/reflex/dropped02.png" width=600> 
 
-<img src="https://i1.wp.com/raw.githubusercontent.com/carlohamalainen/playground/master/haskell/reflex/dropped02.png?w=600&#038;ssl=1"  data-recalc-dims="1" />
+
+
+

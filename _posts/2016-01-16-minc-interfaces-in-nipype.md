@@ -18,11 +18,12 @@ About two years ago I wrote [volgenmodel-nipype](https://github.com/carlohamalai
 
 Using a workflow that takes care of naming and tracking input/output files is very convenient. To blur an image (using mincblur) one can create a Node with the Blur interface, and then use .connect to send the output of some other node into this node: 
 
-<pre>blur = pe.Node(interface=Blur(fwhm=step_x*15),
+{% highlight python %}
+blur = pe.Node(interface=Blur(fwhm=step_x*15),
                               name='blur_' + snum_txt)
 
 workflow.connect(norm, 'output_threshold_mask', blur, 'input_file')
-</pre>
+{% endhighlight %}
 
 When I first developed volgenmodel-nipype I wrote my own Nipype interfaces for quite a few [MINC](https://github.com/BIC-MNI/minc-toolkit) tools. Over the 2015 Xmas holidays I got those interfaces [merged](https://github.com/nipy/nipype/pull/1304) into the master branch of Nipype. 
 
@@ -30,4 +31,4 @@ I took this opportunity to tidy up volgenmodel-nipype. There are no locally defi
 
 The mouse brain sample data produces a model that looks like this: 
 
-<img src="https://i0.wp.com/raw.githubusercontent.com/carlohamalainen/volgenmodel-fast-example/master/model-2016-01-09.png?w=1100&#038;ssl=1" data-recalc-dims="1" />
+<img src="https://raw.githubusercontent.com/carlohamalainen/volgenmodel-fast-example/master/model-2016-01-09.png?w=1100&ssl=1" data-recalc-dims="1" />

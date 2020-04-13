@@ -20,7 +20,7 @@ format: image
 
 My favourite package for drawing diagrams is [MetaPost](http://en.wikipedia.org/wiki/MetaPost). Here's an example, taken from my PhD thesis:
 
-<img class="displayed" src="https://i1.wp.com/s3.amazonaws.com/carlo-hamalainen.net/oldblog/stuff/myfiles/metapostrules.png?w=1100&#038;ssl=1" alt="Metapost diagram" data-recalc-dims="1" /> 
+<img class="displayed" src="https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/stuff/myfiles/metapostrules.png?w=1100&ssl=1" alt="Metapost diagram" data-recalc-dims="1" /> 
 
 The best page for examples is the one by [(La)TeX Navigator](http://tex.loria.fr/prod-graph/zoonekynd/metapost/metapost.html).
 
@@ -28,22 +28,20 @@ The best page for examples is the one by [(La)TeX Navigator](http://tex.loria.fr
 
 Normally MetaPost uses TeX to compile but it is nicer to have access to LaTeX fonts/symbols/etc. To do this put the following at the top of your MetaPost file: 
 
-<pre>verbatimtex
-documentclass[12pt]{article}
+    verbatimtex
+    documentclass[12pt]{article}
 
-usepackage{amsmath}
-usepackage{amssymb}
-usepackage{amsthm}
+    usepackage{amsmath}
+    usepackage{amssymb}
+    usepackage{amsthm}
 
-begin{document}
-etex
-</pre>
+    begin{document}
+    etex
 
 Then set the TEX environment variable and compile. For example, in  
 Bash, you could do:
 
-<pre>$ export TEX=latex && mpost case1.mp
-</pre>
+    $ export TEX=latex && mpost case1.mp
 
 ### My examples
 
@@ -53,75 +51,48 @@ Here are all the MetaPost diagrams from my PhD thesis. There are a few duplicate
 
 [Browse files](https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/stuff/myfiles/metapost/metapostexamples/) 
 
-[All files in a compressed  
-tar archive](https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/stuff/myfiles/metapost/metapostexamples.tgz) 
+[All files in a compressed tar archive](https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/stuff/myfiles/metapost/metapostexamples.tgz) 
 
 ### Metapost to PDF
 
 A few of my Metapost files use the following TEX function (copied from [here](http://tex.loria.fr/prod-graph/zoonekynd/metapost/macros.mp)):
 
-<small></p> 
+    vardef TEX primary s =
+       write "verbatimtex"                   to "mptextmp.mp";
+       write "documentclass[12pt]{article}"  to "mptextmp.mp";
+       write "usepackage[T1]{fontenc}"       to "mptextmp.mp";
+       write "usepackage{amsmath,amssymb}"   to "mptextmp.mp";
+       write "begin{document}"               to "mptextmp.mp";
+       write "etex"                          to "mptextmp.mp";
+       write "btex "&s&" etex"               to "mptextmp.mp";
+       write EOF                             to "mptextmp.mp";
+       scantokens "input mptextmp"
+    enddef;
 
-<pre>
-vardef TEX primary s =
-   write "verbatimtex"                    to "mptextmp.mp";
-   write "documentclass[12pt]{article}"  to "mptextmp.mp";
-   write "usepackage[T1]{fontenc}"       to "mptextmp.mp";
-   write "usepackage{amsmath,amssymb}"   to "mptextmp.mp";
-   write "begin{document}"               to "mptextmp.mp";
-   write "etex"                           to "mptextmp.mp";
-   write "btex "&s&" etex"                to "mptextmp.mp";
-   write EOF                              to "mptextmp.mp";
-   scantokens "input mptextmp"
-enddef;
-</pre>
+The command ``mptopdf`` seems to have trouble with the temporary file ``mptextmp.mp``. In particular I got this error when doing ``mptopdf bug.mp``:
 
-<p>
-  </small>
-</p>
+    This is MetaPost, Version 0.901 (Web2C 7.5.5)
+    (/usr/share/texmf-texlive/web2c/natural.tcx)
+    (bug.mp (mptextmp.mp
+    >> mptextmp.mp
+    >> mptextmp.mpx
+    ! Unable to make mpx file.
+    l.5 btex
+             1 etex
+    Transcript written on bug.log.
+     error in metapost run : bug.mp:5
 
-<p>
-  The command <tt>mptopdf</tt> seems to have trouble with the temporary file <tt>mptextmp.mp</tt>. In particular I got this error when doing <tt>mptopdf bug.mp</tt>:
-</p>
+            total run time : 0 seconds
 
-<p>
-  <pre>
-This is MetaPost, Version 0.901 (Web2C 7.5.5)
-(/usr/share/texmf-texlive/web2c/natural.tcx)
-(bug.mp (mptextmp.mp
->> mptextmp.mp
->> mptextmp.mpx
-! Unable to make mpx file.
-l.5 btex
-         1 etex
-Transcript written on bug.log.
- error in metapost run : bug.mp:5
+    MPtoPDF 1.3 : error while processing mp file
 
-        total run time : 0 seconds
+On the other hand, this seems to work:
 
-MPtoPDF 1.3 : error while processing mp file
-</pre>
-</p>
+    mpost bug.mp
+    mptopdf bug.1
 
-<p>
-  On the other hand, this seems to work:
-</p>
+I'm not sure why this is the case -- is this a bug or just undocumented behaviour?
 
-<p>
-  <pre>
-mpost bug.mp
-mptopdf bug.1
-</pre>
-</p>
+###  Other stuff
 
-<p>
-  I'm not sure why this is the case -- is this a bug or just undocumented behaviour?
-</p>
-
-<h3>
-  Other stuff
-</h3>
-
-<p>
-  <a href="http://wiki.contextgarden.net/MetaFun">MetaFun</a> looks good. It's also worth checking out what other peope have <a href="http://del.icio.us/search/?fr=del_icio_us&p=metapost&type=all">tagged as metapost</a> on <a href="http://del.icio.us">del.icio.us</a>.
-</p>
+<a href="http://wiki.contextgarden.net/MetaFun">MetaFun</a> looks good. It's also worth checking out what other peope have <a href="http://del.icio.us/search/?fr=del_icio_us&p=metapost&type=all">tagged as metapost</a> on <a href="http://del.icio.us">del.icio.us</a>.

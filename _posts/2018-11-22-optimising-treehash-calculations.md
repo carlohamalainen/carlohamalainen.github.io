@@ -35,7 +35,7 @@ The next thing is the [tree hash algorithm](https://docs.aws.amazon.com/amazongl
 
 In short, we divide the file into 1Mb blocks and hash each of them. Then we hash pairs, pairs of pairs, and so on, until we have one block left. For example a 4Mb file would take two steps of hashing:
 
-<img src="https://i0.wp.com/carlo-hamalainen.net/wp-content/uploads/2018/11/img_3012-1.jpg?resize=1100%2C628&#038;ssl=1" alt="img_3012-1" width="1100" height="628" class="alignnone size-full wp-image-1279" srcset="https://i0.wp.com/carlo-hamalainen.net/wp-content/uploads/2018/11/img_3012-1.jpg?w=3406&ssl=1 3406w, https://i0.wp.com/carlo-hamalainen.net/wp-content/uploads/2018/11/img_3012-1.jpg?resize=300%2C171&ssl=1 300w, https://i0.wp.com/carlo-hamalainen.net/wp-content/uploads/2018/11/img_3012-1.jpg?resize=1024%2C584&ssl=1 1024w, https://i0.wp.com/carlo-hamalainen.net/wp-content/uploads/2018/11/img_3012-1.jpg?resize=1100%2C628&ssl=1 1100w, https://i0.wp.com/carlo-hamalainen.net/wp-content/uploads/2018/11/img_3012-1.jpg?w=2200&ssl=1 2200w, https://i0.wp.com/carlo-hamalainen.net/wp-content/uploads/2018/11/img_3012-1.jpg?w=3300&ssl=1 3300w" sizes="(max-width: 1100px) 100vw, 1100px" data-recalc-dims="1" /> 
+<img src="/wp-old/uploads/2018/11/img_3012-1.jpg" width="1100" height="628" /> 
 
 We don't need a full tree ADT because we have an upper bound on the number of blocks (the file on disk is fixed) so we can make do with a buffer for the hashes and a temp buffer for writing intermediate results. The algorithm boils down to this loop (full source is [here](https://github.com/carlohamalainen/glacier-push/blob/master/c/treehash.c)):
 
@@ -113,6 +113,6 @@ To monitor the memory performance I logged the output of `ps` and plotted the re
 
 Memory usage (as percentage of 16Gb total memory) when pushing a 7.5Gb file to Glacier:
 
-<img class="alignnone size-full wp-image-1273" src="https://i0.wp.com/carlo-hamalainen.net/wp-content/uploads/2018/11/original_vs_C.png?resize=1024%2C768&#038;ssl=1" alt="original_vs_C" width="1024" height="768" srcset="https://i0.wp.com/carlo-hamalainen.net/wp-content/uploads/2018/11/original_vs_C.png?w=1024&ssl=1 1024w, https://i0.wp.com/carlo-hamalainen.net/wp-content/uploads/2018/11/original_vs_C.png?resize=300%2C225&ssl=1 300w" sizes="(max-width: 1024px) 100vw, 1024px" data-recalc-dims="1" /> 
+<img src="/wp-old/uploads/2018/11/original_vs_C.png" width="1024" height="768" /> 
 
 The C version uses so little memory that it barely shows up on the plot. Both implementations use about the same amount of memory after the treehash calculation.

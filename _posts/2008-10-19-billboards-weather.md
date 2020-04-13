@@ -16,10 +16,8 @@ format: image
 ---
 One of three billboards on our building:
 
-<img border="0" src="https://i2.wp.com/s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/medium/2008-10-04%2B%2B13-22-20.jpg?w=1100&#038;ssl=1" alt="[photo]" data-recalc-dims="1" /> 
-
-
+<img border="0" src="https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/medium/2008-10-04%2B%2B13-22-20.jpg?w=1100&ssl=1" alt="[photo]" data-recalc-dims="1" /> 
 
 The weather has gone a bit grim:
 
-<img border="0" src="https://i2.wp.com/s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/medium/2008-10-04%2B%2B13-24-45.jpg?w=1100&#038;ssl=1" alt="[photo]" data-recalc-dims="1" />
+<img border="0" src="https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/medium/2008-10-04%2B%2B13-24-45.jpg?w=1100&ssl=1" alt="[photo]" data-recalc-dims="1" />

@@ -28,70 +28,69 @@ Turn off the router. Hold down the "restore" button on the back, and turn on the
 
 The router is now in diag mode. Upload the image:
 
-$ tftp 192.168.1.1
+    $ tftp 192.168.1.1
 
-tftp> binary
+    tftp> binary
 
-tftp> trace
+    tftp> trace
 
-Packet tracing on.
+    Packet tracing on.
 
-tftp> put openwrt-brcm-2.6-jffs2-128k.trx
+    tftp> put openwrt-brcm-2.6-jffs2-128k.trx
 
 **Prepare your USB disk on your PC**
 
-I assume that your USB disk is /dev/sda but it's likely to be something else, so adjust accordingly. Partition your USB disk so that /dev/sda1 is ext3, /dev/sda2 is swap. It is **essential** to make sure that the USB drive is not checked by e2fsck:
+I assume that your USB disk is ``/dev/sda`` but it's likely to be something else, so adjust accordingly. Partition your USB disk so that ``/dev/sda1`` is ext3, ``/dev/sda2`` is swap. It is **essential** to make sure that the USB drive is not checked by e2fsck:
 
-$ tune2fs -c0 -i0 /dev/sda1
+    $ tune2fs -c0 -i0 /dev/sda1
 
-Uncompress debian-mipsel-2007-Apr-17.tar.bz2 in the /dev/sda1 partition so that /bin, /etc are at the top level.
+Uncompress ``debian-mipsel-2007-Apr-17.tar.bz2`` in the ``/dev/sda1`` partition so that ``/bin``, ``/etc`` are at the top level.
 
-Run mkswap on /dev/sda2
+Run ``mkswap`` on ``/dev/sda2``
 
 Configure the network.
 
-My home network (via ADSL modem) is 192.168.1.x so my /etc/network/interfaces is:
+My home network (via ADSL modem) is 192.168.1.x so my ``/etc/network/interfaces`` is:
 
-<pre>auto lo
-iface lo inet loopback
+    auto lo
+    iface lo inet loopback
 
-#auto eth0
-#iface eth0 inet dhcp
+    #auto eth0
+    #iface eth0 inet dhcp
 
-auto eth0.100
-iface eth0.100 inet dhcp
+    auto eth0.100
+    iface eth0.100 inet dhcp
 
-auto eth0
-iface eth0 inet static
-address 192.168.1.66
-netmask 255.255.255.0
-gateway 192.168.1.1
+    auto eth0
+    iface eth0 inet static
+    address 192.168.1.66
+    netmask 255.255.255.0
+    gateway 192.168.1.1
 
-#auto eth0.100
-#iface eth0.100 inet static
-#address 192.168.1.25
-#netmask 255.255.255.0
-#network 192.168.1.128
-#broadcast 192.168.1.191
-#gateway 192.168.1.1
+    #auto eth0.100
+    #iface eth0.100 inet static
+    #address 192.168.1.25
+    #netmask 255.255.255.0
+    #network 192.168.1.128
+    #broadcast 192.168.1.191
+    #gateway 192.168.1.1
 
-# wireless doesn't work yet
-#auto eth1
-#iface eth1 inet static
-#   address 192.168.5.1
-#   netmask 255.255.255.0
-#   gateway 192.168.x.x
-#   wireless-essid networkname
-#   wireless-key 00000000000000000
-</pre>
+    # wireless doesn't work yet
+    #auto eth1
+    #iface eth1 inet static
+    #   address 192.168.5.1
+    #   netmask 255.255.255.0
+    #   gateway 192.168.x.x
+    #   wireless-essid networkname
+    #   wireless-key 00000000000000000
 
-My home router provides DNS so my /etc/resolv.conf looks like:
+My home router provides DNS so my ``/etc/resolv.conf`` looks like:
 
-nameserver 192.168.1.1
+    nameserver 192.168.1.1
 
-/etc/hostname:
+``/etc/hostname``:
 
-asusbox
+    asusbox
 
 Unmount the USB drive, plug it into the Asus.
 
@@ -101,48 +100,47 @@ Power it up. It should respond to ping,and ssh. The default root password is too
 
 I have an old laptop hard drive attached to my WL-500gP using an IDE to USB cable:
 
-<img src="https://i1.wp.com/s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/medium/2009-02-21%2B%2B19-55-48.jpg?w=1100&#038;ssl=1" border="0" alt="[photo]" data-recalc-dims="1" /> </img>
+<img src="https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/medium/2009-02-21%2B%2B19-55-48.jpg?w=1100&ssl=1" border="0" alt="[photo]" data-recalc-dims="1" /> </img>
 
 Nice little silent PC:
 
-<img src="https://i2.wp.com/s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/medium/2009-02-21%2B%2B19-56-26.jpg?w=1100&#038;ssl=1" border="0" alt="[photo]" data-recalc-dims="1" /> </img>
+<img src="https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/medium/2009-02-21%2B%2B19-56-26.jpg?w=1100&ssl=1" border="0" alt="[photo]" data-recalc-dims="1" /> </img>
 
 Some system info:
 
-<pre>carlo@lothlorien:~$ cat /proc/cpuinfo
-system type             : Broadcom BCM47xx
-processor               : 0
-cpu model               : Broadcom BCM3302 V0.6
-BogoMIPS                : 263.16
-wait instruction        : no
-microsecond timers      : yes
-tlb_entries             : 32
-extra interrupt vector  : no
-hardware watchpoint     : no
-ASEs implemented        :
-VCED exceptions         : not available
-VCEI exceptions         : not available
+    carlo@lothlorien:~$ cat /proc/cpuinfo
+    system type             : Broadcom BCM47xx
+    processor               : 0
+    cpu model               : Broadcom BCM3302 V0.6
+    BogoMIPS                : 263.16
+    wait instruction        : no
+    microsecond timers      : yes
+    tlb_entries             : 32
+    extra interrupt vector  : no
+    hardware watchpoint     : no
+    ASEs implemented        :
+    VCED exceptions         : not available
+    VCEI exceptions         : not available
 
-carlo@lothlorien:~$ free -m
-total       used       free     shared    buffers     cached
-Mem:            29         28          1          0          0         16
--/+ buffers/cache:         11         18
-Swap:          729          5        724
-carlo@lothlorien:~$ df -h
-Filesystem            Size  Used Avail Use% Mounted on
-/dev/sda1             147G  103G   37G  74% /
-tmpfs                  15M     0   15M   0% /lib/init/rw
-udev                   10M   20K   10M   1% /dev
-tmpfs                  15M  4.0K   15M   1% /dev/shm
-none                   15M     0   15M   0% /tmp
+    carlo@lothlorien:~$ free -m
+    total       used       free     shared    buffers     cached
+    Mem:            29         28          1          0          0         16
+    -/+ buffers/cache:         11         18
+    Swap:          729          5        724
+    carlo@lothlorien:~$ df -h
+    Filesystem            Size  Used Avail Use% Mounted on
+    /dev/sda1             147G  103G   37G  74% /
+    tmpfs                  15M     0   15M   0% /lib/init/rw
+    udev                   10M   20K   10M   1% /dev
+    tmpfs                  15M  4.0K   15M   1% /dev/shm
+    none                   15M     0   15M   0% /tmp
 
-lothlorien:~# lspci
-00:00.0 Host bridge: Broadcom Corporation BCM4704 PCI to SB Bridge (rev 09)
-00:02.0 Network controller: Broadcom Corporation BCM4318 [AirForce One 54g] 802.11g Wireless LAN Controller (rev 02)
-00:03.0 USB Controller: VIA Technologies, Inc. VT82xxxxx UHCI USB 1.1 Controller (rev 62)
-00:03.1 USB Controller: VIA Technologies, Inc. VT82xxxxx UHCI USB 1.1 Controller (rev 62)
-00:03.2 USB Controller: VIA Technologies, Inc. USB 2.0 (rev 65)
-</pre>
+    lothlorien:~# lspci
+    00:00.0 Host bridge: Broadcom Corporation BCM4704 PCI to SB Bridge (rev 09)
+    00:02.0 Network controller: Broadcom Corporation BCM4318 [AirForce One 54g] 802.11g Wireless LAN Controller (rev 02)
+    00:03.0 USB Controller: VIA Technologies, Inc. VT82xxxxx UHCI USB 1.1 Controller (rev 62)
+    00:03.1 USB Controller: VIA Technologies, Inc. VT82xxxxx UHCI USB 1.1 Controller (rev 62)
+    00:03.2 USB Controller: VIA Technologies, Inc. USB 2.0 (rev 65)
 
 It can handle rtorrent but uses a few Mb of swap and so it's not too quick to respond sometimes in an ssh terminal.
 

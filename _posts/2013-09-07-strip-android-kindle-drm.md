@@ -25,8 +25,8 @@ The work-around is to run Calibre and Apprentice Alf's tools on Windows. Here ar
 2. Install the [Kindle PC application](http://www.amazon.com/gp/kindle/pc/download) from Amazon. 
 
 3. Install [Apprentice Alf's tools](http://apprenticealf.wordpress.com/) in Calibre. You want to point Calibre at the  
-file DeDRM\_calibre\_plugin/DeDRM\_plugin.zip which is inside tools\_v6.0.8.zip (don't unzip DeDRM_plugin.zip!).  
-Local mirror: <https://s3.amazonaws.com/carlo-hamalainen.net/stuff/alfs_tools/>. 
+file ``DeDRM_calibre_plugin/DeDRM_plugin.zip`` which is inside ``tools_v6.0.8.zip`` (don't unzip ``DeDRM_plugin.zip``!).  
+Local mirror: [alfs_tools](/stuff/alfs_tools).
 
 4. Buy an ebook using the Android app (or any linked device). 
 

@@ -16,15 +16,17 @@ format: image
 ---
 For testing purposes it is convenient to use a self-signed certificate. Follow [these instructions](https://devcenter.heroku.com/articles/ssl-certificate-self). You will be prompted for a password a few times: 
 
-<pre>openssl genrsa -des3 -out server.orig.key 2048
+```
+openssl genrsa -des3 -out server.orig.key 2048
 openssl rsa -in server.orig.key -out server.key
 openssl req -new -key server.key -out server.csr
 openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
-</pre>
+```
 
 Here is  **client.py**, slightly modified from the [Python 2.7.3 docs](http://docs.python.org/2/library/ssl.html): 
 
-<pre>import socket, ssl, pprint
+{% highlight python %}
+import socket, ssl, pprint
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
@@ -53,11 +55,12 @@ if False: # from the Python 2.7.3 docs
 
     # note that closing the SSLSocket will also close the underlying socket
     ssl_sock.close()
-</pre>
+{% endhighlight %}
 
 And here is  **server.py**: 
 
-<pre>import socket, ssl
+{% highlight python %}
+import socket, ssl
 
 bindsocket = socket.socket()
 bindsocket.bind(('', 10023))
@@ -85,18 +88,20 @@ while True:
     finally:
         connstream.shutdown(socket.SHUT_RDWR)
         connstream.close()
-</pre>
+{% endhighlight %}
 
 Note: if you try to use the standard system ca certificates, e.g. on Debian: 
 
-<pre>ssl_sock = ssl.wrap_socket(s,
+{% highlight python %}
+ssl_sock = ssl.wrap_socket(s,
                            ca_certs="/etc/ssl/certs/ca-certificates.crt",
                            cert_reqs=ssl.CERT_REQUIRED)
-</pre>
+{% endhighlight %}
 
 then server.py explodes with: 
 
-<pre>Traceback (most recent call last):
+```
+Traceback (most recent call last):
   File "server.py", line 24, in 
     ssl_version=ssl.PROTOCOL_TLSv1)
   File "/usr/lib/python2.6/ssl.py", line 338, in wrap_socket
@@ -106,20 +111,22 @@ then server.py explodes with:
   File "/usr/lib/python2.6/ssl.py", line 279, in do_handshake
     self._sslobj.do_handshake()
 ssl.SSLError: [Errno 1] _ssl.c:490: error:1408F10B:SSL routines:SSL3_GET_RECORD:wrong version number
-</pre>
+```
 
 If you specify the SSL version, e.g. 
 
-<pre>connstream = ssl.wrap_socket(newsocket,
+{% highlight python %}
+connstream = ssl.wrap_socket(newsocket,
                                  server_side=True,
                                  certfile="server.crt",
                                  keyfile="server.key",
                                  ssl_version=ssl.PROTOCOL_TLSv1)
-</pre>
+{% endhighlight %}
 
 then you can run into other problems, e.g.
 
-<pre>Traceback (most recent call last):
+```
+Traceback (most recent call last):
   File "server.py", line 27, in 
     ssl_version=ssl.PROTOCOL_TLSv1)
   File "/usr/lib64/python2.6/ssl.py", line 338, in wrap_socket
@@ -129,7 +136,7 @@ then you can run into other problems, e.g.
   File "/usr/lib64/python2.6/ssl.py", line 279, in do_handshake
     self._sslobj.do_handshake()
 ssl.SSLError: [Errno 1] _ssl.c:490: error:1408F10B:SSL routines:SSL3_GET_RECORD:wrong version number
-</pre>
+```
 
 **Archived Comments**
 
@@ -145,9 +152,9 @@ Details:
 
 I tested on 3 computers in July and August, 2014:
 
-Windows 7, Python 2.7.6. OpenSSL 1.0.1i  
-OS X 10.7.5, Python 2.7.8, OpenSSL 0.9.8y  
-Ubuntu 14.04, Python 2.7.6, OpenSSL 1.0.1f
+    Windows 7, Python 2.7.6. OpenSSL 1.0.1i  
+    OS X 10.7.5, Python 2.7.8, OpenSSL 0.9.8y  
+    Ubuntu 14.04, Python 2.7.6, OpenSSL 1.0.1f
 
 I created a set of certificate and key files on each of the computers. I then ran the client on Windows and OS X and server on all three of the computers using each of the 3 sets of certificate files.
 
@@ -161,11 +168,11 @@ Author: Limey
 
 In order to get this to work with python V3 I had to change:
 
-ssl_sock.write("boo!")
+    ssl_sock.write("boo!")
 
 to:
 
-ssl_sock.write("boo!".encode())
+    ssl_sock.write("boo!".encode())
 
 No idea if this is the best solution, but it made it work. =)
 

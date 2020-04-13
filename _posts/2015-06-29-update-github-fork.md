@@ -24,25 +24,29 @@ Over time the upstream repo is updated but my fork on github does not automatica
 
 Clone our repository: 
 
-<pre>git clone git@github.com:myself/whatever.git
+```
+git clone git@github.com:myself/whatever.git
 cd whatever
-</pre>
+```
 
 Add the upstream repo as a remote, and call it upstream: 
 
-<pre>git remote add upstream https://github.com/whoever/whatever.git
-</pre>
+```
+git remote add upstream https://github.com/whoever/whatever.git
+```
 
 Get all the branches of the upstream repo into remote-tracking branches. These branches will be named upstream/master, upstream/some-feature, etc. 
 
-<pre>git fetch upstream
-</pre>
+```
+git fetch upstream
+```
 
 Now replay all of the upstream's commits from the master branch against ours: 
 
-<pre>git checkout master
+```
+git checkout master
 git rebase upstream/master
 git push
-</pre>
+```
 
 Credit: <http://stackoverflow.com/a/7244456>

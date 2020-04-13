@@ -8,10 +8,7 @@ permalink: /2011/10/07/crabgrass-frontier-vs-regurgitators-superstraight/
 ---
 If you could put a video clip to the book [Crabgrass frontier: the suburbanization of the United States](http://books.google.com/books/about/Crabgrass_frontier.html?id=lwave_qPlYUC), it would have to be Regurgitator's Superstraight:
 
-<div class="jetpack-video-wrapper">
-  <span class="embed-youtube" style="text-align:center; display: block;"></span>
-</div>
-
+<iframe width="560" height="315" src="https://www.youtube.com/embed/I2t4tEOqido" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
 Lyrics:

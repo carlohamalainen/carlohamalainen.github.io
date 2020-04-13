@@ -7,7 +7,7 @@ permalink: /2017/07/29/stripping-html-tags-using-tagsoup/
 ---
 I had a situation, when converting old blog posts to WordPress, where I wanted to strip all the extra info on the `pre` tags. For example this:
 
-    <pre class="brush: plain; title: ; notranslate" title=""><pre><code><span style="">></span> <span style="color: blue; font-weight: bold;">import</span> <span style="">Data</span><span style="">.</span><span style="">Char</span>
+    <pre class="brush: plain; title: ; notranslate" title=""><pre><code><span style="">></span> <span style="color: blue; font-weight: bold;">import</span><span style="">Data</span><span style="">.</span><span style="">Char</span>
 
 would turn into: 
 

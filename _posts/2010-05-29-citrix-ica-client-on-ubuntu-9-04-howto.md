@@ -20,24 +20,20 @@ Download the 32bit deb file from [here](http://www.citrix.com/English/ss/downloa
 
 For some reason I ended up with a non .deb file:
 
-<pre>$ mv unconfirmed 17720.download citrix.deb
-</pre>
+    $ mv unconfirmed 17720.download citrix.deb
 
 Install the deb:
 
-<pre>$ sudo dpkg -i citrix.deb
-</pre>
+    $ sudo dpkg -i citrix.deb
 
 Now install libXm and cheat with the version number:
 
-<pre>$ sudo aptitude install libmotif3
-$ sudo ln -s `ls /usr/lib/libXm.so*|sort|tail -1` /usr/lib/libXm.so.4
-</pre>
+    $ sudo aptitude install libmotif3
+    $ sudo ln -s `ls /usr/lib/libXm.so*|sort|tail -1` /usr/lib/libXm.so.4
 
 Now try the Citrix receiver. There should be no error message.
 
-<pre>/usr/lib/ICAClient/wfcmgr
-</pre>
+    /usr/lib/ICAClient/wfcmgr
 
 I had no luck with Chrome but Firefox happily launched the Citrix client when I logged into my Active Directory desktop at work.
 

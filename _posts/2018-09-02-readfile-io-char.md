@@ -14,19 +14,21 @@ x `deepseq` print ()
 
 Linear in the size of foo? Or something else?
 
-Turns out, for the default `readFile` from the Prelude, the answer is about 40 times the size of the input file.
+Turns out, for the default ``readFile`` from the Prelude, the answer is about 40 times the size of the input file.
 
 The default Haskell strings take 5 words per character, so on a 64bit machine this is 40 5*8 = 40 bytes per character. The list of characters is stored as a linked list, roughly like this diagram (taken from [Johan Tibbel's ZuriHac 2015 talk](https://www.youtube.com/watch?reload=9&v=_pDUq0nNjhI), slides are [here](https://github.com/tibbe/talks/blob/master/zurihac-2015/slides.md)):
 
-<img src="https://i1.wp.com/raw.githubusercontent.com/carlohamalainen/playground/master/ghc-memory-usage/zurihac2015-johan-tibbel/intpair.png?w=1100&#038;ssl=1" data-recalc-dims="1" /> 
+<img src="https://raw.githubusercontent.com/carlohamalainen/playground/master/ghc-memory-usage/zurihac2015-johan-tibbel/intpair.png?w=1100&ssl=1" data-recalc-dims="1" /> 
 
 We can check the actual memory usage of a Haskell program (compiled with GHC) by using the RTS options:
 
-    ghc readfile.hs -Wall -O2 -rtsopts
+```
+ghc readfile.hs -Wall -O2 -rtsopts
 
-    ./readfile +RTS -toutput <other options>
+./readfile +RTS -toutput <other options>
+```
 
-See [this repository](https://github.com/carlohamalainen/playground/tree/master/ghc-memory-usage) for some scripts to benchmark a few variants of `readFile`:
+See [this repository](https://github.com/carlohamalainen/playground/tree/master/ghc-memory-usage) for some scripts to benchmark a few variants of ``readFile``:
 
   * Prelude
   * Data.ByteString
@@ -34,6 +36,6 @@ See [this repository](https://github.com/carlohamalainen/playground/tree/master/
   * Data.ByteString.Lazy
   * Data.ByteString.Lazy.Char8
 
-Basically, anything's better than the default `readFile`:
+Basically, anything's better than the default ``readFile``:
 
-<img src="https://i1.wp.com/carlo-hamalainen.net/wp-content/uploads/2018/08/readfile_memory_usage.png?resize=640%2C480&#038;ssl=1" class="alignnone size-full wp-image-1246" alt="readfile_memory_usage" width="640" height="480" srcset="https://i1.wp.com/carlo-hamalainen.net/wp-content/uploads/2018/08/readfile_memory_usage.png?w=640&ssl=1 640w, https://i1.wp.com/carlo-hamalainen.net/wp-content/uploads/2018/08/readfile_memory_usage.png?resize=300%2C225&ssl=1 300w" sizes="(max-width: 640px) 100vw, 640px" data-recalc-dims="1" />
+<img src="https://carlo-hamalainen.net/wp-content/uploads/2018/08/readfile_memory_usage.png?resize=640%2C480&ssl=1" class="alignnone size-full wp-image-1246" alt="readfile_memory_usage" width="640" height="480" srcset="https://carlo-hamalainen.net/wp-content/uploads/2018/08/readfile_memory_usage.png?w=640&ssl=1 640w, https://carlo-hamalainen.net/wp-content/uploads/2018/08/readfile_memory_usage.png?resize=300%2C225&ssl=1 300w" sizes="(max-width: 640px) 100vw, 640px" data-recalc-dims="1" />

@@ -14,6 +14,7 @@ categories:
   - Uncategorized
 format: image
 ---
+
 So Wolfram want people to produce free content for their demonstrations project. Fine. But sending spam where they misquote the title of [my paper](http://arxiv.org/abs/0910.5199) isn't the best way to get things done. And if anyone is interested, the full Python source code is already available [here](http://bitbucket.org/carlohamalainen/dissections/). I used [SymPy](http://code.google.com/p/sympy/) for some symbolic manipulations. It's all free and open source.
 
 > from: Wolfram Research  
@@ -59,11 +60,11 @@ Conclusion: There is one equilateral triangle.
 
 Dr Carlo, will your group be applying your novel technique to other related open problems, like enumerating equilateral rectangles or maybe even pentagons? Perhaps you should submit the algorithm to the Wolfram Demonstrations Project:-
 
--  
+{% highlight python %}
 def main():  
-print '1'  
-if \_\_name\_\_ == "\_\_main\_\_":  
-main()  
--
+    print '1'
+if __name__ == "__main__":  
+    main()  
+{% endhighlight %}
 
 Spamin' Wolfram: A New Kind of Incompetence

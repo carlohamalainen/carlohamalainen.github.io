@@ -18,7 +18,8 @@ Here is my latest project: <https://github.com/carlohamalainen/volgenmodel-nipyp
 
 A lot of scientific workflow code has a common pattern, something like this: collect some input files, run something to produce intermediate results, and then combine the results into a final result. One way to implement the workflow is to glob the files and set up arrays or dictionaries to keep track of the outputs. 
 
-<pre>files = glob.glob('/tmp/blah*.dat')
+{% highlight python %}
+files = glob.glob('/tmp/blah*.dat')
 
 intermediate_result = [None] * len(files)
 
@@ -26,11 +27,12 @@ for (i, f) in enumerate(files):
     intermediate_result[i] = fn1(f, param=0.3)
 
 final_result = fn2(intermediate_result)
-</pre>
+{% endhighlight %}
 
 The problem with this approach is that it doesn't scale well nor is it easy to reason about. The equivalent in Nipype is: 
 
-<pre>import nipype.pipeline.engine as pe
+{% highlight python %}
+import nipype.pipeline.engine as pe
 import nipype.interfaces.io as nio
 
 datasource = pe.Node(interface=nio.DataGrabber(sort_filelist=True), name='datasource_dat')
@@ -59,22 +61,24 @@ workflow.connect(intermediate, 'output_file', final, 'input_file')
 
 # Save the final output:
 workflow.connect(final, 'output_file', datasink, 'final')
-</pre>
+{% endhighlight %}
 
 This code is much closer to the actual problem that we are trying to solve, and as a bonus we don't have to take care of arrays of input and output files, which is pure agony and prone to errors. 
 
 Nipype lets us run the workflow using a single core like this: 
 
-<pre>workflow.run()
-</pre>
+{% highlight python %}
+workflow.run()
+{% endhighlight %}
 
 or we can fire it up using 4 cores using: 
 
-<pre>workflow.run(plugin='MultiProc', plugin_args={'n_procs' : 4})
-</pre>
+{% highlight python %}
+workflow.run(plugin='MultiProc', plugin_args={'n_procs' : 4})
+{% endhighlight %}
 
 Nipype also has [plugins](http://nipy.org/nipype/users/plugins.html) for SGE, PBS, HTCondor, LSF, SLURM, and others. 
 
 Here is volgenmodel-nipype's workflow graph (generating this graph is a one-liner with the workflow object). Click the image for the full size version. 
 
-[<img src="https://i0.wp.com/github.com/carlohamalainen/volgenmodel-nipype/raw/master/volgenmodel_graph.png?w=480&#038;ssl=1"  data-recalc-dims="1" />](https://i0.wp.com/github.com/carlohamalainen/volgenmodel-nipype/raw/master/volgenmodel_graph.png?ssl=1)
+[<img src="https://github.com/carlohamalainen/volgenmodel-nipype/raw/master/volgenmodel_graph.png?w=480&ssl=1"  data-recalc-dims="1" />](https://github.com/carlohamalainen/volgenmodel-nipype/raw/master/volgenmodel_graph.png?ssl=1)

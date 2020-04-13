@@ -38,7 +38,8 @@ Answering these questions is possible with logs containing plain strings, but it
 
 The idea with structured logging is to log JSON blobs or key/value pairs instead of plain strings, so a structured log might look like this: 
 
-<pre>2016-04-24-1722 [patient_id=12345] [action=started_processing]
+```
+2016-04-24-1722 [patient_id=12345] [action=started_processing]
 
 2016-04-24-1723 [patient_id=12345] [action=identified] [user=uqbobsmith] [dataset_id=10000]
                                    [project_id=999] [nr_files=20000] [patient_name="john something doe"]
@@ -55,21 +56,22 @@ The idea with structured logging is to log JSON blobs or key/value pairs instead
 2016-04-24-1742 [patient_id=12345] [action=finished] [user=uqbobsmith] [dataset_id=10000] [project_id=999] [time=1200]
 
 2016-04-24-1750 [patient_id=12345] [action=acl] [acl_action=add] [user=uqbobsmith] [dataset_id=10000] [project_id=999]
-</pre>
+```
 
 Now the five questions can be framed in terms of queries over the structured data: 
 
-  1. Find all entries with "action=error" and report on the field "user=...". 
-  2. Find the most recent log entries with user=uqbobsmith; filter by patient_name field; filter errors; or view "time" field to see how long each subset is taking to process. 
-  3. Plot the time-series of "time=..." values. 
-  4. Filter on "user=..." and "action=finished"; join with a table linking user IDs to departments; group by department names. 
-  5. Filter on "acl_action=add" and "user=uqbobsmith"; sort by timestamp. 
+  1. Find all entries with ``action=error`` and report on the field ``user=...``. 
+  2. Find the most recent log entries with ``user=uqbobsmith``; filter by ``patient_name`` field; filter errors; or view ``time`` field to see how long each subset is taking to process. 
+  3. Plot the time-series of ``time=...`` values. 
+  4. Filter on ``user=...`` and ``action=finished``; join with a table linking user IDs to departments; group by department names. 
+  5. Filter on ``acl_action=add`` and ``user=uqbobsmith``; sort by timestamp. 
 
 As a proof of concept I knocked up [django-struct-log](https://github.com/carlohamalainen/django-struct-log). Since [Postgresql has support for key-value pairs](http://www.postgresql.org/docs/current/static/hstore.html) (including queries and indexes!) it is the logical choice for the storage of log items. The [django-hstore](http://djangonauts.github.io/django-hstore/) package extends Django's ORM model to handle Postgresql key/value pairs. And [django-rest-framework](http://www.django-rest-framework.org) provides a REST API for programs to post log entries. 
 
 The Django model for log items is in [models.py](https://github.com/carlohamalainen/django-struct-log/blob/master/structlog/models.py): 
 
-<pre>class LogItem(models.Model):
+{% highlight python %}
+class LogItem(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -88,11 +90,12 @@ The Django model for log items is in [models.py](https://github.com/carlohamalai
 
     # key/value blob
     attributes = HStoreField()
-</pre>
+{% endhighlight %}
 
 We don't have to define any views, just a serializer and view-set for the model. This is in [urls.py](https://github.com/carlohamalainen/django-struct-log/blob/master/djangostructlog/urls.py): 
 
-<pre>class LogItemSerializer(serializers.HyperlinkedModelSerializer):
+{% highlight python %}
+class LogItemSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = LogItem
         fields = ('name', 'host', 'user', 'description', 'attributes', 'created_at', 'updated_at',)
@@ -106,43 +109,47 @@ class LogItemViewSet(viewsets.ModelViewSet):
 
 router = routers.DefaultRouter()
 router.register(r'logitems', LogItemViewSet)
-</pre>
+{% endhighlight %}
 
 Surprisingly, that's pretty much it. 
 
 Using [TokenAuthentication](http://www.django-rest-framework.org/api-guide/authentication) makes authorization easy (no username/passwords stored in plain text) and with the REST API we can post a log item using curl: 
 
-<pre>curl                                                                    
+```
+curl
     -H "Content-Type: application/json"                                 
     -H "Authorization: Token 5a610d074e24692c9084e6c845da39acc0ee0002"  
     -X POST                                                             
     -d '{"name": "rdiff-backup", "host": "my-server-1", "description": "blah", "user": "carlo", "description": "daily rdiff-backup", "attributes": {"time_s": "1230"} }' 
     http://localhost:8000/logitems/
-</pre>
+```
 
 The response should be something like: 
 
-<pre>{"name":"rdiff-backup",
+```
+{"name":"rdiff-backup",
  "host":"my-server-1",
  "user":"carlo",
  "description":"daily rdiff-backup",
  "attributes":{"time_s":"1230"},
  "created_at":"2016-04-10T14:47:31.393234Z",
  "updated_at":"2016-04-10T14:47:31.393259Z"}
-</pre>
+```
 
 This means that almost anything can send data to the log server -- shell scripts, Python scripts, Haskell programs, anything. 
 
-Pulling out data for plotting is easy using Django's ORM model. For example to get all the log items for "server1" with a "time_s" attribute: 
+Pulling out data for plotting is easy using Django's ORM model. For example to get all the log items for ``server1`` with a ``time_s`` attribute: 
 
-<pre>data = LogItem.objects.filter(name='server1', attributes__has_key='time_s').all()
+```
+data = LogItem.objects.filter(name='server1', attributes__has_key='time_s').all()
 x = [z.created_at for z in data]
 y = [float(z.attributes['time_s'])/60.0 for z in data] # minutes
-</pre>
+```
 
 Here is a sample script for a nightly report. It uses Matplotlib to draw a graph and the email library to format a HTML email. 
 
-<pre>import django
+{% highlight python %}
+import django
 import os
 import sys
 
@@ -243,34 +250,26 @@ def make_plot(n):
 #########################################################################
 
 rdiff_server1_png = make_plot('rdiffbackup-server1')
-send_email('rdiff-backup report - server1', '
-
-<p>
-  Time to run rdiff-backup for server1
-</p>', rdiff_server1_png)
+send_email('rdiff-backup report - server1', '<p> Time to run rdiff-backup for server1 </p>', rdiff_server1_png)
 
 rdiff_server2_png = make_plot('rdiffbackup-server2')
-send_email('rdiff-backup report - server2', '
-
-<p>
-  Time to run rdiff-backup for server2
-</p>', rdiff_server2_png)
+send_email('rdiff-backup report - server2', '<p> Time to run rdiff-backup for server2 </p>', rdiff_server2_png)
 
 print 'done'
-</pre>
+{% endhighlight %}
 
 Sample plot: 
 
-<img src="https://i2.wp.com/s3.amazonaws.com/carlo-hamalainen.net/oldblog/stuff/server1.png?w=1100&#038;ssl=1" data-recalc-dims="1" /> 
+<img src="/stuff/server1.png?w=1100&ssl=1" data-recalc-dims="1" /> 
 
 For exploring the log items you can poke around in the Django admin interface, or use the django-rest-framework's endpoint: 
 
-<img src="https://i1.wp.com/s3.amazonaws.com/carlo-hamalainen.net/oldblog/stuff/log_item_rest_view.png?w=1100&#038;ssl=1" data-recalc-dims="1" /> 
+<img src="/stuff/log_item_rest_view.png?w=1100&ssl=1" data-recalc-dims="1" /> 
 
 ## Pointy edges
 
   * Can you write queries on numeric fields that are stored as strings? <http://stackoverflow.com/questions/36782029/django-numeric-comparison-of-hstore-or-json-data>
-  * If the server is down, the http post will fail or timeout, and the log item will be lost forever. A smarter client could keep log items in a local queue and try to post them later.
+  * If the server is down, the http post will fail or timeout, and the log item will be lost forever. A smarter client could keep log items in a local persistent queue and try to send them later.
 
 ## Links
 

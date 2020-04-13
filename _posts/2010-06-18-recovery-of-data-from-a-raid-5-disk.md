@@ -1,18 +1,10 @@
 ---
-id: 802
 title: Recovery of data from a RAID 5 disk
 date: 2010-06-18T00:00:00+00:00
 author: Carlo Hamalainen
 layout: post
 guid: http://carlo-hamalainen.net/2010/06/18/recovery-of-data-from-a-raid-5-disk/
 permalink: /2010/06/18/recovery-of-data-from-a-raid-5-disk/
-restapi_import_id:
-  - 596a05ef0330b
-original_post_id:
-  - "16"
-categories:
-  - Uncategorized
-format: image
 ---
 At work I replaced a single drive in a HP DL380 RAID 5 array. The drive was only giving SMART 1720 errors (imminent failure) and HP wanted the drive back due to warranty conditions, so the question came up of erasing any data on the drive.
 
@@ -22,29 +14,28 @@ Details of the server: HP DL380, Smart Array P400 controller. The RAID 5 array w
 
 Details of the drive:
 
-<pre>72GB 2.5" Serial Attached SCSI (SAS) SFF
-Single Port Hot-Plug 15K HDD
-Option Part# 431935-B21
-Spare Part# 432321-001
-Assembly Part# 431930-002
-Model# DH072ABAA6
-</pre>
+    72GB 2.5" Serial Attached SCSI (SAS) SFF
+    Single Port Hot-Plug 15K HDD
+    Option Part# 431935-B21
+    Spare Part# 432321-001
+    Assembly Part# 431930-002
+    Model# DH072ABAA6
 
 Due to physical access issues the drive was taken out of the server and installed in a standard desktop PC running Windows XP with a Promise FastTrak TX2650 SAS controller card. After installing the TX2650 drivers the SAS drive was recognised as a standard hard drive using JBOD, so it immediately appeared as a logical drive in Windows XP. Here's the card and drive (fortunately the TX2650 comes with all the cables that you need):
 
-<img src="https://i1.wp.com/s3.amazonaws.com/carlo-hamalainen.net/oldblog/stuff/wp-content/uploads/2010/06/card_and_drive.png?w=1100&#038;ssl=1" data-recalc-dims="1" /> 
+<img src="/stuff/wp-content/uploads/2010/06/card_and_drive.png?w=1100&ssl=1" data-recalc-dims="1" /> 
 
 I ran [PhotoRec](http://www.cgsecurity.org/wiki/PhotoRec) directly on the SAS drive:
 
-<img src="https://i2.wp.com/s3.amazonaws.com/carlo-hamalainen.net/oldblog/stuff/wp-content/uploads/2010/06/photorec1.png?w=1100&#038;ssl=1" data-recalc-dims="1" /> 
+<img src="/stuff/wp-content/uploads/2010/06/photorec1.png?w=1100&ssl=1" data-recalc-dims="1" /> 
 
 After about two hours PhotoRec finished:
 
-<img src="https://i1.wp.com/s3.amazonaws.com/carlo-hamalainen.net/oldblog/stuff/wp-content/uploads/2010/06/photorec2.png?w=1100&#038;ssl=1" data-recalc-dims="1" /> 
+<img src="/stuff/wp-content/uploads/2010/06/photorec2.png?w=1100&ssl=1" data-recalc-dims="1" /> 
 
 Those recovered files total about 8Gb (the original RAID 5 array contained about 50Gb of data). From our perspective, the best hit is searching for a certain prefix "PATNOK" that we use in files for daily demographics imports:
 
-<img src="https://i0.wp.com/s3.amazonaws.com/carlo-hamalainen.net/oldblog/stuff/wp-content/uploads/2010/06/photorec-patnok.png?w=1100&#038;ssl=1" data-recalc-dims="1" /> 
+<img src="/stuff/wp-content/uploads/2010/06/photorec-patnok.png?w=1100&ssl=1" data-recalc-dims="1" /> 
 
 Each of those 1443 files contains _at least_ one set of patient details (name, address, Medicare number, date of birth, phone number, next of kin, next of kin contact details).
 

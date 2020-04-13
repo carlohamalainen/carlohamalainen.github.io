@@ -16,25 +16,27 @@ format: image
 ---
 Recently on [haskell-cafe](http://www.haskell.org/pipermail/haskell-cafe/2013-December/111778.html) I asked if there is an easy way to get the Haddock documentation url for a given identifier in Haskell. I discovered that it's not completely straightforward, for example if we look up String using ghc-pkg we are told that it's defined in GHC.Base: 
 
-<pre>$ ghc-mod info foo.hs Foo String
+```
+$ ghc-mod info foo.hs Foo String
 type String = [Char]     -- Defined in `GHC.Base'
-</pre>
+```
 
 Then we can find the Haddock url for the base package: 
 
-<pre>$ ghc-pkg find-module GHC.Base
+```$ ghc-pkg find-module GHC.Base
 /home/carlo/opt/ghc-7.6.3_build/lib/ghc-7.6.3/package.conf.d
    base-4.6.0.1
 /home/carlo/.ghc/x86_64-linux-7.6.3/package.conf.d
 
 $ ghc-pkg field base-4.6.0.1 haddock-html
 haddock-html: /home/carlo/opt/ghc-7.6.3_build/share/doc/ghc/html/libraries/base-4.6.0.1
-</pre>
+```
 
 so we'd expect to be able to view 
 
-<pre>/home/carlo/opt/ghc-7.6.3_build/share/doc/ghc/html/libraries/base-4.6.0.1/GHC-Base.html
-</pre>
+```
+/home/carlo/opt/ghc-7.6.3_build/share/doc/ghc/html/libraries/base-4.6.0.1/GHC-Base.html
+```
 
 but this file doesn't exist because GHC.Base is an  
 internal module and does not have a Haddock page. This happens with some other packages too, not just GHC.Base. 
@@ -45,8 +47,6 @@ This turns out to be a bit tricky as well, but I think I have a reasonable proto
 
 Here's a short screencast of ghc-imported-from in action, along with my forked version of ghcmod-vim: 
 
-<div class="jetpack-video-wrapper">
-  <span class="embed-youtube" style="text-align:center; display: block;"></span>
-</div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/VVc8uupYJGs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
  **Make sure that the video plays fullscreen in 720p otherwise the text is illegible.**

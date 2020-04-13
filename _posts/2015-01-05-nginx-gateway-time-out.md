@@ -18,13 +18,15 @@ Occasionally I get a "504 Gateway Time-out" from nginx in conjunction with php-f
 
 Stop php-fcgi completely: 
 
-<pre># /etc/init.d/php-fcgi stop
+```
+# /etc/init.d/php-fcgi stop
 Stopping PHP FastCGI: php-cgi.
-</pre>
+```
 
 But php-cgi processes are still running! 
 
-<pre># ps aux | grep php
+```
+# ps aux | grep php
 www-data  2858  0.0  0.2 101188  3920 ?        Ss    2014   0:02 /usr/bin/php-cgi -b 127.0.0.1:9000
 www-data 13927  0.0  1.5 123892 25736 ?        S     2014   0:40 /usr/bin/php-cgi -b 127.0.0.1:9000
 www-data 14036  0.0  1.5 123908 25744 ?        S     2014   0:51 /usr/bin/php-cgi -b 127.0.0.1:9000
@@ -41,16 +43,17 @@ www-data 14281  0.0  1.4 123856 25320 ?        S     2014   2:27 /usr/bin/php-cg
 www-data 14333  0.0  1.5 123860 25744 ?        S     2014   1:36 /usr/bin/php-cgi -b 127.0.0.1:9000
 www-data 14347  0.0  1.5 124152 25992 ?        S     2014   0:21 /usr/bin/php-cgi -b 127.0.0.1:9000
 www-data 14356  0.0  1.5 124436 26300 ?        S     2014   0:25 /usr/bin/php-cgi -b 127.0.0.1:9000
-</pre>
+```
 
 So kill them manually and then restart php-fcgi: 
 
-<pre># pkill -9 php-cgi
+```
+# pkill -9 php-cgi
 
 # ps aux | grep php
 root     30663  0.0  0.0 114676   880 pts/0    S+   06:00   0:00 grep php
 
 # /etc/init.d/php-fcgi restart
-</pre>
+```
 
 Then it works as before.
