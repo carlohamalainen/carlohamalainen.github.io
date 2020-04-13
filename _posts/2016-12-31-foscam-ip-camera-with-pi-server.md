@@ -108,8 +108,8 @@ I gave up on the Rasperry Pi because it locked solid almost every day, requiring
 The replacement is a bottom end [Intel NUC](https://www.intel.sg/content/www/xa/en/products/boards-kits/nuc/kits/nuc5cpyh.html) with a 500Gb laptop SATA drive. It's a proper mini-PC so you can run 64bit Ubuntu, has a cooling fan, wifi, ethernet, bluetooth, etc.
 
 {:refdef: style="text-align: center;"}
-![](https://carlo-hamalainen.net/wp-content/uploads/2016/12/2017-06-2314-21-49_000000.jpg){:height="60%" width="60%"}
+![](/wp-old/uploads/2016/12/2017-06-2314-21-49_000000.jpg){:height="60%" width="60%"}
 
 {:refdef: style="text-align: center;"}
-![](https://carlo-hamalainen.net/wp-content/uploads/2016/12/2017-06-2314-21-56_000000.jpg){:height="60%" width="60%"}
+![](/wp-old/uploads/2016/12/2017-06-2314-21-56_000000.jpg){:height="60%" width="60%"}
 

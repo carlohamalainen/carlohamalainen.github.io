@@ -94,7 +94,7 @@ For a concrete example, let's use the [daily rainfall data for Changi](http://ww
 Here are the 3-sums:
 
 <center>
-  <br /> <img class="alignnone size-medium wp-image-1098" src="https://carlo-hamalainen.net/wp-content/uploads/2018/01/c3sums.png?w=500&ssl=1" alt="" data-recalc-dims="1" /><br />
+  <br /> <img class="alignnone size-medium wp-image-1098" src="/wp-old/uploads/2018/01/c3sums.png?w=500&ssl=1" alt="" data-recalc-dims="1" /><br />
 </center>
 
 For cutoffs from 100 to 300, here are the number of extreme events per year:

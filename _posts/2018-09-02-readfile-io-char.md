@@ -38,4 +38,4 @@ See [this repository](https://github.com/carlohamalainen/playground/tree/master/
 
 Basically, anything's better than the default ``readFile``:
 
-<img src="https://carlo-hamalainen.net/wp-content/uploads/2018/08/readfile_memory_usage.png?resize=640%2C480&ssl=1" class="alignnone size-full wp-image-1246" alt="readfile_memory_usage" width="640" height="480" srcset="https://carlo-hamalainen.net/wp-content/uploads/2018/08/readfile_memory_usage.png?w=640&ssl=1 640w, https://carlo-hamalainen.net/wp-content/uploads/2018/08/readfile_memory_usage.png?resize=300%2C225&ssl=1 300w" sizes="(max-width: 640px) 100vw, 640px" data-recalc-dims="1" />
+<img src="/wp-old/uploads/2018/08/readfile_memory_usage.png?resize=640%2C480&ssl=1" class="alignnone size-full wp-image-1246" alt="readfile_memory_usage" width="640" height="480" srcset="/wp-old/uploads/2018/08/readfile_memory_usage.png?w=640&ssl=1 640w, /wp-old/uploads/2018/08/readfile_memory_usage.png?resize=300%2C225&ssl=1 300w" sizes="(max-width: 640px) 100vw, 640px" data-recalc-dims="1" />
