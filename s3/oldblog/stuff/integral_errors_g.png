@@ -1,0 +1,11 @@
+--2020-04-13 10:46:59--  https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/stuff/integral_errors_g.png
+Resolving s3.amazonaws.com (s3.amazonaws.com)... 52.217.46.54
+Connecting to s3.amazonaws.com (s3.amazonaws.com)|52.217.46.54|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 8565 (8.4K) [image/png]
+Saving to: ‘integral_errors_g.png’
+
+     0K ........                                              100%  143M=0s
+
+2020-04-13 10:47:00 (143 MB/s) - ‘integral_errors_g.png’ saved [8565/8565]
+

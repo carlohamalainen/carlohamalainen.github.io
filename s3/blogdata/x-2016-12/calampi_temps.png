@@ -1,0 +1,11 @@
+--2020-04-13 10:47:22--  https://s3.amazonaws.com/carlo-hamalainen.net/blogdata/x-2016-12/calampi_temps.png
+Resolving s3.amazonaws.com (s3.amazonaws.com)... 52.216.130.133
+Connecting to s3.amazonaws.com (s3.amazonaws.com)|52.216.130.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 22517 (22K) [image/png]
+Saving to: ‘calampi_temps.png’
+
+     0K .......... .......... .                               100% 89.0K=0.2s
+
+2020-04-13 10:47:24 (89.0 KB/s) - ‘calampi_temps.png’ saved [22517/22517]
+

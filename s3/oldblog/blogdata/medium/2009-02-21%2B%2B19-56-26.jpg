@@ -1,0 +1,13 @@
+--2020-04-13 10:46:57--  https://s3.amazonaws.com/carlo-hamalainen.net/oldblog/blogdata/medium/2009-02-21%2B%2B19-56-26.jpg
+Resolving s3.amazonaws.com (s3.amazonaws.com)... 52.216.18.211
+Connecting to s3.amazonaws.com (s3.amazonaws.com)|52.216.18.211|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 110071 (107K) [image/jpeg]
+Saving to: ‘2009-02-21++19-56-26.jpg’
+
+     0K .......... .......... .......... .......... .......... 46% 81.5K 1s
+    50K .......... .......... .......... .......... .......... 93%  162K 0s
+   100K .......                                               100% 59.8M=0.9s
+
+2020-04-13 10:46:59 (117 KB/s) - ‘2009-02-21++19-56-26.jpg’ saved [110071/110071]
+
