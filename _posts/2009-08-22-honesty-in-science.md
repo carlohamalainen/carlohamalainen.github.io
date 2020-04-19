@@ -27,7 +27,7 @@ One standard application of importance sampling is to estimate an integral numer
 
 The main benefit of importance sampling is that your estimates will be "close together" (mathematically, their standard deviation will be smaller than a uniform sampling Monte Carlo approach). The red dots in the following plot are the absolute errors from a uniform sampling estimator of the value of the integral, while the green dots are the absolute errors from an importance sampling estimator:
 
-<img src="/integral_errors_g.png?w=1100&ssl=1" data-recalc-dims="1" /> 
+<img src="/stuff/integral_errors_g.png?w=1100&ssl=1" data-recalc-dims="1" /> 
 
 More precisely, the standard deviation of the errors of the uniform and importance sampling estimates is 0.0193 and 0.0001, respectively. The code is available as a [Sage](http://sagemath.org) worksheet: [Importance_sampling.sws](/stuff/Importance_sampling.sws).
 
