@@ -1,5 +1,5 @@
 ---
-title: Putty for netrw on Vim and Neovim on Windows 7
+title: PuTTY for netrw on Vim and Neovim on Windows 7
 date: 2020-04-24T19:00:00+00:00
 author: Carlo Hamalainen
 layout: post
@@ -16,13 +16,13 @@ I also have a Vim leader command to quickly open my scratch file:
 
     map <Leader>0 :e /home/carlo/0.txt<CR>
 
-Editing remote files is straightforward on Linux but on Windows 7 one has to use Putty's pscp. In an 
+Editing remote files is straightforward on Linux but on Windows 7 one has to use PuTTY's pscp. In an 
 enterprise environment there seem to be group policy settings that interfere with the default shell
 (or maybe my Cygwin environment does something - I can't work out what the difference is).
 
-First set up Putty, then set Vim's ``_vimrc`` or Neovim's ``init.vim``.
+First set up PuTTY, then set Vim's ``_vimrc`` or Neovim's ``init.vim``.
 
-## Putty Session
+## PuTTY Session
 
 Create a new Session. I called mine ``server``:
 
@@ -32,7 +32,7 @@ Set the username to login with:
 
 <img src="/stuff/2020-04-25-vim-neovim/putty-settings-connection-data.png" />
 
-Set the private key (use PuttyGen to create your key):
+Set the private key (use PuTTYGen to create your key):
 
 <img src="/stuff/2020-04-25-vim-neovim/putty-settings-connection-SSH-Auth.png" />
 
