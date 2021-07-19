@@ -51,25 +51,26 @@ The paper [Index Data Structure for Fast Subset and Superset Queries (Savnik)](h
 Following the paper we can implement a superset trie like so:
 
 {% highlight haskell %}
-data STrie a b = STrie Bool (Maybe b) (M.Map a (STrie a b))
+data STrie a b = STrie (Maybe b) (M.Map a (STrie a b))
 {% endhighlight %}
 
-The ``Bool`` indicates if we are at the end of a value; the ``Maybe b`` is a place
-to store an ``ExpensiveObject``, and the ``Map`` gives the children of this node.
+The ``Maybe b`` is a place to store an ``ExpensiveObject``, and the
+``Map`` gives the children of this node.
 
 Inserting into the ``STrie`` is essentially the same as in a normal trie but we 
 first sort the elements of the set. Searching also takes advantage of the sorted search key:
 
 {% highlight haskell %}
 member :: (Ord a) => [a] -> STrie a b -> Bool
-member = member' . List.nub . List.sort
+member [] _ = False
+member k strie = member' (sortNub k) strie
   where
-    member' [] (STrie end _ _) = end
+    member' [] (STrie _ _) = True
 
-    member' (x:xs) (STrie _ _ nodes) = with || without
+    member' (x:xs) (STrie _ nodes) = with || without
       where
 
-        -- (1) Use x, which means finding a child trie labelled x.
+        -- (1) Use x, which means finding a child trie labeled x.
         with = Just True == (member' xs <$> M.lookup x nodes)
 
         -- (2) Skip x, which means finding some child tree where
