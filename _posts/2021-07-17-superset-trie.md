@@ -95,25 +95,25 @@ the generators I defined for the [QuickCheck](https://hackage.haskell.org/packag
 
 ```
 benchmarking subset-find/subset-trie
-time                 677.4 ms   (423.8 ms .. 851.0 ms)
-                     0.980 R²   (0.965 R² .. 1.000 R²)
-mean                 716.1 ms   (672.6 ms .. 758.8 ms)
-std dev              49.40 ms   (41.35 ms .. 52.64 ms)
-variance introduced by outliers: 20% (moderately inflated)
+time                 495.7 ms   (476.1 ms .. 537.9 ms)
+                     0.999 R²   (0.998 R² .. 1.000 R²)
+mean                 481.1 ms   (477.2 ms .. 488.8 ms)
+std dev              7.641 ms   (94.67 μs .. 9.084 ms)
+variance introduced by outliers: 19% (moderately inflated)
 
 benchmarking subset-find/Data.Set
-time                 2.485 s    (2.445 s .. 2.522 s)
-                     1.000 R²   (1.000 R² .. 1.000 R²)
-mean                 2.445 s    (2.417 s .. 2.460 s)
-std dev              27.12 ms   (7.446 ms .. 36.28 ms)
-variance introduced by outliers: 19% (moderately inflated)
+time                 2.606 s    (2.127 s .. 3.647 s)
+                     0.981 R²   (0.967 R² .. 1.000 R²)
+mean                 2.687 s    (2.476 s .. 2.860 s)
+std dev              231.5 ms   (120.8 ms .. 314.1 ms)
+variance introduced by outliers: 22% (moderately inflated)
 
 benchmarking subset-find/naive-lists
-time                 9.857 s    (9.578 s .. 10.01 s)
-                     1.000 R²   (1.000 R² .. 1.000 R²)
-mean                 10.13 s    (10.01 s .. 10.35 s)
-std dev              227.3 ms   (3.195 ms .. 270.8 ms)
-variance introduced by outliers: 19% (moderately inflated)
+time                 8.774 s    (6.096 s .. 9.930 s)
+                     0.989 R²   (0.972 R² .. 1.000 R²)
+mean                 10.22 s    (9.482 s .. 10.65 s)
+std dev              724.3 ms   (294.8 ms .. 995.7 ms)
+variance introduced by outliers: 20% (moderately inflated)
 ```
 
 ![benchmark](https://raw.githubusercontent.com/carlohamalainen/superset-trie/main/subset-trie-benchmarks.png)
