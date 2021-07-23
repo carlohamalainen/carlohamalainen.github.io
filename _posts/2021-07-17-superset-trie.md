@@ -3,7 +3,7 @@ title: Superset trie search
 date: 2021-07-17T00:00:00+00:00
 author: Carlo Hamalainen
 layout: post
-permalink: /2021/07-17/superset-trie
+permalink: /2021/07/17/superset-trie
 ---
 
 A normal map lets us look up items based on an exact match for the key,
