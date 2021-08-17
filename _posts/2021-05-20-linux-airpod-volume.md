@@ -23,7 +23,7 @@ Install things:
     sudo apt install ccache
     sudo apt install build-essential devscripts lintian diffutils patch patchutils
     apt-get source bluez
-    apt-get build-dep bluez
+    sudo apt-get build-dep bluez
 
     cd bluez-5.50
 
