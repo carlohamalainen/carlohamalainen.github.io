@@ -11,13 +11,13 @@ We could implement the transformations in code, but non-technical users might li
 
 Here's an example rule:
 
-  1. Read the value at `<a href="http://example.com/foo/bar/x" rel="nofollow">http://example.com/foo/bar/x</a>`, refer to it as `val`.
+  1. Read the value at `https://example.com/foo/bar/x`, refer to it as `val`.
   2. Return `10*(1.0/val)`.
 
 Or, a more complicated rule:
 
-  1. Read the value at `<a href="http://example.com/foo/bar/x" rel="nofollow">http://example.com/foo/bar/x</a>`, refer to it as val_x.
-  2. Read the value at `<a href="http://example.com/foo/bar/y" rel="nofollow">http://example.com/foo/bar/y</a>`, refer to it as val_y.
+  1. Read the value at `https://example.com/foo/bar/x`, refer to it as `val_x`.
+  2. Read the value at `https://example.com/foo/bar/y`, refer to it as `val_y`.
   3. Return the average of `1.0/val_x` and `1.0/val_y`.
 
 The question is how to flatten this out into a format suitable for a CSV file, to allow users to easily update the rules using Excel.
