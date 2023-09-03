@@ -9,6 +9,7 @@ rm -fr $HOME/gems/*
 git rm Gemfile.lock
 
 gem install github-pages
+bundle install
 ./build.sh
 ./local_serve.sh
 ```
