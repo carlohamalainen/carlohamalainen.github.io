@@ -1,6 +1,21 @@
 # carlohamalainen.github.io
 
-Dependencies on Mint 19:
+## 2023-09 Debian Bookworm
+
+Wiped gems and started afresh using the github-pages gem:
+
+```bash
+rm -fr $HOME/gems/*
+git rm Gemfile.lock
+
+gem install github-pages
+./build.sh
+./local_serve.sh
+```
+
+Also had to add ``webrick`` to ``Gemfile``.
+
+## Dependencies on Mint 19
 
     sudo apt-get install ruby ruby-dev make build-essential
 
