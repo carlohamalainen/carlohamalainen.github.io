@@ -181,7 +181,7 @@ In ``main5`` we define ``actions`` by mapping a function over the sleep times, w
 Next, the Either-of-Either is a bit clunky but we can mash them together using ``join``. Here we have
 to use ``fmap`` because we have list elements of type ``IO (Either [Char] String)``, not ``Either [Char] String`` as ``join`` might expect.
 
-One topic that I haven't touched on is dealing with asynchronous exceptions. For this, have a read of [Catching all exceptions](https://www.fpcomplete.com/user/snoyberg/general-haskell/exceptions/catching-all-exceptions) from Snoyman and also [enclosed-exceptions](http://hackage.haskell.org/package/enclosed-exceptions). Also, [Chapter 13](http://chimera.labs.oreilly.com/books/1230000000929/ch13.html) of [Parallel and Concurrent Programming in Haskell](http://chimera.labs.oreilly.com/books/1230000000929) shows how to use the handy [async](https://hackage.haskell.org/package/async) package.
+One topic that I haven't touched on is dealing with asynchronous exceptions. For this, have a read of [Catching all exceptions](https://www.schoolofhaskell.com/user/snoyberg/general-haskell/exceptions/catching-all-exceptions) from Snoyman and also [enclosed-exceptions](http://hackage.haskell.org/package/enclosed-exceptions). Also, [Chapter 13](http://chimera.labs.oreilly.com/books/1230000000929/ch13.html) of [Parallel and Concurrent Programming in Haskell](http://chimera.labs.oreilly.com/books/1230000000929) shows how to use the handy [async](https://hackage.haskell.org/package/async) package.
 
 ```haskell
 -- Run all of the mains.

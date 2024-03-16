@@ -23,7 +23,7 @@ There are four things to install and configure:
 
 ## 1. Install Unity Hub
 
-Download the AppImage from [here](https://docs.unity3d.com/Manual/GettingStartedInstallingHub.html). Move it
+Download the AppImage from [here](https://docs.unity3d.com/2019.2/Documentation/Manual/GettingStartedInstallingHub.html). Move it
 to a convenient location and set it executable:
 
     mkdir ~/opt/unity
