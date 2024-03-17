@@ -28,11 +28,9 @@ program that runs tasks \( a \) and \( b \). The overall run time is \( a + b \)
 If we knew a way to optimise \( b \) so that it runs in time
 \( f b \) where \( 0 < f < 1 \) then the overall speedup would be
 
-{{< math >}}
 \[
 S = \frac{a + b}{a + f b}
 \]
-{{< /math >}}
 
 Since $f$ is non-zero, we can divide everything by $f$:
 

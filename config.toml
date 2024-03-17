@@ -13,6 +13,7 @@ enableEmoji = true
 noClasses = false
 
 [params]
+katex = true
 math = true
 author = "Carlo Hämäläinen"
 # license = '<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA-4.0</a>'
@@ -188,4 +189,4 @@ languageName = ":uk:"
         enable = true
         [markup.goldmark.extensions.passthrough.delimiters]
           block = [['\[', '\]'], ['$$', '$$']]
-          inline = [['\(', '\)']]
+          inline = [['\(', '\)'], ['$', '$']]
