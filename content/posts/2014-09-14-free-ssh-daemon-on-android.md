@@ -4,11 +4,6 @@ author: Carlo Hamalainen
 date: "2014-09-14T00:00:00Z"
 format: image
 guid: http://carlo-hamalainen.net/2014/09/14/free-ssh-daemon-on-android/
-id: 760
-original_post_id:
-- "16"
-restapi_import_id:
-- 596a05ef0330b
 title: Free SSH daemon on Android
 url: /2014/09/14/free-ssh-daemon-on-android/
 ---

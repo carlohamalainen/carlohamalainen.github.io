@@ -4,11 +4,6 @@ author: Carlo Hamalainen
 date: "2016-05-08T00:00:00Z"
 format: image
 guid: http://carlo-hamalainen.net/2016/05/08/monadic-yesod-form-with-recaptcha/
-id: 784
-original_post_id:
-- "16"
-restapi_import_id:
-- 596a05ef0330b
 title: Monadic Yesod form with ReCAPTCHA
 url: /2016/05/08/monadic-yesod-form-with-recaptcha/
 ---

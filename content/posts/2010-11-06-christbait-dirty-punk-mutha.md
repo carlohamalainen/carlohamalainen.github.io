@@ -4,11 +4,6 @@ author: Carlo Hamalainen
 date: "2010-11-06T00:00:00Z"
 format: image
 guid: http://carlo-hamalainen.net/2010/11/06/christbait-dirty-punk-mutha/
-id: 790
-original_post_id:
-- "16"
-restapi_import_id:
-- 596a05ef0330b
 title: 'Christbait: Dirty Punk Mutha'
 url: /2010/11/06/christbait-dirty-punk-mutha/
 ---

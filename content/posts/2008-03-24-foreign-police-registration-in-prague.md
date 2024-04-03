@@ -4,11 +4,6 @@ author: Carlo Hamalainen
 date: "2008-03-24T00:00:00Z"
 format: image
 guid: http://carlo-hamalainen.net/2008/03/24/foreign-police-registration-in-prague/
-id: 770
-original_post_id:
-- "16"
-restapi_import_id:
-- 596a05ef0330b
 title: Foreign Police registration in Prague
 url: /2008/03/24/foreign-police-registration-in-prague/
 ---

@@ -4,11 +4,6 @@ author: Carlo Hamalainen
 date: "2015-06-30T00:00:00Z"
 format: image
 guid: http://carlo-hamalainen.net/2015/06/30/lens-hasas-for-api-changes/
-id: 810
-original_post_id:
-- "16"
-restapi_import_id:
-- 596a05ef0330b
 title: Lens Has/As for API changes
 url: /2015/06/30/lens-hasas-for-api-changes/
 ---

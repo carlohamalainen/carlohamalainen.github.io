@@ -4,11 +4,6 @@ author: Carlo Hamalainen
 date: "2014-04-23T00:00:00Z"
 format: image
 guid: http://carlo-hamalainen.net/2014/04/23/functionaldependencies/
-id: 806
-original_post_id:
-- "16"
-restapi_import_id:
-- 596a05ef0330b
 title: FunctionalDependencies
 url: /2014/04/23/functionaldependencies/
 ---

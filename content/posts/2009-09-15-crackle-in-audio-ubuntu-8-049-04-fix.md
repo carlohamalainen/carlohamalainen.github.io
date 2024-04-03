@@ -4,11 +4,6 @@ author: Carlo Hamalainen
 date: "2009-09-15T00:00:00Z"
 format: image
 guid: http://carlo-hamalainen.net/2009/09/15/crackle-in-audio-ubuntu-8-049-04-fix/
-id: 739
-original_post_id:
-- "16"
-restapi_import_id:
-- 596a05ef0330b
 title: Crackle in audio (Ubuntu 8.04/9.04) fix
 url: /2009/09/15/crackle-in-audio-ubuntu-8-049-04-fix/
 ---

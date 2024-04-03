@@ -4,11 +4,6 @@ author: Carlo Hamalainen
 date: "2009-07-17T00:00:00Z"
 format: image
 guid: http://carlo-hamalainen.net/2009/07/17/show-me-the-data/
-id: 782
-original_post_id:
-- "16"
-restapi_import_id:
-- 596a05ef0330b
 title: Show me the data
 url: /2009/07/17/show-me-the-data/
 ---

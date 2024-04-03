@@ -4,11 +4,6 @@ author: Carlo Hamalainen
 date: "2013-01-24T00:00:00Z"
 format: image
 guid: http://carlo-hamalainen.net/2013/01/24/python-ssl-socket-echo-test-with-self-signed-certificate/
-id: 818
-original_post_id:
-- "16"
-restapi_import_id:
-- 596a05ef0330b
 title: Python SSL socket echo test with self-signed certificate
 url: /2013/01/24/python-ssl-socket-echo-test-with-self-signed-certificate/
 ---

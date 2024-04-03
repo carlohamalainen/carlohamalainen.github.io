@@ -4,11 +4,6 @@ author: Carlo Hamalainen
 date: "2012-03-14T00:00:00Z"
 format: image
 guid: http://carlo-hamalainen.net/2012/03/14/scipy-_znst8ios_base4initd1ev-and-link-flags/
-id: 751
-original_post_id:
-- "16"
-restapi_import_id:
-- 596a05ef0330b
 title: SciPy, _ZNSt8ios_base4InitD1Ev, and link flags
 url: /2012/03/14/scipy-_znst8ios_base4initd1ev-and-link-flags/
 ---

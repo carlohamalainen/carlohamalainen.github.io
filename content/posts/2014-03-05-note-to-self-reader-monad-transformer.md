@@ -4,11 +4,6 @@ author: Carlo Hamalainen
 date: "2014-03-05T00:00:00Z"
 format: image
 guid: http://carlo-hamalainen.net/2014/03/05/note-to-self-reader-monad-transformer/
-id: 763
-original_post_id:
-- "16"
-restapi_import_id:
-- 596a05ef0330b
 title: 'Note to self: reader monad transformer'
 url: /2014/03/05/note-to-self-reader-monad-transformer/
 ---

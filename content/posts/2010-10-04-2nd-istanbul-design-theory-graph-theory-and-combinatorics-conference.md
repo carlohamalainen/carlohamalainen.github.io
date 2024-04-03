@@ -4,11 +4,6 @@ author: Carlo Hamalainen
 date: "2010-10-04T00:00:00Z"
 format: image
 guid: http://carlo-hamalainen.net/2010/10/04/2nd-istanbul-design-theory-graph-theory-and-combinatorics-conference/
-id: 680
-original_post_id:
-- "16"
-restapi_import_id:
-- 596a05ef0330b
 title: 2nd Istanbul Design Theory, Graph Theory and Combinatorics Conference
 url: /2010/10/04/2nd-istanbul-design-theory-graph-theory-and-combinatorics-conference/
 ---

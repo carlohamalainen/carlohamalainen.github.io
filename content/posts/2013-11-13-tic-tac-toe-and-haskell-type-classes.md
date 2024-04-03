@@ -4,11 +4,6 @@ author: Carlo Hamalainen
 date: "2013-11-13T00:00:00Z"
 format: image
 guid: http://carlo-hamalainen.net/2013/11/13/tic-tac-toe-and-haskell-type-classes/
-id: 701
-original_post_id:
-- "16"
-restapi_import_id:
-- 596a05ef0330b
 title: Tic-tac-toe and Haskell type classes
 url: /2013/11/13/tic-tac-toe-and-haskell-type-classes/
 ---

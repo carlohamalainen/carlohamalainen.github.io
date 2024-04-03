@@ -4,11 +4,6 @@ author: Carlo Hamalainen
 date: "2011-08-04T00:00:00Z"
 format: image
 guid: http://carlo-hamalainen.net/2011/08/04/ggplot2-from-clojure/
-id: 768
-original_post_id:
-- "16"
-restapi_import_id:
-- 596a05ef0330b
 title: ggplot2 from Clojure
 url: /2011/08/04/ggplot2-from-clojure/
 ---

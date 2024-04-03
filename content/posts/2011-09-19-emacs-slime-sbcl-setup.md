@@ -4,11 +4,6 @@ author: Carlo Hamalainen
 date: "2011-09-19T00:00:00Z"
 format: image
 guid: http://carlo-hamalainen.net/2011/09/19/emacs-slime-sbcl-setup/
-id: 708
-original_post_id:
-- "16"
-restapi_import_id:
-- 596a05ef0330b
 title: Emacs + SLIME + SBCL setup
 url: /2011/09/19/emacs-slime-sbcl-setup/
 ---

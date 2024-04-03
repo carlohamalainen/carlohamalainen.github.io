@@ -4,11 +4,6 @@ author: Carlo Hamalainen
 date: "2012-12-21T00:00:00Z"
 format: image
 guid: http://carlo-hamalainen.net/2012/12/21/raspberry-pi-grandfather-port-edition/
-id: 683
-original_post_id:
-- "16"
-restapi_import_id:
-- 596a05ef0330b
 title: 'Raspberry Pi: Grandfather Port Edition'
 url: /2012/12/21/raspberry-pi-grandfather-port-edition/
 ---

@@ -4,11 +4,6 @@ author: Carlo Hamalainen
 date: "2014-08-08T00:00:00Z"
 format: image
 guid: http://carlo-hamalainen.net/2014/08/08/jwt-verification-using-hs-jose-and-hs-jwt/
-id: 750
-original_post_id:
-- "16"
-restapi_import_id:
-- 596a05ef0330b
 title: JWT verification using hs-jose and hs-jwt
 url: /2014/08/08/jwt-verification-using-hs-jose-and-hs-jwt/
 ---

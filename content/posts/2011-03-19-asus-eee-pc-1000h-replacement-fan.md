@@ -4,11 +4,6 @@ author: Carlo Hamalainen
 date: "2011-03-19T00:00:00Z"
 format: image
 guid: http://carlo-hamalainen.net/2011/03/19/asus-eee-pc-1000h-replacement-fan/
-id: 711
-original_post_id:
-- "16"
-restapi_import_id:
-- 596a05ef0330b
 title: Asus EEE PC 1000H replacement fan
 url: /2011/03/19/asus-eee-pc-1000h-replacement-fan/
 ---

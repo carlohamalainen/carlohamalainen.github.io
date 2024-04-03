@@ -4,11 +4,6 @@ author: Carlo Hamalainen
 date: "2012-06-09T00:00:00Z"
 format: image
 guid: http://carlo-hamalainen.net/2012/06/09/how-long-does-it-take-to-zero-a-1tb-drive/
-id: 704
-original_post_id:
-- "16"
-restapi_import_id:
-- 596a05ef0330b
 title: How long does it take to zero a 1Tb drive?
 url: /2012/06/09/how-long-does-it-take-to-zero-a-1tb-drive/
 ---

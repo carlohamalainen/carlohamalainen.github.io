@@ -4,11 +4,6 @@ author: Carlo Hamalainen
 date: "2010-05-29T00:00:00Z"
 format: image
 guid: http://carlo-hamalainen.net/2010/05/29/citrix-ica-client-on-ubuntu-9-04-howto/
-id: 714
-original_post_id:
-- "16"
-restapi_import_id:
-- 596a05ef0330b
 title: Citrix ICA client on Ubuntu 9.04 howto
 url: /2010/05/29/citrix-ica-client-on-ubuntu-9-04-howto/
 ---

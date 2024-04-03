@@ -4,11 +4,6 @@ author: Carlo Hamalainen
 date: "2012-03-17T00:00:00Z"
 format: image
 guid: http://carlo-hamalainen.net/2012/03/17/a-few-dissections-of-order-18/
-id: 684
-original_post_id:
-- "16"
-restapi_import_id:
-- 596a05ef0330b
 title: A few dissections of order 18
 url: /2012/03/17/a-few-dissections-of-order-18/
 ---

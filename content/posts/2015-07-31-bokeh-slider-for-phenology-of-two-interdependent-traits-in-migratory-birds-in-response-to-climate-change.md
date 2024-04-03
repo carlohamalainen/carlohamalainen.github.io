@@ -4,13 +4,7 @@ author: Carlo Hamalainen
 date: "2015-07-31T00:00:00Z"
 format: image
 guid: http://carlo-hamalainen.net/2015/07/31/bokeh-slider-for-phenology-of-two-interdependent-traits-in-migratory-birds-in-response-to-climate-change/
-id: 746
-original_post_id:
-- "16"
-restapi_import_id:
-- 596a05ef0330b
-title: Bokeh slider for "Phenology of two interdependent traits in migratory birds
-  in response to climate change"
+title: Bokeh slider for "Phenology of two interdependent traits in migratory birds in response to climate change"
 url: /2015/07/31/bokeh-slider-for-phenology-of-two-interdependent-traits-in-migratory-birds-in-response-to-climate-change/
 ---
 (7 January 2017: some updates, see end of the post.) 

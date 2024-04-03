@@ -4,11 +4,6 @@ author: Carlo Hamalainen
 date: "2010-06-30T00:00:00Z"
 format: image
 guid: http://carlo-hamalainen.net/2010/06/30/false-dichotomies-by-name/
-id: 682
-original_post_id:
-- "16"
-restapi_import_id:
-- 596a05ef0330b
 title: False dichotomies by name
 url: /2010/06/30/false-dichotomies-by-name/
 ---

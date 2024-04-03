@@ -4,11 +4,6 @@ author: Carlo Hamalainen
 date: "2012-11-12T00:00:00Z"
 format: image
 guid: http://carlo-hamalainen.net/2012/11/12/debian-on-dell-latitude-e6530/
-id: 772
-original_post_id:
-- "16"
-restapi_import_id:
-- 596a05ef0330b
 title: Debian on Dell Latitude E6530
 url: /2012/11/12/debian-on-dell-latitude-e6530/
 ---

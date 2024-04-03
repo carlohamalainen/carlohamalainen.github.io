@@ -3,11 +3,6 @@ author: Carlo Hamalainen
 date: "2008-02-17T00:00:00Z"
 format: image
 guid: http://carlo-hamalainen.net/2008/02/17/pyx-0-10-experimental-package/
-id: 829
-original_post_id:
-- "16"
-restapi_import_id:
-- 596a05ef0330b
 title: pyx-0.10 experimental package
 url: /2008/02/17/pyx-0-10-experimental-package/
 ---

@@ -4,11 +4,6 @@ author: Carlo Hamalainen
 date: "2010-07-17T00:00:00Z"
 format: image
 guid: http://carlo-hamalainen.net/2010/07/17/another-intersystems-cache-wtf/
-id: 725
-original_post_id:
-- "16"
-restapi_import_id:
-- 596a05ef0330b
 title: Another Intersystems Caché WTF
 url: /2010/07/17/another-intersystems-cache-wtf/
 ---

@@ -4,11 +4,6 @@ author: Carlo Hamalainen
 date: "2013-10-17T00:00:00Z"
 format: image
 guid: http://carlo-hamalainen.net/2013/10/17/cheap-standing-desk/
-id: 735
-original_post_id:
-- "16"
-restapi_import_id:
-- 596a05ef0330b
 title: Cheap standing desk
 url: /2013/10/17/cheap-standing-desk/
 ---

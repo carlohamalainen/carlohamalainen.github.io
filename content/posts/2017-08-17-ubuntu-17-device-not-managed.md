@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2017-08-17T10:30:29Z"
 guid: http://carlo-hamalainen.net/?p=945
-id: 945
 title: Ubuntu 17 -- device not managed
 url: /2017/08/17/ubuntu-17-device-not-managed/
 ---

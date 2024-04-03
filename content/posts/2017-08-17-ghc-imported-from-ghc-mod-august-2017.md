@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2017-08-17T10:35:19Z"
 guid: http://carlo-hamalainen.net/?p=939
-id: 939
 title: ghc-imported-from => ghc-mod (August 2017)
 url: /2017/08/17/ghc-imported-from-ghc-mod-august-2017/
 ---

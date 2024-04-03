@@ -4,11 +4,6 @@ author: Carlo Hamalainen
 date: "2009-08-28T00:00:00Z"
 format: image
 guid: http://carlo-hamalainen.net/2009/08/28/calibration-and-bridge-players/
-id: 787
-original_post_id:
-- "16"
-restapi_import_id:
-- 596a05ef0330b
 title: Calibration and bridge players
 url: /2009/08/28/calibration-and-bridge-players/
 ---

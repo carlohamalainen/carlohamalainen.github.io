@@ -3,11 +3,6 @@ author: Carlo Hamalainen
 date: "2009-03-25T00:00:00Z"
 format: image
 guid: http://carlo-hamalainen.net/2009/03/25/hello-world-with-pydesign-sts13-and-sts15/
-id: 709
-original_post_id:
-- "16"
-restapi_import_id:
-- 596a05ef0330b
 title: Hello world with pydesign -- STS(13) and STS(15)
 url: /2009/03/25/hello-world-with-pydesign-sts13-and-sts15/
 ---

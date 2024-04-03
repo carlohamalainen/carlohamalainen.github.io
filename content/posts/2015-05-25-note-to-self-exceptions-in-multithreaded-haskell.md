@@ -4,11 +4,6 @@ author: Carlo Hamalainen
 date: "2015-05-25T00:00:00Z"
 format: image
 guid: http://carlo-hamalainen.net/2015/05/25/note-to-self-exceptions-in-multithreaded-haskell/
-id: 761
-original_post_id:
-- "16"
-restapi_import_id:
-- 596a05ef0330b
 title: 'Note to self: exceptions in multithreaded Haskell'
 url: /2015/05/25/note-to-self-exceptions-in-multithreaded-haskell/
 ---

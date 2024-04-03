@@ -3,11 +3,6 @@ author: Carlo Hamalainen
 date: "2013-06-06T00:00:00Z"
 format: image
 guid: http://carlo-hamalainen.net/2013/06/06/bfpg-talk-building-a-lisp-machine/
-id: 767
-original_post_id:
-- "16"
-restapi_import_id:
-- 596a05ef0330b
 title: 'BFPG talk: Building a LISP Machine'
 url: /2013/06/06/bfpg-talk-building-a-lisp-machine/
 ---

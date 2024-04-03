@@ -4,11 +4,6 @@ author: Carlo Hamalainen
 date: "2010-09-24T00:00:00Z"
 format: image
 guid: http://carlo-hamalainen.net/2010/09/24/mumps-scope/
-id: 830
-original_post_id:
-- "16"
-restapi_import_id:
-- 596a05ef0330b
 title: Mumps scope
 url: /2010/09/24/mumps-scope/
 ---

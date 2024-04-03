@@ -3,11 +3,6 @@ author: Carlo Hamalainen
 date: "2011-02-11T00:00:00Z"
 format: image
 guid: http://carlo-hamalainen.net/2011/02/11/parsing-with-monads-can-be-slow/
-id: 731
-original_post_id:
-- "16"
-restapi_import_id:
-- 596a05ef0330b
 title: Parsing with monads (can be) slow
 url: /2011/02/11/parsing-with-monads-can-be-slow/
 ---

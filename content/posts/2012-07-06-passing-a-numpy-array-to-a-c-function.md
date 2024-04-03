@@ -4,11 +4,6 @@ author: Carlo Hamalainen
 date: "2012-07-06T00:00:00Z"
 format: image
 guid: http://carlo-hamalainen.net/2012/07/06/passing-a-numpy-array-to-a-c-function/
-id: 773
-original_post_id:
-- "16"
-restapi_import_id:
-- 596a05ef0330b
 title: Passing a NumPy array to a C function
 url: /2012/07/06/passing-a-numpy-array-to-a-c-function/
 ---

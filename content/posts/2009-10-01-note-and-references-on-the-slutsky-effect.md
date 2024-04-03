@@ -4,11 +4,6 @@ author: Carlo Hamalainen
 date: "2009-10-01T00:00:00Z"
 format: image
 guid: http://carlo-hamalainen.net/2009/10/01/note-and-references-on-the-slutsky-effect/
-id: 793
-original_post_id:
-- "16"
-restapi_import_id:
-- 596a05ef0330b
 title: Note and references on the Slutsky effect
 url: /2009/10/01/note-and-references-on-the-slutsky-effect/
 ---

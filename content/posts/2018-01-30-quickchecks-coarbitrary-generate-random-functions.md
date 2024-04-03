@@ -2,8 +2,6 @@
 author: Carlo Hamalainen
 
 date: "2018-01-30T22:19:24Z"
-guid: https://carlo-hamalainen.net/?p=1136
-id: 1136
 title: QuickCheck's CoArbitrary - generate random functions!
 url: /2018/01/30/quickchecks-coarbitrary-generate-random-functions/
 ---

@@ -4,11 +4,6 @@ author: Carlo Hamalainen
 date: "2014-05-06T00:00:00Z"
 format: image
 guid: http://carlo-hamalainen.net/2014/05/06/type-safe-options-in-idris/
-id: 788
-original_post_id:
-- "16"
-restapi_import_id:
-- 596a05ef0330b
 title: Type-safe options in Idris
 url: /2014/05/06/type-safe-options-in-idris/
 ---

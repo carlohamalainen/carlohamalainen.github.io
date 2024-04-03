@@ -4,11 +4,6 @@ author: Carlo Hamalainen
 date: "2008-03-01T00:00:00Z"
 format: image
 guid: http://carlo-hamalainen.net/2008/03/01/an-exact-cover-solver-for-sage/
-id: 766
-original_post_id:
-- "16"
-restapi_import_id:
-- 596a05ef0330b
 title: An exact cover solver for Sage
 url: /2008/03/01/an-exact-cover-solver-for-sage/
 ---

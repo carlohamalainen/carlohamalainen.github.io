@@ -4,11 +4,6 @@ author: Carlo Hamalainen
 date: "2013-02-12T00:00:00Z"
 format: image
 guid: http://carlo-hamalainen.net/2013/02/12/xfce4-xfapplet-plugin-for-centos-6-3/
-id: 695
-original_post_id:
-- "16"
-restapi_import_id:
-- 596a05ef0330b
 title: Xfce4-xfapplet-plugin for Centos 6.3
 url: /2013/02/12/xfce4-xfapplet-plugin-for-centos-6-3/
 ---

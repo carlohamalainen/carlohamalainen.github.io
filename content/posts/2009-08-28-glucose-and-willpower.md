@@ -4,11 +4,6 @@ author: Carlo Hamalainen
 date: "2009-08-28T00:00:00Z"
 format: image
 guid: http://carlo-hamalainen.net/2009/08/28/glucose-and-willpower/
-id: 819
-original_post_id:
-- "16"
-restapi_import_id:
-- 596a05ef0330b
 title: Glucose and willpower
 url: /2009/08/28/glucose-and-willpower/
 ---

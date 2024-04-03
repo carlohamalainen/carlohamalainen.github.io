@@ -4,11 +4,6 @@ author: Carlo Hamalainen
 date: "2014-08-28T00:00:00Z"
 format: image
 guid: http://carlo-hamalainen.net/2014/08/28/reading-stdout-and-stderr-of-createprocess/
-id: 715
-original_post_id:
-- "16"
-restapi_import_id:
-- 596a05ef0330b
 title: Reading stdout and stderr of createProcess
 url: /2014/08/28/reading-stdout-and-stderr-of-createprocess/
 ---

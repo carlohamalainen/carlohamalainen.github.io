@@ -4,11 +4,6 @@ author: Carlo Hamalainen
 date: "2013-07-24T00:00:00Z"
 format: image
 guid: http://carlo-hamalainen.net/2013/07/24/note-on-applicative-forms-in-yesod/
-id: 685
-original_post_id:
-- "16"
-restapi_import_id:
-- 596a05ef0330b
 title: Note on applicative forms in Yesod
 url: /2013/07/24/note-on-applicative-forms-in-yesod/
 ---

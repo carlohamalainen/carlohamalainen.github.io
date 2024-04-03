@@ -4,11 +4,6 @@ categories:
 date: "2007-12-11T00:00:00Z"
 format: image
 guid: http://carlo-hamalainen.net/2007/12/11/installing-minion-pro-fonts/
-id: 687
-original_post_id:
-- "16"
-restapi_import_id:
-- 596a05ef0330b
 title: Installing Minion Pro fonts
 url: /2007/12/11/installing-minion-pro-fonts/
 ---

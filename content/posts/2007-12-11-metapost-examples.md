@@ -4,11 +4,6 @@ categories:
 date: "2007-12-11T00:00:00Z"
 format: image
 guid: http://carlo-hamalainen.net/2007/12/11/metapost-examples/
-id: 755
-original_post_id:
-- "16"
-restapi_import_id:
-- 596a05ef0330b
 title: MetaPost Examples
 url: /2007/12/11/metapost-examples/
 ---

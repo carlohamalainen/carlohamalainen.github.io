@@ -4,11 +4,6 @@ author: Carlo Hamalainen
 date: "2012-11-02T00:00:00Z"
 format: image
 guid: http://carlo-hamalainen.net/2012/11/02/note-to-self-clone-remote-branch-using-git/
-id: 781
-original_post_id:
-- "16"
-restapi_import_id:
-- 596a05ef0330b
 title: 'Note to self: clone remote branch using git'
 url: /2012/11/02/note-to-self-clone-remote-branch-using-git/
 ---

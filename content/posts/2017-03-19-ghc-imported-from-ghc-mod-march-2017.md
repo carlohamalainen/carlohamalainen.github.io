@@ -4,11 +4,6 @@ author: Carlo Hamalainen
 date: "2017-03-19T00:00:00Z"
 format: image
 guid: http://carlo-hamalainen.net/2017/03/19/ghc-imported-from-ghc-mod-march-2017/
-id: 796
-original_post_id:
-- "16"
-restapi_import_id:
-- 596a05ef0330b
 title: ghc-imported-from => ghc-mod (March 2017)
 url: /2017/03/19/ghc-imported-from-ghc-mod-march-2017/
 ---

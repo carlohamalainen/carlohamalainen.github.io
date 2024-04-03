@@ -4,11 +4,6 @@ author: Carlo Hamalainen
 date: "2013-01-18T00:00:00Z"
 format: image
 guid: http://carlo-hamalainen.net/2013/01/18/installation-notes-wxhaskell-on-debian-squeeze/
-id: 738
-original_post_id:
-- "16"
-restapi_import_id:
-- 596a05ef0330b
 title: 'Installation notes: wxHaskell on Debian Squeeze'
 url: /2013/01/18/installation-notes-wxhaskell-on-debian-squeeze/
 ---

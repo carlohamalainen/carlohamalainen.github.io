@@ -4,11 +4,6 @@ author: Carlo Hamalainen
 date: "2014-08-03T00:00:00Z"
 format: image
 guid: http://carlo-hamalainen.net/2014/08/03/haskell-yesod-aaf-rapid-connect-demo/
-id: 812
-original_post_id:
-- "16"
-restapi_import_id:
-- 596a05ef0330b
 title: Haskell Yesod AAF Rapid Connect demo
 url: /2014/08/03/haskell-yesod-aaf-rapid-connect-demo/
 ---

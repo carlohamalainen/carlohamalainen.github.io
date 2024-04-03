@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2017-08-22T03:44:16Z"
 guid: http://carlo-hamalainen.net/?p=954
-id: 954
 title: FSA B3164 bottom bracket replacement
 url: /2017/08/22/fsa-b3164-bottom-bracket-replacement/
 ---

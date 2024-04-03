@@ -3,11 +3,6 @@ author: Carlo Hamalainen
 date: "2009-06-18T00:00:00Z"
 format: image
 guid: http://carlo-hamalainen.net/2009/06/18/debugging-sage-using-eric4/
-id: 742
-original_post_id:
-- "16"
-restapi_import_id:
-- 596a05ef0330b
 title: Debugging Sage using Eric4
 url: /2009/06/18/debugging-sage-using-eric4/
 ---
