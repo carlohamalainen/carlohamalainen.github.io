@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2012-03-29T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2012/03/29/bike-week-brekkie/
 title: Bike Week brekkie
 url: /2012/03/29/bike-week-brekkie/
 ---

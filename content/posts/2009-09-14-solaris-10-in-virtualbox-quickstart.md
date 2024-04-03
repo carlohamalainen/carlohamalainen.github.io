@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2009-09-14T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2009/09/14/solaris-10-in-virtualbox-quickstart/
 title: Solaris 10 in VirtualBox quickstart
 url: /2009/09/14/solaris-10-in-virtualbox-quickstart/
 ---

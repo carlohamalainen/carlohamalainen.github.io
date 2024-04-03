@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2015-06-29T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2015/06/29/update-github-fork/
 title: Update Github fork
 url: /2015/06/29/update-github-fork/
 ---

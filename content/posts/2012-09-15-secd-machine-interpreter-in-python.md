@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2012-09-15T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2012/09/15/secd-machine-interpreter-in-python/
 title: SECD machine interpreter in Python
 url: /2012/09/15/secd-machine-interpreter-in-python/
 ---

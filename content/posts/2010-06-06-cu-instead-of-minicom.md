@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2010-06-06T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2010/06/06/cu-instead-of-minicom/
 title: cu instead of minicom
 url: /2010/06/06/cu-instead-of-minicom/
 ---

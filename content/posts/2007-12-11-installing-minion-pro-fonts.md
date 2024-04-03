@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 categories:
 date: "2007-12-11T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2007/12/11/installing-minion-pro-fonts/
 title: Installing Minion Pro fonts
 url: /2007/12/11/installing-minion-pro-fonts/
 ---

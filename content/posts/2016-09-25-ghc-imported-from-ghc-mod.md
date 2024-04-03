@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2016-09-25T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2016/09/25/ghc-imported-from-ghc-mod/
 title: ghc-imported-from => ghc-mod
 url: /2016/09/25/ghc-imported-from-ghc-mod/
 ---

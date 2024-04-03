@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2009-10-29T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2009/10/29/markov-decision-processes-and-the-uct-algorithm/
 title: Markov Decision Processes and the UCT algorithm
 url: /2009/10/29/markov-decision-processes-and-the-uct-algorithm/
 ---

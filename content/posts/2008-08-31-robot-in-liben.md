@@ -2,7 +2,6 @@
 author: Carlo Hamalainen
 date: "2008-08-31T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2008/08/31/robot-in-liben/
 title: Robot in Libeň
 url: /2008/08/31/robot-in-liben/
 ---

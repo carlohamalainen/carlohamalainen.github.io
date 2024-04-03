@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2014-04-23T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2014/04/23/functionaldependencies/
 title: FunctionalDependencies
 url: /2014/04/23/functionaldependencies/
 ---

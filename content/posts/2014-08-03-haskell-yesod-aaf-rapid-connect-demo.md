@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2014-08-03T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2014/08/03/haskell-yesod-aaf-rapid-connect-demo/
 title: Haskell Yesod AAF Rapid Connect demo
 url: /2014/08/03/haskell-yesod-aaf-rapid-connect-demo/
 ---

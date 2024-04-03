@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2013-09-05T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2013/09/05/access-to-water-is-a-human-right/
 title: Access to water is a human right?
 url: /2013/09/05/access-to-water-is-a-human-right/
 ---

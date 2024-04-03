@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2014-02-28T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2014/02/28/ipywidgets-demo/
 title: ipywidgets demo
 url: /2014/02/28/ipywidgets-demo/
 ---

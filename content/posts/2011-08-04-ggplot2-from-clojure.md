@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2011-08-04T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2011/08/04/ggplot2-from-clojure/
 title: ggplot2 from Clojure
 url: /2011/08/04/ggplot2-from-clojure/
 ---

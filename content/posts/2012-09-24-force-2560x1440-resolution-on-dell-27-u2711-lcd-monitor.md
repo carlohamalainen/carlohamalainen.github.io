@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2012-09-24T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2012/09/24/force-2560x1440-resolution-on-dell-27-u2711-lcd-monitor/
 title: Force 2560x1440 resolution on Dell 27" (U2711) LCD monitor
 url: /2012/09/24/force-2560x1440-resolution-on-dell-27-u2711-lcd-monitor/
 ---

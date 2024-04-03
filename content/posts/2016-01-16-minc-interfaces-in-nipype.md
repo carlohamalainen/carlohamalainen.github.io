@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2016-01-16T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2016/01/16/minc-interfaces-in-nipype/
 title: MINC interfaces in Nipype
 url: /2016/01/16/minc-interfaces-in-nipype/
 ---

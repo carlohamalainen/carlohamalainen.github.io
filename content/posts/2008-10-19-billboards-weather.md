@@ -2,7 +2,6 @@
 author: Carlo Hamalainen
 date: "2008-10-19T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2008/10/19/billboards-weather/
 title: Billboards, weather
 url: /2008/10/19/billboards-weather/
 ---

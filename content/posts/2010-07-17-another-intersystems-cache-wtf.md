@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2010-07-17T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2010/07/17/another-intersystems-cache-wtf/
 title: Another Intersystems Caché WTF
 url: /2010/07/17/another-intersystems-cache-wtf/
 ---

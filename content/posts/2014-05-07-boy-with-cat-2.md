@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2014-05-07T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2014/05/07/boy-with-cat-2/
 title: Boy with cat 2
 url: /2014/05/07/boy-with-cat-2/
 ---

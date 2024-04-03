@@ -2,7 +2,6 @@
 author: Carlo Hamalainen
 date: "2009-02-24T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2009/02/24/turn-an-asus-wl-500gp-into-a-pc/
 title: Turn an Asus WL-500gP into a PC
 url: /2009/02/24/turn-an-asus-wl-500gp-into-a-pc/
 ---

@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2013-02-10T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2013/02/10/note-to-self-cabal-install-libssh2-on-debian-testing/
 title: 'Note to self: "cabal install libssh2" on Debian testing'
 url: /2013/02/10/note-to-self-cabal-install-libssh2-on-debian-testing/
 ---

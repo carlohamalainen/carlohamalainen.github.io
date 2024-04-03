@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2013-04-17T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2013/04/17/note-to-self-quickly-plot-a-shapefile-using-python-and-basemap/
 title: 'Note to self: quickly plot a shapefile using Python and basemap'
 url: /2013/04/17/note-to-self-quickly-plot-a-shapefile-using-python-and-basemap/
 ---

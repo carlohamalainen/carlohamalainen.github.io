@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2014-03-16T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2014/03/16/note-to-self-ffmpeg-low-quality/
 title: 'Note to self: ffmpeg low quality.'
 url: /2014/03/16/note-to-self-ffmpeg-low-quality/
 ---

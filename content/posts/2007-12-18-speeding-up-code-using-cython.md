@@ -2,7 +2,6 @@
 author: Carlo Hamalainen
 date: "2007-12-18T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2007/12/18/speeding-up-code-using-cython/
 title: Speeding up code using Cython
 url: /2007/12/18/speeding-up-code-using-cython/
 ---

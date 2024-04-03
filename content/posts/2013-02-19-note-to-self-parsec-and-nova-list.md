@@ -1,7 +1,6 @@
 ---
 author: Carlo Hamalainen
 date: "2013-02-19T00:00:00Z"
-guid: http://carlo-hamalainen.net/2013/02/19/note-to-self-parsec-and-nova-list/
 title: Note to self - Parsec and 'nova list'
 url: /2013/02/19/note-to-self-parsec-and-nova-list/
 ---

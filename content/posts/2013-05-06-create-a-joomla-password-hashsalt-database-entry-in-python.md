@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2013-05-06T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2013/05/06/create-a-joomla-password-hashsalt-database-entry-in-python/
 title: Create a Joomla password hash/salt database entry in Python
 url: /2013/05/06/create-a-joomla-password-hashsalt-database-entry-in-python/
 ---

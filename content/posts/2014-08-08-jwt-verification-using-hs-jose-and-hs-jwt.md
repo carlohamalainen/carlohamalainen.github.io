@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2014-08-08T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2014/08/08/jwt-verification-using-hs-jose-and-hs-jwt/
 title: JWT verification using hs-jose and hs-jwt
 url: /2014/08/08/jwt-verification-using-hs-jose-and-hs-jwt/
 ---

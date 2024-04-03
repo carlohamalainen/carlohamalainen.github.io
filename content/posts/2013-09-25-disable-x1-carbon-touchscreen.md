@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2013-09-25T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2013/09/25/disable-x1-carbon-touchscreen/
 title: Disable X1 Carbon touchscreen
 url: /2013/09/25/disable-x1-carbon-touchscreen/
 ---

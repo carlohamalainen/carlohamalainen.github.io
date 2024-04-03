@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2014-03-26T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2014/03/26/fix-crackling-audio-in-skype-on-debian-jessie/
 title: Fix crackling audio in Skype on Debian Jessie
 url: /2014/03/26/fix-crackling-audio-in-skype-on-debian-jessie/
 ---

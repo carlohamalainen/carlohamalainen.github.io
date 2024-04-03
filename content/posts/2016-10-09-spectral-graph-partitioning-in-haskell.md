@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2016-10-09T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2016/10/09/spectral-graph-partitioning-in-haskell/
 title: Spectral graph partitioning in Haskell
 url: /2016/10/09/spectral-graph-partitioning-in-haskell/
 ---

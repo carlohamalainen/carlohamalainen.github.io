@@ -1,7 +1,6 @@
 ---
 author: Carlo Hamalainen
 date: "2012-08-15T00:00:00Z"
-guid: http://carlo-hamalainen.net/2012/08/15/kogges-the-architecture-of-symbolic-computers-1991/
 title: Kogge's The Architecture of Symbolic Computers 1991
 url: /2012/08/15/kogges-the-architecture-of-symbolic-computers-1991/
 ---

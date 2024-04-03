@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 categories:
 date: "2007-12-11T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2007/12/11/1st-istanbul-design-theory-and-combinatorics-conference/
 title: 1st Istanbul design theory and combinatorics conference
 url: /2007/12/11/1st-istanbul-design-theory-and-combinatorics-conference/
 ---

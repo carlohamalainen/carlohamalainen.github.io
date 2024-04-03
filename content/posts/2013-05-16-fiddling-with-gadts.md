@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2013-05-16T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2013/05/16/fiddling-with-gadts/
 title: Fiddling with GADTs
 url: /2013/05/16/fiddling-with-gadts/
 ---

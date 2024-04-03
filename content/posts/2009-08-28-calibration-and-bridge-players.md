@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2009-08-28T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2009/08/28/calibration-and-bridge-players/
 title: Calibration and bridge players
 url: /2009/08/28/calibration-and-bridge-players/
 ---

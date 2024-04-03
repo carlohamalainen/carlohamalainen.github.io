@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2010-06-02T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2010/06/02/little-sunbeam-lucy-su/
 title: Little Sunbeam (Lucy Su)
 url: /2010/06/02/little-sunbeam-lucy-su/
 ---

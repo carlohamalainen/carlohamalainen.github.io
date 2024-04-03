@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2014-10-01T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2014/10/01/note-on-mapm/
 title: Note on mapM
 url: /2014/10/01/note-on-mapm/
 ---

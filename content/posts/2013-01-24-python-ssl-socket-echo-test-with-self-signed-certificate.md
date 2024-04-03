@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2013-01-24T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2013/01/24/python-ssl-socket-echo-test-with-self-signed-certificate/
 title: Python SSL socket echo test with self-signed certificate
 url: /2013/01/24/python-ssl-socket-echo-test-with-self-signed-certificate/
 ---

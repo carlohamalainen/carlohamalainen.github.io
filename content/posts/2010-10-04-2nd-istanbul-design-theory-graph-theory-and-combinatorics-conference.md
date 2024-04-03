@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2010-10-04T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2010/10/04/2nd-istanbul-design-theory-graph-theory-and-combinatorics-conference/
 title: 2nd Istanbul Design Theory, Graph Theory and Combinatorics Conference
 url: /2010/10/04/2nd-istanbul-design-theory-graph-theory-and-combinatorics-conference/
 ---

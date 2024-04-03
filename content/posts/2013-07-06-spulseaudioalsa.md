@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2013-07-06T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2013/07/06/spulseaudioalsa/
 title: s/pulseaudio/alsa
 url: /2013/07/06/spulseaudioalsa/
 ---

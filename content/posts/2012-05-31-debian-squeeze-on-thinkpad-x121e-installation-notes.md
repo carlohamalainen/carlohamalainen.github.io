@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2012-05-31T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2012/05/31/debian-squeeze-on-thinkpad-x121e-installation-notes/
 title: Debian Squeeze on Thinkpad X121e installation notes
 url: /2012/05/31/debian-squeeze-on-thinkpad-x121e-installation-notes/
 ---

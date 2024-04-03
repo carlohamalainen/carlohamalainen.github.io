@@ -1,7 +1,6 @@
 ---
 author: Carlo Hamalainen
 date: "2011-10-07T00:00:00Z"
-guid: http://carlo-hamalainen.net/2011/10/07/crabgrass-frontier-vs-regurgitators-superstraight/
 title: Crabgrass Frontier vs Regurgitator's Superstraight
 url: /2011/10/07/crabgrass-frontier-vs-regurgitators-superstraight/
 ---

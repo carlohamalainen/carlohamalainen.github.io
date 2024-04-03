@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2014-06-07T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2014/06/07/notes-on-free-monads/
 title: Notes on free monads
 url: /2014/06/07/notes-on-free-monads/
 ---

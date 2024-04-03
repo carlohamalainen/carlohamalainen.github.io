@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2015-01-05T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2015/01/05/nginx-gateway-time-out/
 title: Nginx gateway time-out
 url: /2015/01/05/nginx-gateway-time-out/
 ---

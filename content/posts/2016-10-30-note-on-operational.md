@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2016-10-30T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2016/10/30/note-on-operational/
 title: Note on operational
 url: /2016/10/30/note-on-operational/
 ---

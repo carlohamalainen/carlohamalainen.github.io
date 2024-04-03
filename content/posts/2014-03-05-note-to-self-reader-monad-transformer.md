@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2014-03-05T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2014/03/05/note-to-self-reader-monad-transformer/
 title: 'Note to self: reader monad transformer'
 url: /2014/03/05/note-to-self-reader-monad-transformer/
 ---

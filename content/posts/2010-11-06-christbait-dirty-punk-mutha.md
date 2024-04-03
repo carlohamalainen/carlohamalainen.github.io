@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2010-11-06T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2010/11/06/christbait-dirty-punk-mutha/
 title: 'Christbait: Dirty Punk Mutha'
 url: /2010/11/06/christbait-dirty-punk-mutha/
 ---

@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2012-05-11T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2012/05/11/r-makeflags-rpath-and-building-packages/
 title: R, MAKEFLAGS, rpath, and building packages
 url: /2012/05/11/r-makeflags-rpath-and-building-packages/
 ---

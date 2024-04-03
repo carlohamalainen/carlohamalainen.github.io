@@ -1,7 +1,6 @@
 ---
 author: Carlo Hamalainen
 date: "2016-12-31T00:00:00Z"
-guid: http://carlo-hamalainen.net/2016/12/31/subkeys-in-gpg-for-a-yubikey/
 title: Subkeys in GPG for a YubiKey
 url: /2016/12/31/subkeys-in-gpg-for-a-yubikey/
 ---

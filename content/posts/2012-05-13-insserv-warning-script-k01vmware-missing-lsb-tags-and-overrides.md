@@ -1,7 +1,6 @@
 ---
 author: Carlo Hamalainen
 date: "2012-05-13T00:00:00Z"
-guid: http://carlo-hamalainen.net/2012/05/13/insserv-warning-script-k01vmware-missing-lsb-tags-and-overrides/
 title: 'insserv: warning: script ''K01vmware'' missing LSB tags and overrides'
 url: /2012/05/13/insserv-warning-script-k01vmware-missing-lsb-tags-and-overrides/
 ---

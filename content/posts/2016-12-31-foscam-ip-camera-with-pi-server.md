@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2016-12-31T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2016/12/31/foscam-ip-camera-with-pi-server/
 title: Foscam IP camera with Pi server
 url: /2016/12/31/foscam-ip-camera-with-pi-server/
 ---

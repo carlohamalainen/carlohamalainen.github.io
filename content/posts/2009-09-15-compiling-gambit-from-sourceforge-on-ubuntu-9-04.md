@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2009-09-15T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2009/09/15/compiling-gambit-from-sourceforge-on-ubuntu-9-04/
 title: Compiling gambit from sourceforge on Ubuntu 9.04
 url: /2009/09/15/compiling-gambit-from-sourceforge-on-ubuntu-9-04/
 ---

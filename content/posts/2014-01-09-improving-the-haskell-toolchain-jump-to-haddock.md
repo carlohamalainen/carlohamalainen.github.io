@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2014-01-09T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2014/01/09/improving-the-haskell-toolchain-jump-to-haddock/
 title: 'Improving the Haskell toolchain: jump to haddock'
 url: /2014/01/09/improving-the-haskell-toolchain-jump-to-haddock/
 ---

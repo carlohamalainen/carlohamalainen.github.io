@@ -1,7 +1,6 @@
 ---
 author: Carlo Hamalainen
 date: "2010-06-18T00:00:00Z"
-guid: http://carlo-hamalainen.net/2010/06/18/recovery-of-data-from-a-raid-5-disk/
 title: Recovery of data from a RAID 5 disk
 url: /2010/06/18/recovery-of-data-from-a-raid-5-disk/
 ---

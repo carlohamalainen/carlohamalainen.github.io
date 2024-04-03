@@ -1,7 +1,6 @@
 ---
 author: Carlo Hamalainen
 date: "2011-03-05T00:00:00Z"
-guid: http://carlo-hamalainen.net/2011/03/05/sbcl-stand-alone-packages-copy-n-paste-instructions/
 title: SBCL stand alone + packages. Copy n paste instructions.
 url: /2011/03/05/sbcl-stand-alone-packages-copy-n-paste-instructions/
 ---

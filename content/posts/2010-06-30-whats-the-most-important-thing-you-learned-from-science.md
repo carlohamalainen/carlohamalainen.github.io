@@ -1,7 +1,6 @@
 ---
 author: Carlo Hamalainen
 date: "2010-06-30T00:00:00Z"
-guid: http://carlo-hamalainen.net/2010/06/30/whats-the-most-important-thing-you-learned-from-science/
 title: What's the most important thing you learned from science?
 url: /2010/06/30/whats-the-most-important-thing-you-learned-from-science/
 ---

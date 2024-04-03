@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2009-05-11T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2009/05/11/open-access/
 title: Open access
 url: /2009/05/11/open-access/
 ---

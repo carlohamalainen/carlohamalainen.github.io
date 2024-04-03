@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2017-03-25T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2017/03/25/data-proxy/
 title: Data.Proxy
 url: /2017/03/25/data-proxy/
 ---

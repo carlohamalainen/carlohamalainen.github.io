@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2011-06-05T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2011/06/05/thinkpad-x61-fan-replacement/
 title: Thinkpad X61 fan replacement
 url: /2011/06/05/thinkpad-x61-fan-replacement/
 ---

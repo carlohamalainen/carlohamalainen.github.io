@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2017-03-12T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2017/03/12/raspbian-with-full-disk-encryption/
 title: Raspbian with full disk encryption
 url: /2017/03/12/raspbian-with-full-disk-encryption/
 ---

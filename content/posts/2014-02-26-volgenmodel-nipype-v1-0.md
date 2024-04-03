@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2014-02-26T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2014/02/26/volgenmodel-nipype-v1-0/
 title: volgenmodel-nipype v1.0
 url: /2014/02/26/volgenmodel-nipype-v1-0/
 ---

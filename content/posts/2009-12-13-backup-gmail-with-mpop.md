@@ -2,7 +2,6 @@
 author: Carlo Hamalainen
 date: "2009-12-13T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2009/12/13/backup-gmail-with-mpop/
 title: Backup gmail with mpop
 url: /2009/12/13/backup-gmail-with-mpop/
 ---

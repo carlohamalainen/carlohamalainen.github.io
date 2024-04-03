@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2011-07-29T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2011/07/29/how-to-build-a-static-unison-binary/
 title: How to build a static Unison binary
 url: /2011/07/29/how-to-build-a-static-unison-binary/
 ---

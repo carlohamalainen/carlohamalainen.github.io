@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2013-11-02T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2013/11/02/debian-wheezy-on-x1-carbon/
 title: Debian Wheezy on X1 Carbon
 url: /2013/11/02/debian-wheezy-on-x1-carbon/
 ---

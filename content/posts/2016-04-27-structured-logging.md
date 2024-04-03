@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2016-04-27T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2016/04/27/structured-logging/
 title: Structured logging
 url: /2016/04/27/structured-logging/
 ---

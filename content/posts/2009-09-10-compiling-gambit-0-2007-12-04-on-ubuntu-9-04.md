@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2009-09-10T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2009/09/10/compiling-gambit-0-2007-12-04-on-ubuntu-9-04/
 title: Compiling gambit-0.2007.12.04 on Ubuntu 9.04
 url: /2009/09/10/compiling-gambit-0-2007-12-04-on-ubuntu-9-04/
 ---

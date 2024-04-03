@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 categories:
 date: "2007-12-11T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2007/12/11/metapost-examples/
 title: MetaPost Examples
 url: /2007/12/11/metapost-examples/
 ---

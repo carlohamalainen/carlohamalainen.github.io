@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2015-01-04T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2015/01/04/circus-problem/
 title: Circus problem
 url: /2015/01/04/circus-problem/
 ---

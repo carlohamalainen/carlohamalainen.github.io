@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2015-06-30T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2015/06/30/lens-hasas-for-api-changes/
 title: Lens Has/As for API changes
 url: /2015/06/30/lens-hasas-for-api-changes/
 ---

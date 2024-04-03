@@ -2,7 +2,6 @@
 author: Carlo Hamalainen
 date: "2008-08-16T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2008/08/16/pizza-recipe/
 title: Pizza recipe
 url: /2008/08/16/pizza-recipe/
 ---

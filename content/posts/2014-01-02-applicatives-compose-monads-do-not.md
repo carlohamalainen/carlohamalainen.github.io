@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2014-01-02T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2014/01/02/applicatives-compose-monads-do-not/
 title: Applicatives compose, monads do not
 url: /2014/01/02/applicatives-compose-monads-do-not/
 ---

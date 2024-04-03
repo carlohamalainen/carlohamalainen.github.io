@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2015-05-18T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2015/05/18/note-to-self-parallel-io/
 title: 'Note to self: parallel-io'
 url: /2015/05/18/note-to-self-parallel-io/
 ---

@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2010-02-18T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2010/02/18/telstra-prepaid-wireless-broadband-on-ubuntu-9-0410-04/
 title: Telstra prepaid wireless broadband on Ubuntu 9.04/10.04
 url: /2010/02/18/telstra-prepaid-wireless-broadband-on-ubuntu-9-0410-04/
 ---

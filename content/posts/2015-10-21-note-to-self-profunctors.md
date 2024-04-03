@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2015-10-21T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2015/10/21/note-to-self-profunctors/
 title: 'Note to self: profunctors'
 url: /2015/10/21/note-to-self-profunctors/
 ---

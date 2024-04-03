@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2013-08-08T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2013/08/08/new-yesod-blog/
 title: New Yesod blog
 url: /2013/08/08/new-yesod-blog/
 ---

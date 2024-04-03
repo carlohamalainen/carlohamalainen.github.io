@@ -2,7 +2,6 @@
 author: Carlo Hamalainen
 
 date: "2017-08-31T02:10:51Z"
-guid: http://carlo-hamalainen.net/?p=994
 title: Push to Amazon Glacier using amazonka
 url: /2017/08/31/push-to-amazon-glacier-using-amazonka/
 ---

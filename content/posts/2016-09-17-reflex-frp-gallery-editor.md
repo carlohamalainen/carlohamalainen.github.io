@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2016-09-17T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2016/09/17/reflex-frp-gallery-editor/
 title: Reflex FRP gallery editor
 url: /2016/09/17/reflex-frp-gallery-editor/
 ---

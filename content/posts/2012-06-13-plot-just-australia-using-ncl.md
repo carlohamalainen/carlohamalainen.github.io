@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2012-06-13T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2012/06/13/plot-just-australia-using-ncl/
 title: Plot just Australia using NCL
 url: /2012/06/13/plot-just-australia-using-ncl/
 ---

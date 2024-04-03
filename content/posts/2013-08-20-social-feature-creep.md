@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2013-08-20T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2013/08/20/social-feature-creep/
 title: Social feature creep
 url: /2013/08/20/social-feature-creep/
 ---

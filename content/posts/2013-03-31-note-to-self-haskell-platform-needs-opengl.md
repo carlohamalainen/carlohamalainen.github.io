@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2013-03-31T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2013/03/31/note-to-self-haskell-platform-needs-opengl/
 title: 'Note to self: haskell-platform needs OpenGL'
 url: /2013/03/31/note-to-self-haskell-platform-needs-opengl/
 ---

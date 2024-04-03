@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2009-10-31T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2009/10/31/firefox-fonts-ubuntu-karmic-9-10/
 title: Firefox fonts Ubuntu Karmic 9.10
 url: /2009/10/31/firefox-fonts-ubuntu-karmic-9-10/
 ---

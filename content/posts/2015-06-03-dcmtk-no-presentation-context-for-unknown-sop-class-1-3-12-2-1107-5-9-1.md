@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2015-06-03T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2015/06/03/dcmtk-no-presentation-context-for-unknown-sop-class-1-3-12-2-1107-5-9-1/
 title: 'DCMTK: No presentation context for: (unknown SOP class) 1.3.12.2.1107.5.9.1'
 url: /2015/06/03/dcmtk-no-presentation-context-for-unknown-sop-class-1-3-12-2-1107-5-9-1/
 ---

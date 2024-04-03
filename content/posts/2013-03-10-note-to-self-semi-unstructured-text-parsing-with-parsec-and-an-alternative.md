@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2013-03-10T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2013/03/10/note-to-self-semi-unstructured-text-parsing-with-parsec-and-an-alternative/
 title: 'note to self: semi-unstructured text parsing with Parsec (and an alternative)'
 url: /2013/03/10/note-to-self-semi-unstructured-text-parsing-with-parsec-and-an-alternative/
 ---

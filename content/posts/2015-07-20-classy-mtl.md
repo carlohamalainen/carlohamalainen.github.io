@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2015-07-20T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2015/07/20/classy-mtl/
 title: Classy mtl
 url: /2015/07/20/classy-mtl/
 ---

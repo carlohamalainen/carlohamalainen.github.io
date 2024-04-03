@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2013-10-17T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2013/10/17/cheap-standing-desk/
 title: Cheap standing desk
 url: /2013/10/17/cheap-standing-desk/
 ---

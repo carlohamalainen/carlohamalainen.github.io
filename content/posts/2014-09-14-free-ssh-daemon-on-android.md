@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2014-09-14T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2014/09/14/free-ssh-daemon-on-android/
 title: Free SSH daemon on Android
 url: /2014/09/14/free-ssh-daemon-on-android/
 ---

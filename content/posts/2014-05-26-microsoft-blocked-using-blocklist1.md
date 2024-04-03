@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2014-05-26T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2014/05/26/microsoft-blocked-using-blocklist1/
 title: Microsoft "blocked using Blocklist1"
 url: /2014/05/26/microsoft-blocked-using-blocklist1/
 ---

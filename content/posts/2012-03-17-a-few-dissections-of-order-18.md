@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2012-03-17T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2012/03/17/a-few-dissections-of-order-18/
 title: A few dissections of order 18
 url: /2012/03/17/a-few-dissections-of-order-18/
 ---

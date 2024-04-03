@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2013-09-07T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2013/09/07/strip-android-kindle-drm/
 title: Strip Android Kindle DRM
 url: /2013/09/07/strip-android-kindle-drm/
 ---

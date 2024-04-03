@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2009-11-19T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2009/11/19/gibbs-sampling/
 title: Gibbs sampling
 url: /2009/11/19/gibbs-sampling/
 ---

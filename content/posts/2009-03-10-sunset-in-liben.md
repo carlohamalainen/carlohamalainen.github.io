@@ -2,7 +2,6 @@
 author: Carlo Hamalainen
 date: "2009-03-10T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2009/03/10/sunset-in-liben/
 title: Sunset in Libeň
 url: /2009/03/10/sunset-in-liben/
 ---

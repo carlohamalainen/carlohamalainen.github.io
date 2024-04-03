@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2014-03-27T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2014/03/27/note-to-self-loeb-and-dynamic-programming/
 title: 'Note to self: loeb and dynamic programming'
 url: /2014/03/27/note-to-self-loeb-and-dynamic-programming/
 ---

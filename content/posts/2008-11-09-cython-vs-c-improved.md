@@ -3,7 +3,6 @@ author: Carlo Hamalainen
 
 date: "2008-11-09T00:00:00Z"
 format: image
-guid: http://carlo-hamalainen.net/2008/11/09/cython-vs-c-improved/
 title: Cython vs. C++, improved
 url: /2008/11/09/cython-vs-c-improved/
 ---
