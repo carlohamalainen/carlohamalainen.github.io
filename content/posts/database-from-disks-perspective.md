@@ -2,7 +2,7 @@
 date: 2024-03-31T10:11:32+10:00
 title:  How a Database Looks from a Disk’s Perspective
 author: "Carlo Hamalainen"
-url: /2024-03-31/database-from-disks-perspective
+url: /2024/03/31/database-from-disks-perspective
 ---
 
 Wonderful visualisations in this [talk](https://www.p99conf.io/session/how-a-database-looks-from-a-disks-perspective/):

@@ -2,7 +2,7 @@
 date: 2024-04-02T09:57:06+10:00
 title: Bits Between the Bits
 author: "Carlo Hamalainen"
-url: /2024-04-02/bits-between-the-bits
+url: /2024/04/02/bits-between-the-bits
 ---
 
 This is a fun talk about what goes on before your program starts executing ``main``:
