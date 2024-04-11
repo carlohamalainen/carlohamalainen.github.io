@@ -5,30 +5,51 @@ author: "Carlo Hamalainen"
 url: /2024/04/05/grafana-heatmaps
 ---
 
-A service that does any important kind of work will have some critical sections, for example looking up
-data in a cache, computing an intermediate result, and so on. My favourite visualisation for such durations
-is the [heatmap](https://grafana.com/docs/grafana/latest/panels-visualizations/visualizations/heatmap/)
-in [Grafana](https://grafana.com):
 
-{{< figure src="/heatmap_nice.png" width=70% >}}
+Heatmaps are an excellent way to visualise real-time system performance, as they provide a concise and intuitive
+representation of response time distributions across multiple dimensions. Some of these dimensions include:
 
-A heatmap is a time series visualisation where each time slice is a histogram. The colour of a cell is the count of the number
-of durations that fall into that bucket. Unlike other visualisation methods like time series averages or
-quantiles, the entire distribution of values is shown. Outliers will always be apparent. It's important to track
-outliers because they correspond to our users' worst experiences - think of them as [misery metrics](https://www.p99conf.io/session/misery-metrics-consequences/).
+1. Time: a heatmap can be plotted over different time intervals to find temporal patterns in system performance.
+2. System components: by filtering on different subsystems, we can see the impact of database queries, caches, or API endpoints.
+3. Geographic locations: often this can help identify issues relating to network latency.
+4. User segments: users may experience different performance on mobile, laptop, desktop, or across different subscription levels like free vs premium.
+5. Request types: request types may correspond to different underlying operations like read vs write-heavy actions.
 
-Using our heatmap we can make qualitative statements:
+By using colour-coded histogram slices,
+heatmaps allow us to quickly identify patterns, anomalies, and trends in system behavior. Heatmaps can help
+guide a data-driven approach to system optimisation.
 
-* Periodically there is a burst of 10 or so requests that result in 1500ms processing times.
-* Typical responses are around 1000ms. There was a bucket of 17 (white cell) show this is the most frequent processing time.
-* It is rare for a request to be processed in under 1000ms. When it happens there is only a single request (dark cells corresponding to single values).
+To make use of heatmaps, we have to do three things:
 
-I use heatmaps extensively in my day job. There, other patterns immediately show up like the Mon-Fri/Sat trading week, Singapore
-opening hours, and periodic slowdown due to systems being impact by other large batches or services.
+1. Log the data.
+2. Set up a query for the data.
+3. Visualise the data.
 
-# Logging durations
+This blog post shows how to achieve all three steps using the
+[Grafana](https://grafana.com) stack
+consisting of
+[Promtail](https://grafana.com/docs/loki/latest/send-data/promtail/),
+[Loki](https://grafana.com/docs/loki/latest/),
+and
+[heatmap visualisations](https://grafana.com/docs/grafana/latest/panels-visualizations/visualizations/heatmap/).
 
-A simple way to capture these metrics is to write a log line for each request with the duration in milliseconds:
+# Log the data
+
+The simplest approach is to add manual timing information to existing log records.
+For example, time a critical section of code and then log the duration in milliseconds using a
+structured logging library like [slog](https://pkg.go.dev/log/slog):
+
+```go
+    startTime := time.Now()
+
+    // critical section of code that we are timing
+
+    elapsed := time.Since(startTime)
+
+    logger.Info("step", "duration", elapsed.Milliseconds())
+```
+
+This produces log lines similar to:
 
 ```json
 {
@@ -45,17 +66,32 @@ A simple way to capture these metrics is to write a log line for each request wi
 }
 ```
 
-Using slog in Go, we produce lines like so:
+It's good to add as much detail to this log line so that all five dimensions can be filtered (see the list at the top of this blog post).
 
-```go
-    logger.Info("step", "duration", rand.Intn(1000))  // synthetic data for the blog post
+Promtail can be configured to parse the logs and send to Loki. For local testing, here's a simple job
+description that sends data to a Loki instance running on localhost:
+
+
+```yaml
+- job_name: demo-app
+  static_configs:
+    - targets:
+        - localhost
+      labels:
+        job: app
+        __path__: /tmp/app.log
 ```
 
-(In reality we would take note of the walltime before and after and compute the duration. Or go one better and use OpenTelemetry to trace the process.)
+# Query the data
 
-We use [Promtail](https://grafana.com/docs/loki/latest/send-data/promtail/) to ship the
-logs to [Loki](https://grafana.com/docs/loki/latest/). Querying
-using [logcli](https://grafana.com/docs/loki/latest/query/logcli/), we filter on ``job="app"`` and select lines with a ``duration``:
+To query the data in Loki, we build a [LogQL](https://grafana.com/docs/loki/latest/query/) query that filters on
+``job="app"`` and selects lines with a ``duration``:
+
+```
+{job="app"} |= `duration`
+```
+
+Using ``logcli``, assuming we have Loki running locally:
 
 ```shell-session
 $ LOKI_ADDR=http://localhost:3100 logcli query '{job="app"} |= `duration`'
@@ -70,7 +106,9 @@ $ LOKI_ADDR=http://localhost:3100 logcli query '{job="app"} |= `duration`'
 2024-04-05T10:59:26+10:00 {} {"time":"2024-04-05T10:59:26.800554+10:00","level":"INFO","source":{"function":"main.main","file":"/Users/carlo/grafana/demo-logs/main.go","line":25},"msg":"step","version":1,"duration":175}
 ```
 
-Looks good, but we want to extract the ``duration``, so pipe it to the ``json`` stage so that it appears as a label:
+This confirms that the log entries are discoverable. But we need to extract
+the ``duration`` label so that we can compute a heatmap. Pipe the log output to a ``json``
+stage so that it parses the json values:
 
 ```shell-session
 $ LOKI_ADDR=http://localhost:3100 logcli query '{job="app"} |= `duration` | json'
@@ -95,51 +133,16 @@ $ LOKI_ADDR=http://localhost:3100 logcli query '{job="app"} |= `duration` | json
 2024-04-05T10:59:25+10:00 {duration="860", time="2024-04-05T10:59:25.850449+10:00"} {"time":"2024-04-05T10:59:25.850449+10:00","level":"INFO","source":{"function":"main.main","file":"/Users/carlo/grafana/demo-logs/main.go","line":25},"msg":"step","version":1,"duration":860}
 ```
 
-Somewhat surprisingly the labels are all strings
+Now we see duration labels:
 
 ```
 {duration="860", time="2024-04-05T10:59:25.850449+10:00"}
 ```
 
-but duration is definitely a number in our original logs.
-
-Reading [loki/latest/query/template_functions](https://grafana.com/docs/loki/latest/query/template_functions/) we might be tempted to use a
-template to turn the string into an integer. Let's create a new label ``duration2`` and use a template:
-
-```
-{job="app"} |= `duration`
-            | json
-            | label_format duration2=`{{ .duration | int }}`
-```
-
-Still no luck; ``duration2`` is a string:
-
-```shell-session
-$ LOKI_ADDR=http://localhost:3100 logcli query '{job="app"} |= `duration` | json | label_format duration2=`{{ .duration | int }}`'
-2024/04/05 11:06:56 http://localhost:3100/loki/api/v1/query_range?direction=BACKWARD&end=1712279216041691000&limit=30&query=%7Bjob%3D%22app%22%7D+%7C%3D+%60duration%60+%7C+json+%7C+label_format+duration2%3D%60%7B%7B+.duration+%7C+int+%7D%7D%60&start=1712275616041691000
-2024/04/05 11:06:56 Common labels: {filename="/tmp/app.log", job="app", level="INFO", msg="step", service_name="app", source_file="/Users/carlo/grafana/demo-logs/main.go", source_function="main.main", source_line="25", version="1"}
-
-...
-
-2024-04-05T10:59:11+10:00 {duration="141", duration2="141", time="2024-04-05T10:59:11.744378+10:00"} {"time":"2024-04-05T10:59:11.744378+10:00","level":"INFO","source":{"function":"main.main","file":"/Users/carlo/grafana/demo-logs/main.go","line":25},"msg":"step","version":1,"duration":141}
-```
-
-Wondering if the label formatter is working, let's multiply by 10:
-
-```shell-session
-$ LOKI_ADDR=http://localhost:3100 \
-  logcli query '{job="app"} |= `duration` | json | label_format durationX10=`{{ mul .duration 10 }}`'
-2024/04/05 11:32:56 http://localhost:3100/loki/api/v1/query_range?direction=BACKWARD&end=1712280776533444000&limit=30&query=%7Bjob%3D%22app%22%7D+%7C%3D+%60duration%60+%7C+json+%7C+label_format+durationX10%3D%60%7B%7B+mul+.duration+10+%7D%7D%60&start=1712277176533444000
-2024/04/05 11:32:56 Common labels: {filename="/tmp/app.log", job="app", level="INFO", msg="step", service_name="app", source_file="/Users/carlo/grafana/demo-logs/main.go", source_function="main.main", source_line="25", version="1"}
-
-...
-
-2024-04-05T10:59:11+10:00 {duration="141", durationX10="1410", time="2024-04-05T10:59:11.744378+10:00"} {"time":"2024-04-05T10:59:11.744378+10:00","level":"INFO","source":{"function":"main.main","file":"/Users/carlo/grafana/demo-logs/main.go","line":25},"msg":"step","version":1,"duration":141}
-```
-
-It is working: we see ``{duration="141", durationX10="1410", ..."}``.
-
-Looking into the [source for Loki](https://github.com/grafana/loki/blob/3ece2ea6c470b7a53e92c395e28af2999c328199/pkg/loghttp/query.go#L277-L281) we see that ``Stream`` is a ``LabelSet``, and ``LabelSet`` is a ``map[string]string``:
+This surprised me because I wasn't aware that _label values are strings_. This seems to be a historical consequence
+of Loki building on Prometheus. In
+[the source for Loki](https://github.com/grafana/loki/blob/3ece2ea6c470b7a53e92c395e28af2999c328199/pkg/loghttp/query.go#L277-L281)
+we see that ``Stream`` is a ``LabelSet``, and ``LabelSet`` is a ``map[string]string``:
 
 ```go
 type Stream struct {
@@ -151,50 +154,68 @@ type Stream struct {
 type LabelSet map[string]string
 ```
 
-It was easy to find the ``LabelSet`` in the response by setting a few breakpoints, attaching to a running ``loki`` process, and
-sending a query using ``logcli``.
+(Not being familiar with the Loki source, I stepped through
+a query in the VS Code debugger (which uses [Delve](https://github.com/go-delve/delve))
+which showed the [string value for a label](/debugging_loki_stream.jpg).)
 
-{{< figure src="/debugging_loki_stream.jpg" width=70% >}}
+Before I realised that labels are strings, I read [loki/latest/query/template_functions](https://grafana.com/docs/loki/latest/query/template_functions/)
+and got the mistaken impression that I could use a template to cast a value to another type.
+Along this line I tried
 
-There are two ways around this issue of labels being strings.
+```
+{job="app"} |= `duration`
+            | json
+            | label_format duration2=`{{ .duration | int }}`
+```
 
-## "no heatmap fields found"
+but ``duration2`` is still a string.
 
-Given that labels are strings, let's go a step back and try to create a heatmap in Grafana using the
-basic query
+# Visualise the data
+
+Given that labels are strings, we will deal with the type conversion in the next step, visualisation.
+
+If we try to create a heatmap visualisation in Grafana using this query
 
 ```
 {job="app"} |= `duration` | json
 ```
 
-We expect this to fail because there are no numerical fields:
+then Grafana complains "no heatmap fields found":
 
 {{< figure src="/no_heatmap_fields.png" width=70% >}}
 
-Let's add two transformations: first extract the labels, and then convert ``duration`` to a number:
+The solution is to add two transformations (post-processing steps):
+first extract the labels, and then convert ``duration`` to a number:
 
 {{< figure src="/transforms-grafana.png" width=50% >}}
 
-This gives us our nice heatmap:
+Now we can plot a heatmap:
 
 {{< figure src="/heatmap_nice.png" width=70% >}}
 
-Side note: I asked Grafana to calculate the heatmap from my data (Heatmap settings, ``Calculate from data = yes``).
+Heatmaps are so easy to read. At a glance we can say:
 
-Also beware that the Loki query has an implicit line limit - here I set it to the maximum 5000:
+* Periodically there is a burst of 10 or so requests that result in 1500ms response times.
+* Typical responses are around 1000ms. There was a bucket of 17 (white cell) show this is the most frequent response time.
+* It is rare for a request to be processed in under 1000ms. When it happens there is only a single request (dark cells corresponding to single values).
+
+Beware that the Loki query has an implicit line limit - here I set it to the maximum 5000:
 
 {{< figure src="/line_limit.png" width=60% >}}
 
 At scale, with tens of thousands of requests in the viewing range,
 the heatmap would not be truly representative of the data because
-some log entries would be dropped.
+some log entries would be dropped. In the next section we will see
+an alternative query type that avoids this issue.
 
-## Using max_over_time instead
+# Metric queries
 
-A better idea is to use a [metric query](https://grafana.com/docs/loki/latest/query/metric_queries/#unwrapped-range-aggregations)
-so that Loki can aggregate data server-side.
+The query in the previous section sends the raw data to Grafana for construction of the heatmap. In
+contrast, [metric queries](https://grafana.com/docs/loki/latest/query/metric_queries/#unwrapped-range-aggregations)
+are aggregated by Loki. In this way we avoid the potential line limit issue.
 
-In our case, we care about the worst possible behaviour, so we use a maximum over time:
+We care about [worst case](https://www.p99conf.io/session/misery-metrics-consequences/).
+behaviour, so let's use the ``max_over_time`` query over ``duration``:
 
 ```
 max_over_time({job="app"} |= `duration`
@@ -204,11 +225,12 @@ max_over_time({job="app"} |= `duration`
 
 This is simpler to use in Grafana as well - we don't have to set up the two transformations to extract ``duration`` as a number.
 
-## Quirks of heatmaps with custom ranges
+# Quirks of heatmaps with custom ranges
 
-I noticed that LogQL/Grafana can oversample when we set the range to a fixed value and zoom in too far (here we use ``[1m]`` for one minute).
+The default in Grafana is to use a custom step size (the ``[$__auto]`` parameter in the query). I recommend keeping this default.
 
-{{< figure src="/max_over_time_overcount.png" width=70% >}}
+When we set the step size to a fixed value like ``1m`` (one minute) and zoom in too far,
+LogQL/Grafana will oversample values: {{< figure src="/max_over_time_overcount.png" width=70% >}}
 
 Grafana drew 20 squares representing the count 50, and one for count 45; This total 1045 corresponds to the number of times that ``1899`` is sampled. But in this contrived example there is only a single log entry with ``duration = 1899``:
 
@@ -220,7 +242,8 @@ Grafana drew 20 squares representing the count 50, and one for count 45; This to
 {"time":"2024-04-06T19:17:56.945765+10:00","duration":1899,"level":"INFO","source":{"function":"main.main","file":"/Users/carlo/grafana/demo-logs/main.go","line":26},"msg":"step","version":1}
 ```
 
-Adding a ``fmt.Printf`` to [engine.go](https://github.com/grafana/loki/blob/45ca2fa5122e3281c4dbd107977cc655a43574d8/pkg/logql/engine.go#L437-L444):
+I was curious so I stepped through the query in VS Code and added a ``fmt.Printf``
+in [engine.go](https://github.com/grafana/loki/blob/45ca2fa5122e3281c4dbd107977cc655a43574d8/pkg/logql/engine.go#L437-L444):
 
 ```go
 series := make([]promql.Series, 0, len(seriesIndex))
@@ -234,7 +257,7 @@ series := make([]promql.Series, 0, len(seriesIndex))
 	return result, stepEvaluator.Error()
 ```
 
-shows us where the oversampling is happening:
+Now we see the oversampling:
 
 ```
 appending series: {filename="/tmp/app.log", job="app", level="INFO", msg="step", service_name="app", source_file="/Users/carlo/grafana/demo-logs/main.go", source_function="main.main", source_line="26", time="2024-04-06T19:17:56.945765+10:00", version="1"} =>
@@ -260,14 +283,12 @@ appending series: {filename="/tmp/app.log", job="app", level="INFO", msg="step",
 My understanding is that the "step size" is too small relative to the total time period so the sliding window samples the single
 value 1899 too many times.
 
-The heatmap works fine when we set the range to the default ``[$__auto]`` in Grafana.
-
-## Further reading
-
-How to undersample: <https://www.robustperception.io/step-and-query_range/>
+# Further reading
 
 Loki builds on Prometheus as one can see from the code snippet above: the series are ``promql.Series``. This blog post explains how
-the range aggregations work: <https://iximiuz.com/en/posts/prometheus-functions-agg-over-time/>
+the range aggregations work with sliding windows: <https://iximiuz.com/en/posts/prometheus-functions-agg-over-time/>
+
+How to undersample: <https://www.robustperception.io/step-and-query_range/>
 
 An old Github issue about step, resolution, interval, etc:
 [Loki: step/resolution/interval/min_interval is confusing #52387](https://github.com/grafana/grafana/issues/52387)
@@ -278,3 +299,9 @@ An old Github issue about interval not scaling with resolution:
 A talk about "misery metrics" from p99conf:
 
 {{< youtube K1jasTyGLr8 >}}
+
+# Acknowledgements
+
+I acknowledge feedback on an earlier draft from <https://nadiah.org> and <https://claude.ai>.
+
+
