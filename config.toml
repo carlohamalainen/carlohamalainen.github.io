@@ -7,7 +7,7 @@ paginate = 1000
 enableEmoji = true
 
 # Enable Disqus comments
-# disqusShortname = "yourdiscussshortname"
+disqusShortname = 'carlo-hamalainen'
 
 [markup.highlight]
 noClasses = false
