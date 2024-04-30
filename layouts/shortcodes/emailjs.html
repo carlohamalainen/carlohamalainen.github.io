@@ -11,6 +11,10 @@
 
 <script type="text/javascript">
     window.onload = function() {
+
+      // Clear the form fields on page load
+      document.getElementById('contact-form').reset();
+
       document.getElementById('contact-form').addEventListener('submit', function(event) {
         event.preventDefault();
 
