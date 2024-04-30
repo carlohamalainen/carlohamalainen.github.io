@@ -1,6 +1,10 @@
 +++
-title = "Contact"
+title = "Contact Form"
 slug = "contact"
 +++
 
-email: carlo@carlo-hamalainen.net
+If you prefer to remain anonymous, enter an email like ``anonymous@example.com``
+
+Hit reload if you want to send another message 😄
+
+{{< emailjs >}}

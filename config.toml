@@ -7,7 +7,7 @@ paginate = 1000
 enableEmoji = true
 
 # Enable Disqus comments
-disqusShortname = 'carlo-hamalainen'
+# disqusShortname = 'carlo-hamalainen'
 
 [markup.highlight]
 noClasses = false
@@ -177,10 +177,10 @@ languageName = ":uk:"
 # weight = 2
 # url = "posts/"
 
-# [[languages.en.menu.main]]
-# name = "Contact"
-# weight = 5
-# url = "contact/"
+[[languages.en.menu.main]]
+name = "Contact"
+weight = 5
+url = "contact/"
 
 [markup]
   [markup.goldmark]
