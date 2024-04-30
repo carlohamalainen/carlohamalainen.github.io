@@ -10,35 +10,39 @@
 </script>
 
 <script type="text/javascript">
-window.onload = function() {
-  document.getElementById('contact-form').addEventListener('submit', function(event) {
-    event.preventDefault();
+    window.onload = function() {
+      document.getElementById('contact-form').addEventListener('submit', function(event) {
+        event.preventDefault();
 
-    // Get the form element
-    const form = document.getElementById('contact-form');
+        // Get the submit button element
+        const submitButton = document.querySelector('input[type="submit"]');
 
-    // Hide the form
-    form.style.display = 'none';
+        // Disable the submit button
+        submitButton.disabled = true;
 
-    // Show the loading message
-    document.getElementById('loading-message').style.display = 'block';
+        // Show the loading message
+        document.getElementById('loading-message').style.display = 'block';
 
-    // Send the form data using EmailJS
-    emailjs.sendForm('service_mp4a729', 'template_p31bnjn', this)
-      .then(() => {
-        // Show the success message
-        document.getElementById('success-message').style.display = 'block';
-        // Hide the loading message
-        document.getElementById('loading-message').style.display = 'none';
-      }, (error) => {
-        // Show the error message
-        document.getElementById('error-message').style.display = 'block';
-        // Hide the loading message
-        document.getElementById('loading-message').style.display = 'none';
+        // Send the form data using EmailJS
+        emailjs.sendForm('service_mp4a729', 'template_p31bnjn', this)
+          .then(() => {
+            // Show the success message
+            document.getElementById('success-message').style.display = 'block';
+            // Hide the loading message
+            document.getElementById('loading-message').style.display = 'none';
+            // Enable the submit button
+            submitButton.disabled = false;
+          }, (error) => {
+            // Show the error message
+            document.getElementById('error-message').style.display = 'block';
+            // Hide the loading message
+            document.getElementById('loading-message').style.display = 'none';
+            // Enable the submit button
+            submitButton.disabled = false;
+          });
       });
-  });
-}
-</script>
+    }
+    </script>
 
 <style>
     .loader {
