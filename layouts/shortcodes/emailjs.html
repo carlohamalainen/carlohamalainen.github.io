@@ -10,43 +10,54 @@
 </script>
 
 <script type="text/javascript">
-    window.onload = function() {
+window.onload = function() {
+  document.getElementById('contact-form').addEventListener('submit', function(event) {
+    event.preventDefault();
 
-      // Clear the form fields on page load
-      document.getElementById('contact-form').reset();
+    // Get the submit button element
+    const submitButton = document.querySelector('input[type="submit"]');
 
-      document.getElementById('contact-form').addEventListener('submit', function(event) {
-        event.preventDefault();
+    // Disable the submit button
+    submitButton.disabled = true;
 
-        // Get the submit button element
-        const submitButton = document.querySelector('input[type="submit"]');
+    // Show the loading message
+    document.getElementById('loading-message').style.display = 'block';
 
-        // Disable the submit button
-        submitButton.disabled = true;
-
-        // Show the loading message
-        document.getElementById('loading-message').style.display = 'block';
-
-        // Send the form data using EmailJS
-        emailjs.sendForm('service_mp4a729', 'template_p31bnjn', this)
-          .then(() => {
-            // Show the success message
-            document.getElementById('success-message').style.display = 'block';
-            // Hide the loading message
-            document.getElementById('loading-message').style.display = 'none';
-            // Enable the submit button
-            submitButton.disabled = false;
-          }, (error) => {
-            // Show the error message
-            document.getElementById('error-message').style.display = 'block';
-            // Hide the loading message
-            document.getElementById('loading-message').style.display = 'none';
-            // Enable the submit button
-            submitButton.disabled = false;
-          });
+    // Send the form data using EmailJS
+    emailjs.sendForm('service_mp4a729', 'template_p31bnjn', this)
+      .then(() => {
+        // Show the success message
+        document.getElementById('success-message').style.display = 'block';
+        // Hide the loading message
+        document.getElementById('loading-message').style.display = 'none';
+        // Disable the form fields and set background and text color
+        document.getElementById('contact-form').querySelectorAll('input, textarea').forEach(field => {
+          field.disabled = true;
+          field.style.backgroundColor = '#f0f0f0';
+          field.style.color = '#888888';
+        });
+      }, (error) => {
+        // Show the error message
+        document.getElementById('error-message').style.display = 'block';
+        // Hide the loading message
+        document.getElementById('loading-message').style.display = 'none';
+        // Enable the submit button
+        submitButton.disabled = false;
+        // Enable the form fields and unset background and text color
+        document.getElementById('contact-form').querySelectorAll('input, textarea').forEach(field => {
+          field.disabled = false;
+          field.style.backgroundColor = '';
+          field.style.color = '';
+        });
       });
-    }
-    </script>
+  });
+}
+</script>
+
+<!-- ... (HTML form and messages remain the same) -->
+
+
+
 
 <style>
     .loader {
@@ -119,5 +130,12 @@
   </form>
 
   <div id="loading-message" style="display: none;"><div class="loader"></div>Sending your message...</div>
-  <div id="success-message" style="display: none;">Your message has been sent successfully!</div>
+  <div id="success-message" style="display: none;">
+    <p>
+        Your message has been sent successfully and is awaiting moderation.
+    </p>
+    <p>
+        Hit reload if you want to send another message 😄
+    </p>
+    </div>
   <div id="error-message" style="display: none;">Oops! Something went wrong. Please try again later.</div>
