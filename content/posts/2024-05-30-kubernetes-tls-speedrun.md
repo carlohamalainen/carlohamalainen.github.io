@@ -22,8 +22,16 @@ Make sure that ``kubectl`` commands work.
 To follow along, clone [this repo](https://github.com/carlohamalainen/minimal-kubernetes-tls-digital-ocean):
 
 ```shell
-git clone https://github.com/carlohamalainen/minimal-kubernetes-tls-digital-ocean.git
-cd minimal-kubernetes-tls-digital-ocean
+$ git clone https://github.com/carlohamalainen/minimal-kubernetes-tls-digital-ocean.git
+$ cd minimal-kubernetes-tls-digital-ocean
+$ ls | sort
+README.md
+clusterissuer-letsencrypt-nginx.yaml
+k8s-kubeconfig.yaml
+nginx-values-v4.1.3.yaml
+quote_deployment.yaml
+quote_host.yaml
+quote_service.yaml
 ```
 
 # Install ingress-nginx
