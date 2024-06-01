@@ -11,6 +11,10 @@
 
 <script type="text/javascript">
 window.onload = function() {
+  document.getElementById('currentURL').value = window.location.href;
+
+  document.getElementById('contact-form').reset();
+
   document.getElementById('contact-form').addEventListener('submit', function(event) {
     event.preventDefault();
 
@@ -109,7 +113,7 @@ window.onload = function() {
 </style>
 
 <form id="contact-form">
-    <input type="hidden" name="contact_number" value="697483">
+    <input type="hidden" id="currentURL" name="currentURL">
 
     <div class="form-group">
       <label>Name:</label>
