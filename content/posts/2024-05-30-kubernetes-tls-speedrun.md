@@ -1,5 +1,4 @@
 ---
-draft: true
 date: 2024-05-30T10:06:56+08:00
 title: Kubernetes TLS minimal configuration speedrun
 author: "Carlo Hamalainen"
@@ -27,7 +26,6 @@ $ cd minimal-kubernetes-tls-digital-ocean
 $ ls | sort
 README.md
 clusterissuer-letsencrypt-nginx.yaml
-k8s-kubeconfig.yaml
 nginx-values-v4.1.3.yaml
 quote_deployment.yaml
 quote_host.yaml
@@ -63,7 +61,7 @@ ingress-nginx-controller-admission   ClusterIP      10.245.157.142   <none>     
 
 Add an ``A`` record with your DNS provider so that ``api.example.com`` points to this IP.
 
-For testing, it's helpful to set TTL so that you don't have to wait 3600 seconds (the default) for DNS to update.
+For testing, it's helpful to set the TTL to 5 minutes so that you don't have to wait 3600 seconds (the default) for DNS to update.
 
 # Deploy the quote service
 
@@ -224,7 +222,7 @@ letsencrypt-nginx-quote   True    letsencrypt-nginx-quote   96s
 Check that you can query the endpoint:
 
 ```shell-session
-$ curl https://api.carlo-hamalainen.net
+$ curl https://api.example.com
 {
     "server": "meaty-raspberry-jptbx237",
     "quote": "A principal idea is omnipresent, much like candy.",
@@ -421,20 +419,20 @@ I0530 01:13:09.854010       1 setup.go:315] "verified existing registration with
 I0530 01:13:09.854466       1 conditions.go:96] Setting lastTransitionTime for Issuer "letsencrypt-nginx" condition "Ready" to 2024-05-30 01:13:09.85444073 +0000 UTC m=+68.865636892
 I0530 01:13:09.892503       1 setup.go:208] "skipping re-verifying ACME account as cached registration details look sufficient" logger="cert-manager.clusterissuers" resource_name="letsencrypt-nginx" resource_namespace="" resource_kind="ClusterIssuer" resource_version="v1" related_resource_name="letsencrypt-nginx" related_resource_namespace="cert-manager" related_resource_kind="Secret"
 W0530 01:13:11.526535       1 warnings.go:70] metadata.finalizers: "finalizer.acme.cert-manager.io": prefer a domain-qualified finalizer name to avoid accidental conflicts with other finalizer writers
-I0530 01:13:11.693209       1 pod.go:71] "creating HTTP01 challenge solver pod" logger="cert-manager.challenges.http01.ensurePod" resource_name="letsencrypt-nginx-quote-1-3066565044-3627852778" resource_namespace="backend" resource_kind="Challenge" resource_version="v1" dnsName="api.carlo-hamalainen.net" type="HTTP-01"
+I0530 01:13:11.693209       1 pod.go:71] "creating HTTP01 challenge solver pod" logger="cert-manager.challenges.http01.ensurePod" resource_name="letsencrypt-nginx-quote-1-3066565044-3627852778" resource_namespace="backend" resource_kind="Challenge" resource_version="v1" dnsName="api.example.com" type="HTTP-01"
 W0530 01:13:12.152112       1 warnings.go:70] annotation "kubernetes.io/ingress.class" is deprecated, please use 'spec.ingressClassName' instead
-I0530 01:13:12.153297       1 pod.go:59] "found one existing HTTP01 solver pod" logger="cert-manager.challenges.http01.selfCheck.http01.ensurePod" resource_name="letsencrypt-nginx-quote-1-3066565044-3627852778" resource_namespace="backend" resource_kind="Challenge" resource_version="v1" dnsName="api.carlo-hamalainen.net" type="HTTP-01" related_resource_name="cm-acme-http-solver-pvcr2" related_resource_namespace="backend" related_resource_kind="" related_resource_version=""
-I0530 01:13:12.153436       1 service.go:45] "found one existing HTTP01 solver Service for challenge resource" logger="cert-manager.challenges.http01.selfCheck.http01.ensureService" resource_name="letsencrypt-nginx-quote-1-3066565044-3627852778" resource_namespace="backend" resource_kind="Challenge" resource_version="v1" dnsName="api.carlo-hamalainen.net" type="HTTP-01" related_resource_name="cm-acme-http-solver-znf8m" related_resource_namespace="backend" related_resource_kind="" related_resource_version=""
-I0530 01:13:12.154926       1 ingress.go:99] "found one existing HTTP01 solver ingress" logger="cert-manager.challenges.http01.selfCheck.http01.ensureIngress" resource_name="letsencrypt-nginx-quote-1-3066565044-3627852778" resource_namespace="backend" resource_kind="Challenge" resource_version="v1" dnsName="api.carlo-hamalainen.net" type="HTTP-01" related_resource_name="cm-acme-http-solver-zr6cb" related_resource_namespace="backend" related_resource_kind="" related_resource_version=""
-E0530 01:13:12.302627       1 sync.go:190] "propagation check failed" err="wrong status code '404', expected '200'" logger="cert-manager.challenges" resource_name="letsencrypt-nginx-quote-1-3066565044-3627852778" resource_namespace="backend" resource_kind="Challenge" resource_version="v1" dnsName="api.carlo-hamalainen.net" type="HTTP-01"
-I0530 01:13:12.326831       1 pod.go:59] "found one existing HTTP01 solver pod" logger="cert-manager.challenges.http01.selfCheck.http01.ensurePod" resource_name="letsencrypt-nginx-quote-1-3066565044-3627852778" resource_namespace="backend" resource_kind="Challenge" resource_version="v1" dnsName="api.carlo-hamalainen.net" type="HTTP-01" related_resource_name="cm-acme-http-solver-pvcr2" related_resource_namespace="backend" related_resource_kind="" related_resource_version=""
-I0530 01:13:12.327277       1 service.go:45] "found one existing HTTP01 solver Service for challenge resource" logger="cert-manager.challenges.http01.selfCheck.http01.ensureService" resource_name="letsencrypt-nginx-quote-1-3066565044-3627852778" resource_namespace="backend" resource_kind="Challenge" resource_version="v1" dnsName="api.carlo-hamalainen.net" type="HTTP-01" related_resource_name="cm-acme-http-solver-znf8m" related_resource_namespace="backend" related_resource_kind="" related_resource_version=""
-I0530 01:13:12.327480       1 ingress.go:99] "found one existing HTTP01 solver ingress" logger="cert-manager.challenges.http01.selfCheck.http01.ensureIngress" resource_name="letsencrypt-nginx-quote-1-3066565044-3627852778" resource_namespace="backend" resource_kind="Challenge" resource_version="v1" dnsName="api.carlo-hamalainen.net" type="HTTP-01" related_resource_name="cm-acme-http-solver-zr6cb" related_resource_namespace="backend" related_resource_kind="" related_resource_version=""
-E0530 01:13:12.370401       1 sync.go:190] "propagation check failed" err="wrong status code '404', expected '200'" logger="cert-manager.challenges" resource_name="letsencrypt-nginx-quote-1-3066565044-3627852778" resource_namespace="backend" resource_kind="Challenge" resource_version="v1" dnsName="api.carlo-hamalainen.net" type="HTTP-01"
+I0530 01:13:12.153297       1 pod.go:59] "found one existing HTTP01 solver pod" logger="cert-manager.challenges.http01.selfCheck.http01.ensurePod" resource_name="letsencrypt-nginx-quote-1-3066565044-3627852778" resource_namespace="backend" resource_kind="Challenge" resource_version="v1" dnsName="api.example.com" type="HTTP-01" related_resource_name="cm-acme-http-solver-pvcr2" related_resource_namespace="backend" related_resource_kind="" related_resource_version=""
+I0530 01:13:12.153436       1 service.go:45] "found one existing HTTP01 solver Service for challenge resource" logger="cert-manager.challenges.http01.selfCheck.http01.ensureService" resource_name="letsencrypt-nginx-quote-1-3066565044-3627852778" resource_namespace="backend" resource_kind="Challenge" resource_version="v1" dnsName="api.example.com" type="HTTP-01" related_resource_name="cm-acme-http-solver-znf8m" related_resource_namespace="backend" related_resource_kind="" related_resource_version=""
+I0530 01:13:12.154926       1 ingress.go:99] "found one existing HTTP01 solver ingress" logger="cert-manager.challenges.http01.selfCheck.http01.ensureIngress" resource_name="letsencrypt-nginx-quote-1-3066565044-3627852778" resource_namespace="backend" resource_kind="Challenge" resource_version="v1" dnsName="api.example.com" type="HTTP-01" related_resource_name="cm-acme-http-solver-zr6cb" related_resource_namespace="backend" related_resource_kind="" related_resource_version=""
+E0530 01:13:12.302627       1 sync.go:190] "propagation check failed" err="wrong status code '404', expected '200'" logger="cert-manager.challenges" resource_name="letsencrypt-nginx-quote-1-3066565044-3627852778" resource_namespace="backend" resource_kind="Challenge" resource_version="v1" dnsName="api.example.com" type="HTTP-01"
+I0530 01:13:12.326831       1 pod.go:59] "found one existing HTTP01 solver pod" logger="cert-manager.challenges.http01.selfCheck.http01.ensurePod" resource_name="letsencrypt-nginx-quote-1-3066565044-3627852778" resource_namespace="backend" resource_kind="Challenge" resource_version="v1" dnsName="api.example.com" type="HTTP-01" related_resource_name="cm-acme-http-solver-pvcr2" related_resource_namespace="backend" related_resource_kind="" related_resource_version=""
+I0530 01:13:12.327277       1 service.go:45] "found one existing HTTP01 solver Service for challenge resource" logger="cert-manager.challenges.http01.selfCheck.http01.ensureService" resource_name="letsencrypt-nginx-quote-1-3066565044-3627852778" resource_namespace="backend" resource_kind="Challenge" resource_version="v1" dnsName="api.example.com" type="HTTP-01" related_resource_name="cm-acme-http-solver-znf8m" related_resource_namespace="backend" related_resource_kind="" related_resource_version=""
+I0530 01:13:12.327480       1 ingress.go:99] "found one existing HTTP01 solver ingress" logger="cert-manager.challenges.http01.selfCheck.http01.ensureIngress" resource_name="letsencrypt-nginx-quote-1-3066565044-3627852778" resource_namespace="backend" resource_kind="Challenge" resource_version="v1" dnsName="api.example.com" type="HTTP-01" related_resource_name="cm-acme-http-solver-zr6cb" related_resource_namespace="backend" related_resource_kind="" related_resource_version=""
+E0530 01:13:12.370401       1 sync.go:190] "propagation check failed" err="wrong status code '404', expected '200'" logger="cert-manager.challenges" resource_name="letsencrypt-nginx-quote-1-3066565044-3627852778" resource_namespace="backend" resource_kind="Challenge" resource_version="v1" dnsName="api.example.com" type="HTTP-01"
 I0530 01:13:14.079343       1 setup.go:208] "skipping re-verifying ACME account as cached registration details look sufficient" logger="cert-manager.clusterissuers" resource_name="letsencrypt-nginx" resource_namespace="" resource_kind="ClusterIssuer" resource_version="v1" related_resource_name="letsencrypt-nginx" related_resource_namespace="cert-manager" related_resource_kind="Secret"
-I0530 01:13:22.304527       1 pod.go:59] "found one existing HTTP01 solver pod" logger="cert-manager.challenges.http01.selfCheck.http01.ensurePod" resource_name="letsencrypt-nginx-quote-1-3066565044-3627852778" resource_namespace="backend" resource_kind="Challenge" resource_version="v1" dnsName="api.carlo-hamalainen.net" type="HTTP-01" related_resource_name="cm-acme-http-solver-pvcr2" related_resource_namespace="backend" related_resource_kind="" related_resource_version=""
-I0530 01:13:22.304891       1 service.go:45] "found one existing HTTP01 solver Service for challenge resource" logger="cert-manager.challenges.http01.selfCheck.http01.ensureService" resource_name="letsencrypt-nginx-quote-1-3066565044-3627852778" resource_namespace="backend" resource_kind="Challenge" resource_version="v1" dnsName="api.carlo-hamalainen.net" type="HTTP-01" related_resource_name="cm-acme-http-solver-znf8m" related_resource_namespace="backend" related_resource_kind="" related_resource_version=""
-I0530 01:13:22.305114       1 ingress.go:99] "found one existing HTTP01 solver ingress" logger="cert-manager.challenges.http01.selfCheck.http01.ensureIngress" resource_name="letsencrypt-nginx-quote-1-3066565044-3627852778" resource_namespace="backend" resource_kind="Challenge" resource_version="v1" dnsName="api.carlo-hamalainen.net" type="HTTP-01" related_resource_name="cm-acme-http-solver-zr6cb" related_resource_namespace="backend" related_resource_kind="" related_resource_version=""
+I0530 01:13:22.304527       1 pod.go:59] "found one existing HTTP01 solver pod" logger="cert-manager.challenges.http01.selfCheck.http01.ensurePod" resource_name="letsencrypt-nginx-quote-1-3066565044-3627852778" resource_namespace="backend" resource_kind="Challenge" resource_version="v1" dnsName="api.example.com" type="HTTP-01" related_resource_name="cm-acme-http-solver-pvcr2" related_resource_namespace="backend" related_resource_kind="" related_resource_version=""
+I0530 01:13:22.304891       1 service.go:45] "found one existing HTTP01 solver Service for challenge resource" logger="cert-manager.challenges.http01.selfCheck.http01.ensureService" resource_name="letsencrypt-nginx-quote-1-3066565044-3627852778" resource_namespace="backend" resource_kind="Challenge" resource_version="v1" dnsName="api.example.com" type="HTTP-01" related_resource_name="cm-acme-http-solver-znf8m" related_resource_namespace="backend" related_resource_kind="" related_resource_version=""
+I0530 01:13:22.305114       1 ingress.go:99] "found one existing HTTP01 solver ingress" logger="cert-manager.challenges.http01.selfCheck.http01.ensureIngress" resource_name="letsencrypt-nginx-quote-1-3066565044-3627852778" resource_namespace="backend" resource_kind="Challenge" resource_version="v1" dnsName="api.example.com" type="HTTP-01" related_resource_name="cm-acme-http-solver-zr6cb" related_resource_namespace="backend" related_resource_kind="" related_resource_version=""
 E0530 01:13:32.788230       1 controller.go:98] ingress 'backend/cm-acme-http-solver-zr6cb' in work queue no longer exists
 I0530 01:13:33.439828       1 acme.go:233] "certificate issued" logger="cert-manager.certificaterequests-issuer-acme.sign" resource_name="letsencrypt-nginx-quote-1" resource_namespace="backend" resource_kind="CertificateRequest" resource_version="v1" related_resource_name="letsencrypt-nginx-quote-1-3066565044" related_resource_namespace="backend" related_resource_kind="Order" related_resource_version="v1"
 I0530 01:13:33.440197       1 conditions.go:252] Found status change for CertificateRequest "letsencrypt-nginx-quote-1" condition "Ready": "False" -> "True"; setting lastTransitionTime to 2024-05-30 01:13:33.440165326 +0000 UTC m=+92.451361465
@@ -476,7 +474,7 @@ Metadata:
   UID:                     00000000-0000-0000-0000-000000000000
 Spec:
   Dns Names:
-    api.carlo-hamalainen.net
+    api.example.com
   Issuer Ref:
     Group:      cert-manager.io
     Kind:       ClusterIssuer
