@@ -6594,7 +6594,11 @@ var $author$project$Main$encodeComment = function (model) {
 				$elm$json$Json$Encode$string(model.authorEmail)),
 				_Utils_Tuple2(
 				'commentBody',
-				$elm$json$Json$Encode$string(model.commentBody))
+				$elm$json$Json$Encode$string(model.commentBody)),
+				_Utils_Tuple2(
+				'turnstileToken',
+				$elm$json$Json$Encode$string(
+					A2($elm$core$Maybe$withDefault, '', model.turnstileToken)))
 			]));
 };
 var $elm$http$Http$expectBytesResponse = F2(
