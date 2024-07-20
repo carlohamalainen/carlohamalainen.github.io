@@ -4390,9 +4390,9 @@ var _Http_toTask = F3(function(router, toTask, request)
 		$elm$core$Maybe$isJust(request.cn) && _Http_track(router, xhr, request.cn.a);
 
 		try {
-			xhr.open(request.b2, request.ae, true);
+			xhr.open(request.b2, request.af, true);
 		} catch (e) {
-			return done($elm$http$Http$BadUrl_(request.ae));
+			return done($elm$http$Http$BadUrl_(request.af));
 		}
 
 		_Http_configureRequest(xhr, request);
@@ -4436,7 +4436,7 @@ function _Http_toResponse(toBody, xhr)
 function _Http_toMetadata(xhr)
 {
 	return {
-		ae: xhr.responseURL,
+		af: xhr.responseURL,
 		ci: xhr.status,
 		cj: xhr.statusText,
 		bV: _Http_parseHeaders(xhr.getAllResponseHeaders())
@@ -6434,7 +6434,7 @@ var $elm$http$Http$cmdMap = F2(
 					b2: r.b2,
 					cl: r.cl,
 					cn: r.cn,
-					ae: r.ae
+					af: r.af
 				});
 		}
 	});
@@ -6457,7 +6457,7 @@ var $elm$http$Http$subscription = _Platform_leaf('Http');
 var $elm$http$Http$request = function (r) {
 	return $elm$http$Http$command(
 		$elm$http$Http$Request(
-			{bL: false, a0: r.a0, a7: r.a7, bV: r.bV, b2: r.b2, cl: r.cl, cn: r.cn, ae: r.ae}));
+			{bL: false, a0: r.a0, a7: r.a7, bV: r.bV, b2: r.b2, cl: r.cl, cn: r.cn, af: r.af}));
 };
 var $elm$json$Json$Encode$string = _Json_wrap;
 var $elm$core$Basics$negate = function (n) {
@@ -6503,7 +6503,7 @@ var $author$project$Main$getComments = function (url) {
 			b2: 'POST',
 			cl: $elm$core$Maybe$Nothing,
 			cn: $elm$core$Maybe$Nothing,
-			ae: 'https://api.carlo-hamalainen.net/v1/comments'
+			af: 'https://api.carlo-hamalainen.net/v1/comments'
 		});
 };
 var $elm$core$Maybe$withDefault = F2(
@@ -6519,9 +6519,9 @@ var $author$project$Main$init = function (flags) {
 	var url = A2(
 		$elm$core$Maybe$withDefault,
 		$author$project$Main$defaultUrl,
-		$elm$url$Url$fromString(flags.ae));
+		$elm$url$Url$fromString(flags.af));
 	return _Utils_Tuple2(
-		{v: '', A: '', y: '', aw: url, F: $author$project$Main$Loading, R: $author$project$Main$NotSubmitted, ar: $elm$core$Maybe$Nothing},
+		{v: '', A: '', y: '', aw: url, F: $author$project$Main$Loading, R: $author$project$Main$NotSubmitted, ac: $elm$core$Maybe$Nothing},
 		$author$project$Main$getComments(url));
 };
 var $author$project$Main$TurnstileToken = function (a) {
@@ -6590,7 +6590,7 @@ var $author$project$Main$encodeComment = function (model) {
 				_Utils_Tuple2(
 				'turnstileToken',
 				$elm$json$Json$Encode$string(
-					A2($elm$core$Maybe$withDefault, '', model.ar)))
+					A2($elm$core$Maybe$withDefault, '', model.ac)))
 			]));
 };
 var $elm$http$Http$expectBytesResponse = F2(
@@ -6612,7 +6612,7 @@ var $elm$http$Http$expectWhatever = function (toMsg) {
 };
 var $elm$http$Http$post = function (r) {
 	return $elm$http$Http$request(
-		{a0: r.a0, a7: r.a7, bV: _List_Nil, b2: 'POST', cl: $elm$core$Maybe$Nothing, cn: $elm$core$Maybe$Nothing, ae: r.ae});
+		{a0: r.a0, a7: r.a7, bV: _List_Nil, b2: 'POST', cl: $elm$core$Maybe$Nothing, cn: $elm$core$Maybe$Nothing, af: r.af});
 };
 var $author$project$Main$urlNewComment = 'https://api.carlo-hamalainen.net/v1/comments/new';
 var $author$project$Main$submitComment = function (model) {
@@ -6621,7 +6621,7 @@ var $author$project$Main$submitComment = function (model) {
 			a0: $elm$http$Http$jsonBody(
 				$author$project$Main$encodeComment(model)),
 			a7: $elm$http$Http$expectWhatever($author$project$Main$GotSubmitResponse),
-			ae: $author$project$Main$urlNewComment
+			af: $author$project$Main$urlNewComment
 		});
 };
 var $author$project$Main$update = F2(
@@ -6672,7 +6672,7 @@ var $author$project$Main$update = F2(
 							model,
 							{
 								F: $author$project$Main$Success(
-									{ag: parsedComments, aY: _List_Nil})
+									{ah: parsedComments, aY: _List_Nil})
 							}),
 						$elm$core$Platform$Cmd$none);
 				} else {
@@ -6717,7 +6717,7 @@ var $author$project$Main$update = F2(
 					_Utils_update(
 						model,
 						{
-							ar: $elm$core$Maybe$Just(token)
+							ac: $elm$core$Maybe$Just(token)
 						}),
 					$elm$core$Platform$Cmd$none);
 		}
@@ -6725,7 +6725,7 @@ var $author$project$Main$update = F2(
 var $author$project$Main$derrComments = function (s) {
 	if (s.$ === 3) {
 		var lc = s.a;
-		return lc.ag;
+		return lc.ah;
 	} else {
 		return _List_Nil;
 	}
@@ -7422,7 +7422,7 @@ var $dillonkearns$elm_markdown$Markdown$Renderer$defaultHtmlRenderer = {
 						maybeAlignment))));
 		return $elm$html$Html$th(attrs);
 	},
-	ao: $elm$html$Html$tr(_List_Nil),
+	ap: $elm$html$Html$tr(_List_Nil),
 	j: $elm$html$Html$text,
 	aX: A2($elm$html$Html$hr, _List_Nil, _List_Nil),
 	aZ: function (items) {
@@ -10227,7 +10227,7 @@ var $dillonkearns$elm_markdown$Markdown$InlineParser$regMatchToEmphasisToken = F
 						e: A2(
 							$dillonkearns$elm_markdown$Markdown$InlineParser$EmphasisToken,
 							_char,
-							{al: lFringeRank, an: rFringeRank})
+							{am: lFringeRank, ao: rFringeRank})
 					});
 			}
 		} else {
@@ -10953,7 +10953,7 @@ var $dillonkearns$elm_markdown$Markdown$InlineParser$isOpenEmphasisToken = F2(
 			if (_v1.$ === 7) {
 				var closeChar = _v1.a;
 				var close = _v1.b;
-				return _Utils_eq(openChar, closeChar) ? ((_Utils_eq(open.al, open.an) || _Utils_eq(close.al, close.an)) ? ((!(!A2($elm$core$Basics$modBy, 3, closeToken.aE + openToken.aE))) || ((!A2($elm$core$Basics$modBy, 3, closeToken.aE)) && (!A2($elm$core$Basics$modBy, 3, openToken.aE)))) : true) : false;
+				return _Utils_eq(openChar, closeChar) ? ((_Utils_eq(open.am, open.ao) || _Utils_eq(close.am, close.ao)) ? ((!(!A2($elm$core$Basics$modBy, 3, closeToken.aE + openToken.aE))) || ((!A2($elm$core$Basics$modBy, 3, closeToken.aE)) && (!A2($elm$core$Basics$modBy, 3, openToken.aE)))) : true) : false;
 			} else {
 				return false;
 			}
@@ -11253,8 +11253,8 @@ var $dillonkearns$elm_markdown$Markdown$InlineParser$emphasisTTM = F5(
 				var _v27 = token.e;
 				if (_v27.$ === 7) {
 					var _char = _v27.a;
-					var leftFringeRank = _v27.b.al;
-					var rightFringeRank = _v27.b.an;
+					var leftFringeRank = _v27.b.am;
+					var rightFringeRank = _v27.b.ao;
 					if (_Utils_eq(leftFringeRank, rightFringeRank)) {
 						if ((!(!rightFringeRank)) && ((_char !== '_') || (rightFringeRank === 1))) {
 							var _v28 = A2(
@@ -11376,25 +11376,25 @@ var $dillonkearns$elm_markdown$Markdown$InlineParser$emphasisToMatch = F5(
 		var innerTokens = _v25.b;
 		var remainTokens = _v25.c;
 		var remainLength = openToken.aE - closeToken.aE;
-		var updt = (!remainLength) ? {aj: closeToken, Y: openToken, am: remainTokens, aq: tokensTail} : ((remainLength > 0) ? {
-			aj: closeToken,
+		var updt = (!remainLength) ? {ak: closeToken, Y: openToken, an: remainTokens, ar: tokensTail} : ((remainLength > 0) ? {
+			ak: closeToken,
 			Y: _Utils_update(
 				openToken,
 				{c: openToken.c + remainLength, aE: closeToken.aE}),
-			am: A2(
+			an: A2(
 				$elm$core$List$cons,
 				_Utils_update(
 					openToken,
 					{aE: remainLength}),
 				remainTokens),
-			aq: tokensTail
+			ar: tokensTail
 		} : {
-			aj: _Utils_update(
+			ak: _Utils_update(
 				closeToken,
 				{aE: openToken.aE}),
 			Y: openToken,
-			am: remainTokens,
-			aq: A2(
+			an: remainTokens,
+			ar: A2(
 				$elm$core$List$cons,
 				_Utils_update(
 					closeToken,
@@ -11410,9 +11410,9 @@ var $dillonkearns$elm_markdown$Markdown$InlineParser$emphasisToMatch = F5(
 			},
 			$dillonkearns$elm_markdown$Markdown$InlineParser$EmphasisType(updt.Y.aE),
 			updt.Y,
-			updt.aj,
+			updt.ak,
 			$elm$core$List$reverse(innerTokens));
-		return _Utils_Tuple3(updt.aq, match, updt.am);
+		return _Utils_Tuple3(updt.ar, match, updt.an);
 	});
 var $dillonkearns$elm_markdown$Markdown$InlineParser$htmlElementTTM = F5(
 	function (remaining, tokens, matches, references, rawText) {
@@ -11965,7 +11965,7 @@ var $dillonkearns$elm_markdown$Markdown$TableParser$parseHeader = F2(
 				$elm$core$List$map2,
 				F2(
 					function (headerCell, alignment) {
-						return {af: alignment, P: headerCell};
+						return {ag: alignment, P: headerCell};
 					}),
 				headers,
 				columnAlignments);
@@ -12002,7 +12002,7 @@ var $dillonkearns$elm_markdown$Markdown$CodeBlock$infoString = function (fenceCh
 				return $elm$core$Maybe$Just(trimmed);
 			}
 		});
-	var _v0 = fenceCharacter.ak;
+	var _v0 = fenceCharacter.al;
 	if (!_v0) {
 		return A2(
 			$elm$parser$Parser$Advanced$mapChompedString,
@@ -12024,7 +12024,7 @@ var $dillonkearns$elm_markdown$Parser$Token$backtick = A2(
 	$elm$parser$Parser$Advanced$Token,
 	'`',
 	$elm$parser$Parser$Expecting('a \'`\''));
-var $dillonkearns$elm_markdown$Markdown$CodeBlock$backtick = {ah: '`', ak: 0, ap: $dillonkearns$elm_markdown$Parser$Token$backtick};
+var $dillonkearns$elm_markdown$Markdown$CodeBlock$backtick = {ai: '`', al: 0, aq: $dillonkearns$elm_markdown$Parser$Token$backtick};
 var $dillonkearns$elm_markdown$Markdown$CodeBlock$colToIndentation = function (_int) {
 	switch (_int) {
 		case 1:
@@ -12052,7 +12052,7 @@ var $dillonkearns$elm_markdown$Markdown$CodeBlock$fenceOfAtLeast = F2(
 			A2(
 				$elm$core$List$repeat,
 				minLength,
-				$elm$parser$Parser$Advanced$token(fenceCharacter.ap)));
+				$elm$parser$Parser$Advanced$token(fenceCharacter.aq)));
 		return A2(
 			$elm$parser$Parser$Advanced$mapChompedString,
 			F2(
@@ -12065,14 +12065,14 @@ var $dillonkearns$elm_markdown$Markdown$CodeBlock$fenceOfAtLeast = F2(
 				$elm$parser$Parser$Advanced$ignorer,
 				builtTokens,
 				$elm$parser$Parser$Advanced$chompWhile(
-					$elm$core$Basics$eq(fenceCharacter.ah))));
+					$elm$core$Basics$eq(fenceCharacter.ai))));
 	});
 var $dillonkearns$elm_markdown$Markdown$CodeBlock$Tilde = 1;
 var $dillonkearns$elm_markdown$Parser$Token$tilde = A2(
 	$elm$parser$Parser$Advanced$Token,
 	'~',
 	$elm$parser$Parser$Expecting('a `~`'));
-var $dillonkearns$elm_markdown$Markdown$CodeBlock$tilde = {ah: '~', ak: 1, ap: $dillonkearns$elm_markdown$Parser$Token$tilde};
+var $dillonkearns$elm_markdown$Markdown$CodeBlock$tilde = {ai: '~', al: 1, aq: $dillonkearns$elm_markdown$Parser$Token$tilde};
 var $dillonkearns$elm_markdown$Whitespace$upToThreeSpaces = $elm$parser$Parser$Advanced$oneOf(
 	_List_fromArray(
 		[
@@ -12106,7 +12106,7 @@ var $dillonkearns$elm_markdown$Markdown$CodeBlock$openingFence = A2(
 					function (indent, _v0) {
 						var character = _v0.a;
 						var length = _v0.b;
-						return {ai: character, aD: indent, aE: length};
+						return {aj: character, aD: indent, aE: length};
 					})),
 			$dillonkearns$elm_markdown$Whitespace$upToThreeSpaces),
 		A2($elm$parser$Parser$Advanced$andThen, $dillonkearns$elm_markdown$Markdown$CodeBlock$colToIndentation, $elm$parser$Parser$Advanced$getCol)),
@@ -12175,7 +12175,7 @@ var $dillonkearns$elm_markdown$Markdown$CodeBlock$remainingBlockHelp = function 
 					$elm$parser$Parser$Advanced$ignorer,
 					$elm$parser$Parser$Advanced$succeed(
 						$elm$parser$Parser$Advanced$Done(body)),
-					A2($dillonkearns$elm_markdown$Markdown$CodeBlock$closingFence, fence.aE, fence.ai))),
+					A2($dillonkearns$elm_markdown$Markdown$CodeBlock$closingFence, fence.aE, fence.aj))),
 				A2(
 				$elm$parser$Parser$Advanced$keeper,
 				A2(
@@ -12213,7 +12213,7 @@ var $dillonkearns$elm_markdown$Markdown$CodeBlock$parser = A2(
 				$elm$parser$Parser$Advanced$succeed($dillonkearns$elm_markdown$Markdown$CodeBlock$CodeBlock),
 				A2(
 					$elm$parser$Parser$Advanced$ignorer,
-					$dillonkearns$elm_markdown$Markdown$CodeBlock$infoString(fence.ai),
+					$dillonkearns$elm_markdown$Markdown$CodeBlock$infoString(fence.aj),
 					$dillonkearns$elm_markdown$Helpers$lineEndOrEnd)),
 			$dillonkearns$elm_markdown$Markdown$CodeBlock$remainingBlock(fence));
 	},
@@ -14463,12 +14463,12 @@ var $dillonkearns$elm_markdown$Markdown$Parser$parseHeaderInlines = F2(
 			$elm$core$List$map,
 			function (_v24) {
 				var label = _v24.P;
-				var alignment = _v24.af;
+				var alignment = _v24.ag;
 				return A3(
 					$dillonkearns$elm_markdown$Markdown$Parser$parseRawInline,
 					linkReferences,
 					function (parsedHeaderLabel) {
-						return {af: alignment, P: parsedHeaderLabel};
+						return {ag: alignment, P: parsedHeaderLabel};
 					},
 					label);
 			},
@@ -15732,7 +15732,7 @@ var $dillonkearns$elm_markdown$Markdown$Renderer$renderHelperSingle = function (
 						$elm$core$List$map,
 						function (_v11) {
 							var label = _v11.P;
-							var alignment = _v11.af;
+							var alignment = _v11.ag;
 							return A2(
 								$elm$core$Result$map,
 								$elm$core$Tuple$pair(alignment),
@@ -15744,7 +15744,7 @@ var $dillonkearns$elm_markdown$Markdown$Renderer$renderHelperSingle = function (
 					function (listListView) {
 						return renderer.aV(
 							$elm$core$List$singleton(
-								renderer.ao(
+								renderer.ap(
 									A2(
 										$elm$core$List$map,
 										function (_v10) {
@@ -15765,7 +15765,7 @@ var $dillonkearns$elm_markdown$Markdown$Renderer$renderHelperSingle = function (
 					return A2(
 						$elm$core$Maybe$andThen,
 						function ($) {
-							return $.af;
+							return $.ag;
 						},
 						$elm$core$List$head(
 							A2($elm$core$List$drop, columnIndex, header)));
@@ -15773,7 +15773,7 @@ var $dillonkearns$elm_markdown$Markdown$Renderer$renderHelperSingle = function (
 				var renderRow = function (cells) {
 					return A2(
 						$elm$core$Result$map,
-						renderer.ao,
+						renderer.ap,
 						A2(
 							$elm$core$Result$map,
 							$elm$core$List$indexedMap(
@@ -16133,7 +16133,9 @@ var $author$project$Main$viewForm = function (model) {
 				$elm$html$Html$button,
 				_List_fromArray(
 					[
-						$elm$html$Html$Attributes$type_('submit')
+						$elm$html$Html$Attributes$type_('submit'),
+						$elm$html$Html$Attributes$disabled(
+						_Utils_eq(model.ac, $elm$core$Maybe$Nothing))
 					]),
 				_List_fromArray(
 					[
@@ -16251,6 +16253,6 @@ _Platform_export({'Main':{'init':$author$project$Main$main(
 		$elm$json$Json$Decode$andThen,
 		function (url) {
 			return $elm$json$Json$Decode$succeed(
-				{ae: url});
+				{af: url});
 		},
 		A2($elm$json$Json$Decode$field, 'url', $elm$json$Json$Decode$string)))(0)}});}(this));
