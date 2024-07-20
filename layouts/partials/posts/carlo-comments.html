@@ -1,7 +1,11 @@
 
 <script src="{{ "comments.js" | relURL }}"></script>
 
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback" defer></script>
+
 <div id="carlo-comments"></div>
+
+<div id="myWidget"></div>
 
 <script>
   var app = Elm.Main.init({
@@ -9,13 +13,14 @@
     flags: { url: window.location.href }
   });
 
-  turnstile.ready(function() {
-    turnstile.render('.cf-turnstile', {
+  window.onloadTurnstileCallback = function () {
+    console.log('onloadTurnstileCallback called')
+    turnstile.render('#myWidget', {
         sitekey: '0x4AAAAAAAfct15KixMdrAXv',
         callback: function(token) {
+            console.log(`Challenge Success ${token}`);
             app.ports.turnstileToken.send(token);
-        }
+        },
     });
-  });
-
+  };
 </script>

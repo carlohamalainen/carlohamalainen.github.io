@@ -15970,16 +15970,7 @@ var $author$project$Main$UpdateAuthorEmail = function (a) {
 var $author$project$Main$UpdateCommentBody = function (a) {
 	return {$: 3, a: a};
 };
-var $elm$virtual_dom$VirtualDom$attribute = F2(
-	function (key, value) {
-		return A2(
-			_VirtualDom_attribute,
-			_VirtualDom_noOnOrFormAction(key),
-			_VirtualDom_noJavaScriptOrHtmlUri(value));
-	});
-var $elm$html$Html$Attributes$attribute = $elm$virtual_dom$VirtualDom$attribute;
 var $elm$html$Html$button = _VirtualDom_node('button');
-var $author$project$Main$cloudflareSiteKey = '0x4AAAAAAAfct15KixMdrAXv';
 var $elm$html$Html$form = _VirtualDom_node('form');
 var $elm$html$Html$label = _VirtualDom_node('label');
 var $elm$html$Html$Events$alwaysStop = function (x) {
@@ -16105,14 +16096,6 @@ var $author$project$Main$viewForm = function (model) {
 								_List_Nil)
 							]))
 					])),
-				A2(
-				$elm$html$Html$div,
-				_List_fromArray(
-					[
-						A2($elm$html$Html$Attributes$attribute, 'class', 'cf-turnstile'),
-						A2($elm$html$Html$Attributes$attribute, 'data-sitekey', $author$project$Main$cloudflareSiteKey)
-					]),
-				_List_Nil),
 				A2(
 				$elm$html$Html$div,
 				_List_Nil,
