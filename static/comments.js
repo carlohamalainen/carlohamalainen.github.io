@@ -6460,6 +6460,7 @@ var $elm$http$Http$request = function (r) {
 			{bL: false, a0: r.a0, a7: r.a7, bV: r.bV, b2: r.b2, cl: r.cl, cn: r.cn, af: r.af}));
 };
 var $elm$json$Json$Encode$string = _Json_wrap;
+var $author$project$Main$theSiteId = 'carlo-hamalainen.net';
 var $elm$core$Basics$negate = function (n) {
 	return -n;
 };
@@ -6480,6 +6481,7 @@ var $author$project$Main$trimTrailingSlashes = function (url) {
 		}
 	}
 };
+var $author$project$Main$urlComments = 'https://api.geckobob.net/v1/comments';
 var $author$project$Main$getComments = function (url) {
 	return $elm$http$Http$request(
 		{
@@ -6489,7 +6491,7 @@ var $author$project$Main$getComments = function (url) {
 						[
 							_Utils_Tuple2(
 							'siteID',
-							$elm$json$Json$Encode$string('carlo-hamalainen.net')),
+							$elm$json$Json$Encode$string($author$project$Main$theSiteId)),
 							_Utils_Tuple2(
 							'postID',
 							$elm$json$Json$Encode$string(
@@ -6503,7 +6505,7 @@ var $author$project$Main$getComments = function (url) {
 			b2: 'POST',
 			cl: $elm$core$Maybe$Nothing,
 			cn: $elm$core$Maybe$Nothing,
-			af: 'https://api.carlo-hamalainen.net/v1/comments'
+			af: $author$project$Main$urlComments
 		});
 };
 var $elm$core$Maybe$withDefault = F2(
@@ -6566,7 +6568,6 @@ var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
 var $author$project$Main$GotSubmitResponse = function (a) {
 	return {$: 5, a: a};
 };
-var $author$project$Main$theSiteId = 'carlo-hamalainen.net';
 var $author$project$Main$encodeComment = function (model) {
 	return $elm$json$Json$Encode$object(
 		_List_fromArray(
@@ -6614,7 +6615,7 @@ var $elm$http$Http$post = function (r) {
 	return $elm$http$Http$request(
 		{a0: r.a0, a7: r.a7, bV: _List_Nil, b2: 'POST', cl: $elm$core$Maybe$Nothing, cn: $elm$core$Maybe$Nothing, af: r.af});
 };
-var $author$project$Main$urlNewComment = 'https://api.carlo-hamalainen.net/v1/comments/new';
+var $author$project$Main$urlNewComment = 'https://api.geckobob.net/v1/comments/new';
 var $author$project$Main$submitComment = function (model) {
 	return $elm$http$Http$post(
 		{
@@ -6722,14 +6723,6 @@ var $author$project$Main$update = F2(
 					$elm$core$Platform$Cmd$none);
 		}
 	});
-var $author$project$Main$derrComments = function (s) {
-	if (s.$ === 3) {
-		var lc = s.a;
-		return lc.ah;
-	} else {
-		return _List_Nil;
-	}
-};
 var $elm$html$Html$div = _VirtualDom_node('div');
 var $elm$html$Html$h1 = _VirtualDom_node('h1');
 var $elm$html$Html$h2 = _VirtualDom_node('h2');
@@ -16180,6 +16173,14 @@ var $author$project$Main$viewSubmitStatus = function (status) {
 					]));
 	}
 };
+var $author$project$Main$withSuccess = function (s) {
+	if (s.$ === 3) {
+		var lc = s.a;
+		return lc.ah;
+	} else {
+		return _List_Nil;
+	}
+};
 var $author$project$Main$view = function (model) {
 	var header = A2(
 		$elm$html$Html$h1,
@@ -16233,7 +16234,7 @@ var $author$project$Main$view = function (model) {
 	var comments = A2(
 		$elm$core$List$map,
 		$author$project$Main$viewComment,
-		$author$project$Main$derrComments(model.F));
+		$author$project$Main$withSuccess(model.F));
 	return A2(
 		$elm$html$Html$div,
 		_List_Nil,
