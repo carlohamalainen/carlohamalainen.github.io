@@ -11,7 +11,7 @@ I couldn't find much online about this bottom bracket. Markings include: "FSA B3
 
 {{< figure src="/wp-old/uploads/2017/08/img_1073-1.jpg" >}}
 
-I replaced it with [this Hope bottom bracket](http://www.chainreactioncycles.com/sg/en/hope-mtb-stainless-steel-bottom-bracket/rp-prod80494), the 68/73mm model.
+I replaced it with [this Hope bottom bracket](https://web.archive.org/web/20171122105839/http://www.chainreactioncycles.com/sg/en/hope-mtb-stainless-steel-bottom-bracket/rp-prod80494), the 68/73mm model:
 
 {{< figure src="/wp-old/uploads/2017/08/hope.png" >}}
 
@@ -23,7 +23,9 @@ I managed to get the cup out and then used a dremel (on low speed) to clean up t
 
 {{< figure src="/wp-old/uploads/2017/08/img_1060.jpg" >}}
 
-To chase the threads, I made a few cuts into the new bottom bracket cup (following [this video](https://m.youtube.com/watch?v=1IrAGP22V34)), which let me push into the bottom bracket enough to bite into the thread. <span style="color:#ff0000;">If you do this you'll probably destroy the thread completely, rendering the frame junk.</span>
+To chase the threads, I made a few cuts into the new bottom bracket cup (following [this video](https://m.youtube.com/watch?v=1IrAGP22V34)), which let me push into the bottom bracket enough to bite into the thread.
+
+If you get this wrong you can destroy the thread in the frame, so take care.
 
 {{< figure src="/wp-old/uploads/2017/08/img_1061.jpg" >}}
 
