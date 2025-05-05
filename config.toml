@@ -3,8 +3,10 @@ title = "Carlo Hämäläinen"
 theme = "hugo-coder"
 languageCode = "en"
 defaultContentLanguage = "en"
-paginate = 1000
+# paginate = 1000
 enableEmoji = true
+
+pagination.pagerSize = 1000
 
 # Enable Disqus comments
 # disqusShortname = 'carlo-hamalainen'
