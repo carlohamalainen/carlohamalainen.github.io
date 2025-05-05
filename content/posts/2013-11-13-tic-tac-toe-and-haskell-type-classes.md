@@ -301,9 +301,6 @@ Further reading:
   * Solving a similar problem in F#: <http://fsharpforfunandprofit.com/posts/designing-for-correctness/>.
   * Typeclass programming: <http://www.haskell.org/haskellwiki/User:ConradParker/InstantInsanity>.
 
-<div class="references">
-</div>
-
 **Archived Comments**
 
 Date: 2017-01-31 08:38:03.281378 UTC

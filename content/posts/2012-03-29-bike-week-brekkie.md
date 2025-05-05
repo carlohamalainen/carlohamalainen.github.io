@@ -32,7 +32,7 @@ Must be fun to ride in a headwind. Or side-wind.
 
 Friday night was [Film Night](http://bikeweek.bq.org.au/whats-on/events/film-night/):
 
-Where Are You Go:</p>
+Where Are You Go:
 
 {{< youtube 7NpubbAzKSY >}}
 

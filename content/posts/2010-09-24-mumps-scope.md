@@ -8,7 +8,7 @@ url: /2010/09/24/mumps-scope/
 ---
 Here's a quick post about [scoping](http://en.wikipedia.org/wiki/Scope_(programming)) in Mumps/ObjectScript in [InterSystems Caché](http://en.wikipedia.org/wiki/Cach%C3%A9_(software)).
 
-Rob at <a>M/Gateway Developments</a> pointed out that I was referring to procedures, not functions, in an earlier post (oh dear!). So here we go with the right names:
+Rob at M/Gateway Developments pointed out that I was referring to procedures, not functions, in an earlier post (oh dear!). So here we go with the right names:
 
 Here is **PROCEDURE1.mac**:
 

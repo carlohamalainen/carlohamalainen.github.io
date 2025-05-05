@@ -30,7 +30,7 @@ void sha256(unsigned char *buffer,
 }
 ```
 
-The next thing is the [tree hash algorithm](https://docs.aws.amazon.com/amazonglacier/latest/dev/checksum-calculations.html). This is basically a <a ref="https://en.wikipedia.org/wiki/Merkle_tree">Merkle tree</a> on SHA256.
+The next thing is the [tree hash algorithm](https://docs.aws.amazon.com/amazonglacier/latest/dev/checksum-calculations.html). This is basically a [Merkle tree](https://en.wikipedia.org/wiki/Merkle_tree) on SHA256.
 
 In short, we divide the file into 1Mb blocks and hash each of them. Then we hash pairs, pairs of pairs, and so on, until we have one block left. For example a 4Mb file would take two steps of hashing:
 
@@ -69,8 +69,8 @@ while (nr_blocks_left > 1) {
 Our C interface to treehash has this declaration:
 
 ```C
-char * treehash(char *fname, 
-                unsigned long long start, 
+char * treehash(char *fname,
+                unsigned long long start,
                 unsigned long long end);
 ```
 

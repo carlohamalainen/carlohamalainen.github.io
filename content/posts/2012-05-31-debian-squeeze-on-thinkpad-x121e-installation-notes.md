@@ -6,9 +6,9 @@ format: image
 title: Debian Squeeze on Thinkpad X121e installation notes
 url: /2012/05/31/debian-squeeze-on-thinkpad-x121e-installation-notes/
 ---
-Here are some notes on installing [Debian Squeeze](http://wiki.debian.org/DebianSqueeze) on a Thinkpad X121e. Before following this guide, check the system details (at the end of this post) to see if you have the same model of graphics card, wifi, ethernet, etc. </p> 
+Here are some notes on installing [Debian Squeeze](http://wiki.debian.org/DebianSqueeze) on a Thinkpad X121e. Before following this guide, check the system details (at the end of this post) to see if you have the same model of graphics card, wifi, ethernet, etc.
 
-## Installation notes 
+## Installation notes
 
 The ethernet card is not detected by the Debian installer, so at the first opportunity flip to a console, load the atl1c driver, and echo this magic string:
 
@@ -17,9 +17,9 @@ modprobe atl1c
 echo "1969 1083" > /sys/bus/pci/drivers/atl1c/new_id
 ```
 
-(credit: <http://wiki.debian.org/InstallingDebianOn/Thinkpad/X121e-30515YG>) 
+(credit: <http://wiki.debian.org/InstallingDebianOn/Thinkpad/X121e-30515YG>)
 
-## Wrong resolution in xorg 
+## Wrong resolution in xorg
 
 The installation process runs ok but on rebooting the screen resolution in xorg was 1024x768 instead of 1366x768 so everything looked weird and squashed. Upgrading to a 3.2 kernel fixes the problem. Add this line to /etc/apt/sources.list:
 
@@ -27,7 +27,7 @@ The installation process runs ok but on rebooting the screen resolution in xorg 
 deb http://backports.debian.org/debian-backports squeeze-backports main
 ```
 
-then install the new kernel: 
+then install the new kernel:
 
 ```
 sudo apt-get update
@@ -37,11 +37,11 @@ sudo apt-get install -t squeeze-backports  linux-image-3.2.0-0.bpo.2-amd64  # (p
 After rebooting into the new kernel the resolution should be ok. If graphics are slow (e.g. moving an xterm flickers) then also grab the backported xorg packages:
 
 ```
-sudo apt-get install -t squeeze-backports xorg xserver-xorg xserver-xorg-core 
+sudo apt-get install -t squeeze-backports xorg xserver-xorg xserver-xorg-core
 xserver-xorg-input-all xserver-xorg-video-all
 ```
 
-## Broadcom wifi driver 
+## Broadcom wifi driver
 
 Getting the Broadcom wifi driver to work with the 3.2 kernel was not completely straightforward. The [Debian Wiki](http://wiki.debian.org/InstallingDebianOn/Thinkpad/X121e-30515YG) says to install the broadcom-sta-source model and then compile it with module-assist:
 
@@ -60,7 +60,7 @@ E: Couldn't find any package by regex 'kernel-headers-3.2.0-0.bpo.2-amd64'
 
 ```
 
-This fails because the backported kernel header package is not called kernel-headers-3.2.0-0.bpo.2-amd64; it is actually linux-headers-3.2.0-0.bpo.2-amd64. Fortunately we can install the headers ourselves: 
+This fails because the backported kernel header package is not called kernel-headers-3.2.0-0.bpo.2-amd64; it is actually linux-headers-3.2.0-0.bpo.2-amd64. Fortunately we can install the headers ourselves:
 
 ```
 sudo apt-get install -t squeeze linux-headers-3.2.0-0.bpo.2-amd64
@@ -88,13 +88,13 @@ This successfully built the module. Then edit /etc/apt/sources.list again and ch
 sudo apt-get update
 ```
 
-After a reboot the built-in ethernet and wifi both worked. 
+After a reboot the built-in ethernet and wifi both worked.
 
-## VirtualBox 
+## VirtualBox
 
-The version of VirtualBox in Squeeze is not new enough to compile against a 3.2 kernel, so just grab the 4.x release from [www.virtualbox.org](https://www.virtualbox.org/). 
+The version of VirtualBox in Squeeze is not new enough to compile against a 3.2 kernel, so just grab the 4.x release from [www.virtualbox.org](https://www.virtualbox.org/).
 
-## Where's the Insert key!? 
+## Where's the Insert key!?
 
 I think it's strange that there is no Insert key on the X121e. According to [this post](http://www.msfn.org/board/topic/153124-thinkpad-x121e-annoyances/) there are some key combos to get the missing keys:
 
@@ -105,15 +105,15 @@ Fn + B = Break
 Fn + S = Scroll Lock
 ```
 
-## System info 
+## System info
 
-Output of "lspci -v": 
+Output of "lspci -v":
 
 ```
 00:00.0 Host bridge: Intel Corporation Sandy Bridge DRAM Controller (rev 09)
 	Subsystem: Lenovo Device 21ed
 	Flags: bus master, fast devsel, latency 0
-	Capabilities: [e0] Vendor Specific Information: Len=0c 
+	Capabilities: [e0] Vendor Specific Information: Len=0c
 	Kernel driver in use: agpgart-intel
 
 00:02.0 VGA compatible controller: Intel Corporation Sandy Bridge Integrated Graphics Controller (rev 09) (prog-if 00 [VGA controller])
@@ -209,7 +209,7 @@ Output of "lspci -v":
 00:1f.0 ISA bridge: Intel Corporation Cougar Point LPC Controller (rev 04)
 	Subsystem: Lenovo Device 21ed
 	Flags: bus master, medium devsel, latency 0
-	Capabilities: [e0] Vendor Specific Information: Len=0c 
+	Capabilities: [e0] Vendor Specific Information: Len=0c
 
 00:1f.2 SATA controller: Intel Corporation Cougar Point 6 port SATA AHCI Controller (rev 04) (prog-if 01 [AHCI 1.0])
 	Subsystem: Lenovo Device 21ed
@@ -237,13 +237,13 @@ Output of "lspci -v":
 	Flags: bus master, fast devsel, latency 0, IRQ 17
 	Memory at d1500000 (64-bit, non-prefetchable) [size=16K]
 	Capabilities: [40] Power Management version 3
-	Capabilities: [58] Vendor Specific Information: Len=78 
+	Capabilities: [58] Vendor Specific Information: Len=78
 	Capabilities: [48] MSI: Enable- Count=1/1 Maskable- 64bit+
 	Capabilities: [d0] Express Endpoint, MSI 00
 	Capabilities: [100] Advanced Error Reporting
 	Capabilities: [13c] Virtual Channel
 	Capabilities: [160] Device Serial Number 00-00-12-ff-ff-dc-ac-81
-	Capabilities: [16c] Power Budgeting 
+	Capabilities: [16c] Power Budgeting
 	Kernel driver in use: wl
 
 03:00.0 Unassigned class [ff00]: Realtek Semiconductor Co., Ltd. Device 5209 (rev 01)
