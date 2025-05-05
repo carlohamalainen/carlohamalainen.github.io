@@ -1,5 +1,4 @@
 ---
-draft: true
 date: 2025-05-05
 title: Outlandish Lamington
 url: /2025/05/05/outlandish-lamington
