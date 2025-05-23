@@ -24,4 +24,4 @@ Key takeaway: Never assume operations are "simple" or constant time. Profile fir
 `#Optimization`
 `#FinTech`
 
-Crossposted at [LinkedIn](https://www.linkedin.com/posts/carlo-h%C3%A4m%C3%A4l%C3%A4inen-36857270_performance-tuning-activity-7331560994579603457-_6qq)
+Crossposted at [LinkedIn](https://www.linkedin.com/posts/carlo-h%C3%A4m%C3%A4l%C3%A4inen-36857270_performance-softwareengineering-programming-activity-7331562975155167233-ymo6)
