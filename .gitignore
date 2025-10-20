@@ -1,3 +1,4 @@
 public
 *.swp
 .DS_Store
+resources/_gen/
