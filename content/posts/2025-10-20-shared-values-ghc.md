@@ -6,11 +6,15 @@ url: /2025/10/20/shared-values-ghc
 
 ## The Question
 
-When we have many data structures that contain the same large value, does GHC preserve sharing to save memory?
+When we have many data structures that contain the same large value, does GHC
+preserve sharing to save memory?
 
-For example, if we create 100 `Foo` values that each contain the same large `HashSet`, will GHC be smart enough to share that single `HashSet` in memory, or will it create 100 separate copies?
+For example, if we create 100 `Foo` values that each contain the same large
+`HashSet`, will GHC be smart enough to share that single `HashSet` in memory,
+or will it create 100 separate copies?
 
-This minimal example demonstrates that GHC does preserve sharing when we explicitly share a value at the top level.
+This minimal example demonstrates that GHC does preserve sharing when we
+explicitly share a value at the top level.
 
 ## The Code
 
@@ -85,8 +89,18 @@ The difference is dramatic:
 - **Shared version**: 1.2 GB allocated, 0.53 seconds
 - **Unshared version**: 117 GB allocated, 37.25 seconds
 
-When we share the `HashSet` via the top-level `sharedHashSet` binding, GHC preserves this sharing. Each of the 100 `Foo` values points to the same `HashSet` in memory, so we only allocate it once.
+When we share the `HashSet` via the top-level `sharedHashSet` binding, GHC
+preserves this sharing. Each of the 100 `Foo` values points to the same
+`HashSet` in memory, so we only allocate it once.
 
-In contrast, when we create a fresh `HashSet` for each `Foo` value in `makeUnsharedFoos`, we allocate 100 separate copies of the same million-element set, leading to roughly **100x more memory allocation** and much slower execution.
+In contrast, when we create a fresh `HashSet` for each `Foo` value in
+`makeUnsharedFoos`, we allocate 100 separate copies of the same million-element
+set, leading to roughly **100x more memory allocation** and much slower
+execution.
 
-This demonstrates that GHC respects explicit sharing: when you bind a value and reuse it, the runtime will share that value in memory rather than duplicating it. Using a top-level CAF (Constant Applicative Form) like `sharedHashSet` ensures the value is shared across the entire program.
+This demonstrates that GHC respects explicit sharing: when you bind a value and
+reuse it, the runtime will share that value in memory rather than duplicating
+it. Using a top-level CAF (Constant Applicative Form) like `sharedHashSet`
+ensures the value is shared across the entire program.
+
+
