@@ -1,6 +1,5 @@
 baseURL = "https://carlo-hamalainen.net"
 title = "Carlo Hämäläinen"
-theme = "hugo-coder"
 languageCode = "en"
 defaultContentLanguage = "en"
 # paginate = 1000
@@ -192,3 +191,9 @@ url = "contact/"
         [markup.goldmark.extensions.passthrough.delimiters]
           block = [['\[', '\]'], ['$$', '$$']]
           inline = [['\(', '\)'], ['$', '$']]
+
+
+[module]
+  [[module.imports]]
+    path = "github.com/luizdepra/hugo-coder"
+
