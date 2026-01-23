@@ -4,17 +4,31 @@ title: Shared values in GHC
 url: /2025/10/20/shared-values-ghc
 ---
 
-## The Question
+Standard procedural languages like C and Go let the programmer reason about
+memory sharing by exposing raw pointer values. In C everything is explicit
+so you know what's happening. In Go, despite the garbage collector, one can
+still check for pointer equality:
 
-When we have many data structures that contain the same large value, does GHC
-preserve sharing to save memory?
+
+```go
+func main() {
+    x := "foo"
+    y := "bar"
+    fmt.Println(&x == &y) // false
+}
+```
+
+Haskell's runtime system with lazy evaluation makes this notoriously difficult.
+Partially evaluated expressions (thunks) are reduced until the program produces
+its final output. The graph is invisible, and non-expert developers have very
+little intuition about what is going on behind the scenes.
+
+We can do some basic experiments at the repl to check how much sharing is
+occuring between shared values in a data structure.
 
 For example, if we create 100 `Foo` values that each contain the same large
-`HashSet`, will GHC be smart enough to share that single `HashSet` in memory,
-or will it create 100 separate copies?
-
-This minimal example demonstrates that GHC does preserve sharing when we
-explicitly share a value at the top level.
+`HashSet`, will GHC keep just one copy of the large `HashSet` in memory, or
+will it create 100 separate copies?
 
 ## The Code
 
@@ -59,9 +73,7 @@ testUnshared count =
 
 ```
 
-## Testing the Difference
-
-Now in `cabal repl`:
+Now in `cabal repl`, use `:set +s` to get memory statistics:
 
 ```
 ghci> :set +s
@@ -82,8 +94,6 @@ ghci> let !x = testUnshared 100 in ()
 
 We use bang patterns `!x` to force all values.
 
-## The Results
-
 The difference is dramatic:
 
 - **Shared version**: 1.2 GB allocated, 0.53 seconds
@@ -95,12 +105,9 @@ preserves this sharing. Each of the 100 `Foo` values points to the same
 
 In contrast, when we create a fresh `HashSet` for each `Foo` value in
 `makeUnsharedFoos`, we allocate 100 separate copies of the same million-element
-set, leading to roughly **100x more memory allocation** and much slower
-execution.
+set, leading to roughly 100x more memory allocation. Memory allocation is
+expensive, reflecting the huge impact on runtime (0.53 seconds vs 37 seconds).
 
 This demonstrates that GHC respects explicit sharing: when you bind a value and
-reuse it, the runtime will share that value in memory rather than duplicating
-it. Using a top-level CAF (Constant Applicative Form) like `sharedHashSet`
-ensures the value is shared across the entire program.
-
+reuse it, the runtime will share that value in memory. 
 
