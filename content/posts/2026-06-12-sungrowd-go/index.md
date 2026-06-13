@@ -2,7 +2,6 @@
 date: 2026-06-12
 title: "sungrowd-go: bespoke battery management for the Sungrow SH5.0RS inverter"
 url: /2026/06/12/sungrowd-go
-draft: true
 ---
 
 My current setup:
