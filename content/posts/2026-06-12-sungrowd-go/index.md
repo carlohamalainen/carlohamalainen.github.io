@@ -341,11 +341,11 @@ The mode card describes the schedule or manual override that is in place.
 
 The schedule card lets us edit a fixed rate schedule:
 
-{{< figure src="sungrow-schedule-adaptive.png" link="sungrow-schedule-adaptive.png" target="_blank" rel="noopener" alt="sungrow schedule adaptive" width="60%" >}}
+{{< figure src="sungrow-schedule-fixed-rate.png" link="sungrow-schedule-fixed-rate.png" target="_blank" rel="noopener" alt="sungrow schedule fixed-rate" width="60%" >}}
 
 And also adaptive schedules based on maximum amps:
 
-{{< figure src="sungrow-schedule-fixed-rate.png" link="sungrow-schedule-fixed-rate.png" target="_blank" rel="noopener" alt="sungrow schedule fixed-rate" width="60%" >}}
+{{< figure src="sungrow-schedule-adaptive.png" link="sungrow-schedule-adaptive.png" target="_blank" rel="noopener" alt="sungrow schedule adaptive" width="60%" >}}
 
 We can force charge or discharge, with optional expiry:
 
