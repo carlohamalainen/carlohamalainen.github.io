@@ -1,0 +1,37 @@
+<!-- https://developers.cloudflare.com/turnstile/get-started/client-side-rendering/#explicit-rendering -->
+<script src= "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" defer type="text/javascript"> </script>
+
+<script type="module" src= "https://cdn.jsdelivr.net/gh/starfederation/datastar@v1.0.2/bundles/datastar.js"> </script>
+
+<div data-signals="{widgetId: '', turnstileToken: '' }">
+
+  <div id="turnstile-container" data-on-interval__duration.250ms=
+    "if (window.turnstile && !$widgetId) { 
+      $widgetId = turnstile.render('#turnstile-container', 
+        { sitekey: '1x00000000000000000000AA', 
+          callback: (token) => $turnstileToken = token 
+        }); }"
+  >
+  </div>
+
+  <p data-show="$turnstileToken === ''">Comment form pending Cloudflare verification...</p>
+
+  <form id="myform" data-show="$turnstileToken" style= "display: none" name="myform">
+    <input type="hidden" name="cf-turnstile-response" data-bind= "turnstileToken">
+
+    <p><label for="name">Name (required):</label><br>
+    <input type="text" id="name" name="name" required=""></p>
+
+    <p><label for="email">Email (optional):</label><br>
+    <input type="email" id="email" name="email"></p>
+
+    <p><label for="comment">Comment:</label><br>
+    <textarea id="comment" name="comment" rows="8" cols="50" required="">
+
+    </textarea></p><button type="button" data-on:click= "@post('/comments/v1/new', {contentType: 'form'})">Submit comment</button>
+  </form>
+
+  <pre data-json-signals=""> </pre>
+
+</div>
+
