@@ -147,16 +147,3 @@ Some system info:
 
 It can handle rtorrent but uses a few Mb of swap and so it's not too quick to respond sometimes in an ssh terminal.
 
-**Archived Comments**
-
-Date: 2009-02-25 19:11:49 UTC
-
-Author: Nadiah
-
-Damn that's sexy 😉
-
-Date: 2012-05-23 09:51:26 UTC
-
-Author: A
-
-Yes, very cool.

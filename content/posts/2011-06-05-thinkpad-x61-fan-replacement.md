@@ -32,38 +32,3 @@ The three main screws that hold on the fan assembly are quite tight, so I ended 
 
 {{< figure src="/s3/oldblog/blogdata/medium/2011-06-04%2B%2B21-22-34.jpg" >}}
 
-**Archived Comments**
-
-Date: 2011-10-05 06:31:24 UTC
-
-Author: Xiaoming Yao
-
-Very good points. Very helpful. Thank you very much.
-
-Could you be able to disclose the tools (screwdrivers and the vice-grip) you used here? Where can I buy them?
-
-Best Wishes,
-
-Xiaoming
-
-Date: 2012-05-20 18:52:57 UTC
-
-Author: trismarck
-
-Hi,
-
-I was looking for pictures of X61 mainboard and found your blog note. One thing got me interested. How is [this part ](/s3/oldblog/blogdata/medium/2011-06-04++21-15-35.jpg) that holds all of the screws called in English? 😉 I've always wanted to have something like this.
-
-Date: 2012-07-25 01:12:44 UTC
-
-Author: RabidHobo
-
-trismarck, I just use an ice cube tray.
-
-Date: 2013-09-27 18:54:59.8698 UTC
-
-Author: Ashley Pomeroy
-
-That was handy -- I've just stripped down my own X61 'cause the temperature was shooting up to 83c(!) under load. Seems that the previous owner had stuck a tonne of thermal paste on the CPU. Luckily the fan was still in good nick. I think this is why so many X60/X61s have a crack in the plastic near the heatsink, because the cover that fits around the back of the laptop is very fragile and breaks easily.
-
-After putting on a small amount of new paste it just barely hits 68c under full load. It's still dead handy even six years later.

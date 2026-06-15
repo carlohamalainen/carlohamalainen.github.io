@@ -36,10 +36,3 @@ assert len(STS[15]) == 80
 print "An STS(13):", STS[13][0]
 ```
 
-**Archived Comments**
-
-Date: 2009-05-11 18:10:46 UTC
-
-Author: david joyner
-
-Why don't you add this to Sage? Sage's incidence structure class is based on pydesign but the database read-write functionality was left out. Please feel free to add it back in and ask me or Dan Gordon to referee.

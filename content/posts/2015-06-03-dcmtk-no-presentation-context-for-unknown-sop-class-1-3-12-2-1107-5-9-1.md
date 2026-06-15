@@ -49,24 +49,3 @@ parallel -j 30 storescu -xf storescu.cfg Default localhost 7000 -- `find extract
 
 The [forum post](http://forum.dcmtk.org/viewtopic.php?f=1&t=2227&view=previous) that I linked to earlier has an example config file with a [PrivateSiemens] section in the [[Profiles]]. I tried this but (as far as I understand) you have to copy all of the SOP classes that you might see, and run storescu referring to the PrivateSiemens profile name. So you may as well edit out an unused presentation context in the Default configuration. 
 
-**Archived Comments**
-
-Date: 2015-07-23 18:29:35.372382 UTC
-
-Author: J. Riesmeier
-
-You could also give the DCMTK command line tool "dcmsend" a try: <http://blog.jriesmeier.com/2011/10/sending-dicom-files-more-easily/>. 
-
-Date: 2016-11-01 00:30:26.567742 UTC
-
-Author: Tom C
-
-Thanks Carlo, this solved my problem!
-
-Date: 2017-03-01 04:58:52.305799 UTC
-
-Author: Ashok B
-
-Thanks Carlo.
-
-It worked for me 🙂

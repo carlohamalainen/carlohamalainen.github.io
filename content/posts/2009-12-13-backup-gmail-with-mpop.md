@@ -39,10 +39,3 @@ To grab some emails:
 
 Original info from [this post](http://vafer.org/blog/20070103073735).
 
-**Archived Comments**
-
-Date: 2014-02-05 20:06:07.883063 UTC
-
-Author: marko
-
-Much WIN! Thanks!

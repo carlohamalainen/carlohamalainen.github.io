@@ -18,16 +18,3 @@ I applied Robert's patch and re-ran the tests on my laptop:
 
 The Cython implementation with Robert's patch is now significantly faster than the C++ implementation on most of the range that I checked.
 
-**Archived Comments**
-
-Date: 2008-11-09 16:01:37 UTC
-
-Author: Alok
-
-The Green (C++) curve looks better performing from 12-14, what are we missing?
-
-Date: 2008-11-10 13:49:28 UTC
-
-Author: Robert Bradshaw
-
-It's impossible to see on the graph, but C++ doesn't take over from Cython until size 13 and 14. I'm very curious as to why, it almost looks like an algorithmic difference. Don't have time right now, but I'll do some investigating soon (there were still a lot of inefficiencies in the Cython code).

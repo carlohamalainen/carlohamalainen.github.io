@@ -25,10 +25,3 @@ Now configure and make as usual:
     make
     make install
 
-**Archived Comments**
-
-Date: 2009-09-15 16:44:23 UTC
-
-Author: Ryan
-
-Very helpful - thanks!

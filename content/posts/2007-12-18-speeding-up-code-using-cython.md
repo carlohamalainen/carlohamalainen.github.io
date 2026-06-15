@@ -13,15 +13,3 @@ Cython does pretty well, and the code is far more readable than the earlier C++ 
 
 For more about writing Cython code in Sage, see [Chapter 5](http://sagemath.org/doc/html/prog/node32.html) of the documentation.
 
-**Archived Comments**
-
-Date: 2008-03-03 18:38:36 UTC
-
-Author: Robert Samal
-
-Hi, thanks for the interesting comparison.  
-How does Cython compare to C/C++?
-
-Thanks,
-
-Robert Samal

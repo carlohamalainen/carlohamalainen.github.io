@@ -106,28 +106,3 @@ cabal: Error: some packages failed to install:
 
 then your system is missing OpenGL libraries (this is not a bug in wx). Double-check the configure output of wxWidgets.
 
-**Archived Comments**
-
-Date: 2013-03-19 09:24:45 UTC
-
-Author: babalone
-
-Very helpful. I tried installing wx a few times and failed until now.
-
-Date: 2013-03-27 02:30:14 UTC
-
-Author: Hermit
-
-Thanks, however, I'm still unable to build wxcore. It's spurting a lot of compiler errors: <http://dpaste.com/1035609>
-
-When running wx-config --libs, -lwx\_gtk2u\_html-2.9 is there so...
-
-I've been banging my head against a wall with this. I'm not very into C/C++ stack (that's why I use haskell!!). I couldn't build it for OSX either...
-
-I ended up switching toolkits, moved to HTk, but it's orphan so I wonder if it's worth it for the long run.
-
-Date: 2014-10-25 01:05:27.99669 UTC
-
-Author: david diggles
-
-Having similar issues on openSUSE. I wish cabal was better with package management.

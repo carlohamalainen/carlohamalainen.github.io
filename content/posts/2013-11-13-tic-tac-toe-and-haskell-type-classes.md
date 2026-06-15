@@ -301,12 +301,3 @@ Further reading:
   * Solving a similar problem in F#: <http://fsharpforfunandprofit.com/posts/designing-for-correctness/>.
   * Typeclass programming: <http://www.haskell.org/haskellwiki/User:ConradParker/InstantInsanity>.
 
-**Archived Comments**
-
-Date: 2017-01-31 08:38:03.281378 UTC
-
-Author: Nick Hamilton
-
-I like your demonstration of encoding state with type classes, but it seems using this mechanism to solve Tony's challenge will result in a tonne of boilerplate? Over a hundred if you find a way to encode mirrored states, otherwise... thousands. Further to that, do you have any thoughts how the 'api' user would know which transition function (of the hundred+) to call?
-
-I had a crack at solving the challenge, but I used the undecidable instances and flexible contexts extensions to create recursively unwrap a nested type containing each of the states.

@@ -272,20 +272,3 @@ In summary:
 
 Further reading: <http://www.eyrie.org/~eagle/notes/rpath.html>
 
-**Archived Comments**
-
-Date: 2013-06-19 01:00:49 UTC
-
-Author: Dhanesh Padmanabhan
-
-Thanks. This was really useful. In my case, I also had to add an additional CPPFLAGS=-I. in MAKEFLAGS and that solved it.
-
-Date: 2017-02-18 01:24:30.628406 UTC
-
-Author: joshua
-
-In case this helps anyone: the solution here did not work for me, but the one posted here did:
-
-<http://r.789695.n4.nabble.com/Problem-installing-RODBC-td2016736.html>
-
-Just need this: yum install unixODBC-devel

@@ -68,34 +68,3 @@ Rob replied with this example:
 
 That cleared up some of my (mis)understanding of the scoping rules. Unfortunately the large Mumps system that I have worked on uses procedures almost all of the time (not functions) and no formal parameter lists and I took that as a given.
 
-**Archived Comments**
-
-Date: 2010-09-29 20:21:32 UTC
-
-Author: Kesav Kolla
-
-I guess it's nothing to do with procedure or function. It's something to do with new. In the second procedure if you new the localvariable then the scope is restricted within in the procedure.
-
-Date: 2010-09-30 12:16:46 UTC
-
-Author: Rob
-
-Yes you are correct -- you *could* use a procedure and, if you do, you should always control the scope of the variables it uses with the new command.
-
-However, a lot of legacy Mumps developers don't really appreciate the difference between functions and procedures and there's a tendency for such people to use procedures when functions are more appropriate.
-
-In my reworked example I not only wanted to demonstrate the use of the new command to control variable scope, I also wanted to show how a function was a more appropriate means of returning a value.
-
-Rob
-
-Date: 2010-10-31 17:51:04 UTC
-
-Author: Brian Tyler
-
-So there I was laughing away uncontrollably as I read about MUMPS on The Daily WTF, thinking about the unfortunate people who actually have to write that devil language when lo-and-behold your name popped up on the bottom of the page.
-
-How are you getting on?
-
-England is currently in self-destruct mode. The proletariate decided they had had enough of their betters paying lipservice to welfare and demanded all social policy be scrapped and that they be plunged into Tressellian (as in Robert Tressell) poverty once more so that we can have a proper aristocracy again who can eat lobster on toast for breakfast, like in the good old days.
-
-In protest I've stopped recycling.

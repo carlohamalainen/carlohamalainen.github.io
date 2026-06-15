@@ -16,20 +16,3 @@ At the request of Budd I have pulled these files. Instead, pop over to <http://b
 
 ~~(If you are the original artist and want these files taken down, let me know and I'll do so as soon as possible.)~~
 
-**Archived Comments**
-
-Date: 2012-04-11 19:48:59 UTC
-
-Author: Jeremy
-
-Hi Carlo,
-
-Just letting you know I have finally put up all the previous budd releases on Bandcamp
-
-here's the link:
-
-[http://buddjawa.bandcamp.com](http://buddjawa.bandcamp.com)
-
-cheers
-
-jeremy budd

@@ -380,18 +380,3 @@ address sizes	: 36 bits physical, 48 bits virtual
 power management:
 ```
 
-**Archived Comments**
-
-Date: 2012-07-24 11:50:28 UTC
-
-Author: steve rinsler
-
-your command for installing a 3.2 kernel specifies 2.6.39?? Isn't that a mistake/typo?
-
-Date: 2012-08-03 09:06:57 UTC
-
-Author: carlo
-
-Steve,
-
-Thanks, I've updated the instructions to refer to the 3.2 kernel.

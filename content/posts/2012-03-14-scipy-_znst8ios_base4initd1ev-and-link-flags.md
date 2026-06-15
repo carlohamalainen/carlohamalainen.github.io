@@ -19,10 +19,3 @@ The answer is to use the ``build_ext`` target to enable the link flag:
     python setup.py config --compiler=intel --fcompiler=intelem install --prefix=/opt/scipy/0.10.1
 
 
-**Archived Comments**
-
-Date: 2012-07-26 11:00:02 UTC
-
-Author: Charles
-
-Thank you for this reposting. It was extremely useful (e.g. solved my problem)!
