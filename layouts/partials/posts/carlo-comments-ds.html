@@ -47,7 +47,7 @@
 </style>
 
 <section id="comments"
-         data-on-intersect="@get('https://comments.carlo-hamalainen.net/comments/v1/list?postID={{ strings.TrimSuffix "/" .RelPermalink }}')">
+         data-on-intersect__once="@get('https://comments.carlo-hamalainen.net/comments/v1/list?postID={{ strings.TrimSuffix "/" .RelPermalink }}')">
   <p>Loading comments…</p>
 </section>
 
@@ -77,9 +77,7 @@
     <input type="email" id="email" name="email"></p>
 
     <p><label for="comment">Comment:</label><br>
-    <textarea id="comment" name="comment" rows="8" cols="50" required="" data-bind="comment">
-    </textarea></p>
-
+    <textarea id="comment" name="comment" rows="8" cols="50" required="" data-bind="comment"></textarea></p>
 
     <button type="button"
       data-attr:disabled="!$name.trim() || !$comment.trim()"
@@ -87,7 +85,9 @@
       >
       Submit comment</button>
 
-     <div id="comment-status"></div>
+  </form>
+
+  <div id="comment-status"></div>
 
 </div>
 
