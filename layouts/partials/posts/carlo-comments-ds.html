@@ -3,6 +3,46 @@
 
 <script type="module" src= "https://cdn.jsdelivr.net/gh/starfederation/datastar@v1.0.2/bundles/datastar.js"> </script>
 
+<style>
+  #comments { margin: 2rem 0; }
+
+  /* Each comment separated by a rule + spacing → clear start/end */
+  .comment {
+    padding: 1rem 0;
+    border-top: 1px solid rgba(128, 128, 128, .3);
+  }
+  .comment:first-of-type { border-top: none; }
+
+  /* The "who + when" line: author bold, date muted */
+  .comment header { margin-bottom: .35rem; }
+  .comment-author { font-weight: 700; }
+  .comment header time {
+    margin-left: .5rem;
+    font-size: .85em;
+    opacity: .65;
+  }
+
+  /* Body: tidy paragraph spacing */
+  .comment-body { line-height: 1.6; }
+  .comment-body :first-child { margin-top: 0; }
+  .comment-body :last-child { margin-bottom: 0; }
+
+  /* Comments often contain code (fenced + inline) */
+  .comment-body pre {
+    background: rgba(128, 128, 128, .12);
+    padding: .75rem 1rem;
+    border-radius: 4px;
+    overflow-x: auto;            /* don't let long lines blow out the layout */
+  }
+  .comment-body code {
+    background: rgba(128, 128, 128, .12);
+    padding: .1rem .3rem;
+    border-radius: 3px;
+  }
+  .comment-body pre code { background: none; padding: 0; }
+
+  #comment-status { margin-top: .75rem; font-weight: 600; }
+</style>
 
 <section id="comments"
          data-on-intersect="@get('https://comments.carlo-hamalainen.net/comments/v1/list?postID={{ strings.TrimSuffix "/" .RelPermalink }}')">
