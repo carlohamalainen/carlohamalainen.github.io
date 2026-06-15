@@ -44,6 +44,21 @@
   #comment-status { margin-top: .75rem; font-weight: 600; }
 
   #myform button:disabled { opacity: .5; cursor: not-allowed; }
+
+  .submitting-indicator { margin-left: .5rem; opacity: .7; }
+  .submitting-indicator::before {
+    content: "";
+    display: inline-block;
+    width: .8em; height: .8em;
+    margin-right: .4em;
+    border: 2px solid currentColor;
+    border-top-color: transparent;
+    border-radius: 50%;
+    vertical-align: -.1em;
+    animation: spin .6s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
 </style>
 
 <section id="comments"
@@ -52,7 +67,7 @@
 </section>
 
 
-<div data-signals="{widgetId: '', turnstileToken: '', name: '', comment: '' }">
+<div data-signals="{widgetId: '', turnstileToken: '', name: '', comment: '', submitting: false }">
 
   <div id="turnstile-container" data-on-interval__duration.250ms=
     "if (window.turnstile && !$widgetId) { 
@@ -80,11 +95,13 @@
     <textarea id="comment" name="comment" rows="8" cols="50" required="" data-bind="comment"></textarea></p>
 
     <button type="button"
-      data-attr:disabled="!$name.trim() || !$comment.trim()"
+      data-indicator:submitting
+      data-attr:disabled="!$name.trim() || !$comment.trim() || $submitting"
       data-on:click="@post('https://comments.carlo-hamalainen.net/comments/v1/new', {contentType: 'form'})"
       >
       Submit comment</button>
 
+    <span class="submitting-indicator" data-show="$submitting">Submitting...</span>
   </form>
 
   <div id="comment-status"></div>
