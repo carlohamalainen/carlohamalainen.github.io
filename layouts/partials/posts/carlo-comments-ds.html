@@ -1,5 +1,12 @@
+
+<script>
+  window.onloadTurnstileCallback = () =>
+    document.getElementById('turnstile-container')
+      ?.dispatchEvent(new Event('turnstile-ready'))
+</script>
+
 <!-- https://developers.cloudflare.com/turnstile/get-started/client-side-rendering/#explicit-rendering -->
-<script src= "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" defer type="text/javascript"> </script>
+<script src= "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=onloadTurnstileCallback" defer type="text/javascript"> </script>
 
 <script type="module" src= "https://cdn.jsdelivr.net/gh/starfederation/datastar@v1.0.2/bundles/datastar.js"> </script>
 
@@ -69,12 +76,13 @@
 
 <div data-signals="{widgetId: '', turnstileToken: '', name: '', comment: '', submitting: false }">
 
-  <div id="turnstile-container" data-on-interval__duration.250ms=
-    "if (window.turnstile && !$widgetId) { 
-      $widgetId = turnstile.render('#turnstile-container', 
-        { sitekey: '0x4AAAAAAAfct15KixMdrAXv', 
-          callback: (token) => $turnstileToken = token 
-        }); }"
+  <div id="turnstile-container"
+       data-on:load="if (window.turnstile) el.dispatchEvent(new Event('turnstile-ready'))"
+       data-on:turnstile-ready=
+          "$widgetId = turnstile.render('#turnstile-container', 
+              { sitekey: '0x4AAAAAAAfct15KixMdrAXv', 
+                callback: (token) => $turnstileToken = token 
+              })"
   >
   </div>
 
