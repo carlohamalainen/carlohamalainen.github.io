@@ -3,6 +3,13 @@
 
 <script type="module" src= "https://cdn.jsdelivr.net/gh/starfederation/datastar@v1.0.2/bundles/datastar.js"> </script>
 
+
+<section id="comments"
+         data-on:intersect="@get('https://comments.carlo-hamalainen.net/comments/v1/list?postID={{ strings.TrimSuffix "/" .RelPermalink }}')">
+  <p>Loading comments…</p>
+</section>
+
+
 <div data-signals="{widgetId: '', turnstileToken: '' }">
 
   <div id="turnstile-container" data-on-interval__duration.250ms=
@@ -18,6 +25,8 @@
 
   <form id="myform" data-show="$turnstileToken" style= "display: none" name="myform">
     <input type="hidden" name="cf-turnstile-response" data-bind= "turnstileToken">
+    <input type="hidden" name="postID" value="{{ strings.TrimSuffix "/" .RelPermalink }}">
+
 
     <p><label for="name">Name (required):</label><br>
     <input type="text" id="name" name="name" required=""></p>
@@ -27,11 +36,15 @@
 
     <p><label for="comment">Comment:</label><br>
     <textarea id="comment" name="comment" rows="8" cols="50" required="">
+    </textarea></p>
 
-    </textarea></p><button type="button" data-on:click= "@post('/comments/v1/new', {contentType: 'form'})">Submit comment</button>
-  </form>
 
-  <pre data-json-signals=""> </pre>
+    <button type="button"
+      data-on:click="@post('https://comments.carlo-hamalainen.net/comments/v1/new', {contentType: 'form'})"
+      >
+      Submit comment</button>
+
+     <div id="comment-status"></div>
 
 </div>
 
