@@ -42,6 +42,8 @@
   .comment-body pre code { background: none; padding: 0; }
 
   #comment-status { margin-top: .75rem; font-weight: 600; }
+
+  #myform button:disabled { opacity: .5; cursor: not-allowed; }
 </style>
 
 <section id="comments"
@@ -50,7 +52,7 @@
 </section>
 
 
-<div data-signals="{widgetId: '', turnstileToken: '' }">
+<div data-signals="{widgetId: '', turnstileToken: '', name: '', comment: '' }">
 
   <div id="turnstile-container" data-on-interval__duration.250ms=
     "if (window.turnstile && !$widgetId) { 
@@ -69,17 +71,18 @@
 
 
     <p><label for="name">Name (required):</label><br>
-    <input type="text" id="name" name="name" required=""></p>
+    <input type="text" id="name" name="name" required="" data-bind="name"></p>
 
     <p><label for="email">Email (optional):</label><br>
     <input type="email" id="email" name="email"></p>
 
     <p><label for="comment">Comment:</label><br>
-    <textarea id="comment" name="comment" rows="8" cols="50" required="">
+    <textarea id="comment" name="comment" rows="8" cols="50" required="" data-bind="comment">
     </textarea></p>
 
 
     <button type="button"
+      data-attr:disabled="!$name.trim() || !$comment.trim()"
       data-on:click="@post('https://comments.carlo-hamalainen.net/comments/v1/new', {contentType: 'form'})"
       >
       Submit comment</button>
