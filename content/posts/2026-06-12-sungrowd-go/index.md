@@ -500,4 +500,5 @@ It's my go-to for any simple UI these days. I like it so much that I contributed
 
 # The source
 
-(TODO, codeberg?)
+<https://codeberg.org/carlohamalainen/sungrowd-go>
+
