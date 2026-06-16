@@ -1,8 +1,22 @@
-
 <script>
-  window.onloadTurnstileCallback = () =>
-    document.getElementById('turnstile-container')
-      ?.dispatchEvent(new Event('turnstile-ready'))
+  const datastarReady = new Promise(resolve => {
+    document.addEventListener('datastar-ready', resolve, { once: true });
+  });
+
+  const turnstileReady = new Promise(resolve => {
+    window.onloadTurnstileCallback = () => { resolve(); }
+  });
+
+  Promise.all([datastarReady, turnstileReady]).then(() => {
+    const container = document.getElementById('turnstile-container');
+
+    if (!container) {
+      console.error('Missing #turnstile-container');
+      return;
+    }
+
+    container.dispatchEvent(new Event('turnstile-ready'));
+  });
 </script>
 
 <!-- https://developers.cloudflare.com/turnstile/get-started/client-side-rendering/#explicit-rendering -->
@@ -77,7 +91,6 @@
 <div data-signals="{widgetId: '', turnstileToken: '', name: '', comment: '', submitting: false }">
 
   <div id="turnstile-container"
-       data-on:load="if (window.turnstile) el.dispatchEvent(new Event('turnstile-ready'))"
        data-on:turnstile-ready=
           "$widgetId = turnstile.render('#turnstile-container', 
               { sitekey: '0x4AAAAAAAfct15KixMdrAXv', 
