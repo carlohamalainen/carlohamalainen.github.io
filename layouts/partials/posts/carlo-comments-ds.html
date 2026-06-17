@@ -94,10 +94,10 @@
     <p><label for="comment">Comment:</label><br>
     <textarea id="comment" name="comment" rows="8" cols="50" required="" data-bind="comment"></textarea></p>
 
-    <button type="button"
+    <button type="submit"
       data-indicator:submitting
       data-attr:disabled="!$name.trim() || !$comment.trim() || $submitting"
-      data-on:click="@post('https://comments.carlo-hamalainen.net/comments/v1/new', {contentType: 'form'})"
+      data-on:click__prevent="@post('https://comments.carlo-hamalainen.net/comments/v1/new', {contentType: 'form'})"
       >
       Submit comment</button>
 
