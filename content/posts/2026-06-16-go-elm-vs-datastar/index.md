@@ -253,10 +253,10 @@ The next block is for the comment form, and it involves a Cloudflare Turnstile w
     <p><label for="comment">Comment:</label><br>
     <textarea id="comment" name="comment" rows="8" cols="50" required="" data-bind="comment"></textarea></p>
 
-    <button type="button"
+    <button type="submit"
       data-indicator:submitting
       data-attr:disabled="!$name.trim() || !$comment.trim() || $submitting"
-      data-on:click="@post('https://comments.carlo-hamalainen.net/comments/v1/new', {contentType: 'form'})"
+      data-on:click__prevent="@post('https://comments.carlo-hamalainen.net/comments/v1/new', {contentType: 'form'})"
       >
       Submit comment</button>
 
@@ -301,10 +301,10 @@ the POST is in flight; and the action of the button itself is defined using
 [data-on:click](https://data-star.dev/reference/attributes#data-on) and the `@post` action.
 
 ```html
-    <button type="button"
+    <button type="submit"
       data-indicator:submitting
       data-attr:disabled="!$name.trim() || !$comment.trim() || $submitting"
-      data-on:click="@post('https://comments.carlo-hamalainen.net/comments/v1/new', {contentType: 'form'})"
+      data-on:click__prevent="@post('https://comments.carlo-hamalainen.net/comments/v1/new', {contentType: 'form'})"
       >
       Submit comment</button>
 ```
