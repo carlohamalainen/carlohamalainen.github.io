@@ -17,9 +17,7 @@ GHCi session and click thunks to force them.
 no system-library dependencies. A system with a fresh install of GHC (e.g.
 [ghcup](https://www.haskell.org/ghcup/)) can build and run this package.
 
-<p align="center">
-  <a href="ones.gif" target="_blank" rel="noopener"><img src="ones.gif" alt="ghc-vis-ds demo" width="80%"></a>
-</p>
+{{< figure src="ones.gif" link="ones.gif" target="_blank" rel="noopener" alt="ghc-vis-ds demo" width="80%" >}}
 
 ## Why
 
@@ -162,9 +160,7 @@ if (!isRoot) {
 Here is the `ones = [1,1..]` example after a few
 forcing steps, straight out of the **Copy SVG** button:
 
-<p align="center">
-  <a href="ones.svg" target="_blank" rel="noopener"><img src="ones.svg" alt="ghc-vis-ds graph view of ones" width="80%"></a>
-</p>
+{{< figure src="ones.svg" link="ones.svg" target="_blank" rel="noopener" alt="ghc-vis-ds graph view of ones" width="80%" >}}
 
 ### The highlight signal
 
