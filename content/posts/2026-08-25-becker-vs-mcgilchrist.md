@@ -1,7 +1,7 @@
 ---
 date: 2026-08-25
 title: More Everything Forever vs The Master and His Emissary
-url: /2026/08-25/becker-vs-mcgilchrist
+url: /2026/08/25/becker-vs-mcgilchrist
 ---
 
 I'm currently reading Adam Becker's [*More Everything Forever*](https://www.hachettebookgroup.com/titles/adam-becker/more-everything-forever/9781541619593/) (2025), a
