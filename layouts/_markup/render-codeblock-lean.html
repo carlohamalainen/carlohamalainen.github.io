@@ -1,0 +1,10 @@
+{{- /* Lean 4 code blocks: Chroma highlights keywords but leaves the declared name as a
+       plain identifier. Re-tag the name after a declaration keyword as a NameFunction
+       (`nf`) span, folding dotted names like Header.size_encode into one span, so it can
+       be coloured the way the VS Code Lean extension does. */ -}}
+{{- $inner := (transform.HighlightCodeBlock .).Inner -}}
+{{- $decl := `(<span class="kn">(?:def|theorem|lemma|structure|inductive|class|instance|abbrev|opaque|axiom|example|namespace|section)</span><span class="w"> </span>)<span class="n">([^<]*)</span>` -}}
+{{- $inner = replaceRE $decl `$1<span class="nf">$2</span>` $inner -}}
+{{- $dot := `<span class="nf">([^<]*)</span><span class="bp">\.</span><span class="n">([^<]*)</span>` -}}
+{{- range seq 3 -}}{{- $inner = replaceRE $dot `<span class="nf">$1.$2</span>` $inner -}}{{- end -}}
+<div class="highlight lean"><pre tabindex="0" class="chroma"><code class="language-lean" data-lang="lean">{{ $inner | safeHTML }}</code></pre></div>

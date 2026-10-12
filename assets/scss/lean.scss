@@ -1,0 +1,22 @@
+// Lean 4 code blocks: colour declaration keywords and declared names the way the
+// VS Code Lean extension does (GitHub Light/Dark Default palette). The spans come
+// from Chroma plus layouts/_markup/render-codeblock-lean.html, which re-tags the
+// declared name as `nf`.
+.highlight.lean .chroma {
+  .k, .kn { color: #cf222e; font-weight: 400; }
+  .nf { color: #8250df; font-weight: 400; }
+  .o, .bp { color: inherit; font-weight: 400; }
+  .gr { color: #82071e; font-style: italic; }
+}
+
+@mixin lean_dark {
+  .highlight.lean .chroma {
+    .k, .kn { color: #ff7b72; font-weight: 400; }
+    .nf { color: #d2a8ff; font-weight: 400; }
+    .o, .bp { color: inherit; font-weight: 400; }
+    .gr { color: #ffa198; font-style: italic; }
+  }
+}
+
+body.colorscheme-dark { @include lean_dark; }
+body.colorscheme-auto { @media (prefers-color-scheme: dark) { @include lean_dark; } }
