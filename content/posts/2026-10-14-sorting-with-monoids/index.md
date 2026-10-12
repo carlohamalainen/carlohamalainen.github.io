@@ -27,7 +27,7 @@ class Semigroup a => Monoid a where
 `Semigroup` is for things that can be combined with an associative operation, i.e.
 
 ```haskell
-a <> (b <> c) == (a <> b) <> c -- for all a, b, c
+forall a, b, c => a <> (b <> c) == (a <> b) <> c 
 ```
 
 For `String`, the `Semigroup` instance is normal concatenation:
