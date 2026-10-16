@@ -4,7 +4,7 @@ title: Sungrow in Lean, part 1
 url: /2026/10/16/sungrow-lean-part1
 ---
 
-What better way to learn Lean, than to implement a bespoke home battery
+What better way to learn Lean than to implement a bespoke home battery
 management system? I'm going to do that in this series of blog posts, porting my
 [Go implementation](https://carlo-hamalainen.net/2026/06/12/sungrowd-go) over to
 Lean4.
