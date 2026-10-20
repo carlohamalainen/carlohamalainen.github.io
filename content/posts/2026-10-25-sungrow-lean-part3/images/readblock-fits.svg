@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 120" width="680" height="120">
+<style>
+text{font-family:system-ui,-apple-system,sans-serif;font-size:13px;fill:#222}
+.mono{font-family:ui-monospace,Menlo,monospace;font-size:12px}
+.muted{fill:#666}
+.badtext{fill:#b91c1c}
+.cell{fill:#fff;stroke:#999}
+.lane{fill:#f4f4f5;stroke:#bbb}
+.block{fill:#dbeafe;stroke:#2563eb;stroke-width:1.5}
+.sensor{fill:#bbf7d0;stroke:#15803d}
+.bad{fill:#fecaca;stroke:#dc2626;stroke-width:1.5}
+.badline{stroke:#dc2626;stroke-width:1.5;fill:none}
+.limit{stroke:#222;stroke-width:1.5;stroke-dasharray:5 4}
+@media (prefers-color-scheme: dark){
+text{fill:#ddd}.muted{fill:#999}.badtext{fill:#f87171}
+.cell{fill:#1e1e1e;stroke:#666}.lane{fill:#262626;stroke:#555}
+.block{fill:#1e3a5f;stroke:#60a5fa}.sensor{fill:#14532d;stroke:#4ade80}
+.bad{fill:#5f1e1e;stroke:#f87171}.badline{stroke:#f87171}.limit{stroke:#ddd}}
+</style>
+<line class="limit" x1="597" y1="22" x2="597" y2="84"/>
+<text x="591" y="16" text-anchor="end">Modbus limit: 125 registers per read</text>
+<rect class="block" x="20" y="36" width="577" height="34"/>
+<rect class="bad" x="597" y="36" width="5" height="34"/>
+<text x="30" y="58">block at 13022, nr_words = 126</text>
+<text x="610" y="58" class="badtext">+1</text>
+<text x="20" y="104" class="mono muted">ValidReadQuantity 126  =  1 ≤ 126 ∧ 126 ≤ 125  =  false</text>
+</svg>

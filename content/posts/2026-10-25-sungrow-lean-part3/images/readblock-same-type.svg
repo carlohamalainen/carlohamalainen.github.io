@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 150" width="640" height="150">
+<style>
+text{font-family:system-ui,-apple-system,sans-serif;font-size:13px;fill:#222}
+.mono{font-family:ui-monospace,Menlo,monospace;font-size:12px}
+.muted{fill:#666}
+.badtext{fill:#b91c1c}
+.cell{fill:#fff;stroke:#999}
+.lane{fill:#f4f4f5;stroke:#bbb}
+.block{fill:#dbeafe;stroke:#2563eb;stroke-width:1.5}
+.sensor{fill:#bbf7d0;stroke:#15803d}
+.bad{fill:#fecaca;stroke:#dc2626;stroke-width:1.5}
+.badline{stroke:#dc2626;stroke-width:1.5;fill:none}
+.limit{stroke:#222;stroke-width:1.5;stroke-dasharray:5 4}
+@media (prefers-color-scheme: dark){
+text{fill:#ddd}.muted{fill:#999}.badtext{fill:#f87171}
+.cell{fill:#1e1e1e;stroke:#666}.lane{fill:#262626;stroke:#555}
+.block{fill:#1e3a5f;stroke:#60a5fa}.sensor{fill:#14532d;stroke:#4ade80}
+.bad{fill:#5f1e1e;stroke:#f87171}.badline{stroke:#f87171}.limit{stroke:#ddd}}
+</style>
+<text x="10" y="40">input</text>
+<text x="10" y="100">holding</text>
+<rect class="lane" x="80" y="22" width="550" height="28"/>
+<rect class="lane" x="80" y="82" width="550" height="28"/>
+<rect class="sensor" x="250" y="22" width="18" height="28"/>
+<text x="276" y="41">Inverter temperature at 5007</text>
+<rect class="block" x="250" y="82" width="200" height="28"/>
+<text x="258" y="101">block at 5007, 11 words</text>
+<line class="badline" x1="259" y1="54" x2="259" y2="78" stroke-dasharray="3 3"/>
+<text x="20" y="138" class="muted">Same address, different register space: the block would read holding register 5007.</text>
+</svg>

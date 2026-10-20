@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 530 160" width="530" height="160">
+<style>
+text{font-family:system-ui,-apple-system,sans-serif;font-size:13px;fill:#222}
+.mono{font-family:ui-monospace,Menlo,monospace;font-size:12px}
+.muted{fill:#666}
+.badtext{fill:#b91c1c}
+.cell{fill:#fff;stroke:#999}
+.lane{fill:#f4f4f5;stroke:#bbb}
+.block{fill:#dbeafe;stroke:#2563eb;stroke-width:1.5}
+.sensor{fill:#bbf7d0;stroke:#15803d}
+.bad{fill:#fecaca;stroke:#dc2626;stroke-width:1.5}
+.badline{stroke:#dc2626;stroke-width:1.5;fill:none}
+.limit{stroke:#222;stroke-width:1.5;stroke-dasharray:5 4}
+@media (prefers-color-scheme: dark){
+text{fill:#ddd}.muted{fill:#999}.badtext{fill:#f87171}
+.cell{fill:#1e1e1e;stroke:#666}.lane{fill:#262626;stroke:#555}
+.block{fill:#1e3a5f;stroke:#60a5fa}.sensor{fill:#14532d;stroke:#4ade80}
+.bad{fill:#5f1e1e;stroke:#f87171}.badline{stroke:#f87171}.limit{stroke:#ddd}}
+</style>
+<rect class="block" x="20" y="10" width="420" height="26"/>
+<text x="30" y="28">block at 5213, nr_words = 28</text>
+<rect class="sensor" x="20" y="46" width="140" height="28"/>
+<text x="30" y="65">Battery power</text>
+<rect class="bad" x="440" y="46" width="70" height="28"/>
+<text x="436" y="65" text-anchor="end">Grid frequency →</text>
+<rect class="cell" x="20" y="84" width="70" height="26"/>
+<rect class="cell" x="90" y="84" width="70" height="26"/>
+<rect class="cell" x="160" y="84" width="70" height="26"/>
+<rect class="cell" x="230" y="84" width="70" height="26"/>
+<rect class="cell" x="300" y="84" width="70" height="26"/>
+<rect class="cell" x="370" y="84" width="70" height="26"/>
+<rect class="bad" x="440" y="84" width="70" height="26"/>
+<text x="55" y="102" text-anchor="middle" class="mono">5213</text>
+<text x="125" y="102" text-anchor="middle" class="mono">5214</text>
+<text x="195" y="102" text-anchor="middle" class="mono">5215</text>
+<text x="265" y="102" text-anchor="middle" class="mono">…</text>
+<text x="335" y="102" text-anchor="middle" class="mono">5239</text>
+<text x="405" y="102" text-anchor="middle" class="mono">5240</text>
+<text x="475" y="102" text-anchor="middle" class="mono">5241</text>
+<text x="20" y="142" class="mono muted">gridFrequency.stop = 5242  &gt;  5213 + 28 = 5241</text>
+</svg>

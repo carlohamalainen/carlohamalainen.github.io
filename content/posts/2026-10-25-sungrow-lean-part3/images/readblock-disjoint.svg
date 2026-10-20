@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 165" width="520" height="165">
+<style>
+text{font-family:system-ui,-apple-system,sans-serif;font-size:13px;fill:#222}
+.mono{font-family:ui-monospace,Menlo,monospace;font-size:12px}
+.muted{fill:#666}
+.badtext{fill:#b91c1c}
+.cell{fill:#fff;stroke:#999}
+.lane{fill:#f4f4f5;stroke:#bbb}
+.block{fill:#dbeafe;stroke:#2563eb;stroke-width:1.5}
+.sensor{fill:#bbf7d0;stroke:#15803d}
+.bad{fill:#fecaca;stroke:#dc2626;stroke-width:1.5}
+.badline{stroke:#dc2626;stroke-width:1.5;fill:none}
+.limit{stroke:#222;stroke-width:1.5;stroke-dasharray:5 4}
+@media (prefers-color-scheme: dark){
+text{fill:#ddd}.muted{fill:#999}.badtext{fill:#f87171}
+.cell{fill:#1e1e1e;stroke:#666}.lane{fill:#262626;stroke:#555}
+.block{fill:#1e3a5f;stroke:#60a5fa}.sensor{fill:#14532d;stroke:#4ade80}
+.bad{fill:#5f1e1e;stroke:#f87171}.badline{stroke:#f87171}.limit{stroke:#ddd}}
+</style>
+<rect class="sensor" x="140" y="10" width="160" height="30"/>
+<text x="150" y="30">Battery power (int32)</text>
+<rect class="bad" x="220" y="50" width="80" height="30"/>
+<text x="310" y="70">typo (uint16) at 5214</text>
+<rect class="cell" x="60" y="95" width="80" height="26"/>
+<rect class="cell" x="140" y="95" width="80" height="26"/>
+<rect class="bad" x="220" y="95" width="80" height="26"/>
+<rect class="cell" x="300" y="95" width="80" height="26"/>
+<rect class="cell" x="380" y="95" width="80" height="26"/>
+<text x="100" y="113" text-anchor="middle" class="mono">5212</text>
+<text x="180" y="113" text-anchor="middle" class="mono">5213</text>
+<text x="260" y="113" text-anchor="middle" class="mono">5214</text>
+<text x="340" y="113" text-anchor="middle" class="mono">5215</text>
+<text x="420" y="113" text-anchor="middle" class="mono">5216</text>
+<text x="20" y="150" class="mono muted">batteryPower.stop = 5215  &gt;  5214 = typo.start</text>
+</svg>
