@@ -16,7 +16,7 @@
     <div class="content">
       <section class="container list">
         <ul>
-          {{- range .Paginator.Pages -}}
+          {{- range (.Paginate (where site.RegularPages "Type" "posts")).Pages -}}
             {{- .Render "li" -}}
           {{- end -}}
         </ul>
